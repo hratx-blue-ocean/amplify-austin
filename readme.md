@@ -16,7 +16,7 @@ Expect this project to push you outside of your comfort zone. Welcome to your fi
 You will be interacting with and playing various roles consistent with an agile work enviroment. We expect you to build software meeting each of our standards over the next week.
 
 ## Minimum requirements
-Choose a project based around ideas presented during kick off
+Work with your end user to understand what you are building
 
 Create a backlog of tickets to work through during the week
 
