@@ -14,7 +14,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:dev": "cd .. && npm run lint:client && cd ./client && npm run start"
+    "start:dev": "cd .. && npm run lint:client && cd ./client && npm run start",
+    "lint": "./node_modules/.bin/eslint --fix 'src/**/*.js' 2>/dev/null && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'"
   },
   "eslintConfig": {
     "extends": "react-app"
