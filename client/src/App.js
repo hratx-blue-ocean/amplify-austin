@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import HelloWorld from "./components/HelloWorld";
+import Header from "./components/header/header";
 
 export class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <HelloWorld></HelloWorld>
+        <Header />
       </div>
     );
   }

@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.6.1",
+    "@material-ui/icons": "^4.5.1",
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-scripts": "3.2.0"
@@ -10,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
     "start:dev": "cd .. && npm run lint:client && cd ./client && npm run start"
   },
