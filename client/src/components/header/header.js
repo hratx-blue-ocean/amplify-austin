@@ -1,7 +1,6 @@
 import React from "react";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
 import MenuIcon from "@material-ui/icons/Menu";
-import Icon from "@material-ui/core/Icon";
 
 class Header extends React.Component {
   constructor(props) {
