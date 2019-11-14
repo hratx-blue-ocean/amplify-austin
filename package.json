@@ -1,40 +1,45 @@
 {
-  "name": "blue-ocean-rewrite",
-  "version": "1.0.0",
-  "description": "Congratulations and welcome to your first day at Blue Ocean! We are literally an underwater agile software development company.",
+  "name": "myatx",
+  "version": "0.1.0",
+  "description": "MyATX community involvement and map",
   "main": "index.js",
   "scripts": {
     "setup": "npm install && cd ./client && npm install ; cd ../server && npm install",
-    "test": "cd ./client && npm test",
-    "launch": "cd ./client && npm run-script build && cd ../server && node bin/www && cd ../client webpack-dev-server &",
+    "test": "cd ./client && npm run test",
+    "launch": "cd ./client && npm run build && cd ../server && node bin/www && cd ../client npm run start &",
     "lint:client": "cd ./client && ./node_modules/.bin/eslint \"src/**/*.{js,jsx}\" && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'",
-    "lint:server": "cd ./server && ../node_modules/.bin/eslint \"routes/**/*.js\" 2>/dev/null && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'"
+    "lint:server": "cd ./server && npm run lint",
+    "prettier:client": "./node_modules/.bin/prettier --write 'client/src/**/*.{js,jsx}'",
+    "prettier:server": "./node_modules/.bin/prettier --write 'server/routes/**/*.js'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier:client && npm run prettier:server"
+    }
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/selder18/blue-ocean-rewrite.git"
+    "url": "git+https://github.com/hratx-blue-ocean/myatx-community.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/selder18/blue-ocean-rewrite/issues"
+    "url": "https://github.com/hratx-blue-ocean/myatx-community/issues"
   },
-  "homepage": "https://github.com/selder18/blue-ocean-rewrite#readme",
+  "homepage": "https://github.com/hratx-blue-ocean/myatx-community#readme",
   "dependencies": {
-    "dotenv": "^8.0.0"
+    "dotenv": "8.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-config-react-app": "^4.0.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-flowtype": "^2.50.3",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "^7.12.4",
-    "eslint-plugin-react-hooks": "^1.5.0",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-prettier": "3.1.1",
+    "husky": "3.0.9",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
+  },
+  "lint-staged": {
+    "client/src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

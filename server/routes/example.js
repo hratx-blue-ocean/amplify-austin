@@ -1,7 +1,7 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-router.get('/', (req, res) => {
-    res.json({data:['dolphins', 'manatees', 'sea turles']})
-})
+router.get("/", (req, res) => {
+  res.json({ data: ["dolphins", "manatees", "sea turles"] });
+});
 
 module.exports = router;

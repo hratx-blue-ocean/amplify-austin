@@ -1,33 +1,15 @@
-import React, { Component } from 'react';
-import fetch from 'node-fetch';
-// import './App.css';
+import React from "react";
+import "./App.css";
+import HelloWorld from "./components/HelloWorld";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      seaCreatures: []
-    };
-    this.api = `http://localhost:8000/api/example`;
-  }
-  componentDidMount() {
-    fetch(this.api)
-      .then(res => res.json())
-      .then(seaCreatures => {
-        this.setState({ seaCreatures: seaCreatures.data });
-      });
-  }
-
+export class App extends React.Component {
   render() {
     return (
-      <>
-        <h1>Welcome to Blue Ocean!</h1>
-        <ul>
-          {this.state.seaCreatures.map((creature, index) => (
-            <li key={index}>{creature}</li>
-          ))}
-        </ul>
-      </>
+      <div className="App">
+        <HelloWorld></HelloWorld>
+      </div>
     );
   }
 }
+
+export default App;
