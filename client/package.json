@@ -12,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:dev": "cd .. && npm run lint:client && cd ./client && npm run start"
   },
