@@ -13,7 +13,6 @@ export class App extends React.Component {
         <SortFilter />
         <Create />
         <Posts />
-        
       </div>
     );
   }

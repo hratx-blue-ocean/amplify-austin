@@ -6,10 +6,10 @@ export class SortFilter extends React.Component {
   render() {
     return (
       <div>
-      <Sort />
-      <Filter />
+        <Sort />
+        <Filter />
       </div>
-    )
+    );
   }
 }
 

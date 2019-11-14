@@ -16,7 +16,7 @@ class Header extends React.Component {
         <div className="HeaderContainer">
           <MenuIcon className="menuIcon" />
           {/*ToDo Menu */}
-          <Menu /> 
+          <Menu />
           <div>MyAtx</div>
           <MapOutlinedIcon className="mapIcon" />
         </div>
