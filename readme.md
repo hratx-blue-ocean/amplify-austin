@@ -29,7 +29,7 @@
 * [James](http://github.com/jamesjamail)
 * [Jonathan](https://github.com/jkeane889)
 * [Seth](https://github.com/projectlewis)
-* [Taylor](http://github.com/atgeorge11)
+* [Taylor](http://github.com/atgeorge11) Fearless Leader
 * [Tye](https://github.com/tyemacon)
 
 ## About
