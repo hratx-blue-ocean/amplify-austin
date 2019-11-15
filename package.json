@@ -28,7 +28,8 @@
   },
   "homepage": "https://github.com/hratx-blue-ocean/myatx-community#readme",
   "dependencies": {
-    "dotenv": "8.0.0"
+    "dotenv": "8.0.0",
+    "faker": "^4.1.0"
   },
   "devDependencies": {
     "eslint-plugin-prettier": "3.1.1",
