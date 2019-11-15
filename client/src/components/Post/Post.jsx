@@ -46,5 +46,3 @@ export default PostContainer = props => {
     </div>
   );
 };
-
-export default PostContainer;
