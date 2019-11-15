@@ -1,9 +1,6 @@
 import React from "react";
 import styles from "./App.module.css";
 import Header from "./components/header/header.jsx";
-import SortFilter from "./components/SortFilter/SortFilter";
-import Create from "./components/Create/Create";
-import Posts from "./components/Posts/Posts";
 import { allIssues, firstPost } from "./FAKEDATA";
 
 export class App extends React.Component {
