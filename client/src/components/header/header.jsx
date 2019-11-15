@@ -1,25 +1,43 @@
 import React from "react";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
 import MenuIcon from "@material-ui/icons/Menu";
-import Menu from "../Menu/Menu";
+import Menu from "../Menu/Menu.jsx";
+import "./header.css";
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      istoggled: false
+      menuIsToggled: false
     };
+  }
+
+  toggleMenu() {
+    this.setState({
+      menuIsToggled: true
+    });
   }
   render() {
     return (
       <React.Fragment>
-        <div className="HeaderContainer">
-          <MenuIcon className="menuIcon" />
-          {/*ToDo Menu */}
-          <Menu />
-          <div>MyAtx</div>
-          <MapOutlinedIcon className="mapIcon" />
+        <div data-test="HeaderContainer" id="HeaderContainer">
+          <div>
+            <MenuIcon
+              onClick={() => {
+                this.toggleMenu();
+              }}
+              style={{ height: 30, width: 30 }}
+            />
+          </div>
+          <div>
+            <p>Amplify Austin</p>
+          </div>
+          <div>
+            <MapOutlinedIcon style={{ height: 30, width: 30 }} />
+          </div>
         </div>
+        {/*ToDo Menu */}
+        <Menu />
       </React.Fragment>
     );
   }
