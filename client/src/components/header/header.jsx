@@ -1,8 +1,17 @@
 import React from "react";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
 import MenuIcon from "@material-ui/icons/Menu";
-import Menu from "../Menu/Menu.jsx";
+import Menu from "../Menu/Menu";
+import Drawer from "@material-ui/core/Drawer";
+import { withStyles } from "@material-ui/core/styles";
 import "./header.css";
+
+const styles = {
+  paper: {
+    background: "#6202ee",
+    color: "white"
+  }
+};
 
 class Header extends React.Component {
   constructor(props) {
@@ -13,11 +22,13 @@ class Header extends React.Component {
   }
 
   toggleMenu() {
+    let reverse = !this.state.menuIsToggled;
     this.setState({
-      menuIsToggled: true
+      menuIsToggled: reverse
     });
   }
   render() {
+    const { classes } = this.props;
     return (
       <React.Fragment>
         <div data-test="HeaderContainer" id="HeaderContainer">
@@ -37,10 +48,17 @@ class Header extends React.Component {
           </div>
         </div>
         {/*ToDo Menu */}
-        <Menu />
+        <Drawer
+          anchor="left"
+          open={this.state.menuIsToggled}
+          onClose={this.toggleMenu.bind(this)}
+          classes={{ paper: classes.paper }}
+        >
+          <Menu />
+        </Drawer>
       </React.Fragment>
     );
   }
 }
 
-export default Header;
+export default withStyles(styles)(Header);

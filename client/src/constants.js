@@ -8,6 +8,7 @@ export const ICONLABEL = {
   garbage: "garbage",
   graffiti: "graffiti",
   home: "home",
+  mapLogo: "mapLogo",
   mapMarker: "mapMarker",
   mapSign: "mapSign",
   message: "message",
