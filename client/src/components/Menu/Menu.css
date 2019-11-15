@@ -1,12 +1,10 @@
 .NavBarContainer {
-  position: absolute;
-  left: 0;
+  position: relative;
   top: 50px;
   bottom: 0;
   display: grid;
   grid-template-columns: 200px;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-  background-color: #6202ee;
 }
 
 .NavBarContainer button {
