@@ -7,10 +7,12 @@ const CategoryList = ({ categories, isChecked, toggleCategory }) => {
     <div className={styles.container}>
       {categories.map((category, i) => {
         return (
-          <Category key={i}
+          <Category
+            key={i}
             category={category}
             checked={isChecked[category]}
-            toggleCategory={toggleCategory} />
+            toggleCategory={toggleCategory}
+          />
         );
       })}
     </div>

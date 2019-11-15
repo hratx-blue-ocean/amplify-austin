@@ -24,9 +24,12 @@ export default class Filter extends React.Component {
     } else {
       newCategories[category] = true;
     }
-    this.setState({
-      categories: newCategories
-    }, () => console.log(this.state.categories))
+    this.setState(
+      {
+        categories: newCategories
+      },
+      () => console.log(this.state.categories)
+    );
   }
 
   toggleDropDown() {
@@ -53,11 +56,13 @@ export default class Filter extends React.Component {
           <button className={styles.filterbutton} onClick={this.toggleDropDown}>
             Filter
           </button>
-          {this.state.dropDown &&
+          {this.state.dropDown && (
             <CategoryList
               categories={categories}
               isChecked={this.state.categories}
-              toggleCategory={this.toggleCategory} />}
+              toggleCategory={this.toggleCategory}
+            />
+          )}
         </div>
         <button className={styles.apply} onClick={this.applyFilters}>
           <span>O{/** Find an Icon */}</span>
