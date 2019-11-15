@@ -1,0 +1,18 @@
+.NavBarContainer {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 200px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #6202ee;
+}
+
+.NavBarContainer button {
+  margin: 15% 5%;
+  background-color: lightgray;
+  height: 3rem;
+  width: 11rem;
+  border-radius: 32px;
+}
