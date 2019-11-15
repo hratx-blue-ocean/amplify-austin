@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import { googleMapAPIKey } from "../../config/config.env";
-import { center, zoom } from "./map-constants";
+import { centerATX, zoom } from "./map-constants";
 
 import Marker from "./Marker";
 
@@ -9,9 +9,8 @@ import Marker from "./Marker";
 // If left to roam freely, it will take up the entire screen like a dick
 export default class Map extends Component {
   constructor(props) {
-    console.log(googleMapAPIKey);
     super(props);
-    this.center = center || centerOf(this.props.coordinates);
+    this.center = centerOf(this.props.coordinates) || centerATX;
     this.zoom = zoom || this.props.zoom;
   }
 
@@ -49,8 +48,12 @@ const centerOf = coordinates => {
   if (!coordinates) {
     return null;
   }
+  if (!coordinates.length) {
+    return null;
+  }
   const center = {};
-  let lat, lng;
+  let lat = 0;
+  let lng = 0;
   coordinates.forEach(coord => {
     lat += coord[0];
     lng += coord[1];

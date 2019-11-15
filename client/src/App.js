@@ -1,9 +1,6 @@
 import React from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import Header from "./components/header/header.jsx";
-import SortFilter from "./components/SortFilter/SortFilter";
-import Create from "./components/Create/Create";
-import Posts from "./components/Posts/Posts";
 import { allIssues, firstPost } from "./FAKEDATA";
 
 export class App extends React.Component {
@@ -16,11 +13,13 @@ export class App extends React.Component {
   }
   render() {
     return (
-      <div className="App">
-        <Header />
-        <SortFilter />
-        <Create />
-        <Posts />
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <Header />
+        </div>
+        <div className={styles.component}>
+          {/**Your component here for looks testing */}
+        </div>
       </div>
     );
   }
