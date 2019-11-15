@@ -6,7 +6,9 @@ export class PostPage extends React.Component {
       <div>
         <button>Reach Out</button>
         <button>Mark as Resolved</button>
-        <div><span>STAR ICON</span> ISSUE NAME</div>
+        <div>
+          <span>STAR ICON</span> ISSUE NAME
+        </div>
         <p>ISSUE CONTENT HERE</p>
         <div>MAP HERE</div>
       </div>

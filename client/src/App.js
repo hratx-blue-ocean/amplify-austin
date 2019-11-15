@@ -12,7 +12,7 @@ export class App extends React.Component {
     this.state = {
       selectedPost: firstPost,
       posts: allIssues
-    }
+    };
   }
   render() {
     return (

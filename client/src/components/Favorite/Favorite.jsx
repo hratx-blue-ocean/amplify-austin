@@ -10,11 +10,7 @@ export class Favorite extends React.Component {
   }
 
   render() {
-    return (
-      <div onClick={this.handleSave}>
-        STAR ICON
-      </div>
-    );
+    return <div onClick={this.handleSave}>STAR ICON</div>;
   }
 }
 
