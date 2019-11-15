@@ -29,13 +29,14 @@
   "homepage": "https://github.com/hratx-blue-ocean/myatx-community#readme",
   "dependencies": {
     "dotenv": "8.0.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "15.7.2"
+    "faker": "4.1.0"
   },
   "devDependencies": {
     "eslint-plugin-prettier": "3.1.1",
     "husky": "3.0.9",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1"
+    "prettier": "1.19.1",
+    "pretty-quick": "2.0.1"
   },
   "lint-staged": {
     "client/src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
