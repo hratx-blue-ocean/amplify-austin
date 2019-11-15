@@ -12,16 +12,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     margin: "auto",
     maxWidth: 500
-  },
-  image: {
-    width: 128,
-    height: 128
-  },
-  img: {
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%"
   }
 }));
 
@@ -41,11 +31,12 @@ export default PostContainer = props => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
+                <ArrowUpwardIcon></ArrowUpwardIcon>
                 <Typography variant="body2" gutterBottom>
-                  Full resolution 1920x1080 • JPEG
+                  {/* {props.description} */}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  ID: 1030114
+                  {/* {props.createdAt} */}
                 </Typography>
               </Grid>
             </Grid>
