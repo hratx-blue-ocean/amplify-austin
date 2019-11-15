@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./components/Header/Header.jsx";
+import Header from "./components/Header/Header";
 import styles from "./App.module.css";
 import { allIssues, firstPost } from "./FAKEDATA";
 

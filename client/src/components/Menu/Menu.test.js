@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Menu from "./Menu.jsx";
+import Menu from "./Menu";
 
 const initialize = (props = {}) => {
   const component = shallow(<Menu {...props} />);
