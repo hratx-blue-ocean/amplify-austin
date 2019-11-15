@@ -1,13 +1,23 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Header from "./header";
+import Header from "./header.jsx";
+
+const initialize = (props = {}) => {
+  const component = shallow(<Header {...props} />);
+  return component;
+};
+
+const findByTestAttr = (component, attr) => {
+  const wrapper = component.find(`[data-test='${attr}']`);
+  return wrapper;
+};
 
 describe("Header Component Structure", () => {
-  const component = shallow(<Header />);
-  it("should render one nested divs", () => {
-    const wrapper = component.find("div div");
-    expect(wrapper.length).toBe(1);
+  let component;
+  beforeEach(() => {
+    component = initialize();
   });
+
   it("should render a MapOutlinedIcon", () => {
     const wrapper = component.find("MapOutlinedIcon");
     expect(wrapper.length).toBe(1);
@@ -16,20 +26,30 @@ describe("Header Component Structure", () => {
     const wrapper = component.find("MenuIcon");
     expect(wrapper.length).toBe(1);
   });
-  it("should render a div with HeaderContainer", () => {
-    const wrapper = component.find(".HeaderContainer");
-    expect(wrapper.length).toBe(1);
-  });
-  it("should have a map icon", () => {
-    const wrapper = component.find(".mapIcon");
-    expect(wrapper.length).toBe(1);
-  });
-  it("should have a menu icon", () => {
-    const wrapper = component.find(".menuIcon");
+  it("should render a div with a data-test HeaderContainer", () => {
+    const wrapper = findByTestAttr(component, "HeaderContainer");
     expect(wrapper.length).toBe(1);
   });
 });
 
 describe("Header Component State", () => {
-  it("Should have a menuToggle state", () => {});
+  let component;
+  beforeEach(() => {
+    component = initialize();
+  });
+  it("Should have a menuToggle state", () => {
+    expect(component.state().menuIsToggled).toBe(false);
+  });
+});
+
+describe("Header Functionality", () => {
+  let component;
+  beforeEach(() => {
+    component = initialize();
+  });
+  it("Should be able to click menu", () => {
+    const wrapper = component.find("MenuIcon");
+    wrapper.simulate("click", {});
+    expect(component.state().menuIsToggled).toBe(true);
+  });
 });
