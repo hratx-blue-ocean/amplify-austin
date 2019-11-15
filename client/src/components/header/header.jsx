@@ -4,7 +4,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "../Menu/Menu.jsx";
 import Drawer from "@material-ui/core/Drawer";
 import { withStyles } from "@material-ui/core/styles";
-import "./header.css";
+import "./Header.css";
 
 const styles = {
   paper: {
