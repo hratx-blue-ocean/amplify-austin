@@ -5,7 +5,7 @@ import SortFilter from "./components/SortFilter/SortFilter";
 import Create from "./components/Create/Create";
 import Posts from "./components/Posts/Posts";
 import { allIssues, firstPost } from "./FAKEDATA";
-
+import MapPage from './components/MapPage/MapPage'
 export class App extends React.Component {
   constructor() {
     super();
