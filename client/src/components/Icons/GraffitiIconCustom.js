@@ -1,8 +1,8 @@
 import React from "React";
 import BrushIcon from "@material-ui/icons/Brush";
 
-const Graffiti_Icon = () => {
+const GraffitiIconCustom = () => {
   return <BrushIcon></BrushIcon>;
 };
 
-export default Graffiti_Icon;
+export default GraffitiIconCustom;

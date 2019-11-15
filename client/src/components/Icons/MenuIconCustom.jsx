@@ -1,8 +1,8 @@
 import React from "React";
 import MenuIcon from "@material-ui/icons/Menu";
 
-const Menu_Icon = () => {
+const MenuIconCustom = () => {
   return <MenuIcon></MenuIcon>;
 };
 
-export default Menu_Icon;
+export default MenuIconCustom;

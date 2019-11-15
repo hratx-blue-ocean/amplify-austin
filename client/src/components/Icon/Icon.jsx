@@ -1,41 +1,39 @@
 import React from "React";
-import Accessible_Icon from "../Icons/Accesible_Icon";
+import AccessibleIconCustom from "../Icons/AccesibleIconCustom";
 import AddIcon from "../Icons/AddIcon";
-import Car_Icon from "../Icons/Car_Icon";
+import CarIconCustom from "../Icons/CarIconCustom";
 import DangerIcon from "../Icons/DangerIcon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon";
 import EventIcon from "../Icons/EventIcon";
 import FilledStarIcon from "../Icons/FilledStarIcon";
 import FoodIcon from "../Icons/FoodIcon";
 import GarbageIcon from "../Icons/GarbageIcon";
-import Graffiti_Icon from "../Icons/Graffiti_Icon";
-import HomeIcon from "../Icons/HomeIcon";
+import GraffitiIconCustom from "../Icons/GraffitiIconCustom";
+import HomeIconCustom from "../Icons/HomeIconCustom";
 import MapMarkerIcon from "../Icons/MapMarkerIcon";
 import MapSignIcon from "../Icons/MapSignIcon";
 import MsgIcon from "../Icons/MsgIcon";
 import MusicIcon from "../Icons/MusicIcon";
 import NatureIcon from "../Icons/NatureIcon";
-import Menu_Icon from "../Icons/Menu_Icon";
+import MenuIconCustom from "../Icons/MenuIconCustom";
 import ParkingIcon from "../Icons/ParkingIcon";
 import PetIcon from "../Icons/PetIcon";
 import SchoolHouseIcon from "../Icons/SchoolHouseIcon";
-import Settings_Icon from "../Icons/Settings_Icon";
-import TownHall_Icon from "../Icons/TownHall_Icon";
+import SettingsIconCustom from "../Icons/SettingsIconCustom";
+import TownHallIconCustom from "../Icons/TownHallIcon";
 import WaterIcon from "../Icons/WaterIcon";
 import { ICONLABEL } from "../../constants";
 
 class Icon extends React.Component {
-  constructor({ type }) {
-    super({ type });
-  }
   render() {
+    const { type } = this.props.type
     switch (type) {
       case ICONLABEL.accessible:
-        return <Accessible_Icon />;
+        return <AccessibleIconCustom />;
       case ICONLABEL.add:
         return <AddIcon />;
       case ICONLABEL.car:
-        return <Car_Icon />;
+        return <CarIconCustom />;
       case ICONLABEL.danger:
         return <DangerIcon />;
       case ICONLABEL.event:
@@ -45,15 +43,15 @@ class Icon extends React.Component {
       case ICONLABEL.garbage:
         return <GarbageIcon />;
       case ICONLABEL.graffiti:
-        return <Graffiti_Icon />;
+        return <GraffitiIconCustom />;
       case ICONLABEL.home:
-        return <HomeIcon />;
+        return <HomeIconCustom />;
       case ICONLABEL.mapMarker:
         return <MapMarkerIcon />;
       case ICONLABEL.mapSign:
         return <MapSignIcon />;
       case ICONLABEL.menu:
-        return <Menu_Icon />;
+        return <MenuIconCustom />;
       case ICONLABEL.message:
         return <MsgIcon />;
       case ICONLABEL.music:
@@ -67,13 +65,13 @@ class Icon extends React.Component {
       case ICONLABEL.school:
         return <SchoolHouseIcon />;
       case ICONLABEL.settings:
-        return <Settings_Icon />;
+        return <SettingsIconCustom />;
       case ICONLABEL.starEmpty:
         return <EmptyStarIcon />;
       case ICONLABEL.starFilled:
         return <FilledStarIcon />;
       case ICONLABEL.townhall:
-        return <TownHall_Icon />;
+        return <TownHallIconCustom />;
       case ICONLABEL.water:
         return <WaterIcon />;
       default:

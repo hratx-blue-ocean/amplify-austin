@@ -1,8 +1,8 @@
 import React from "React";
 import AccessibleIcon from "@material-ui/icons/Accessible";
 
-const Accessible_Icon = () => {
+const AccessibleIconCustom = () => {
   return <AccessibleIcon></AccessibleIcon>;
 };
 
-export default Accessible_Icon;
+export default AccessibleIconCustom;
