@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./App.module.css";
 import Header from "./components/header/header.jsx";
 import { allIssues, firstPost } from "./FAKEDATA";
-import MapPage from './components/MapPage/MapPage'
+import MapPage from "./components/MapPage/MapPage";
 
 export class App extends React.Component {
   constructor() {

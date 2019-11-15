@@ -1,6 +1,6 @@
 import React from "react";
-import CategoryList from './CategoryList/CategoryList';
-import styles from './Filter.module.css';
+import CategoryList from "./CategoryList/CategoryList";
+import styles from "./Filter.module.css";
 
 export default class Filter extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class Filter extends React.Component {
     this.state = {
       categories: [],
       dropDown: false
-    }
+    };
     this.addCategory = this.addCategory.bind(this);
     this.applyFilters = this.applyFilters.bind(this);
     this.deleteCategory = this.deleteCategory.bind(this);
@@ -18,7 +18,7 @@ export default class Filter extends React.Component {
   addCategory(category) {
     this.setState({
       categories: [...this.state.categories, category]
-    })
+    });
   }
 
   deleteCategory(category) {
@@ -31,7 +31,7 @@ export default class Filter extends React.Component {
     }
     this.setState({
       dropDown: !this.state.dropDown
-    })
+    });
   }
 
   applyFilters() {
@@ -42,21 +42,15 @@ export default class Filter extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.filter}>
-          <button
-            className={styles.filterbutton}
-            onClick={this.toggleDropDown}>
+          <button className={styles.filterbutton} onClick={this.toggleDropDown}>
             Filter
           </button>
           {this.state.dropDown && <CategoryList />}
         </div>
-        <button
-          className={styles.apply}
-          onClick={this.applyFilters}>
+        <button className={styles.apply} onClick={this.applyFilters}>
           <span>O{/** Find an Icon */}</span>
         </button>
       </div>
-    )
+    );
   }
 }
-
-
