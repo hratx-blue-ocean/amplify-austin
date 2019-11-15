@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-// import Header from "./components/header/header";
-// import SortFilter from "./components/SortFilter/SortFilter";
-// import Create from "./components/Create/Create";
-// import Posts from "./components/Posts/Posts";
+import Header from "./components/header/header";
+import SortFilter from "./components/SortFilter/SortFilter";
+import Create from "./components/Create/Create";
+import Posts from "./components/Posts/Posts";
 import { allIssues, firstPost } from "./FAKEDATA";
-import MapPage from "./components/MapPage/MapPage";
+
 export class App extends React.Component {
   constructor() {
     super();
@@ -17,11 +17,10 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {/* <Header />
+        <Header />
         <SortFilter />
         <Create />
-        <Posts /> */}
-        <MapPage></MapPage>
+        <Posts />
       </div>
     );
   }

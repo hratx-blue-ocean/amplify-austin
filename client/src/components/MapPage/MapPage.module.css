@@ -1,6 +1,5 @@
 .container {
-  width: 415px;
-  max-width: 500px;
+  width: 100%;
   height: 100vh;
 }
 
@@ -9,16 +8,15 @@
   width: 100%;
   height: 100%;
   padding: 5px;
-  grid-template-rows: repeat(1fr, 3);
+  grid-template-rows: repeat(1fr, 2);
   grid-template-areas:
     "header"
-    "filter"
     "map";
   box-sizing: border-box;
 }
 
 .map{
-  grid-area: filter;
+  grid-area: map;
   width: 100%;
   height: 100%;
 }
