@@ -9,7 +9,7 @@ import Marker from "./Marker";
 // If left to roam freely, it will take up the entire screen like a dick
 export default class Map extends Component {
   constructor(props) {
-    console.log(googleMapAPIKey)
+    console.log(googleMapAPIKey);
     super(props);
     this.center = center || centerOf(this.props.coordinates);
     this.zoom = zoom || this.props.zoom;
