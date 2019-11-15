@@ -5,7 +5,8 @@ export const firstPost = {
   category: "public works",
   postID: faker.random.number(40),
   headline: "Manuer on Cesar Chavez",
-  description: "I stepped in it, and I cant stop crying. Please clean it up. And I could also use a professional cleaner now.",
+  description:
+    "I stepped in it, and I cant stop crying. Please clean it up. And I could also use a professional cleaner now.",
   created_at: faker.date.recent(7),
   location: "123 Cesar Chavez",
   upvotes: 22,
@@ -14,7 +15,7 @@ export const firstPost = {
   disputed: 0,
   resolved: 0,
   favorited: true
-}
+};
 
 export const secondPost = {
   type: "event",
@@ -31,7 +32,7 @@ export const secondPost = {
   disputed: 0,
   resolved: 0,
   favorited: false
-}
+};
 
 export const thirdPost = {
   type: "issue",
@@ -47,7 +48,7 @@ export const thirdPost = {
   disputed: 0,
   resolved: 0,
   favorited: false
-}
+};
 
 export const fourthPost = {
   type: "event",
@@ -64,7 +65,7 @@ export const fourthPost = {
   disputed: 0,
   resolved: 0,
   favorited: false
-}
+};
 
 export const fifthPost = {
   type: "issue",
@@ -80,7 +81,7 @@ export const fifthPost = {
   disputed: 0,
   resolved: 0,
   favorited: false
-}
+};
 
 export const sixthPost = {
   type: "issue",
@@ -96,7 +97,7 @@ export const sixthPost = {
   disputed: 0,
   resolved: 0,
   favorited: false
-}
+};
 
 export const seventhPost = {
   type: "event",
@@ -113,7 +114,7 @@ export const seventhPost = {
   disputed: 0,
   resolved: 0,
   favorited: false
-}
+};
 
 export const eighthPost = {
   type: "event",
@@ -130,7 +131,7 @@ export const eighthPost = {
   disputed: 0,
   resolved: 0,
   favorited: true
-}
+};
 
 export const ninthPost = {
   type: "issue",
@@ -146,7 +147,7 @@ export const ninthPost = {
   disputed: 0,
   resolved: 0,
   favorited: false
-}
+};
 
 export const tenthPost = {
   type: "issue",
@@ -162,6 +163,17 @@ export const tenthPost = {
   disputed: 0,
   resolved: 0,
   favorited: false
-}
+};
 
-export const allIssues = [firstPost, secondPost, thirdPost, fourthPost, fifthPost, sixthPost, seventhPost, eighthPost, ninthPost, tenthPost]
+export const allIssues = [
+  firstPost,
+  secondPost,
+  thirdPost,
+  fourthPost,
+  fifthPost,
+  sixthPost,
+  seventhPost,
+  eighthPost,
+  ninthPost,
+  tenthPost
+];
