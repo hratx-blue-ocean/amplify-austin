@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default PostContainer = props => {
+export default function PostContainer(props) {
   const styles = useStyles();
 
   return (
