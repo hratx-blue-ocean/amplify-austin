@@ -4,12 +4,19 @@ import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import "./Menu.css";
+import { useHistory } from "react-router-dom";
 
 const Menu = props => {
+  const history = useHistory();
   return (
     <div className="NavBarContainer" data-test="NavMenu">
       <div>
-        <button data-test="Home">
+        <button
+          data-test="Home"
+          onClick={() => {
+            history.push("/");
+          }}
+        >
           Home
           <HomeOutlinedIcon />
         </button>
@@ -33,10 +40,26 @@ const Menu = props => {
         </button>
       </div>
       <div>
-        <button data-test="SignIn"> Sign In </button>
+        <button
+          data-test="SignIn"
+          onClick={() => {
+            history.push("/signin");
+          }}
+        >
+          {" "}
+          Sign In{" "}
+        </button>
       </div>
       <div>
-        <button data-test="SignUp"> Sign Up </button>
+        <button
+          data-test="SignUp"
+          onClick={() => {
+            history.push("/signup");
+          }}
+        >
+          {" "}
+          Sign Up{" "}
+        </button>
       </div>
     </div>
   );
