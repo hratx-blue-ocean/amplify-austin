@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/header/header";
+import Header from "./components/header/header.jsx";
 import SortFilter from "./components/SortFilter/SortFilter";
 import Create from "./components/Create/Create";
 import Posts from "./components/Posts/Posts";

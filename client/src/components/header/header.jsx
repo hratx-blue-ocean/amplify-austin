@@ -1,7 +1,7 @@
 import React from "react";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
 import MenuIcon from "@material-ui/icons/Menu";
-import Menu from "../Menu/Menu";
+import Menu from "../Menu/Menu.jsx";
 import "./header.css";
 
 class Header extends React.Component {
