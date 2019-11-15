@@ -1,4 +1,6 @@
 import React from "react";
+import { Icon } from "@material-ui/core";
+import { ICONLABEL } from "../../constants";
 
 export class Favorite extends React.Component {
   constructor(props) {
@@ -6,11 +8,17 @@ export class Favorite extends React.Component {
   }
 
   handleSave() {
-    this.props.savePost(this.props.post.id);
+    if (this.props.favorite) {
+      this.props.unsavePost(this.props.post.id);
+    } else {
+      this.props.savePost(this.props.post.id);
+    }
   }
 
   render() {
-    return <div onClick={this.handleSave}>STAR ICON</div>;
+    return (<div onClick={this.handleSave}>
+      {this.props.favorite ? <Icon type={ICONLABEL.starFilled} /> : <Icon type={ICONLABEL.starEmpty} />}
+    </div>);
   }
 }
 

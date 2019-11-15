@@ -1,8 +1,8 @@
 import React from "React";
 import SchoolIcon from "@material-ui/icons/School";
 
-const SchoolIcon = () => {
+const SchoolHouseIcon = () => {
   return <SchoolIcon></SchoolIcon>;
 };
 
-export default SchoolIcon;
+export default SchoolHouseIcon;

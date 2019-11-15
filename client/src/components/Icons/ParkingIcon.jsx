@@ -1,8 +1,8 @@
 import React from "React";
 import LocalParkingIcon from "@material-ui/icons/LocalParking";
 
-const Parking = () => {
+const ParkingIcon = () => {
   return <LocalParkingIcon></LocalParkingIcon>;
 };
 
-export default Parking;
+export default ParkingIcon;

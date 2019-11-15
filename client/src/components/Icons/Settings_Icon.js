@@ -1,8 +1,8 @@
 import React from "React";
 import SettingsIcon from "@material-ui/icons/Settings";
 
-const SettingsGearIcon = () => {
+const Settings_Icon = () => {
   return <SettingsIcon></SettingsIcon>;
 };
 
-export default SettingsGearIcon;
+export default Settings_Icon;
