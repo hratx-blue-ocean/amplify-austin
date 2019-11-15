@@ -16,9 +16,15 @@ export class Favorite extends React.Component {
   }
 
   render() {
-    return (<div onClick={this.handleSave}>
-      {this.props.favorite ? <Icon type={ICONLABEL.starFilled} /> : <Icon type={ICONLABEL.starEmpty} />}
-    </div>);
+    return (
+      <div onClick={this.handleSave}>
+        {this.props.favorite ? (
+          <Icon type={ICONLABEL.starFilled} />
+        ) : (
+          <Icon type={ICONLABEL.starEmpty} />
+        )}
+      </div>
+    );
   }
 }
 

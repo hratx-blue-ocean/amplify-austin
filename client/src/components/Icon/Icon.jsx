@@ -26,60 +26,60 @@ import { ICONLABEL } from "../../constants";
 
 class Icon extends React.Component {
   constructor({ type }) {
-    super({ type })
+    super({ type });
   }
   render() {
     switch (type) {
       case ICONLABEL.accessible:
-        return (<Accessible_Icon />);
+        return <Accessible_Icon />;
       case ICONLABEL.add:
-        return (<AddIcon />);
+        return <AddIcon />;
       case ICONLABEL.car:
-        return (<Car_Icon />);
+        return <Car_Icon />;
       case ICONLABEL.danger:
-        return (<DangerIcon />);
+        return <DangerIcon />;
       case ICONLABEL.event:
-        return (<EventIcon />);
+        return <EventIcon />;
       case ICONLABEL.food:
-        return (<FoodIcon />);
+        return <FoodIcon />;
       case ICONLABEL.garbage:
-        return (<GarbageIcon />);
+        return <GarbageIcon />;
       case ICONLABEL.graffiti:
-        return (<Graffiti_Icon />);
+        return <Graffiti_Icon />;
       case ICONLABEL.home:
-        return (<HomeIcon />);
+        return <HomeIcon />;
       case ICONLABEL.mapMarker:
-        return (<MapMarkerIcon />);
+        return <MapMarkerIcon />;
       case ICONLABEL.mapSign:
-        return (<MapSignIcon />);
+        return <MapSignIcon />;
       case ICONLABEL.menu:
-        return (<Menu_Icon />);
+        return <Menu_Icon />;
       case ICONLABEL.message:
-        return (<MsgIcon />);
+        return <MsgIcon />;
       case ICONLABEL.music:
-        return (<MusicIcon />);
+        return <MusicIcon />;
       case ICONLABEL.nature:
-        return (<NatureIcon />);
+        return <NatureIcon />;
       case ICONLABEL.parking:
-        return (<ParkingIcon />);
+        return <ParkingIcon />;
       case ICONLABEL.pet:
-        return (<PetIcon />);
+        return <PetIcon />;
       case ICONLABEL.school:
-        return (<SchoolHouseIcon />);
+        return <SchoolHouseIcon />;
       case ICONLABEL.settings:
-        return (<Settings_Icon />);
+        return <Settings_Icon />;
       case ICONLABEL.starEmpty:
-        return (<EmptyStarIcon />);
+        return <EmptyStarIcon />;
       case ICONLABEL.starFilled:
-        return (<FilledStarIcon />);
+        return <FilledStarIcon />;
       case ICONLABEL.townhall:
-        return (<TownHall_Icon />);
+        return <TownHall_Icon />;
       case ICONLABEL.water:
-        return (<WaterIcon />);
+        return <WaterIcon />;
       default:
-        return (undefined);
+        return undefined;
     }
   }
-};
+}
 
 export default Icon;
