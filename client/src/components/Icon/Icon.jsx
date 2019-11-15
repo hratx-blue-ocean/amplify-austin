@@ -11,6 +11,7 @@ import GarbageIcon from "../Icons/GarbageIcon";
 import GraffitiIconCustom from "../Icons/GraffitiIconCustom";
 import HomeIconCustom from "../Icons/HomeIconCustom";
 import MapMarkerIcon from "../Icons/MapMarkerIcon";
+import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
 import MapSignIcon from "../Icons/MapSignIcon";
 import MsgIcon from "../Icons/MsgIcon";
 import MusicIcon from "../Icons/MusicIcon";
@@ -26,7 +27,7 @@ import { ICONLABEL } from "../../constants";
 
 class Icon extends React.Component {
   render() {
-    const { type } = this.props.type
+    const { type } = this.props.type;
     switch (type) {
       case ICONLABEL.accessible:
         return <AccessibleIconCustom />;
@@ -46,6 +47,8 @@ class Icon extends React.Component {
         return <GraffitiIconCustom />;
       case ICONLABEL.home:
         return <HomeIconCustom />;
+      case ICONLABEL.mapLogo:
+        return <MapOutlinedIcon />;
       case ICONLABEL.mapMarker:
         return <MapMarkerIcon />;
       case ICONLABEL.mapSign:
