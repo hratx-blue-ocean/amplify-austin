@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { SvgIcon } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PostContainer() {
+export default PostContainer = props => {
   const styles = useStyles();
 
   return (
@@ -32,13 +33,23 @@ export default function PostContainer() {
       <Paper className={styles.paper}>
         <Grid container spacing={2}>
           <Grid container item xs={12} spacing={3}>
-            <FormRow />
+            <ArrowUpwardIcon data-test="" className=""></ArrowUpwardIcon>
+            <Typography gutterBottom variant="subtitle1">
+              {/* {props.upvotes} */}
+            </Typography>
           </Grid>
-          <Grid container item xs={12} spacing={3}>
-            <FormRow />
-          </Grid>
-          <Grid container item xs={12} spacing={3}>
-            <FormRow />
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+            <Grid item xs>
+               
+                <Typography variant="body2" gutterBottom>
+                  Full resolution 1920x1080 • JPEG
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  ID: 1030114
+                </Typography>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Paper>
