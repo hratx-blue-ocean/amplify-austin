@@ -1,8 +1,8 @@
 import React from "React";
 import MapIcon from "@material-ui/icons/Map";
 
-const MapSign = () => {
+const MapSignIcon = () => {
   return <MapIcon></MapIcon>;
 };
 
-export default MapSign;
+export default MapSignIcon;

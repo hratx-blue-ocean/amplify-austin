@@ -1,8 +1,8 @@
 import React from "React";
 import DriveEtaIcon from "@material-ui/icons/DriveEta";
 
-const CarIcon = () => {
+const CarIconCustom = () => {
   return <DriveEtaIcon></DriveEtaIcon>;
 };
 
-export default CarIcon;
+export default CarIconCustom;

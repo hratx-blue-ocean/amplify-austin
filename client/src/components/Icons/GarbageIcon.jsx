@@ -1,8 +1,8 @@
 import React from "React";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const Garbage = () => {
+const GarbageIcon = () => {
   return <DeleteIcon></DeleteIcon>;
 };
 
-export default Garbage;
+export default GarbageIcon;
