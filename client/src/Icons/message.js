@@ -1,10 +1,8 @@
-import React from 'React';
-import MessageIcon from '@material-ui/icons/Message';
+import React from "React";
+import MessageIcon from "@material-ui/icons/Message";
 
 const Message = () => {
-    return (
-        <MessageIcon></MessageIcon>
-    )
-}
+  return <MessageIcon></MessageIcon>;
+};
 
 export default Message;

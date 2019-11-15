@@ -1,10 +1,8 @@
-import React from 'React';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import React from "React";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 const EmptyStarIcon = () => {
-    return (
-        <StarBorderIcon></StarBorderIcon>
-    )
-}
+  return <StarBorderIcon></StarBorderIcon>;
+};
 
 export default EmptyStarIcon;

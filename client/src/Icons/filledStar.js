@@ -1,10 +1,8 @@
-import React from 'React';
-import StarRateIcon from '@material-ui/icons/StarRate';
+import React from "React";
+import StarRateIcon from "@material-ui/icons/StarRate";
 
 const FilledStarIcon = () => {
-    return (
-        <StarRateIcon></StarRateIcon>
-    )
-}
+  return <StarRateIcon></StarRateIcon>;
+};
 
 export default FilledStarIcon;

@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import { SvgIcon } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
@@ -40,8 +40,7 @@ export default PostContainer = props => {
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-               
+              <Grid item xs>
                 <Typography variant="body2" gutterBottom>
                   Full resolution 1920x1080 • JPEG
                 </Typography>
@@ -55,6 +54,6 @@ export default PostContainer = props => {
       </Paper>
     </div>
   );
-}
+};
 
 export default PostContainer;

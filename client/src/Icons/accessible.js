@@ -1,10 +1,8 @@
-import React from 'React';
-import AccessibleIcon from '@material-ui/icons/Accessible';
+import React from "React";
+import AccessibleIcon from "@material-ui/icons/Accessible";
 
 const Accessible = () => {
-    return (
-        <AccessibleIcon></AccessibleIcon>
-    )
-}
+  return <AccessibleIcon></AccessibleIcon>;
+};
 
 export default Accessible;

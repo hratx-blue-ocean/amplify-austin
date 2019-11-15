@@ -1,10 +1,8 @@
-import React from 'React';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import React from "React";
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
 
 const MusicIcon = () => {
-    return (
-        <MusicNoteIcon></MusicNoteIcon>
-    )
-}
+  return <MusicNoteIcon></MusicNoteIcon>;
+};
 
 export default MusicIcon;

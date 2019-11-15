@@ -1,10 +1,8 @@
-import React from 'React';
-import Pets from '@material-ui/icons/Pets';
+import React from "React";
+import Pets from "@material-ui/icons/Pets";
 
 const PetIcon = () => {
-    return (
-        <Pets></Pets>
-    )
-}
+  return <Pets></Pets>;
+};
 
 export default PetIcon;
