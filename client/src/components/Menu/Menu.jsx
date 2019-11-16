@@ -65,11 +65,9 @@ const Menu = props => {
         </div>
       </div>
     );
-
   } else {
     return (
       <div className="NavBarContainer" data-test="NavMenu">
-
         <div>
           <button
             data-test="Home"
@@ -103,11 +101,8 @@ const Menu = props => {
             Sign Up{" "}
           </button>
         </div>
-
       </div>
-
-    )
-
+    );
   }
 };
 
