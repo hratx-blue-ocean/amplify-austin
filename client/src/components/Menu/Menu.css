@@ -4,11 +4,11 @@
   bottom: 0;
   display: grid;
   grid-template-columns: 200px;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: .5fr .5fr .5fr .5fr .5fr .5fr .5fr .5fr;
 }
 
 .NavBarContainer button {
-  margin: 15% 5%;
+  margin: 9% 5%;
   background-color: lightgray;
   height: 3rem;
   width: 11rem;
