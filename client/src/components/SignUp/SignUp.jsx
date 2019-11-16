@@ -4,7 +4,7 @@ import axios from "axios";
 import style from "./SignUp.module.css";
 
 const SignUp = props => {
-  const checkPassword = function (password, reenter) {
+  const checkPassword = function(password, reenter) {
     if (password === reenter && password.length >= 6 && password.length <= 18) {
       return true;
     }
@@ -16,9 +16,7 @@ const SignUp = props => {
 
   return (
     <div className={style.container}>
-      <h3 className={style.textInfo}>
-        Create an Account
-      </h3>
+      <h3 className={style.textInfo}>Create an Account</h3>
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -39,13 +37,26 @@ const SignUp = props => {
         }}
       >
         <div>
-          <input type={"text"} id={"username"} placeholder={"username"} className={style.textFeild}></input>
+          <input
+            type={"text"}
+            id={"username"}
+            placeholder={"username"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
-          <input type={"password"} placeholder={"password"} className={style.textFeild}></input>
+          <input
+            type={"password"}
+            placeholder={"password"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
-          <input type={"password"} placeholder={"confirm password"} className={style.textFeild}></input>
+          <input
+            type={"password"}
+            placeholder={"confirm password"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
           <input

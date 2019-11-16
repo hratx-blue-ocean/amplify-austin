@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import style from "./SignIn.module.css";
 
 const SignIn = props => {
-  const checkLogIn = function (username, password) {
+  const checkLogIn = function(username, password) {
     if (
       password.length >= 6 &&
       password.length <= 16 &&
@@ -20,10 +20,7 @@ const SignIn = props => {
 
   return (
     <div className={style.container}>
-
-      <h3 className={style.textInfo}>
-        Sign In
-        </h3>
+      <h3 className={style.textInfo}>Sign In</h3>
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -38,15 +35,24 @@ const SignIn = props => {
         }}
       >
         <div>
-          <input type={"text"} id={"username"} placeholder={"username"} className={style.textFeild}></input>
+          <input
+            type={"text"}
+            id={"username"}
+            placeholder={"username"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
-          <input type={"password"} placeholder={"password"} className={style.textFeild}></input>
+          <input
+            type={"password"}
+            placeholder={"password"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
-          <button type={"submit"}
-            className={style.button}
-          >Sign In</button>
+          <button type={"submit"} className={style.button}>
+            Sign In
+          </button>
         </div>
       </form>
       <div className={style.textInfo}>
