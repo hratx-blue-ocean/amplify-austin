@@ -1,0 +1,24 @@
+.CreatePageContainer {
+  display: grid;
+  grid-template-rows: 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+}
+
+.RadioContainer {
+  padding: auto;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ContentsDiv {
+  display: Flex;
+  margin: auto 2%;
+  align-content: center;
+}
+.ContentsDiv2 {
+  display: Flex;
+  margin: auto auto;
+  align-content: center;
+}
