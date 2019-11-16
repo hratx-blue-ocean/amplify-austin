@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import { googleMapAPIKey } from "../../config/config.env";
 import { centerATX, zoom } from "./map-constants";
-
 import Marker from "./Marker";
 
 // Make sure this component is always wrapped in a div

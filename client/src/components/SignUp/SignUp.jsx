@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import style from "./SignUp.module.css";
 
 const SignUp = props => {
   const checkPassword = function(password, reenter) {
@@ -17,17 +20,20 @@ const SignUp = props => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          if (checkPassword(e.target[1].value, e.target[2].value)) {
-            console.log(
-              "These bad boys match =>",
-              e.target[1].value,
-              e.target[2].value
-            );
-          } else {
-            console.log(
-              "These passwords do not match, or too long, or not long enough"
-            );
-          }
+          axios
+            .post("http://localhost:8000/api", {
+              username: e.target[0].value,
+              password: e.target[1].value
+            })
+            .then(response => {
+              console.log(
+                "this is the response from you attempt to create account: ",
+                response
+              );
+            })
+            .catch(err => {
+              console.log(err);
+            });
         }}
       >
         <div>
@@ -40,11 +46,15 @@ const SignUp = props => {
           <input type={"password"} placeholder={"confirm password"}></input>
         </div>
         <div>
-          <input type={"submit"} value={"Sign Up"}></input>
+          <input
+            type={"submit"}
+            value={"Sign Up"}
+            className={style.button}
+          ></input>
         </div>
       </form>
       <div>
-        Already have an Account? <a href={""}>Sign In</a>
+        Already have an Account? <Link to="/signin">Sign In</Link>
       </div>
     </div>
   );

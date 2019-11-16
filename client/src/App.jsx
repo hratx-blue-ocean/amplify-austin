@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./App.module.css";
 import Header from "./components/header/header.jsx";
-import PostsPage from "./components/PostPage/PostPage";
+// import PostsPage from "./components/PostPage/PostPage";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 // import MapPage from "./components/MapPage/MapPage";
+import Create from "./components/Create/Create";
 import { allIssues, firstPost } from "./FAKEDATA";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -13,9 +14,20 @@ export class App extends React.Component {
     super();
     this.state = {
       selectedPost: firstPost,
-      posts: allIssues
+      posts: allIssues,
+      filteredCategories: []
     };
+    this.saveFilters = this.saveFilters.bind(this);
   }
+
+  // Pass this function down to any Filter Component
+  // used. Otherwise shit won't work
+  saveFilters(categories) {
+    this.setState({
+      filteredCategories: categories
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -27,7 +39,12 @@ export class App extends React.Component {
             <Switch>
               {/* <PostContainer postData={this.state.posts}></PostContainer> */}
               <Route exact path="/">
-                <PostsPage />
+                {/* TO BE REPLACED BY THE HOME PAGE */}
+                <div>Home Page</div>
+                {/* <PostsPage
+                  saveFilters={this.saveFilters}
+                  filteredCategories={this.state.filteredCategories}
+                /> */}
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -36,7 +53,11 @@ export class App extends React.Component {
                 <SignIn />
               </Route>
               <Route path="/map">
-                <div> map place holder </div>
+                {/* <MapPage
+                  saveFilters={this.saveFilters}
+                  filteredCategories={this.state.filteredCategories}
+                /> */}
+                <div> Map Page (Travis CLI hates it) </div>
               </Route>
             </Switch>
           </div>
