@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./App.module.css";
 import Header from "./components/header/header.jsx";
-// import PostsPage from "./components/PostPage/PostPage";
+import PostContainer from "./components/Posts/PostContainer";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 // import MapPage from "./components/MapPage/MapPage";
@@ -37,10 +37,13 @@ export class App extends React.Component {
           </div>
           <div className={styles.component}>
             <Switch>
-              {/* <PostContainer postData={this.state.posts}></PostContainer> */}
               <Route exact path="/">
                 {/* TO BE REPLACED BY THE HOME PAGE */}
-                <div>Home Page</div>
+                <PostContainer
+                  postData={this.state.posts}
+                  saveFilters={this.saveFilters}
+                  filteredCategories={this.state.filteredCategories}
+                ></PostContainer>
                 {/* <PostsPage
                   saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
