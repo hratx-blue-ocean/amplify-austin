@@ -20,10 +20,8 @@ const Create = props => {
     if (issueOrEvent === "Issue") {
       return (
         <React.Fragment>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <InputLabel>Category</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
             value={category}
             onChange={event => {
               setCategory(event.target.value);
@@ -38,12 +36,16 @@ const Create = props => {
     } else {
       return (
         <TextField
+          id="datetime"
+          label="Event Date"
+          type="datetime-local"
+          defaultValue="2019-11-18T10:30"
+          InputLabelProps={{
+            shrink: true
+          }}
           onChange={event => {
             setDate(event.target.value);
           }}
-          placeholder="Date"
-          required={true}
-          variant="outlined"
         />
       );
     }
