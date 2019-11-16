@@ -7,7 +7,7 @@ import style from "./PostPage.module.css";
 import { useParams } from "react-router-dom";
 
 const PostPage = () => {
-  const { postId } = useParams();
+  // const { postId } = useParams();
   const [post, setPost] = useState(undefined);
   // const [coords, setCoords] = useState([]);
   const resolved = (post && post.resolved) || true;
