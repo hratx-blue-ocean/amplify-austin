@@ -19,8 +19,8 @@ const SignIn = props => {
   //styling
 
   return (
-    <div>
-      Sign In
+    <div className={style.container}>
+      <h3 className={style.textInfo}>Sign In</h3>
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -35,20 +35,27 @@ const SignIn = props => {
         }}
       >
         <div>
-          <input type={"text"} id={"username"} placeholder={"username"}></input>
-        </div>
-        <div>
-          <input type={"password"} placeholder={"password"}></input>
+          <input
+            type={"text"}
+            id={"username"}
+            placeholder={"username"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
           <input
-            type={"submit"}
-            value={"Sign In"}
-            className={style.button}
+            type={"password"}
+            placeholder={"password"}
+            className={style.textFeild}
           ></input>
         </div>
+        <div>
+          <button type={"submit"} className={style.button}>
+            Sign In
+          </button>
+        </div>
       </form>
-      <div>
+      <div className={style.textInfo}>
         Don't have an account? <Link to="/signup">Sign Up!</Link>
       </div>
     </div>
