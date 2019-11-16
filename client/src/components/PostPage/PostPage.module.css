@@ -1,0 +1,23 @@
+.btnWrapper {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0 10px;
+}
+
+.reachOutBtn, .resolvedBtn, .disputeBtn {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  box-shadow: 0px 2px 2px -2px;
+}
+.disputeBtn {
+  background-color: darkorange;
+}
+
+.resolvedBtn {
+  background-color: darkseagreen;
+}
+
+.reachOutBtn {
+  background-color: lightgoldenrodyellow;
+}
