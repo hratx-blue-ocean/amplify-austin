@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-import { googleMapAPIKey } from "../../config/config.env";
 import { centerATX, zoom } from "./map-constants";
 import Marker from "./Marker";
 import dummyCoords from "../MapPage/dummyCoordinates";
@@ -40,7 +39,7 @@ export default class Map extends Component {
       // Important! Always set the container width & height explicitly
       <div style={{ height: "100%", width: "100%" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: googleMapAPIKey }}
+          bootstrapURLKeys={{ key: process.env.REACT_APP_MAP_API_KEY }}
           defaultCenter={this.state.center}
           defaultZoom={this.state.zoom}
         >

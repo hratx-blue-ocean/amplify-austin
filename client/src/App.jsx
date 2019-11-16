@@ -4,7 +4,8 @@ import Header from "./components/header/header.jsx";
 import PostContainer from "./components/Posts/PostContainer";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
-// import MapPage from "./components/MapPage/MapPage";
+import MapPage from "./components/MapPage/MapPage";
+import PostPage from "./components/PostPage/PostPage"
 import Create from "./components/Create/Create";
 import { allIssues, firstPost } from "./FAKEDATA";
 import {
@@ -60,15 +61,13 @@ export class App extends React.Component {
                 <Create />
               </Route>
               <Route path="/map">
-                {/* <MapPage
+                <MapPage
                   saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
-                /> */}
-                <div> Map Page (Travis CLI hates it) </div>
+                />
               </Route>
               <Route path="/posts/:postID">
-                {/* <PostsPage /> */}
-                <div> Post Page (Travis CLI hates it too) </div>
+                <PostPage />
               </Route>
               <Route path="*">
                 {/* TODO: replace with 404 page */}
