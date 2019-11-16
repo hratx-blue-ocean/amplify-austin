@@ -17,8 +17,8 @@ export class Favorite extends React.Component {
         {this.props.favorite ? (
           <Icon type={ICONLABEL.starFilled} />
         ) : (
-            <Icon type={ICONLABEL.starEmpty} />
-          )}
+          <Icon type={ICONLABEL.starEmpty} />
+        )}
       </div>
     );
   }
