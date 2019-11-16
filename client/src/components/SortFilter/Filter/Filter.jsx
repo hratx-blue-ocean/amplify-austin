@@ -28,7 +28,7 @@ export default class Filter extends React.Component {
       {
         categories: newCategories
       },
-      () => console.log(this.state.categories)
+      () => this.applyFilters()
     );
   }
 
@@ -41,19 +41,17 @@ export default class Filter extends React.Component {
   applyFilters() {
     let categories = this.state.categories;
     categories = Object.keys(categories);
-    // SEND THIS TO WHEREVER NECESSARY
-    if (this.state.dropDown) {
-      this.setState({
-        dropDown: !this.state.dropDown
-      });
-    }
+    // Send categories up to App (main state)
+    this.props.saveFilters(categories);
   }
 
   render() {
     return (
       <div className={styles.container}>
         <div className={styles.filter}>
-          <button className={styles.filterbutton} onClick={this.toggleDropDown}>
+          <button
+            className={styles.filterbutton}
+            onClick={this.toggleDropDown}>
             Filter
           </button>
           {this.state.dropDown && (
@@ -64,9 +62,6 @@ export default class Filter extends React.Component {
             />
           )}
         </div>
-        <button className={styles.apply} onClick={this.applyFilters}>
-          <span>O{/** Find an Icon */}</span>
-        </button>
       </div>
     );
   }
