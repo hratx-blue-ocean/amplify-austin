@@ -37,7 +37,7 @@ export class App extends React.Component {
           </div>
           <div className={styles.component}>
             <Switch>
-              {/**Your component here for looks testing */}
+              {/* <PostContainer postData={this.state.posts}></PostContainer> */}
               <Route exact path="/">
                 {/* TO BE REPLACED BY THE HOME PAGE */}
                 <div>Home Page</div>
