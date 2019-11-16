@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 const Menu = props => {
   const [auth, setAuth] = useState(true);
   const history = useHistory();
+
   return (
     <div className={style.NavBarContainer} data-test="NavMenu">
       <div>
@@ -25,13 +26,11 @@ const Menu = props => {
       {auth && (
         <>
           <div>
-            <button data-test="Create">
+            <button data-test="Create" onClick={() => {
+              history.push("/create");
+            }}>
               Create Post
-              <ChatOutlinedIcon
-                onClick={() => {
-                  history.push("/create");
-                }}
-              />
+              <ChatOutlinedIcon />
             </button>
           </div>
           <div>
@@ -73,31 +72,31 @@ const Menu = props => {
           </button>
         </div>
       ) : (
-        <>
-          <div>
-            <button
-              data-test="SignIn"
-              onClick={() => {
-                history.push("/signin");
-              }}
-            >
-              {" "}
-              Sign In{" "}
-            </button>
-          </div>
-          <div>
-            <button
-              data-test="SignUp"
-              onClick={() => {
-                history.push("/signup");
-              }}
-            >
-              {" "}
-              Sign Up{" "}
-            </button>
-          </div>
-        </>
-      )}
+          <>
+            <div>
+              <button
+                data-test="SignIn"
+                onClick={() => {
+                  history.push("/signin");
+                }}
+              >
+                {" "}
+                Sign In{" "}
+              </button>
+            </div>
+            <div>
+              <button
+                data-test="SignUp"
+                onClick={() => {
+                  history.push("/signup");
+                }}
+              >
+                {" "}
+                Sign Up{" "}
+              </button>
+            </div>
+          </>
+        )}
     </div>
   );
 };
