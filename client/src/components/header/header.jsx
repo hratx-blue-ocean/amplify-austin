@@ -21,6 +21,7 @@ const Header = props => {
     let reverse = !menuToggled;
     setMenuToggled(reverse);
   };
+  console.log(menuToggled)
   const { classes } = props;
   const history = useHistory();
   return (
@@ -48,7 +49,7 @@ const Header = props => {
         onClose={toggleMenu}
         classes={{ paper: classes.paper }}
       >
-        <Menu />
+        <Menu onClose={toggleMenu} />
       </Drawer>
     </React.Fragment>
   );
