@@ -52,6 +52,9 @@ export class App extends React.Component {
               <Route path="/signin">
                 <SignIn />
               </Route>
+              <Route path="/create" >
+                <Create />
+              </Route>
               <Route path="/map">
                 {/* <MapPage
                   saveFilters={this.saveFilters}
