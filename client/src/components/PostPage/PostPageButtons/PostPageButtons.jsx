@@ -13,13 +13,13 @@ export const PostPageButtons = props => {
           Mark Resolved?
         </button>
       ) : (
-        <button
-          onClick={props.handleResolveDispute}
-          className={style.disputeBtn}
-        >
-          Dispute Resolution
+          <button
+            onClick={props.handleResolveDispute}
+            className={style.disputeBtn}
+          >
+            Dispute Resolution
         </button>
-      )}
+        )}
     </div>
   );
 };

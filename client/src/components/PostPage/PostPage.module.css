@@ -5,8 +5,37 @@
   box-shadow: 1px 0px 9px -1px lightgrey;
 }
 
-.headline {
+.titleField {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.favorite {
+  position: absolute;
+  right: 3%;
+}
+
+.heading > h2 {
   text-align: center;
+  margin-bottom: 0;
+}
+
+.subheading {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 10px auto 20px;
+}
+
+.subGroup > h4, .subGroup > h6 {
+  display: inline;
+}
+
+.subGroup > h6 {
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .descriptionWrapper {

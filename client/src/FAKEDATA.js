@@ -4,7 +4,7 @@ export const firstPost = {
   type: "issue",
   category: "public works",
   postID: faker.random.number(40),
-  headline: "Manuer on Cesar Chavez",
+  headline: "Manure on Cesar Chavez",
   description:
     "I stepped in it, and I cant stop crying. Please clean it up. And I could also use a professional cleaner now.",
   created_at: faker.date.recent(7),
