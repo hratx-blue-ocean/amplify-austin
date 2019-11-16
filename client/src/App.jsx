@@ -5,7 +5,7 @@ import PostContainer from "./components/Posts/PostContainer";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import MapPage from "./components/MapPage/MapPage";
-import PostPage from "./components/PostPage/PostPage"
+import PostPage from "./components/PostPage/PostPage";
 import Create from "./components/Create/Create";
 import { allIssues, firstPost } from "./FAKEDATA";
 import {
