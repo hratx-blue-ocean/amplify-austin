@@ -13,15 +13,15 @@ export default class Map extends Component {
     this.state = {
       coordinates: [],
       center: centerATX,
-      zoom: zoom,
-    }
+      zoom: zoom
+    };
   }
 
   componentDidMount() {
     /**
      * GET REQUEST for coordinates/marker info using
      * this.props.filteredCategories
-     * 
+     *
      * Calculate center based on those coordinates
      * Not neccessarily 'stateful' as it re-renders completely
      * on any change made up in APP
@@ -32,7 +32,7 @@ export default class Map extends Component {
     this.setState({
       coordinates: coordinates,
       center: center || this.state.center
-    })
+    });
   }
 
   render() {
