@@ -1,8 +1,21 @@
-import React from "React";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import AccessibleIcon from "@material-ui/icons/Accessible";
 
-const AccessibleIconCustom = () => {
-  return <AccessibleIcon></AccessibleIcon>;
-};
+export default function AccesibleIconCustom() {
+  function iconStyles() {
+    return {
+      successIcon: {
+        color: "#0074D9"
+      }
+    };
+  }
 
-export default AccessibleIconCustom;
+  const classes = makeStyles(iconStyles)();
+
+  return (
+    <div>
+      <AccessibleIcon className={classes.successIcon} />
+    </div>
+  );
+}

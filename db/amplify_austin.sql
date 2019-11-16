@@ -1,87 +1,107 @@
-CREATE TABLE users (
- id int PRIMARY KEY AUTO_INCREMENT,
- username varchar(255),
- salt varchar(255)
-);
-CREATE TABLE posts (
- id int PRIMARY KEY AUTO_INCREMENT,
- categoryId int,
- headline varchar(255),
- description varchar(255),
- created_at datetime,
- locationId int,
- upvotes int,
- creatorId int,
- status varchar(255),
- disputed int,
- resolved int,
- otherFlag varchar(255)
-);
-CREATE TABLE locations (
- id int PRIMARY KEY AUTO_INCREMENT,
- latitude float,
- longitude float,
- address varchar(255),
- zipCode varchar(255)
-);
-CREATE TABLE categories (
- id int PRIMARY KEY AUTO_INCREMENT,
- name varchar(255)
-);
-CREATE TABLE contacts (
- id int PRIMARY KEY AUTO_INCREMENT,
- phoneNumber varchar(255),
- email varchar(255),
- name varchar(255),
- department varchar(255)
-);
-CREATE TABLE comments (
- id int PRIMARY KEY AUTO_INCREMENT,
- userId int,
- postId int,
- text text,
- createdAt datetime
-);
-CREATE TABLE favorites (
- id int PRIMARY KEY AUTO_INCREMENT,
- userId int,
- postId int
-);
-CREATE TABLE promotes (
- id int PRIMARY KEY AUTO_INCREMENT,
- userId int,
- postId int
-);
-CREATE TABLE resolves (
- id int PRIMARY KEY AUTO_INCREMENT,
- userId int,
- postId int
-);
-CREATE TABLE categoryContacts (
- id int PRIMARY KEY AUTO_INCREMENT,
- categoryId int,
- contactId int
-);
-ALTER TABLE posts ADD FOREIGN KEY (categoryId) REFERENCES categories (id);
-ALTER TABLE posts ADD FOREIGN KEY (locationId) REFERENCES locations (id);
-ALTER TABLE posts ADD FOREIGN KEY (creatorId) REFERENCES users (id);
-ALTER TABLE comments ADD FOREIGN KEY (userId) REFERENCES users (id);
-ALTER TABLE comments ADD FOREIGN KEY (postId) REFERENCES posts (id);
-ALTER TABLE favorites ADD FOREIGN KEY (userId) REFERENCES users (id);
-ALTER TABLE favorites ADD FOREIGN KEY (postId) REFERENCES posts (id);
-ALTER TABLE promotes ADD FOREIGN KEY (userId) REFERENCES users (id);
-ALTER TABLE promotes ADD FOREIGN KEY (postId) REFERENCES posts (id);
-ALTER TABLE resolves ADD FOREIGN KEY (userId) REFERENCES users (id);
-ALTER TABLE resolves ADD FOREIGN KEY (postId) REFERENCES posts (id);
-ALTER TABLE categoryContacts ADD FOREIGN KEY (categoryId) REFERENCES categories (id);
-ALTER TABLE categoryContacts ADD FOREIGN KEY (contactId) REFERENCES contacts (id);
+DROP DATABASE IF EXISTS amplify_austin;
+CREATE DATABASE amplify_austin;
 
+USE amplify_austin;
 
-
-
-Message Austin Taylor
-
-
-Downloads
-
-
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+​
+CREATE TABLE `categoryContacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryId` int(11) DEFAULT NULL,
+  `contactId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `categoryId` (`categoryId`),
+  KEY `contactId` (`contactId`),
+  CONSTRAINT `categoryContacts_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`),
+  CONSTRAINT `categoryContacts_ibfk_2` FOREIGN KEY (`contactId`) REFERENCES `contacts` (`id`)
+);
+​
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `postId` int(11) DEFAULT NULL,
+  `text` text,
+  `createdAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `postId` (`postId`),
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
+  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`postId`) REFERENCES `posts` (`id`)
+);
+​
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `phoneNumber` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+​
+CREATE TABLE `favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `postId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `postId` (`postId`),
+  CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
+  CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`postId`) REFERENCES `posts` (`id`)
+);
+​
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryId` int(11) DEFAULT NULL,
+  `headline` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `upvotes` int(11) DEFAULT NULL,
+  `creatorId` int(11) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `disputed` int(11) DEFAULT NULL,
+  `resolved` int(11) DEFAULT NULL,
+  `otherFlag` varchar(255) DEFAULT NULL,
+  `lat` float DEFAULT NULL,
+  `lng` float DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `eventDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `categoryId` (`categoryId`),
+  KEY `locationId` (`locationId`),
+  KEY `creatorId` (`creatorId`),
+  CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`),
+  CONSTRAINT `posts_ibfk_3` FOREIGN KEY (`creatorId`) REFERENCES `users` (`id`)
+);
+​
+CREATE TABLE `promotes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `postId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `postId` (`postId`),
+  CONSTRAINT `promotes_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
+  CONSTRAINT `promotes_ibfk_2` FOREIGN KEY (`postId`) REFERENCES `posts` (`id`)
+);
+​
+CREATE TABLE `resolves` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `postId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `postId` (`postId`),
+  CONSTRAINT `resolves_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
+  CONSTRAINT `resolves_ibfk_2` FOREIGN KEY (`postId`) REFERENCES `posts` (`id`)
+);
+​
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `salt` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);

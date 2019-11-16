@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "nyc mocha",
-    "start": "node bin/www",
+    "start": "nodemon bin/www",
     "start:dev": "cd .. && npm run lint:server && cd ./server && npm run start",
     "lint": "./node_modules/.bin/eslint --fix 'routes/**/*.js' 2>/dev/null && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'"
   },

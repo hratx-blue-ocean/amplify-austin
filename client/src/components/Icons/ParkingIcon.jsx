@@ -1,8 +1,21 @@
-import React from "React";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import LocalParkingIcon from "@material-ui/icons/LocalParking";
 
-const ParkingIcon = () => {
-  return <LocalParkingIcon></LocalParkingIcon>;
-};
+export default function ParkingIcon() {
+  function iconStyles() {
+    return {
+      successIcon: {
+        color: "#FF4136"
+      }
+    };
+  }
 
-export default ParkingIcon;
+  const classes = makeStyles(iconStyles)();
+
+  return (
+    <div>
+      <LocalParkingIcon className={classes.successIcon} />
+    </div>
+  );
+}

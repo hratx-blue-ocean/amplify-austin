@@ -1,12 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import SettingsIcon from "@material-ui/icons/Settings";
 
-export default function DangerIcon() {
+export default function SettingsIconCustom() {
   function iconStyles() {
     return {
       successIcon: {
-        color: "#FF4136"
+        color: "#FFFFFF"
       }
     };
   }
@@ -15,7 +15,7 @@ export default function DangerIcon() {
 
   return (
     <div>
-      <ReportProblemIcon className={classes.successIcon} />
+      <SettingsIcon className={classes.successIcon} />
     </div>
   );
 }
