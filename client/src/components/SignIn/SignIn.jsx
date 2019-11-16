@@ -1,4 +1,7 @@
 import React from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import style from "./SignIn.module.css";
 
 const SignIn = props => {
   const checkLogIn = function(username, password) {
@@ -17,15 +20,18 @@ const SignIn = props => {
 
   return (
     <div>
-      Create an Account
+      Sign In
       <form
         onSubmit={e => {
           e.preventDefault();
-          if (checkLogIn(e.target[0].value, e.target[1].value)) {
-            console.log("I`m in! =>", e.target[0].value, e.target[1].value);
-          } else {
-            console.log("This password username combo is ass");
-          }
+          axios
+            .get("http://localhost:8000/api")
+            .then(response => {
+              console.log("compare users info with data base response.");
+            })
+            .catch(err => {
+              console.log(err);
+            });
         }}
       >
         <div>
@@ -35,11 +41,15 @@ const SignIn = props => {
           <input type={"password"} placeholder={"password"}></input>
         </div>
         <div>
-          <input type={"submit"} value={"Sign Up"}></input>
+          <input
+            type={"submit"}
+            value={"Sign In"}
+            className={style.button}
+          ></input>
         </div>
       </form>
       <div>
-        Don't have an account? <a href={""}>Sign Up</a>
+        Don't have an account? <Link to="/signup">Sign Up!</Link>
       </div>
     </div>
   );

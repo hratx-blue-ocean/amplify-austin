@@ -1,14 +1,13 @@
-require('dotenv').config({ path: '../.env' })
+require("dotenv").config({ path: "../.env" });
 const router = require("express").Router();
-const axios = require('axios');
+const axios = require("axios");
 
 //testing catchall /api route
 
 router.get("/api", (req, res) => {
-  console.log('anything', req)
-  res.send("connected to /api route")
-})
-
+  console.log("anything", req);
+  res.send("connected to /api route");
+});
 
 // router.post("/api/issue", (req, res) => {
 //   const postInfo = req.body;
@@ -29,13 +28,7 @@ router.get("/api", (req, res) => {
 //   }
 // })
 
-
 //concat endpoint and location for url
 //call api
-
-
-
-
-
 
 module.exports = router;
