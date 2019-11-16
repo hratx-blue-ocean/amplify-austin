@@ -2,7 +2,7 @@ import { centerATX } from "../Map/map-constants";
 import { categories } from "../SortFilter/Filter/dummyCategories";
 
 const fakeCoordinates = () => {
-  let amount = Math.floor(Math.random() * 10) + 1;
+  let amount = Math.floor(Math.random() * 40) + 1;
   let coords = [];
   for (let i = 0; i < amount; i++) {
     let cat = categories[Math.floor(Math.random() * categories.length)];
