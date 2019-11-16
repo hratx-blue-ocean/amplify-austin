@@ -1,0 +1,30 @@
+.btnWrapper {
+    display: flex;
+    justify-content: space-around;
+    margin: 5px 0 10px;
+  }
+  
+  .reachOutBtn, .resolvedBtn, .disputeBtn {
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    box-shadow: 1px 2px 2px -2px;
+  }
+
+  .reachOutBtn:hover, .resolvedBtn:hover, .disputeBtn:hover {
+    box-shadow: 2px 1px 4px 0px dimgrey;
+    cursor: pointer;
+  }
+
+  .disputeBtn {
+    background-color: darkorange;
+  }
+  
+  .resolvedBtn {
+    background-color: darkseagreen;
+  }
+  
+  .reachOutBtn {
+    background-color: lightgoldenrodyellow;
+  }
+  
