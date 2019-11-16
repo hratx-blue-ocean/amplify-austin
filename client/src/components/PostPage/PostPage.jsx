@@ -3,10 +3,10 @@ import { PostPageButtons } from "./PostPageButtons/PostPageButtons";
 import { firstPost } from "../../FAKEDATA";
 import coords from "../MapPage/dummyCoordinates";
 import Map from "../Map/Map";
-import style from "./PostPage.module.css"
+import style from "./PostPage.module.css";
 
 const PostPage = props => {
-  const [post, setPost] = useState(undefined)
+  const [post, setPost] = useState(undefined);
   const resolved = (post && post.resolved) || true;
 
   // useEffect(() => {
@@ -34,7 +34,10 @@ const PostPage = props => {
 
   return (
     <div>
-      <PostPageButtons resolved={resolved} handleResolveDispute={handleResolveDispute} />
+      <PostPageButtons
+        resolved={resolved}
+        handleResolveDispute={handleResolveDispute}
+      />
       <div>
         <div className={style.headline}>
           <h2>{firstPost.headline}</h2>
