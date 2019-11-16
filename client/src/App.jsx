@@ -27,7 +27,6 @@ export class App extends React.Component {
             <Switch>
               {/**Your component here for looks testing */}
               <Route exact path="/">
-                <PostsPage />
               </Route>
               <Route path="/signup">
                 <SignUp />
