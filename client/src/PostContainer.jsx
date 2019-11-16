@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Post from "../Post/Post.jsx";
+import Post from "./Post.jsx";
 
 const containerStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +19,6 @@ const PostContainer = props => {
         return (
           <Post
             key={post.postID}
-            postID={post.postID}
             type={post.type}
             category={post.category}
             title={post.headline}

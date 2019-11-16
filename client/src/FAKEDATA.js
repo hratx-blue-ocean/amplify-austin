@@ -1,6 +1,7 @@
-import faker from "faker";
 import { categories } from "./components/SortFilter/Filter/dummyCategories";
+import faker from "faker";
 export const datePostCreated = new Date();
+
 export const firstPost = {
   type: "issue",
   category: categories[Math.floor(Math.random() * categories.length)],
