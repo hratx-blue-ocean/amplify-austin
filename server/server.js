@@ -20,12 +20,12 @@ app.use(express.static(path.join(__dirname + "/../client/build/")));
 
 // You can place your routes here, feel free to refactor:
 const { singlePost, authentication, mainFilters, map, postStatus, userSpecific } = require('./routes');
-app.use('/', singlePost);
-app.use('/', authentication);
-app.use('/', mainFilters);
-app.use('/', map);
-app.use('/', postStatus);
-app.use('/', userSpecific);
+app.use(singlePost);
+app.use(authentication);
+app.use(mainFilters);
+app.use(map);
+app.use(postStatus);
+app.use(userSpecific);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname + "/../client/build/index.html"))
