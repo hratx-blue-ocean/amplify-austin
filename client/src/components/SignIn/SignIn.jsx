@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import style from "./SignIn.module.css";
+
 const SignIn = props => {
   const checkLogIn = function (username, password) {
     if (
@@ -22,13 +24,14 @@ const SignIn = props => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          axios.get('http://localhost:8000/api')
+          axios
+            .get("http://localhost:8000/api")
             .then(response => {
-              console.log('compare users info with data base response.');
+              console.log("compare users info with data base response.");
             })
             .catch(err => {
               console.log(err);
-            })
+            });
         }}
       >
         <div>
@@ -38,7 +41,7 @@ const SignIn = props => {
           <input type={"password"} placeholder={"password"}></input>
         </div>
         <div>
-          <input type={"submit"} value={"Sign Up"}></input>
+          <input type={"submit"} value={"Sign Up"} className={style.button}></input>
         </div>
       </form>
       <div>

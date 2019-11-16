@@ -6,48 +6,48 @@ export class Sort extends React.Component {
     //temporary
     let theState = {
       popDate: true
-    }
+    };
     return (
-      <input type={'button'} onSubmit={(e) => {
-        if (theState.popDate) {
-          axios.get('/popular')
-            .then((popPosts) => {
+      <input
+        type={"button"}
+        onSubmit={e => {
+          if (theState.popDate) {
+            axios.get("/popular").then(popPosts => {
               popPosts.map((post, i) => {
                 return (
                   <div>
                     <div>
-                      {'post.message', i}
-                      {'post.date', i}
-                      {'post.aplitude', i}
+                      {("post.message", i)}
+                      {("post.date", i)}
+                      {("post.aplitude", i)}
                     </div>
                   </div>
-                )
-              })
-            })
-        } else {
-          axios.get('http://localhost:8000')
-            .then((popPosts) => {
-              popPosts.map((post, i) => {
-                return (
-                  <div>
+                );
+              });
+            });
+          } else {
+            axios
+              .get("http://localhost:8000")
+              .then(popPosts => {
+                popPosts.map((post, i) => {
+                  return (
                     <div>
-                      {'post.message', i}
-                      {'post.date', i}
-                      {'post.aplitude', i}
+                      <div>
+                        {("post.message", i)}
+                        {("post.date", i)}
+                        {("post.aplitude", i)}
+                      </div>
                     </div>
-                  </div>
-                )
+                  );
+                });
               })
-            })
-            .catch(err => {
-              console.log(err);
-            })
-        }
-
-      }}>
-
-      </input>
-    )
+              .catch(err => {
+                console.log(err);
+              });
+          }
+        }}
+      ></input>
+    );
   }
 }
 
