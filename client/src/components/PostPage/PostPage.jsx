@@ -44,9 +44,18 @@ const PostPage = () => {
         <div className={style.heading}>
           <h2>{firstPost.headline}</h2>
           <div className={style.subheading}>
-            <div className={style.subGroup}><h4>Type: </h4><h6>{firstPost.type}</h6></div>
-            <div className={style.subGroup}><h4>Category: </h4><h6>{firstPost.category}</h6></div>
-            <div className={style.subGroup}><h4>Date Reported: </h4><h6>{firstPost.created_at.toDateString()}</h6></div>
+            <div className={style.subGroup}>
+              <h4>Type: </h4>
+              <h6>{firstPost.type}</h6>
+            </div>
+            <div className={style.subGroup}>
+              <h4>Category: </h4>
+              <h6>{firstPost.category}</h6>
+            </div>
+            <div className={style.subGroup}>
+              <h4>Date Reported: </h4>
+              <h6>{firstPost.created_at.toDateString()}</h6>
+            </div>
           </div>
         </div>
         <div className={style.favorite}>STAR</div>
