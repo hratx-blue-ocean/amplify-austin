@@ -8,7 +8,7 @@ import "./Menu.css";
 import { useHistory } from "react-router-dom";
 
 const Menu = props => {
-  let logged = false;
+  let logged = true;
   const history = useHistory();
   if (logged) {
     return (
@@ -66,22 +66,13 @@ const Menu = props => {
           <button
             data-test="SignIn"
             onClick={() => {
+              // logged = false;
+              //todo change logged to false
               history.push("/signin");
             }}
           >
             {" "}
-            Sign In{" "}
-          </button>
-        </div>
-        <div>
-          <button
-            data-test="SignUp"
-            onClick={() => {
-              history.push("/signup");
-            }}
-          >
-            {" "}
-            Sign Up{" "}
+            Sign Out{" "}
           </button>
         </div>
       </div>
