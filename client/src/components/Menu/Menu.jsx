@@ -26,9 +26,12 @@ const Menu = props => {
       {auth && (
         <>
           <div>
-            <button data-test="Create" onClick={() => {
-              history.push("/create");
-            }}>
+            <button
+              data-test="Create"
+              onClick={() => {
+                history.push("/create");
+              }}
+            >
               Create Post
               <ChatOutlinedIcon />
             </button>
@@ -72,31 +75,31 @@ const Menu = props => {
           </button>
         </div>
       ) : (
-          <>
-            <div>
-              <button
-                data-test="SignIn"
-                onClick={() => {
-                  history.push("/signin");
-                }}
-              >
-                {" "}
-                Sign In{" "}
-              </button>
-            </div>
-            <div>
-              <button
-                data-test="SignUp"
-                onClick={() => {
-                  history.push("/signup");
-                }}
-              >
-                {" "}
-                Sign Up{" "}
-              </button>
-            </div>
-          </>
-        )}
+        <>
+          <div>
+            <button
+              data-test="SignIn"
+              onClick={() => {
+                history.push("/signin");
+              }}
+            >
+              {" "}
+              Sign In{" "}
+            </button>
+          </div>
+          <div>
+            <button
+              data-test="SignUp"
+              onClick={() => {
+                history.push("/signup");
+              }}
+            >
+              {" "}
+              Sign Up{" "}
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
