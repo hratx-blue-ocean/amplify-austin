@@ -4,7 +4,7 @@ import Header from "./components/header/header.jsx";
 // import PostsPage from "./components/PostPage/PostPage";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
-import MapPage from "./components/MapPage/MapPage";
+// import MapPage from "./components/MapPage/MapPage";
 import Create from "./components/Create/Create";
 import { allIssues, firstPost } from "./FAKEDATA";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -20,7 +20,7 @@ export class App extends React.Component {
     this.saveFilters = this.saveFilters.bind(this);
   }
 
-  // Pass this function down to any FilterButton Component
+  // Pass this function down to any Filter Component
   // used. Otherwise shit won't work
   saveFilters(categories) {
     this.setState({
@@ -40,8 +40,11 @@ export class App extends React.Component {
               {/**Your component here for looks testing */}
               <Route exact path="/">
                 {/* TO BE REPLACED BY THE HOME PAGE */}
-                <div>test</div>
-                {/* <PostsPage /> */}
+                <div>Home Page</div>
+                {/* <PostsPage
+                  saveFilters={this.saveFilters}
+                  filteredCategories={this.state.filteredCategories}
+                /> */}
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -50,11 +53,11 @@ export class App extends React.Component {
                 <SignIn />
               </Route>
               <Route path="/map">
-                <MapPage
+                {/* <MapPage
                   saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
-                />
-                {/* <div> map place holder </div> */}
+                /> */}
+                <div> Map Page (Travis CLI hates it) </div>
               </Route>
             </Switch>
           </div>
