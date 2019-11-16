@@ -19,15 +19,15 @@ const Menu = props => {
           }}
         >
           Home
-            <HomeOutlinedIcon />
+          <HomeOutlinedIcon />
         </button>
       </div>
-      {auth &&
+      {auth && (
         <>
           <div>
             <button data-test="Create">
               Create Post
-            <ChatOutlinedIcon
+              <ChatOutlinedIcon
                 onClick={() => {
                   history.push("/create");
                 }}
@@ -37,28 +37,28 @@ const Menu = props => {
           <div>
             <button data-test="MyPosts">
               My Posts
-            <ChatOutlinedIcon />
+              <ChatOutlinedIcon />
             </button>
           </div>
           <div>
             <button data-test="Favorites">
               Favorites
-            <StarBorderOutlinedIcon />
+              <StarBorderOutlinedIcon />
             </button>
           </div>
         </>
-      }
+      )}
       <div>
         <button data-test="Map">
           Map
-            <MapOutLinedIcon
+          <MapOutLinedIcon
             onClick={() => {
               history.push("/map");
             }}
           />
         </button>
       </div>
-      {auth ?
+      {auth ? (
         <div>
           <button
             data-test="SignOut"
@@ -71,7 +71,8 @@ const Menu = props => {
             {" "}
             Sign Out{" "}
           </button>
-        </div> :
+        </div>
+      ) : (
         <>
           <div>
             <button
@@ -96,7 +97,7 @@ const Menu = props => {
             </button>
           </div>
         </>
-      }
+      )}
     </div>
   );
 };
