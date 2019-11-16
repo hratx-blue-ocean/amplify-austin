@@ -26,7 +26,10 @@ export class App extends React.Component {
           <div className={styles.component}>
             <Switch>
               {/**Your component here for looks testing */}
-              <Route exact path="/"></Route>
+              <Route exact path="/">
+                {/* TO BE REPLACED BY THE HOME PAGE */}
+                <PostsPage />
+              </Route>
               <Route path="/signup">
                 <SignUp />
               </Route>
