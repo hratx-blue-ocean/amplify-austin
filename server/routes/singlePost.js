@@ -1,7 +1,7 @@
 require('dotenv').config({ path: '../.env' })
 const router = require("express").Router();
 const axios = require('axios');
-const db = require("../../db/db");
+const db = require("../../db/db_interactions");
 
 //testing catchall /api route
 
@@ -12,6 +12,7 @@ router.get("/api", (req, res) => {
 
 
 router.post("/api/issue", (req, res) => {
+  console.log("We're trying to post something!")
   const postInfo = req.body;
   if (typeof postInfo.location === 'string') {
     var apiStr = postInfo.location.replace(/ /g, '+');
@@ -23,7 +24,7 @@ router.post("/api/issue", (req, res) => {
       .then((result) => {
         lat = result.data.results[0].geometry.location.lat;
         lng = result.data.results[0].geometry.location.lng;
-        return db.checkOtherFlag(postInfo.categoryName)
+        return db.singlePost.checkOtherFlag(postInfo.categoryName)
       })
       .then((result) => {
         const requestInput = {
@@ -36,7 +37,7 @@ router.post("/api/issue", (req, res) => {
           address: postInfo.location,
           otherFlag: result
         }
-        return db.addPost(requestInput)
+        return db.singlePost.addPost(requestInput)
       })
       .then((result) => {
         res.send(result);
@@ -54,7 +55,7 @@ router.post("/api/issue", (req, res) => {
     axios.get(apiStr)
       .then((result) => {
         address = result.data.results[0].formatted_address;
-        return db.checkOtherFlag(postInfo.categoryName)
+        return db.singlePost.checkOtherFlag(postInfo.categoryName)
       })
       .then((result) => {
         const requestInput = {
@@ -67,9 +68,10 @@ router.post("/api/issue", (req, res) => {
           address: address,
           otherFlag: result
         }
-        return db.addPost(requestInput)
+        return db.singlePost.addPost(requestInput)
       })
       .then((result) => {
+        console.log("Here's the thing we posted: " + result.insertId)
         res.send({ insertId: result.insertId });
       })
       .catch((err) => {
@@ -78,6 +80,8 @@ router.post("/api/issue", (req, res) => {
       });
   }
 })
+
+
 
 
 //concat endpoint and location for url

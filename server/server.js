@@ -16,8 +16,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
 // You can place your routes here, feel free to refactor:
-const { example } = require('./routes');
-app.use('/', example)
+const { singlePost, authentication, mainFilters, map, postStatus, userSpecific } = require('./routes');
+app.use('/', singlePost);
+app.use('/', authentication);
+app.use('/', mainFilters);
+app.use('/', map);
+app.use('/', postStatus);
+app.use('/', userSpecific);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
