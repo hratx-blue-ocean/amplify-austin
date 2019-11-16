@@ -1,8 +1,21 @@
-import React from "React";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import InvertColorsIcon from "@material-ui/icons/InvertColors";
 
-const WaterIcon = () => {
-  return <InvertColorsIcon></InvertColorsIcon>;
-};
+export default function WaterIcon() {
+  function iconStyles() {
+    return {
+      successIcon: {
+        color: "#7FDBFF"
+      }
+    };
+  }
 
-export default WaterIcon;
+  const classes = makeStyles(iconStyles)();
+
+  return (
+    <div>
+      <InvertColorsIcon className={classes.successIcon} />
+    </div>
+  );
+}

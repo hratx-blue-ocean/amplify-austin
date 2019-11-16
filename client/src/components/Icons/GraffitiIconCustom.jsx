@@ -1,12 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import BrushIcon from "@material-ui/icons/Brush";
 
-export default function DangerIcon() {
+export default function GraffitiIconCustom() {
   function iconStyles() {
     return {
       successIcon: {
-        color: "#FF4136"
+        color: "#F012BE"
       }
     };
   }
@@ -15,7 +15,7 @@ export default function DangerIcon() {
 
   return (
     <div>
-      <ReportProblemIcon className={classes.successIcon} />
+      <BrushIcon className={classes.successIcon} />
     </div>
   );
 }

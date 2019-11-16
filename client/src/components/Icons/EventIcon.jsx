@@ -1,8 +1,21 @@
-import React from "React";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import InsertInvitationIcon from "@material-ui/icons/InsertInvitation";
 
-const EventIcon = () => {
-  return <InsertInvitationIcon></InsertInvitationIcon>;
-};
+export default function EventIcon() {
+  function iconStyles() {
+    return {
+      successIcon: {
+        color: "#B10DC9"
+      }
+    };
+  }
 
-export default EventIcon;
+  const classes = makeStyles(iconStyles)();
+
+  return (
+    <div>
+      <InsertInvitationIcon className={classes.successIcon} />
+    </div>
+  );
+}

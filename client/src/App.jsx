@@ -14,9 +14,20 @@ export class App extends React.Component {
     super();
     this.state = {
       selectedPost: firstPost,
-      posts: allIssues
+      posts: allIssues,
+      filteredCategories: []
     };
+    this.saveFilters = this.saveFilters.bind(this);
   }
+
+  // Pass this function down to any Filter Component
+  // used. Otherwise shit won't work
+  saveFilters(categories) {
+    this.setState({
+      filteredCategories: categories
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -26,11 +37,14 @@ export class App extends React.Component {
           </div>
           <div className={styles.component}>
             <Switch>
-              {/**Your component here for looks testing */}
+              {/* <PostContainer postData={this.state.posts}></PostContainer> */}
               <Route exact path="/">
                 {/* TO BE REPLACED BY THE HOME PAGE */}
-                <div>test</div>
-                {/* <PostsPage /> */}
+                <div>Home Page</div>
+                {/* <PostsPage
+                  saveFilters={this.saveFilters}
+                  filteredCategories={this.state.filteredCategories}
+                /> */}
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -39,7 +53,11 @@ export class App extends React.Component {
                 <SignIn />
               </Route>
               <Route path="/map">
-                <div> map place holder </div>
+                {/* <MapPage
+                  saveFilters={this.saveFilters}
+                  filteredCategories={this.state.filteredCategories}
+                /> */}
+                <div> Map Page (Travis CLI hates it) </div>
               </Route>
             </Switch>
           </div>
