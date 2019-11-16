@@ -3,14 +3,36 @@ import GoogleMapReact from "google-map-react";
 import { googleMapAPIKey } from "../../config/config.env";
 import { centerATX, zoom } from "./map-constants";
 import Marker from "./Marker";
+import dummyCoords from "../MapPage/dummyCoordinates";
 
 // Make sure this component is always wrapped in a div
 // If left to roam freely, it will take up the entire screen like a dick
 export default class Map extends Component {
   constructor(props) {
     super(props);
-    this.center = centerOf(this.props.coordinates) || centerATX;
-    this.zoom = zoom || this.props.zoom;
+    this.state = {
+      coordinates: [],
+      center: centerATX,
+      zoom: zoom
+    };
+  }
+
+  componentDidMount() {
+    /**
+     * GET REQUEST for coordinates/marker info using
+     * this.props.filteredCategories
+     *
+     * Calculate center based on those coordinates
+     * Not neccessarily 'stateful' as it re-renders completely
+     * on any change made up in APP
+     */
+    const coordinates = dummyCoords();
+    const center = centerOf(coordinates);
+    //  possible 'zoom' calculation could be done
+    this.setState({
+      coordinates: coordinates,
+      center: center || this.state.center
+    });
   }
 
   render() {
@@ -19,10 +41,10 @@ export default class Map extends Component {
       <div style={{ height: "100%", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: googleMapAPIKey }}
-          defaultCenter={this.center}
-          defaultZoom={this.zoom}
+          defaultCenter={this.state.center}
+          defaultZoom={this.state.zoom}
         >
-          {this.props.coordinates.map((coord, i) => {
+          {this.state.coordinates.map((coord, i) => {
             return (
               <Marker
                 key={i}
