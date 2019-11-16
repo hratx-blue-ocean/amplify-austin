@@ -7,7 +7,12 @@ import SignIn from "./components/SignIn/SignIn";
 import MapPage from "./components/MapPage/MapPage";
 import Create from "./components/Create/Create";
 import { allIssues, firstPost } from "./FAKEDATA";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 
 export class App extends React.Component {
   constructor() {
