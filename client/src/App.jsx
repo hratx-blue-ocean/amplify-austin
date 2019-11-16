@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./App.module.css";
 import Header from "./components/header/header.jsx";
-import PostsPage from "./components/PostPage/PostPage";
+// import PostsPage from "./components/PostPage/PostPage";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 // import MapPage from "./components/MapPage/MapPage";
@@ -27,7 +27,9 @@ export class App extends React.Component {
             <Switch>
               {/**Your component here for looks testing */}
               <Route exact path="/">
-                <PostsPage />
+                {/* TO BE REPLACED BY THE HOME PAGE */}
+                <div>test</div>
+                {/* <PostsPage /> */}
               </Route>
               <Route path="/signup">
                 <SignUp />
