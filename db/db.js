@@ -12,11 +12,6 @@ var connection = mysql.createConnection({
 
 connection.connect((res) => console.log("connected to db, ", res));
 
-// connection.query('SHOW TABLES;', function (error, results, fields) {
-//     if (error) throw error;
-//     console.log('The solution is: ', results);
-// });
-
 const checkOtherFlag = function (categoryName) {
     return new Promise((resolve, reject) => {
         connection.query("SELECT id FROM categories WHERE name = ?", [categoryName], (err, value) => {
@@ -49,5 +44,11 @@ const addPost = function (post) {
         })
     })
 }
+
+// const deleteRow = function (tableName, rowId) {
+//     return new Promise((resolve, reject) => {
+//         const queryString = "DELETE"
+//     })
+// }
 
 module.exports = { addPost, checkOtherFlag };
