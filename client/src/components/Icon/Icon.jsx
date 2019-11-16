@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import AccessibleIconCustom from "../Icons/AccesibleIconCustom";
 import AddIcon from "../Icons/AddIcon";
 import CarIconCustom from "../Icons/CarIconCustom";
@@ -27,8 +27,7 @@ import { ICONLABEL } from "../../constants";
 
 class Icon extends React.Component {
   render() {
-    const { type } = this.props.type;
-    switch (type) {
+    switch (this.props.category) {
       case ICONLABEL.accessible:
         return <AccessibleIconCustom />;
       case ICONLABEL.add:

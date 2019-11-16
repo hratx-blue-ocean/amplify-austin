@@ -1,3 +1,18 @@
 module.exports = {
-  categories: ["maintenance", "construction", "water", "signs", "dead bodies"]
+  categories: [
+    "accessibility",
+    "danger",
+    "event",
+    "food",
+    "garbage",
+    "graffiti",
+    "music",
+    "nature",
+    "parking",
+    "pet",
+    "school",
+    "townhall",
+    "water",
+    "other"
+  ]
 };

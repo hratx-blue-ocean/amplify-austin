@@ -7,13 +7,14 @@
     "@material-ui/icons": "^4.5.1",
     "@material/typography": "^4.0.0",
     "faker": "^4.1.0",
-    "moment": "^2.24.0",
     "google-map-react": "1.1.5",
+    "moment": "^2.24.0",
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-moment": "^0.9.6",
     "react-router-dom": "5.1.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "typeface-roboto": "0.0.75"
   },
   "scripts": {
     "start": "react-scripts start",
