@@ -4,7 +4,7 @@ import axios from "axios";
 import style from "./SignUp.module.css";
 
 const SignUp = props => {
-  const checkPassword = function(password, reenter) {
+  const checkPassword = function (password, reenter) {
     if (password === reenter && password.length >= 6 && password.length <= 18) {
       return true;
     }
