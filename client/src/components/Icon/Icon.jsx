@@ -27,7 +27,7 @@ import { ICONLABEL } from "../../constants";
 
 class Icon extends React.Component {
   render() {
-    switch (this.props.type) {
+    switch (this.props.category) {
       case ICONLABEL.accessibility:
         return <AccessibleIconCustom />;
       case ICONLABEL.add:

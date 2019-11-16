@@ -2,7 +2,7 @@ import React from "react";
 import Icons from "../Icon/Icon";
 import styles from "./Marker.module.css";
 
-const defaultIcon = <Icons type={"mapMarker"} />;
+const defaultIcon = <Icons category={"mapMarker"} />;
 
 // External CSS file can be implemented for more versatility,
 // but until more definite icons are decided upon styling is
@@ -10,7 +10,7 @@ const defaultIcon = <Icons type={"mapMarker"} />;
 const Marker = ({ category }) => {
   return (
     <div className={styles.marker}>
-      {category === "other" ? defaultIcon : <Icons type={category} />}
+      {category === "other" ? defaultIcon : <Icons category={category} />}
     </div>
   );
 };
