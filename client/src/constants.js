@@ -1,5 +1,5 @@
 export const ICONLABEL = {
-  accessible: "accessible",
+  accessibility: "accessibility",
   add: "add",
   car: "car",
   danger: "danger",
