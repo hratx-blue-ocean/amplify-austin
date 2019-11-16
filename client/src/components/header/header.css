@@ -1,9 +1,7 @@
 #HeaderContainer {
   z-index: 2000;
-  position: absolute;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   margin: 0;
   text-align: center;
   align-content: center;
