@@ -22,13 +22,13 @@ export default class Map extends Component {
           defaultCenter={this.center}
           defaultZoom={this.zoom}
         >
-          {this.props.coordinates.map((dir, i) => {
+          {this.props.coordinates.map((coord, i) => {
             return (
               <Marker
                 key={i}
-                image={"INSERT URL TO IMAGE ICON HERE ACCORDINGLY"}
-                lat={dir[0]}
-                lng={dir[1]}
+                lat={coord.lat}
+                lng={coord.lng}
+                category={coord.category}
               />
             );
           })}
@@ -50,12 +50,13 @@ const centerOf = coordinates => {
   if (!coordinates.length) {
     return null;
   }
+  console.log(coordinates)
   const center = {};
   let lat = 0;
   let lng = 0;
   coordinates.forEach(coord => {
-    lat += coord[0];
-    lng += coord[1];
+    lat += coord.lat;
+    lng += coord.lng;
   });
   center.lat = lat / coordinates.length;
   center.lng = lng / coordinates.length;
