@@ -49,9 +49,7 @@ export default class Filter extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.filter}>
-          <button
-            className={styles.filterbutton}
-            onClick={this.toggleDropDown}>
+          <button className={styles.filterbutton} onClick={this.toggleDropDown}>
             Filter
           </button>
           {this.state.dropDown && (

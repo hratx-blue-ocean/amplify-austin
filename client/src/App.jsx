@@ -25,7 +25,7 @@ export class App extends React.Component {
   saveFilters(categories) {
     this.setState({
       filteredCategories: categories
-    })
+    });
   }
 
   render() {
