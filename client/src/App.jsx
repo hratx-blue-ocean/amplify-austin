@@ -28,7 +28,8 @@ export class App extends React.Component {
               {/**Your component here for looks testing */}
               <Route exact path="/">
                 {/* TO BE REPLACED BY THE HOME PAGE */}
-                <PostsPage />
+                <div>test</div>
+                {/* <PostsPage /> */}
               </Route>
               <Route path="/signup">
                 <SignUp />
