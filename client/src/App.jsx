@@ -39,9 +39,11 @@ export class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 {/* TO BE REPLACED BY THE HOME PAGE */}
-                <PostContainer postData={this.state.posts} 
-                saveFilters={this.saveFilters}
-                filteredCategories={this.state.filteredCategories}></PostContainer>
+                <PostContainer
+                  postData={this.state.posts}
+                  saveFilters={this.saveFilters}
+                  filteredCategories={this.state.filteredCategories}
+                ></PostContainer>
                 {/* <PostsPage
                   saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}

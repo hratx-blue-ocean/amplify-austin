@@ -4,13 +4,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import { SvgIcon } from "@material-ui/core";
-import MapMarkerIcon from "../Icons/MapMarkerIcon.jsx"
+import MapMarkerIcon from "../Icons/MapMarkerIcon.jsx";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Moment from "react-moment";
-import Icon from "../Icon/Icon"
+import Icon from "../Icon/Icon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
 import "typeface-roboto";
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   },
   star: {
     paddingLeft: "2%",
-    width: '100%'
+    width: "100%"
   },
   date: {
     fontFamily: "Roboto",
@@ -79,7 +79,7 @@ const Post = props => {
   const styles = useStyles();
   const history = useHistory();
   const defaultIcon = <Icon category={"mapMarker"} />;
-  
+
   return (
     // if other flag, display "other" icon and NOT category icon
     <div className={styles.root}>
@@ -95,7 +95,12 @@ const Post = props => {
           </Grid>
         </Grid>
         <Grid item xs={10} container direction="column">
-          <Paper onClick={() => {history.push(`/posts/${props.postID}`)}} className={styles.paper}>
+          <Paper
+            onClick={() => {
+              history.push(`/posts/${props.postID}`);
+            }}
+            className={styles.paper}
+          >
             <Grid
               item
               xs={12}
@@ -103,7 +108,11 @@ const Post = props => {
               direction="row"
               className={styles.category}
             >
-              {props.category === "other" ? defaultIcon : <Icon category={props.category} />}
+              {props.category === "other" ? (
+                defaultIcon
+              ) : (
+                <Icon category={props.category} />
+              )}
             </Grid>
             <Grid
               item
@@ -128,9 +137,18 @@ const Post = props => {
               </Grid>
               <Grid item xs={2} className={styles.star}>
                 {/* width: 100% */}
-                <div onClick={(e) => {e.stopPropagation(); console.log("clicked")}}>
-               {props.favorited === true ? <FilledStarIcon></FilledStarIcon> : <EmptyStarIcon></EmptyStarIcon> }
-               </div>
+                <div
+                  onClick={e => {
+                    e.stopPropagation();
+                    console.log("clicked");
+                  }}
+                >
+                  {props.favorited === true ? (
+                    <FilledStarIcon></FilledStarIcon>
+                  ) : (
+                    <EmptyStarIcon></EmptyStarIcon>
+                  )}
+                </div>
               </Grid>
             </Grid>
             <Grid item xs={12} container direction="row">
