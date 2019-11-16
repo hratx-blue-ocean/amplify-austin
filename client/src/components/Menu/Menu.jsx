@@ -10,6 +10,8 @@ const Menu = props => {
   const [auth, setAuth] = useState(true);
   const history = useHistory();
 
+  const onClose = props.onClose;
+
   return (
     <div className={style.NavBarContainer} data-test="NavMenu">
       <div>
@@ -17,6 +19,7 @@ const Menu = props => {
           data-test="Home"
           onClick={() => {
             history.push("/");
+            onClose();
           }}
         >
           Home
@@ -30,6 +33,7 @@ const Menu = props => {
               data-test="Create"
               onClick={() => {
                 history.push("/create");
+                onClose();
               }}
             >
               Create Post
@@ -56,6 +60,7 @@ const Menu = props => {
           <MapOutLinedIcon
             onClick={() => {
               history.push("/map");
+              onClose();
             }}
           />
         </button>
@@ -68,6 +73,7 @@ const Menu = props => {
               setAuth(false);
               //todo change logged to false
               history.push("/");
+              onClose();
             }}
           >
             {" "}
@@ -75,31 +81,33 @@ const Menu = props => {
           </button>
         </div>
       ) : (
-        <>
-          <div>
-            <button
-              data-test="SignIn"
-              onClick={() => {
-                history.push("/signin");
-              }}
-            >
-              {" "}
-              Sign In{" "}
-            </button>
-          </div>
-          <div>
-            <button
-              data-test="SignUp"
-              onClick={() => {
-                history.push("/signup");
-              }}
-            >
-              {" "}
-              Sign Up{" "}
-            </button>
-          </div>
-        </>
-      )}
+          <>
+            <div>
+              <button
+                data-test="SignIn"
+                onClick={() => {
+                  history.push("/signin");
+                  onClose();
+                }}
+              >
+                {" "}
+                Sign In{" "}
+              </button>
+            </div>
+            <div>
+              <button
+                data-test="SignUp"
+                onClick={() => {
+                  history.push("/signup");
+                  onClose();
+                }}
+              >
+                {" "}
+                Sign Up{" "}
+              </button>
+            </div>
+          </>
+        )}
     </div>
   );
 };
