@@ -1,10 +1,9 @@
 import React from "react";
 import Map from "../Map/Map";
 import styles from "./MapPage.module.css";
-import coords from "./dummyCoordinates";
 import Filter from "../SortFilter/Filter/Filter";
 
-const MapPage = ({ coordinates, saveFilters }) => {
+const MapPage = ({ filteredCategories, saveFilters }) => {
   return (
     <div className={styles.container}>
       <div className={styles.subcontainer}>
@@ -12,7 +11,7 @@ const MapPage = ({ coordinates, saveFilters }) => {
           <Filter saveFilters={saveFilters} />
         </div>
         <div className={styles.map}>
-          <Map coordinates={coords()}></Map>
+          <Map filteredCategories={filteredCategories}></Map>
         </div>
       </div>
     </div>
