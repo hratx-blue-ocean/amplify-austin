@@ -13,33 +13,13 @@ export class Sort extends React.Component {
         onSubmit={e => {
           if (theState.popDate) {
             axios.get("/popular").then(popPosts => {
-              popPosts.map((post, i) => {
-                return (
-                  <div>
-                    <div>
-                      {("post.message", i)}
-                      {("post.date", i)}
-                      {("post.aplitude", i)}
-                    </div>
-                  </div>
-                );
-              });
+              //give jonny this array of objecys sorted by date
             });
           } else {
             axios
-              .get("http://localhost:8000")
+              .get("http://localhost:8000/api")
               .then(popPosts => {
-                popPosts.map((post, i) => {
-                  return (
-                    <div>
-                      <div>
-                        {("post.message", i)}
-                        {("post.date", i)}
-                        {("post.aplitude", i)}
-                      </div>
-                    </div>
-                  );
-                });
+                //give Jonny boy this array of objects sorted  by popular
               })
               .catch(err => {
                 console.log(err);
