@@ -4,14 +4,16 @@ import { firstPost } from "../../FAKEDATA";
 import coords from "../MapPage/dummyCoordinates";
 import Map from "../Map/Map";
 import style from "./PostPage.module.css";
+import { useParams } from "react-router-dom";
 
 const PostPage = () => {
+  const { postId } = useParams();
   const [post, setPost] = useState(undefined);
   // const [coords, setCoords] = useState([]);
   const resolved = (post && post.resolved) || true;
 
   // useEffect(() => {
-  //   const postData = axios.get("/ENDPOINT/issue/postid/userid");
+  //   const postData = axios.get(`/ENDPOINT/issue/${postID}/`${userid ? userid : undefined}`);
   //   setPost(postData.data)
   //   setCoords([{
   //     lat: postData.lat,

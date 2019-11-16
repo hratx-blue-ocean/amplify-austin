@@ -4,12 +4,12 @@ import styles from "./MapPage.module.css";
 import coords from "./dummyCoordinates";
 import Filter from "../SortFilter/Filter/Filter";
 
-const MapPage = ({ coordinates }) => {
+const MapPage = ({ coordinates, saveFilters }) => {
   return (
     <div className={styles.container}>
       <div className={styles.subcontainer}>
         <div className={styles.filter}>
-          <Filter />
+          <Filter saveFilters={saveFilters} />
         </div>
         <div className={styles.map}>
           <Map coordinates={coords()}></Map>

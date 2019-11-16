@@ -1,8 +1,21 @@
-import React from "React";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 
-const FoodIcon = () => {
-  return <FastfoodIcon></FastfoodIcon>;
-};
+export default function FoodIcon() {
+  function iconStyles() {
+    return {
+      successIcon: {
+        color: "#FF851B"
+      }
+    };
+  }
 
-export default FoodIcon;
+  const classes = makeStyles(iconStyles)();
+
+  return (
+    <div>
+      <FastfoodIcon className={classes.successIcon} />
+    </div>
+  );
+}

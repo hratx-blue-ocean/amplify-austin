@@ -4,19 +4,30 @@ import Header from "./components/header/header.jsx";
 import PostsPage from "./components/PostPage/PostPage";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
-// import MapPage from "./components/MapPage/MapPage";
+import MapPage from "./components/MapPage/MapPage";
 import Create from "./components/Create/Create";
 import { allIssues, firstPost } from "./FAKEDATA";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 export class App extends React.Component {
   constructor() {
     super();
     this.state = {
       selectedPost: firstPost,
-      posts: allIssues
+      posts: allIssues,
+      filteredCategories: []
     };
+    this.saveFilters = this.saveFilters.bind(this);
   }
+
+  // Pass this function down to any Filter Component
+  // used. Otherwise shit won't work
+  saveFilters(categories) {
+    this.setState({
+      filteredCategories: categories
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -26,11 +37,13 @@ export class App extends React.Component {
           </div>
           <div className={styles.component}>
             <Switch>
-              {/**Your component here for looks testing */}
+              {/* <PostContainer postData={this.state.posts}></PostContainer> */}
               <Route exact path="/">
                 {/* TO BE REPLACED BY THE HOME PAGE */}
-                {/* <div>test</div> */}
-                <PostsPage />
+                <div>Home Page</div>
+              </Route>
+              <Route exact path="/home">
+                <Redirect to="/" />
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -39,7 +52,18 @@ export class App extends React.Component {
                 <SignIn />
               </Route>
               <Route path="/map">
-                <div> map place holder </div>
+                <MapPage
+                  saveFilters={this.saveFilters}
+                  filteredCategories={this.state.filteredCategories}
+                />
+                <div> Map Page (Travis CLI hates it) </div>
+              </Route>
+              <Route path="/posts/:postID">
+                <PostsPage />
+              </Route>
+              <Route path="*">
+                {/* TODO: replace with 404 page */}
+                <Redirect to="/" />
               </Route>
             </Switch>
           </div>

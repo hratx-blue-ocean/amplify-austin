@@ -1,20 +1,18 @@
 import React from "react";
+import Icons from "../Icon/Icon";
+import styles from "./Marker.module.css";
 
-const defaultImageForFun =
-  "https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg";
+const defaultIcon = <Icons category={"mapMarker"} />;
 
 // External CSS file can be implemented for more versatility,
 // but until more definite icons are decided upon styling is
 // simply done within the function
-const Marker = ({ image }) => {
-  const style = {
-    backgroundImage: `url(${defaultImageForFun})`,
-    width: "25px",
-    height: "25px",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat"
-  };
-  return <div style={style}></div>;
+const Marker = ({ category }) => {
+  return (
+    <div className={styles.marker}>
+      {category === "other" ? defaultIcon : <Icons category={category} />}
+    </div>
+  );
 };
 
 export default Marker;

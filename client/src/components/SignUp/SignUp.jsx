@@ -15,8 +15,8 @@ const SignUp = props => {
   //styling
 
   return (
-    <div>
-      Create an Account
+    <div className={style.container}>
+      <h3 className={style.textInfo}>Create an Account</h3>
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -37,13 +37,26 @@ const SignUp = props => {
         }}
       >
         <div>
-          <input type={"text"} id={"username"} placeholder={"username"}></input>
+          <input
+            type={"text"}
+            id={"username"}
+            placeholder={"username"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
-          <input type={"password"} placeholder={"password"}></input>
+          <input
+            type={"password"}
+            placeholder={"password"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
-          <input type={"password"} placeholder={"confirm password"}></input>
+          <input
+            type={"password"}
+            placeholder={"confirm password"}
+            className={style.textFeild}
+          ></input>
         </div>
         <div>
           <input
@@ -53,9 +66,9 @@ const SignUp = props => {
           ></input>
         </div>
       </form>
-      <div>
+      <h5 className={style.textInfo}>
         Already have an Account? <Link to="/signin">Sign In</Link>
-      </div>
+      </h5>
     </div>
   );
 };
