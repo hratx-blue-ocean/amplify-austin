@@ -1,11 +1,11 @@
 import { categories } from "./components/SortFilter/Filter/dummyCategories";
 import faker from "faker";
+import { categories } from "./components/SortFilter/Filter/dummyCategories";
 export const datePostCreated = new Date();
 
 export const firstPost = {
   type: "issue",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: "Manuer on Cesar Chavez",
   description:
@@ -22,8 +22,7 @@ export const firstPost = {
 
 export const secondPost = {
   type: "event",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: faker.random.words(7),
   description: faker.random.words(),
@@ -40,8 +39,7 @@ export const secondPost = {
 
 export const thirdPost = {
   type: "issue",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: faker.random.word(7),
   description: faker.random.words(30),
@@ -57,8 +55,7 @@ export const thirdPost = {
 
 export const fourthPost = {
   type: "event",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: "Talk about all the Horses on Cesar Chavez",
   description: "Town hall meeting about Horses on Cesar Chavez.",
@@ -75,8 +72,7 @@ export const fourthPost = {
 
 export const fifthPost = {
   type: "issue",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: faker.random.word(7),
   description: faker.random.words(30),
@@ -92,8 +88,7 @@ export const fifthPost = {
 
 export const sixthPost = {
   type: "issue",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: faker.random.word(7),
   description: faker.random.words(30),
@@ -109,8 +104,7 @@ export const sixthPost = {
 
 export const seventhPost = {
   type: "event",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: faker.random.words(7),
   description: faker.random.words(30),
@@ -127,8 +121,7 @@ export const seventhPost = {
 
 export const eighthPost = {
   type: "event",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: "Talk about all the Horses on Cesar Chavez",
   description: "Town hall meeting about Horses on Cesar Chavez.",
@@ -145,8 +138,7 @@ export const eighthPost = {
 
 export const ninthPost = {
   type: "issue",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: faker.random.word(7),
   description: faker.random.words(30),
@@ -162,8 +154,7 @@ export const ninthPost = {
 
 export const tenthPost = {
   type: "issue",
-  category:
-    categories[Math.floor(Math.random() * (categories.length - 1 - 0 + 1) + 0)],
+  category: categories[Math.floor(Math.random() * categories.length)],
   postID: faker.random.number(40),
   headline: faker.random.word(7),
   description: faker.random.words(30),
