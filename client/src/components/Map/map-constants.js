@@ -4,5 +4,5 @@ module.exports = {
     lat: 30.2672,
     lng: -97.7431
   },
-  zoom: 11
+  zoom: 12
 };
