@@ -22,5 +22,5 @@ export const ICONLABEL = {
   starEmpty: "emptyStar",
   starFilled: "filledStar",
   townhall: "townhall",
-  water: "water",
+  water: "water"
 };

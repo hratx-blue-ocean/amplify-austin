@@ -50,7 +50,7 @@ const centerOf = coordinates => {
   if (!coordinates.length) {
     return null;
   }
-  console.log(coordinates)
+  console.log(coordinates);
   const center = {};
   let lat = 0;
   let lng = 0;
