@@ -1,4 +1,3 @@
-const mysql = require('mysql');
 const connection = require('../db');
 
 const checkOtherFlag = function (categoryName) {
