@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
@@ -8,9 +8,9 @@ import "./Menu.css";
 import { useHistory } from "react-router-dom";
 
 const Menu = props => {
-  let logged = true;
+  const [auth, setAuth] = useState(true);
   const history = useHistory();
-  if (logged) {
+  if (auth) {
     return (
       <div className="NavBarContainer" data-test="NavMenu">
         <div>
@@ -66,7 +66,7 @@ const Menu = props => {
           <button
             data-test="SignIn"
             onClick={() => {
-              // logged = false;
+              setAuth(false);
               //todo change logged to false
               history.push("/signin");
             }}
