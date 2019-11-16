@@ -1,9 +1,9 @@
 /* Initial width and height meant
    exclusively for mobile, @medias to be
    applied later to scale for desktops */
-.container{
+.container {
   display: grid;
-  max-width: 414px;
+  /* max-width: 414px; */
   height: 100vh;
   grid-template-rows: 56px 1fr;
   grid-template-areas: 
@@ -11,14 +11,14 @@
     "component";
 }
 
-.header{
+.header {
   width: 100%;
   height: 100%;
   grid-area: header;
 }
 
-.component{
-  width: 100%;
+.component {
   height: 100%;
   grid-area: component;
+  padding: 0 5%;
 }
