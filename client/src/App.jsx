@@ -5,6 +5,7 @@ import Header from "./components/header/header.jsx";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 // import MapPage from "./components/MapPage/MapPage";
+import Create from "./components/Create/Create";
 import { allIssues, firstPost } from "./FAKEDATA";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
