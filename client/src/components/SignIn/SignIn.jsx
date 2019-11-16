@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import style from "./SignIn.module.css";
 
 const SignIn = props => {
-  const checkLogIn = function (username, password) {
+  const checkLogIn = function(username, password) {
     if (
       password.length >= 6 &&
       password.length <= 16 &&
@@ -54,6 +54,5 @@ const SignIn = props => {
     </div>
   );
 };
-
 
 export default SignIn;

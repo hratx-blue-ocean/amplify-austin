@@ -4,7 +4,7 @@ import axios from "axios";
 import style from "./SignUp.module.css";
 
 const SignUp = props => {
-  const checkPassword = function (password, reenter) {
+  const checkPassword = function(password, reenter) {
     if (password === reenter && password.length >= 6 && password.length <= 18) {
       return true;
     }
@@ -20,16 +20,20 @@ const SignUp = props => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          axios.post("http://localhost:8000/api", {
-            username: e.target[0].value,
-            password: e.target[1].value
-          })
+          axios
+            .post("http://localhost:8000/api", {
+              username: e.target[0].value,
+              password: e.target[1].value
+            })
             .then(response => {
-              console.log('this is the response from you attempt to create account: ', response)
+              console.log(
+                "this is the response from you attempt to create account: ",
+                response
+              );
             })
             .catch(err => {
               console.log(err);
-            })
+            });
         }}
       >
         <div>
@@ -45,8 +49,8 @@ const SignUp = props => {
           <input
             type={"submit"}
             value={"Sign Up"}
-            className={style.button}>
-          </input>
+            className={style.button}
+          ></input>
         </div>
       </form>
       <div>
