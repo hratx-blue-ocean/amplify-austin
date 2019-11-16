@@ -5,12 +5,13 @@ const Category = ({ category, checked, toggleCategory }) => {
   return (
     <div className={styles.container}>
       <div className={styles.select}>
-        <div style={{ backgroundColor: checked ? 'cyan' : 'white' }}
+        <div
+          style={{ backgroundColor: checked ? "cyan" : "white" }}
           className={styles.box}
-          onClick={(e) => {
+          onClick={e => {
             toggleCategory(category);
-          }}>
-        </div>
+          }}
+        ></div>
       </div>
       <div className={styles.category}>
         {`${category.charAt(0).toUpperCase()}${category.slice(1)}`}
