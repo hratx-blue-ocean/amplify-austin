@@ -4,15 +4,17 @@ import styles from "./Category.module.css";
 const Category = ({ category, checked, toggleCategory }) => {
   return (
     <div className={styles.container}>
-      <input
-        type="checkbox"
-        value={category}
-        checked={checked}
-        onChange={e => {
-          toggleCategory(e.target.value);
-        }}
-      />
-      {category}
+      <div className={styles.select}>
+        <div style={{ backgroundColor: checked ? 'cyan' : 'white' }}
+          className={styles.box}
+          onClick={(e) => {
+            toggleCategory(category);
+          }}>
+        </div>
+      </div>
+      <div className={styles.category}>
+        {`${category.charAt(0).toUpperCase()}${category.slice(1)}`}
+      </div>
     </div>
   );
 };
