@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "npm install && cd ./client && npm install ; cd ../server && npm install",
-    "test": "cd ./client && npm run test && cd ../server && npm start ; npm run test",
+    "test": "cd ./client && npm run test",
     "launch": "cd ./client && npm run build && cd ../server && node bin/www && cd ../client npm run start &",
     "lint:client": "cd ./client && ./node_modules/.bin/eslint \"src/**/*.{js,jsx}\" && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'",
     "lint:server": "cd ./server && npm run lint",
