@@ -1,21 +1,21 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 
 export default function TownHallIcon() {
-    function iconStyles() {
-        return {
-                successIcon: {
-                color: '#B10DC9',
-            }
-        }
-    }
+  function iconStyles() {
+    return {
+      successIcon: {
+        color: "#B10DC9"
+      }
+    };
+  }
 
-    const classes = makeStyles(iconStyles)();
+  const classes = makeStyles(iconStyles)();
 
-    return (
-        <div>
-          <AccountBalanceIcon className={classes.successIcon}/>
-        </div>
-    );
+  return (
+    <div>
+      <AccountBalanceIcon className={classes.successIcon} />
+    </div>
+  );
 }

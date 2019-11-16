@@ -1,21 +1,21 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import StarRateIcon from "@material-ui/icons/StarRate";
 
 export default function FilledStarIcon() {
-    function iconStyles() {
-        return {
-                successIcon: {
-                color: '#FFDC00',
-            }
-        }
-    }
+  function iconStyles() {
+    return {
+      successIcon: {
+        color: "#FFDC00"
+      }
+    };
+  }
 
-    const classes = makeStyles(iconStyles)();
+  const classes = makeStyles(iconStyles)();
 
-    return (
-        <div>
-          <StarRateIcon className={classes.successIcon}/>
-        </div>
-    );
+  return (
+    <div>
+      <StarRateIcon className={classes.successIcon} />
+    </div>
+  );
 }
