@@ -25,7 +25,7 @@ export class App extends React.Component {
           </div>
           <div className={styles.component}>
             <Switch>
-             {/* <PostContainer postData={this.state.posts}></PostContainer> */}
+              {/* <PostContainer postData={this.state.posts}></PostContainer> */}
               <Route exact path="/">
                 <PostsPage />
               </Route>
