@@ -1,131 +1,107 @@
-import React from "react";
+import React, { useState } from "react";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
-import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import MapOutLinedIcon from "@material-ui/icons/MapOutlined";
-import "./Menu.css";
+import style from "./Menu.module.css";
 import { useHistory } from "react-router-dom";
 
 const Menu = props => {
-  let logged = true;
+  const [auth, setAuth] = useState(true);
   const history = useHistory();
-  if (logged) {
-    return (
-      <div className="NavBarContainer" data-test="NavMenu">
-        <div>
-          <button
-            data-test="Home"
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            Home
-            <HomeOutlinedIcon />
-          </button>
-        </div>
-        <div>
-          <button data-test="Map">
-            Create Post
-            <ChatOutlinedIcon
+
+  return (
+    <div className={style.NavBarContainer} data-test="NavMenu">
+      <div>
+        <button
+          data-test="Home"
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          Home
+          <HomeOutlinedIcon />
+        </button>
+      </div>
+      {auth && (
+        <>
+          <div>
+            <button
+              data-test="Create"
               onClick={() => {
                 history.push("/create");
               }}
-            />
-          </button>
-        </div>
-        <div>
-          <button data-test="MyPosts">
-            My Posts
-            <ChatOutlinedIcon />
-          </button>
-        </div>
-        <div>
-          <button data-test="Favorites">
-            Favorites
-            <StarBorderOutlinedIcon />
-          </button>
-        </div>
-        <div>
-          <button data-test="Map">
-            Map
-            <MapOutLinedIcon
-              onClick={() => {
-                history.push("/map");
-              }}
-            />
-          </button>
-        </div>
-        <div>
-          <button data-test="Settings">
-            Settings
-            <SettingsOutlinedIcon />
-          </button>
-        </div>
+            >
+              Create Post
+              <ChatOutlinedIcon />
+            </button>
+          </div>
+          <div>
+            <button data-test="MyPosts">
+              My Posts
+              <ChatOutlinedIcon />
+            </button>
+          </div>
+          <div>
+            <button data-test="Favorites">
+              Favorites
+              <StarBorderOutlinedIcon />
+            </button>
+          </div>
+        </>
+      )}
+      <div>
+        <button data-test="Map">
+          Map
+          <MapOutLinedIcon
+            onClick={() => {
+              history.push("/map");
+            }}
+          />
+        </button>
+      </div>
+      {auth ? (
         <div>
           <button
-            data-test="SignIn"
+            data-test="SignOut"
             onClick={() => {
-              // logged = false;
+              setAuth(false);
               //todo change logged to false
-              history.push("/signin");
+              history.push("/");
             }}
           >
             {" "}
             Sign Out{" "}
           </button>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="NavBarContainer" data-test="NavMenu">
-        <div>
-          <button
-            data-test="Home"
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            Home
-            <HomeOutlinedIcon />
-          </button>
-        </div>
-        <div>
-          <button data-test="Map">
-            Map
-            <MapOutLinedIcon
+      ) : (
+        <>
+          <div>
+            <button
+              data-test="SignIn"
               onClick={() => {
-                history.push("/map");
+                history.push("/signin");
               }}
-            />
-          </button>
-        </div>
-        <div>
-          <button
-            data-test="SignIn"
-            onClick={() => {
-              history.push("/signin");
-            }}
-          >
-            {" "}
-            Sign In{" "}
-          </button>
-        </div>
-        <div>
-          <button
-            data-test="SignUp"
-            onClick={() => {
-              history.push("/signup");
-            }}
-          >
-            {" "}
-            Sign Up{" "}
-          </button>
-        </div>
-      </div>
-    );
-  }
+            >
+              {" "}
+              Sign In{" "}
+            </button>
+          </div>
+          <div>
+            <button
+              data-test="SignUp"
+              onClick={() => {
+                history.push("/signup");
+              }}
+            >
+              {" "}
+              Sign Up{" "}
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Menu;
