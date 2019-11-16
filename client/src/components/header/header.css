@@ -1,0 +1,24 @@
+#HeaderContainer {
+  z-index: 2000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  align-content: center;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 50px;
+  background-color: #6202ee;
+}
+
+#HeaderContainer p {
+  margin: auto;
+  font-size: 1.5rem;
+}
+
+#HeaderContainer div {
+  margin: auto;
+}

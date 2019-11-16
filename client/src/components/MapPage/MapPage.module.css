@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.subcontainer{
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  grid-template-rows: repeat(1fr, 2);
+  grid-template-areas:
+    "header"
+    "map";
+  box-sizing: border-box;
+}
+
+.map{
+  grid-area: map;
+  width: 100%;
+  height: 100%;
+}
