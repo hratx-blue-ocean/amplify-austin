@@ -1,5 +1,5 @@
 import faker from "faker";
-import { categories } from './components/SortFilter/Filter/dummyCategories'
+import { categories } from "./components/SortFilter/Filter/dummyCategories";
 export const datePostCreated = new Date();
 export const firstPost = {
   type: "issue",
