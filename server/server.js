@@ -11,6 +11,8 @@ app.use((_, res, next) => {
     next();
 });
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use(logger('dev'));
 
 // You can place your routes here, feel free to refactor:
