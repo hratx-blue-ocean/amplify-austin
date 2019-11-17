@@ -2,7 +2,7 @@ const createError = require('http-errors');
 const logger = require('morgan');
 const express = require('express');
 const app = express();
-
+const path = require("path")
 
 // open up CORS 
 app.use((_, res, next) => {
@@ -15,14 +15,21 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(logger('dev'));
 
+// serving front end build folder
+app.use(express.static(path.join(__dirname + "/../client/build/")));
+
 // You can place your routes here, feel free to refactor:
 const { singlePost, authentication, mainFilters, map, postStatus, userSpecific } = require('./routes');
-app.use('/', singlePost);
-app.use('/', authentication);
-app.use('/', mainFilters);
-app.use('/', map);
-app.use('/', postStatus);
-app.use('/', userSpecific);
+app.use(singlePost);
+app.use(authentication);
+app.use(mainFilters);
+app.use(map);
+app.use(postStatus);
+app.use(userSpecific);
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/../client/build/index.html"))
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

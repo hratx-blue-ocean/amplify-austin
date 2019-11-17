@@ -1,32 +1,35 @@
-require('dotenv').config({ path: '../.env' });
+require("dotenv").config({ path: "../.env" });
 const router = require("express").Router();
-const axios = require('axios');
+const axios = require("axios");
 const db = require("../../db/db_interactions");
 
 //testing catchall /api route
 
-
 router.get("/api", (req, res) => {
-  res.send("connected to /api route")
-})
-
+  res.send("connected to /api route");
+});
 
 router.post("/api/issue", (req, res) => {
-  console.log("We're trying to post something!")
+  console.log("We're trying to post something!");
   const postInfo = req.body;
-  if (typeof postInfo.location === 'string') {
-    var apiStr = postInfo.location.replace(/ /g, '+');
-    apiStr = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + apiStr + "&key=" + process.env.REACT_APP_GOOGLEMAPSAPIKEY
+  if (typeof postInfo.location === "string") {
+    var apiStr = postInfo.location.replace(/ /g, "+");
+    apiStr =
+      "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+      apiStr +
+      "&key=" +
+      process.env.REACT_APP_GOOGLEMAPSAPIKEY;
     //make api get request for atlong
     let lat;
     let lng;
-    axios.get(apiStr)
-      .then((result) => {
+    axios
+      .get(apiStr)
+      .then(result => {
         lat = result.data.results[0].geometry.location.lat;
         lng = result.data.results[0].geometry.location.lng;
-        return db.singlePost.checkOtherFlag(postInfo.categoryName)
+        return db.singlePost.checkOtherFlag(postInfo.categoryName);
       })
-      .then((result) => {
+      .then(result => {
         const requestInput = {
           categoryName: postInfo.categoryName,
           creatorId: postInfo.creatorId,
@@ -36,28 +39,33 @@ router.post("/api/issue", (req, res) => {
           lng: lng,
           address: postInfo.location,
           otherFlag: result
-        }
-        return db.singlePost.addPost(requestInput)
+        };
+        return db.singlePost.addPost(requestInput);
       })
-      .then((result) => {
+      .then(result => {
         res.send(result);
       })
-      .catch((err) => {
-        res.send(err)
+      .catch(err => {
+        res.send(err);
       });
   } else {
     let lat = postInfo.lat;
     let lng = postInfo.lng;
     let apiStr = lat + "," + lng;
-    apiStr = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + apiStr + "&key=" + process.env.REACT_APP_GOOGLEMAPSAPIKEY
+    apiStr =
+      "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+      apiStr +
+      "&key=" +
+      process.env.REACT_APP_GOOGLEMAPSAPIKEY;
     //make api get request for atlong
     let address;
-    axios.get(apiStr)
-      .then((result) => {
+    axios
+      .get(apiStr)
+      .then(result => {
         address = result.data.results[0].formatted_address;
-        return db.singlePost.checkOtherFlag(postInfo.categoryName)
+        return db.singlePost.checkOtherFlag(postInfo.categoryName);
       })
-      .then((result) => {
+      .then(result => {
         const requestInput = {
           categoryName: postInfo.categoryName,
           creatorId: postInfo.creatorId,
@@ -67,29 +75,21 @@ router.post("/api/issue", (req, res) => {
           lng: lng,
           address: address,
           otherFlag: result
-        }
-        return db.singlePost.addPost(requestInput)
+        };
+        return db.singlePost.addPost(requestInput);
       })
-      .then((result) => {
-        console.log("Here's the thing we posted: " + result.insertId)
+      .then(result => {
+        console.log("Here's the thing we posted: " + result.insertId);
         res.send({ insertId: result.insertId });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
-        res.send(err)
+        res.send(err);
       });
   }
-})
-
-
-
+});
 
 //concat endpoint and location for url
 //call api
-
-
-
-
-
 
 module.exports = router;
