@@ -5,7 +5,7 @@ const db = require("../../db/db_interactions");
 
 router.get("/api/main", (req, res) => {
   const userId = req.query.userId;
-  console.log(req.query)
+  console.log(req.query);
   const selectBy = req.query.selectBy || null;
   const sortBy = req.query.sortBy || "popularity";
   let categories = "";
@@ -20,7 +20,7 @@ router.get("/api/main", (req, res) => {
       let count = 0;
       let posts = [];
 
-      const formatPost = function () {
+      const formatPost = function() {
         if (count < rows.length) {
           let currentRow = rows[count];
           posts[count] = {
@@ -33,7 +33,7 @@ router.get("/api/main", (req, res) => {
             otherFlag: currentRow.otherFlag,
             eventDate: currentRow.eventDate,
             lat: currentRow.lat,
-            lng: currentRow.lng,
+            lng: currentRow.lng
           };
 
           db.helpers
