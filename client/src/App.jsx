@@ -24,7 +24,6 @@ export class App extends React.Component {
       selectedPost: firstPost,
       posts: allIssues,
       filteredCategories: [],
-      userID: null,
       sortSelection: "popularity"
     };
 
