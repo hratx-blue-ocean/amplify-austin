@@ -2,7 +2,7 @@ const connection = require('../db');
 
 const modifyFavorite = function (userId, postId) {
     return new Promise((resolve, reject) => {
-        const testQuery = "SELECT id FROM favorites WHERE userId = \'" + userId + "\' AND postId = " + postId + ";";
+        const testQuery = "SELECT id FROM favorites WHERE userId = " + userId + " AND postId = " + postId + ";";
         //test if user has already favorited this post
         connection.query(testQuery, (err, value) => {
             if (err) {
