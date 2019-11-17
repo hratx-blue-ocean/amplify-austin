@@ -27,4 +27,51 @@ const deleteRow = function (tableName, rowId) {
     })
 }
 
-module.exports = { getRow, deleteRow }
+const getCanAmplify = function (postId, userId) {
+    return new Promise((resolve, reject) => {
+        const queryString = "SELECT * FROM promotes WHERE postId = " + postId + " AND userId = " + userId + ";";
+        connection.query(queryString, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                if (value.length === 0) {
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            }
+        })
+    })
+}
+
+const getFavorited = function (postId, userId) {
+    return new Promise((resolve, reject) => {
+        const queryString = "SELECT * FROM favorites WHERE postId = " + postId + " AND userId = " + userId + ";";
+        connection.query(queryString, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                if (value.length === 0) {
+                    resolve(false);
+                } else {
+                    resolve(true);
+                }
+            }
+        })
+    })
+}
+
+const getCategoryName = function (categoryId) {
+    return new Promise((resolve, reject) => {
+        const queryString = "SELECT name FROM categories WHERE id = " + categoryId;
+        connection.query(queryString, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(value[0].name);
+            }
+        })
+    })
+}
+
+module.exports = { getRow, deleteRow, getCanAmplify, getFavorited, getCategoryName }

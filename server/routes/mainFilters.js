@@ -32,14 +32,14 @@ router.get("/api/main", (req, res) => {
                         eventDate: rows[count].eventDate,
                     }
 
-                    db.mainFilters.getCanAmplify(rows[count].id, userId)
+                    db.helpers.getCanAmplify(rows[count].id, userId)
                         .then((bool) => {
                             posts[count].canAmplify = bool;
-                            return db.mainFilters.getFavorited(rows[count].id, userId)
+                            return db.helpers.getFavorited(rows[count].id, userId)
                         })
                         .then((bool) => {
                             posts[count].favorited = bool;
-                            return db.mainFilters.getCategoryName(rows[count].categoryId)
+                            return db.helpers.getCategoryName(rows[count].categoryId)
                         })
                         .then((categoryName) => {
                             posts[count].categoryName = categoryName;
