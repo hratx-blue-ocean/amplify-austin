@@ -1,6 +1,6 @@
 import React from "react";
 import Icons from "../../Icon/Icon";
-import MiniPost from '../MiniPost/MiniPost'
+import MiniPost from "../MiniPost/MiniPost";
 import styles from "./Marker.module.css";
 
 const defaultIcon = <Icons category={"mapMarker"} />;
