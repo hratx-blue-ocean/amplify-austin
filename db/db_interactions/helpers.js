@@ -74,4 +74,18 @@ const getCategoryName = function (categoryId) {
     })
 }
 
-module.exports = { getRow, deleteRow, getCanAmplify, getFavorited, getCategoryName }
+
+const getContacts = function (categoryId) {
+    return new Promise((resolve, reject) => {
+        const queryString = "SELECT * FROM contacts WHERE id IN (SELECT contactId FROM categoryContacts WHERE categoryId = ?)"
+        const options = [categoryId];
+        connection.query(queryString, options, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        })
+    })
+}
+module.exports = { getRow, deleteRow, getCanAmplify, getFavorited, getCategoryName, getContacts }
