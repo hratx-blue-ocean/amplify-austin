@@ -4,7 +4,6 @@ const axios = require("axios");
 const db = require("../../db/db_interactions");
 
 router.get("/api/main", (req, res) => {
-
     const userId = req.query.userId;
     console.log(req.query)
     const selectBy = req.query.selectBy || null;
