@@ -30,8 +30,17 @@ export default class Map extends Component {
     //  possible 'zoom' calculation could be done
     this.setState({
       coordinates: coordinates,
-      center: center || this.state.center
+      center: center || this.state.center,
+      selectedMarker: null
     });
+    this.selectMarker = this.selectMarker.bind(this);
+  }
+
+  selectMarker(postId) {
+    const newId = this.state.selectedMarker === postId ? null : postId
+    this.setState({
+      selectedMarker: newId
+    })
   }
 
   render() {
@@ -50,6 +59,9 @@ export default class Map extends Component {
                 lat={coord.lat}
                 lng={coord.lng}
                 category={coord.category}
+                isSelected={coord.lat === this.state.selectedMarker}
+                selectMarker={this.selectMarker}
+                postID={coord.postId}
               />
             );
           })}
