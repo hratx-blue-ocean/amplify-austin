@@ -1,14 +1,14 @@
 import React from "react";
 import Sort from "./Sort/Sort";
 import CategorySelect from "./CategorySelect/CategorySelect.jsx";
-import NewPostTextField from '../NewPostTextField/NewPostTextField.jsx'
+import NewPostTextField from "../NewPostTextField/NewPostTextField.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    textAlign: 'center'
+    textAlign: "center"
   }
 }));
 
@@ -17,7 +17,13 @@ const SortFilter = props => {
 
   return (
     <div className={menuStyles.root}>
-      <Grid container spacing={12} justify="center" direction="row" alignItems="center">
+      <Grid
+        container
+        spacing={12}
+        justify="center"
+        direction="row"
+        alignItems="center"
+      >
         <Grid item xs={6}>
           <Sort sortBy={props.sortBy} />
         </Grid>
