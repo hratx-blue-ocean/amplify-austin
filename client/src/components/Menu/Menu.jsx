@@ -55,14 +55,15 @@ const Menu = props => {
         </>
       )}
       <div>
-        <button data-test="Map">
+        <button
+          data-test="Map"
+          onClick={() => {
+            history.push("/map");
+            onClose();
+          }}
+        >
           Map
-          <MapOutLinedIcon
-            onClick={() => {
-              history.push("/map");
-              onClose();
-            }}
-          />
+          <MapOutLinedIcon />
         </button>
       </div>
       {auth ? (
