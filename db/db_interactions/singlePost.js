@@ -33,4 +33,17 @@ const addPost = function (post) {
     })
 }
 
-module.exports = { checkOtherFlag, addPost };
+const getPost = function (postId, userId) {
+    return new Promise((resolve, reject) => {
+        const queryString = "SELECT categoryId, headline, description, status, address, created_at, upvotes, otherFlag, eventDate FROM posts WHERE id = " + postId + ";";
+        connection.query(queryString, (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        })
+    })
+}
+
+module.exports = { checkOtherFlag, addPost, getPost };
