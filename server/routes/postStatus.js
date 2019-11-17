@@ -1,7 +1,8 @@
-require('dotenv').config({ path: '../.env' })
+require("dotenv").config({ path: "../.env" });
 const router = require("express").Router();
-const axios = require('axios');
+const axios = require("axios");
 const db = require("../../db/db_interactions");
+
 
 router.post("/api/modifyFavorite", (req, res) => {
     const userId = req.body.userId;
@@ -26,5 +27,6 @@ router.post("/api/markResolved", (req, res) => {
     db.postStatus.markResolved(userId, postId);
     res.send("connected to /api/markResolved route")
 })
+
 
 module.exports = router;

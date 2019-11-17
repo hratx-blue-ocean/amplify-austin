@@ -4,10 +4,16 @@ import Header from "./components/header/header.jsx";
 import PostContainer from "./components/Posts/PostContainer";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
-// import MapPage from "./components/MapPage/MapPage";
+import MapPage from "./components/MapPage/MapPage";
+import PostPage from "./components/PostPage/PostPage";
 import Create from "./components/Create/Create";
 import { allIssues, firstPost } from "./FAKEDATA";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 
 export class App extends React.Component {
   constructor() {
@@ -44,10 +50,6 @@ export class App extends React.Component {
                   saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
                 ></PostContainer>
-                {/* <PostsPage
-                  saveFilters={this.saveFilters}
-                  filteredCategories={this.state.filteredCategories}
-                /> */}
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -59,11 +61,17 @@ export class App extends React.Component {
                 <Create />
               </Route>
               <Route path="/map">
-                {/* <MapPage
+                <MapPage
                   saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
-                /> */}
-                <div> Map Page (Travis CLI hates it) </div>
+                />
+              </Route>
+              <Route path="/posts/:postID">
+                <PostPage />
+              </Route>
+              <Route path="*">
+                {/* TODO: replace with 404 page */}
+                <Redirect to="/" />
               </Route>
             </Switch>
           </div>
