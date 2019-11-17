@@ -89,6 +89,52 @@ router.post("/api/issue", (req, res) => {
   }
 });
 
+// contactInfo array
+
+router.get("/api/issue", (req, res) => {
+  let postId = req.query.postId;
+  let userId = req.query.userId;
+
+  db.singlePost
+    .getPost(postId, userId)
+    .then(row => {
+      let post = {
+        headline: row[0].headline,
+        description: row[0].description,
+        status: row[0].status,
+        address: row[0].address,
+        created_at: row[0].created_at,
+        amplifyCount: row[0].amplifyCount,
+        otherFlag: row[0].otherFlag,
+        eventDate: row[0].eventDate
+      };
+      const categoryId = row[0].categoryId;
+      db.helpers
+        .getCategoryName(categoryId)
+        .then(categoryName => {
+          console.log(categoryName);
+          post.categoryName = categoryName;
+          return db.helpers.getCanAmplify(postId, userId);
+        })
+        .then(bool => {
+          post.canAmplify = bool;
+          return db.helpers.getFavorited(postId, userId);
+        })
+        .then(bool => {
+          post.isFavorited = bool;
+          return db.helpers.getContacts(categoryId);
+        })
+        .then(contacts => {
+          post.contacts = contacts;
+          res.send(post);
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      res.send(err);
+    });
+});
+
 //concat endpoint and location for url
 //call api
 
