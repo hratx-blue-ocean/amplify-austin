@@ -29,6 +29,9 @@ const deleteRow = function (tableName, rowId) {
 
 const getCanAmplify = function (postId, userId) {
     return new Promise((resolve, reject) => {
+        if (!userId) {
+            resolve(false);
+        }
         const queryString = "SELECT * FROM promotes WHERE postId = " + postId + " AND userId = " + userId + ";";
         connection.query(queryString, (err, value) => {
             if (err) {
@@ -46,6 +49,9 @@ const getCanAmplify = function (postId, userId) {
 
 const getFavorited = function (postId, userId) {
     return new Promise((resolve, reject) => {
+        if (!userId) {
+            resolve(false);
+        }
         const queryString = "SELECT * FROM favorites WHERE postId = " + postId + " AND userId = " + userId + ";";
         connection.query(queryString, (err, value) => {
             if (err) {
