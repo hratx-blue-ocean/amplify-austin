@@ -37,10 +37,10 @@ export default class Map extends Component {
   }
 
   selectMarker(postId) {
-    const newId = this.state.selectedMarker === postId ? null : postId
+    const newId = this.state.selectedMarker === postId ? null : postId;
     this.setState({
       selectedMarker: newId
-    })
+    });
   }
 
   render() {
