@@ -2,11 +2,7 @@ const connection = require('../db');
 
 const getPosts = function (userId, selectBy, sortBy, categories) {
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
-        let queryString = "SELECT id, headline, categoryId, created_at, eventDate, upvotes, address, status, otherFlag FROM posts "
-=======
         let queryString = "SELECT id, headline, categoryId, created_at, eventDate, upvotes, address, status, otherFlag, lat, lng FROM posts "
->>>>>>> a9cab74d6256c9a8af6235d945bf59337f22a7d6
         let categoryClause = "";
         let orderByClause = "";
         let selectByClause = "";
