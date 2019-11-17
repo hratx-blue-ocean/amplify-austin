@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import { centerATX, zoom } from "./map-constants";
-import Marker from "./Marker";
+import Marker from "./Marker/Marker";
 import dummyCoords from "../MapPage/dummyCoordinates";
 
 // Make sure this component is always wrapped in a div
