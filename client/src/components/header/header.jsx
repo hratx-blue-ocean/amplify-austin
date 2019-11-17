@@ -21,7 +21,7 @@ const Header = props => {
     let reverse = !menuToggled;
     setMenuToggled(reverse);
   };
-  console.log(menuToggled)
+  console.log(menuToggled);
   const { classes } = props;
   const history = useHistory();
   return (

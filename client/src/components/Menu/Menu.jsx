@@ -55,14 +55,15 @@ const Menu = props => {
         </>
       )}
       <div>
-        <button data-test="Map">
+        <button
+          data-test="Map"
+          onClick={() => {
+            history.push("/map");
+            onClose();
+          }}
+        >
           Map
-          <MapOutLinedIcon
-            onClick={() => {
-              history.push("/map");
-              onClose();
-            }}
-          />
+          <MapOutLinedIcon />
         </button>
       </div>
       {auth ? (
@@ -81,33 +82,33 @@ const Menu = props => {
           </button>
         </div>
       ) : (
-          <>
-            <div>
-              <button
-                data-test="SignIn"
-                onClick={() => {
-                  history.push("/signin");
-                  onClose();
-                }}
-              >
-                {" "}
-                Sign In{" "}
-              </button>
-            </div>
-            <div>
-              <button
-                data-test="SignUp"
-                onClick={() => {
-                  history.push("/signup");
-                  onClose();
-                }}
-              >
-                {" "}
-                Sign Up{" "}
-              </button>
-            </div>
-          </>
-        )}
+        <>
+          <div>
+            <button
+              data-test="SignIn"
+              onClick={() => {
+                history.push("/signin");
+                onClose();
+              }}
+            >
+              {" "}
+              Sign In{" "}
+            </button>
+          </div>
+          <div>
+            <button
+              data-test="SignUp"
+              onClick={() => {
+                history.push("/signup");
+                onClose();
+              }}
+            >
+              {" "}
+              Sign Up{" "}
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

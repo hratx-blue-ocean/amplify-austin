@@ -13,7 +13,8 @@ const fakeCoordinates = () => {
     let coord = {
       lat: centerATX.lat + x,
       lng: centerATX.lng + y,
-      category: cat
+      category: cat,
+      postId: centerATX.lat + x
     };
     coords.push(coord);
   }
