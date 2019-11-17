@@ -7,6 +7,8 @@ import SignIn from "./components/SignIn/SignIn";
 import MapPage from "./components/MapPage/MapPage";
 import PostPage from "./components/PostPage/PostPage";
 import Create from "./components/Create/Create";
+import SortFilter from "./components/SortFilter/SortFilter";
+import axios from "axios";
 import { allIssues, firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
@@ -21,9 +23,21 @@ export class App extends React.Component {
     this.state = {
       selectedPost: firstPost,
       posts: allIssues,
-      filteredCategories: []
+      filteredCategories: [],
+      sortSelection: "popularity"
     };
+
     this.saveFilters = this.saveFilters.bind(this);
+    this.sortBy = this.sortBy.bind(this);
+  }
+
+  sortBy(condition) {
+    let strCondition = condition;
+    console.log("sort by function called, this is condition: ", strCondition);
+    this.setState({
+      sortSelection: strCondition
+    });
+    // make axios call based on new state
   }
 
   // Pass this function down to any Filter Component
@@ -44,7 +58,10 @@ export class App extends React.Component {
           <div className={styles.component}>
             <Switch>
               <Route exact path="/">
-                {/* TO BE REPLACED BY THE HOME PAGE */}
+                <SortFilter
+                  sortBy={this.sortBy}
+                  saveFilters={this.saveFilters}
+                ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
                   saveFilters={this.saveFilters}
