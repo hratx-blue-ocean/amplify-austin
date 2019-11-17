@@ -1,0 +1,14 @@
+.container {
+  z-index: 300;
+  display: flex;
+  position: absolute;
+  bottom: 30px;
+  left: -65px;
+  width: 150px;
+  height: 20px;
+  background-color: lightgray;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
