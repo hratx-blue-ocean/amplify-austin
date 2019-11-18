@@ -19,8 +19,8 @@ const PostContainer = props => {
       {props.postData.map(post => {
         return (
           <Post
-            key={post.postID}
-            postID={post.postID}
+            key={post.postId}
+            postID={post.postId}
             type={post.type}
             category={post.category}
             title={post.headline}

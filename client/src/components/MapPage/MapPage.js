@@ -1,17 +1,19 @@
 import React from "react";
 import Map from "../Map/Map";
 import styles from "./MapPage.module.css";
-import Filter from "../SortFilter/Filter/Filter";
+import MapFilter from './MapFilter'
 
-const MapPage = ({ filteredCategories, saveFilters }) => {
+const MapPage = ({ posts, selectCategories }) => {
   return (
     <div className={styles.container}>
       <div className={styles.subcontainer}>
         <div className={styles.filter}>
-          <Filter saveFilters={saveFilters} />
+          <MapFilter
+            selectCategories={selectCategories}
+          ></MapFilter>
         </div>
         <div className={styles.map}>
-          <Map filteredCategories={filteredCategories}></Map>
+          <Map posts={posts}></Map>
         </div>
       </div>
     </div>
