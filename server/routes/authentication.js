@@ -8,8 +8,10 @@ router.post("/api/signup", (req, res) => {
   const password = req.body.password;
   console.log("signup route", username, password);
   db.authentication.addUser(username, password).then(value => {
+    console.log("here")
     res.send(value);
   });
+
 });
 
 router.post("/api/login", (req, res) => {
