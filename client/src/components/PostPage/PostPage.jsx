@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { PostPageButtons } from "./PostPageButtons/PostPageButtons";
 import { firstPost } from "../../FAKEDATA";
 import coords from "../MapPage/dummyCoordinates";
@@ -8,8 +8,7 @@ import style from "./PostPage.module.css";
 import { useParams } from "react-router-dom";
 
 const PostPage = () => {
-
-  let userId = window.localStorage.getItem("user_id")
+  let userId = window.localStorage.getItem("user_id");
 
   // const { postId } = useParams();
   const [post, setPost] = useState({});
@@ -47,21 +46,22 @@ const PostPage = () => {
   };
 
   useEffect(() => {
-    console.log('hello from post PAge');
-    axios.get("http://localhost:8000/api/issue", {
-      params: {
-        userId: userId,
-        postId: 53
-      }
-    })
+    console.log("hello from post PAge");
+    axios
+      .get("http://localhost:8000/api/issue", {
+        params: {
+          userId: userId,
+          postId: 53
+        }
+      })
       .then(response => {
         console.log(response);
-        setPost(response.data)
-      })
-  }, [])
+        setPost(response.data);
+      });
+  }, []);
 
   if (!post.created_at) {
-    return (<div></div>)
+    return <div></div>;
   }
 
   console.log(typeof post.created_at);

@@ -83,7 +83,7 @@ const Create = props => {
         console.log(response.data.postId);
         // the line below is the postId that was inserted into our database.
         let currentlyViewedPostId = response.data.postId;
-        // pass this id to the post page (where the details for a single post are rendered) through params 
+        // pass this id to the post page (where the details for a single post are rendered) through params
 
         //dont need to have a pop up for success because we are going to immediately dirrect to new page,
         // so no handleOpen("success") needed
