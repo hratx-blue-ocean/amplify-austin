@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
@@ -21,17 +21,45 @@ import { API } from "../../constants";
 import { useHistory } from "react-router-dom";
 
 const Create = props => {
+  let categories = [];
+  const [category, setCategory] = useState("Category");
+  const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
   const [issueOrEvent, setIssueOrEvent] = useState("Issue");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
-  const [category, setCategory] = useState("category");
   const [date, setDate] = useState(new Date());
   const [successToggle, setSuccessToggle] = useState(false);
   const [errorToggle, setErrorToggle] = useState(false);
-
   const userID = localStorage.getItem("user_id");
   const history = useHistory();
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/categories")
+      .then(res => {
+        console.log(res.data);
+        setHungry(res.data);
+      })
+      .catch(error => {
+        console.log("error occured within the creation of categories");
+        categories = [
+          "Category",
+          "Accessibility",
+          "Danger",
+          "Event",
+          "Garbage",
+          "Graffiti",
+          "Music",
+          "Nature",
+          "Parking",
+          "Pets",
+          "School",
+          "Townhall",
+          "Water",
+          "Other"
+        ];
+      });
+  }, []);
 
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
@@ -85,6 +113,8 @@ const Create = props => {
         const postId = response.data.postId;
         if (postId) {
           history.push(`/posts/${postId}`);
+        } else {
+          handleOpen("error");
         }
         //dont need to have a pop up for success because we are going to immediately redirect to new page,
         // so no handleOpen("success") needed
@@ -108,20 +138,9 @@ const Create = props => {
               setCategory(event.target.value);
             }}
           >
-            <MenuItem value={"category"}>Category</MenuItem>
-            <MenuItem value={"accessibility"}>Accessibility</MenuItem>
-            <MenuItem value={"danger"}>Danger</MenuItem>
-            <MenuItem value={"event"}>Event</MenuItem>
-            <MenuItem value={"garbage"}>Garbage</MenuItem>
-            <MenuItem value={"graffiti"}>Graffiti</MenuItem>
-            <MenuItem value={"music"}>Music</MenuItem>
-            <MenuItem value={"nature"}>Nature</MenuItem>
-            <MenuItem value={"parking"}>Parking</MenuItem>
-            <MenuItem value={"pet"}>Pet</MenuItem>
-            <MenuItem value={"school"}>School</MenuItem>
-            <MenuItem value={"townhall"}>Townhall</MenuItem>
-            <MenuItem value={"water"}>Water</MenuItem>
-            <MenuItem value={"other"}>Other</MenuItem>
+            {hungry.map(option => {
+              return <MenuItem value={option}>{option}</MenuItem>;
+            })}
           </Select>
         </React.Fragment>
       );
