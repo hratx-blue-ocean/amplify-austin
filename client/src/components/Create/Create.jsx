@@ -28,6 +28,10 @@ const Create = props => {
   const [successToggle, setSuccessToggle] = useState(false);
   const [errorToggle, setErrorToggle] = useState(false);
 
+  // The UserID you asked for
+  // Shouldn't this be "window.localStorage.getItem("user_id")" --Ethan
+  const userID = localStorage.getItem("user_id");
+
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
     if (specificToggle === "success") {
@@ -67,18 +71,24 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-    Axios.post("./api/issue", {
-      creatorId: props.creatorId || null,
+    Axios.post("http://localhost:8000/api/issue", {
+      creatorId: parseInt(window.localStorage.getItem("user_id")),
       categoryName: category,
       headline: title,
       description: description,
       eventDate: date,
-      address: `${location}, Ausitn, Tx`,
-      lat: 0.0,
-      long: 0.0
+      location: `${location}, Austin, TX`
     })
-      .then(res => {
-        handleOpen("success");
+      .then(response => {
+        console.log(response.data.postId);
+        // the line below is the postId that was inserted into our database.
+        let currentlyViewedPostId = response.data.postId;
+        // pass this id to the post page (where the details for a single post are rendered) through params
+
+        //dont need to have a pop up for success because we are going to immediately dirrect to new page,
+        // so no handleOpen("success") needed
+
+        //redirrect to singlePost page;
       })
       .catch(error => {
         handleOpen("error");
@@ -245,7 +255,7 @@ const Create = props => {
               <CheckCircleIcon
                 className={clsx(classes.icon, classes.iconVariant)}
               />
-              Error with submission
+              Submission was successful
             </span>
           }
           action={[
