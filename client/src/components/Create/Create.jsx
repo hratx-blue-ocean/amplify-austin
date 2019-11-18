@@ -67,15 +67,13 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-    Axios.post("./api/issue", {
+    Axios.post("http://localhost:8000/api/issue", {
       creatorId: props.creatorId || null,
       categoryName: category,
       headline: title,
       description: description,
       eventDate: date,
-      address: `${location}, Ausitn, Tx`,
-      lat: 0.0,
-      long: 0.0
+      address: `${location}, Ausitn, Tx`
     })
       .then(res => {
         handleOpen("success");
@@ -245,7 +243,7 @@ const Create = props => {
               <CheckCircleIcon
                 className={clsx(classes.icon, classes.iconVariant)}
               />
-              Error with submission
+              Submission was successful
             </span>
           }
           action={[
