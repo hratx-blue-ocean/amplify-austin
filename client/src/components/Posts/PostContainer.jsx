@@ -4,6 +4,7 @@ import Post from "../Post/Post.jsx";
 
 const containerStyles = makeStyles(theme => ({
   root: {
+    marginTop: "5vh",
     flexGrow: 1,
     overflow: "hidden",
     padding: theme.spacing(0, 3)

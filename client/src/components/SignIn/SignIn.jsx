@@ -1,22 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import style from "./SignIn.module.css";
 
 const SignIn = props => {
-  const checkLogIn = function(username, password) {
+  const history = useHistory();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleUsername = e => {
+    setUsername(e.target.value);
+  };
+
+  const handlePassword = e => {
+    setPassword(e.target.value);
+  };
+
+  const checkInputs = () => {
     if (
-      password.length >= 6 &&
-      password.length <= 16 &&
+      password.length >= 8 &&
+      password.length <= 32 &&
       username.length >= 6 &&
       username.length <= 16
     ) {
       return true;
+    } else {
+      return false;
     }
   };
-  //to do
-  //verify account
-  //styling
+
+  const authenticateUser = async () => {
+    try {
+      const response = axios.get("http://localhost:8000/api");
+      if (response) {
+        localStorage.setItem("user_id", 1);
+        localStorage.setItem("username", username);
+      } else {
+        throw Error("invalid response");
+      }
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+
+  const loginUser = async () => {
+    try {
+      const validInput = checkInputs();
+      const authenticated = await authenticateUser();
+      if (validInput && authenticated) {
+        setUsername("");
+        setPassword("");
+        history.push("/");
+      } else {
+        throw Error("bad credentials");
+      }
+    } catch (error) {
+      console.error(error);
+      window.alert("invalid credentials, please try again");
+    }
+  };
+  // TODO
+  // styling
 
   return (
     <div className={style.container}>
@@ -24,14 +70,7 @@ const SignIn = props => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          axios
-            .get("http://localhost:8000/api")
-            .then(response => {
-              console.log("compare users info with data base response.");
-            })
-            .catch(err => {
-              console.log(err);
-            });
+          loginUser();
         }}
       >
         <div>
@@ -39,6 +78,8 @@ const SignIn = props => {
             type={"text"}
             id={"username"}
             placeholder={"username"}
+            value={username}
+            onChange={handleUsername}
             className={style.textFeild}
           ></input>
         </div>
@@ -46,6 +87,8 @@ const SignIn = props => {
           <input
             type={"password"}
             placeholder={"password"}
+            value={password}
+            onChange={handlePassword}
             className={style.textFeild}
           ></input>
         </div>

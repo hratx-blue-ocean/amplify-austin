@@ -20,7 +20,7 @@ router.get("/api/main", (req, res) => {
       let count = 0;
       let posts = [];
 
-      const formatPost = function() {
+      const formatPost = function () {
         if (count < rows.length) {
           let currentRow = rows[count];
           posts[count] = {
@@ -32,6 +32,7 @@ router.get("/api/main", (req, res) => {
             resolved: currentRow.resolved,
             otherFlag: currentRow.otherFlag,
             eventDate: currentRow.eventDate,
+            address: currentRow.address,
             lat: currentRow.lat,
             lng: currentRow.lng
           };
@@ -48,6 +49,11 @@ router.get("/api/main", (req, res) => {
             })
             .then(categoryName => {
               posts[count].categoryName = categoryName;
+              if ((categoryName = "Events")) {
+                posts[count].type = "event";
+              } else {
+                posts[count].type = "issue";
+              }
               count++;
               formatPost();
             });
