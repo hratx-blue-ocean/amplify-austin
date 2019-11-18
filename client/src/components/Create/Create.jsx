@@ -28,6 +28,9 @@ const Create = props => {
   const [successToggle, setSuccessToggle] = useState(false);
   const [errorToggle, setErrorToggle] = useState(false);
 
+  // The UserID you asked for
+  const userID = localStorage.getItem("user_id");
+
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
     if (specificToggle === "success") {
@@ -73,7 +76,7 @@ const Create = props => {
       headline: title,
       description: description,
       eventDate: date,
-      address: `${location}, Ausitn, Tx`
+      address: `${location}, Austin, TX`
     })
       .then(res => {
         handleOpen("success");

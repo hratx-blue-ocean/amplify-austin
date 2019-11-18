@@ -34,23 +34,29 @@ export class App extends React.Component {
 
   componentDidMount() {
     console.log("Inside componentDidMount");
-    axios
-      .get("/api/main/", {
+    try {
+      this.getInitialPosts();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getInitialPosts() {
+    try {
+      const res = await axios.get("http://localhost:8000/api/main/", {
         params: {
           sortBy: this.state.sortSelection
         }
-      })
-      .then(res => {
-        console.log("This is the response: ", res);
-      })
-      .catch(error => {
-        console.log(error);
       });
+      console.log("This is the response: ", res);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   sortBy(condition) {
     let strCondition = condition;
-    console.log("sort by function called, this is condition: ", strCondition);
+    // console.log("sort by function called, this is condition: ", strCondition);
     // make axios call based on new state
   }
 
