@@ -29,20 +29,34 @@ const SignIn = props => {
     }
   };
 
-  const authenticateUser = async () => {
-    try {
-      const response = axios.get("http://localhost:8000/api");
-      if (response) {
-        localStorage.setItem("user_id", 1);
-        localStorage.setItem("username", username);
-      } else {
-        throw Error("invalid response");
-      }
-      return true;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+  const authenticateUser = () => {
+
+    return new Promise((resolve, reject) => {
+      axios.post("http://localhost:8000/api/login", {
+        username: username,
+        password: password
+      })
+        .then(response => {
+          if (response.data.id) {
+            localStorage.setItem("user_id", response.data.id)
+            resolve(true)
+          } else {
+            resolve(false);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          reject(err);
+        })
+    })
+    // if (response) {
+    //   localStorage.setItem("user_id", 1);
+    //   localStorage.setItem("username", username);
+    // } else {
+    //   throw Error("invalid response");
+    // }
+    // return true;
+
   };
 
   const loginUser = async () => {
