@@ -80,7 +80,6 @@ const Create = props => {
       location: `${location}, Austin, TX`
     })
       .then(response => {
-        console.log(response.data.postId);
         // the line below is the postId that was inserted into our database.
         let currentlyViewedPostId = response.data.postId;
         // pass this id to the post page (where the details for a single post are rendered) through params

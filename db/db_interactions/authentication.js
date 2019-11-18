@@ -38,8 +38,9 @@ const addUser = function (username, password) {
 
 const login = function (username, password) {
     return new Promise((resolve, reject) => {
-        const testQuery = "SELECT id FROM users WHERE username=" + username + " AND password=" + password + ";";
+        const testQuery = "SELECT id FROM users WHERE username=\'" + username + "\' AND password=\'" + password + "\';";
         //test if username and password match
+        console.log(testQuery);
         connection.query(testQuery, (err, value) => {
             if (err) {
                 reject(err);
