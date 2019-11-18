@@ -77,7 +77,7 @@ class Icon extends React.Component {
       case ICONLABEL.water:
         return <WaterIcon />;
       default:
-        return undefined;
+        return <MapMarkerIcon />;
     }
   }
 }
