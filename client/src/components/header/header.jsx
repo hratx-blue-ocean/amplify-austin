@@ -36,9 +36,11 @@ const Header = props => {
         <div>
           <MenuIcon onClick={toggleMenu} style={{ height: 30, width: 30 }} />
         </div>
-        <div onClick={() => {
-          history.push("/home");
-        }}>
+        <div
+          onClick={() => {
+            history.push("/home");
+          }}
+        >
           <p>Amplify Austin</p> <p>{name}</p>
         </div>
         <div>
