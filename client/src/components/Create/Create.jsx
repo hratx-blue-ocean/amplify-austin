@@ -71,19 +71,28 @@ const Create = props => {
   //Submission for the form
   const makeSubmission = () => {
     Axios.post("http://localhost:8000/api/issue", {
-      creatorId: props.creatorId || null,
+      creatorId: parseInt(window.localStorage.getItem("user_id")),
       categoryName: category,
       headline: title,
       description: description,
       eventDate: date,
-      address: `${location}, Austin, TX`
+      location: `${location}, Austin, TX`
     })
-      .then(res => {
-        handleOpen("success");
+      .then(response => {
+        console.log(response.data.postId);
+        let currentlyViewedPostId = response.data.postId;
+        let setStateObj = {
+          currentlyViewedPostId: currentlyViewedPostId
+        }
+        props.todoSetStateFunction(setStateObj);
+        //dont need to have a pop up for success because we are going to immediately dirrect to new page, 
+        // so no handleOpen("success") needed
+
+        //redirrect to singlePost page;
       })
       .catch(error => {
         handleOpen("error");
-      });
+      })
   };
 
   //This will render the differences between the issue and event pages
