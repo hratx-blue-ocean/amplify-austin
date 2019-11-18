@@ -1,6 +1,6 @@
 const connection = require('../db');
 const util = require("util");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
 const query = util.promisify(connection.query.bind(connection));
