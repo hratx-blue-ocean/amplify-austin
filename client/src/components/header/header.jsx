@@ -9,7 +9,7 @@ import style from "./header.module.css";
 
 const styles = {
   paper: {
-    background: "#6202ee",
+    background: "#34435E",
     color: "white"
   }
 };
