@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -70,13 +70,13 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-    Axios.post("http://localhost:8000/api/issue", {
-      creatorId: parseInt(window.localStorage.getItem("user_id")),
+    axios.post("http://localhost:8000/api/issue", {
+      creatorId: parseInt(userID),
       categoryName: category,
       headline: title,
       description: description,
       eventDate: date,
-      location: `${location}, Austin, TX`
+      location: `${ location }, Austin, TX`
     })
       .then(response => {
         console.log(response.data.postId);
@@ -85,7 +85,7 @@ const Create = props => {
           currentlyViewedPostId: currentlyViewedPostId
         };
         props.todoSetStateFunction(setStateObj);
-        //dont need to have a pop up for success because we are going to immediately dirrect to new page,
+        //dont need to have a pop up for success because we are going to immediately redirect to new page,
         // so no handleOpen("success") needed
 
         //redirrect to singlePost page;
