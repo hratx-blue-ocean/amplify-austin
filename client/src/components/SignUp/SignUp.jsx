@@ -12,7 +12,13 @@ const SignUp = () => {
 
   const checkRequirements = () => {
     // verify passwords match & meet conditions
-    if (password === confirmation && password.length >= 8 && password.length <= 32 && username.length >= 3 && username.length <= 32) {
+    if (
+      password === confirmation &&
+      password.length >= 8 &&
+      password.length <= 32 &&
+      username.length >= 3 &&
+      username.length <= 32
+    ) {
       return true;
     } else {
       return false;
@@ -24,14 +30,14 @@ const SignUp = () => {
       const response = await axios.post("http://localhost:8000/api/signup", {
         username,
         password: password
-      })
+      });
       return response.data;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
       const validRequirements = checkRequirements();
@@ -41,47 +47,45 @@ const SignUp = () => {
           setUsername("");
           setPassword("");
           setConfirmation("");
-          localStorage.setItem("username", data[0])
-          localStorage.setItem("user_id", data[1])
+          localStorage.setItem("username", data[0]);
+          localStorage.setItem("user_id", data[1]);
           history.push("/");
         } else {
-          throw new Error(422)
+          throw new Error(422);
         }
       } else {
         window.alert(`Your username must be at least 3 characters.
-        Your password must be at least 8 characters.`)
+        Your password must be at least 8 characters.`);
       }
     } catch (error) {
       handleError(error);
     }
-  }
+  };
 
-  const handleError = (error) => {
-    console.error(error)
+  const handleError = error => {
+    console.error(error);
     if (error.message === "422") {
       setUsername("");
-      window.alert("That username is already in use. Please try another.")
+      window.alert("That username is already in use. Please try another.");
     } else {
-      window.alert("Theres been an error, please try again")
+      window.alert("Theres been an error, please try again");
     }
-  }
+  };
 
-  const handleUsernameInput = (e) => {
+  const handleUsernameInput = e => {
     setUsername(e.target.value);
-  }
-  const handlePasswordInput = (e) => {
+  };
+  const handlePasswordInput = e => {
     setPassword(e.target.value);
-  }
-  const handleConfirmationInput = (e) => {
+  };
+  const handleConfirmationInput = e => {
     setConfirmation(e.target.value);
-  }
+  };
 
   return (
     <div className={style.container}>
       <h3 className={style.textInfo}>Create an Account</h3>
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <div>
           <input
             type={"text"}
@@ -111,10 +115,9 @@ const SignUp = () => {
           ></input>
         </div>
         <div>
-          <button
-            type={"submit"}
-            className={style.button}
-          >Sign Up</button>
+          <button type={"submit"} className={style.button}>
+            Sign Up
+          </button>
         </div>
       </form>
       <h5 className={style.textInfo}>

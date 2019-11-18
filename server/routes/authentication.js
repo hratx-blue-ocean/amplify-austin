@@ -11,17 +11,21 @@ router.post("/api/signup", async (req, res) => {
     res.send(value);
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .send(
-        "There was an error on the server and the request could not be completed."
-      );
+    if (error.message === "422") {
+      res.status(422).send({
+        message: "That username was taken."
+      });
+    } else {
+      res.status(500).send({
+        message:
+          "There was an error on the server and the request could not be completed."
+      });
+    }
   }
 });
 
 router.post("/api/login", async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const { username, password } = req.body;
   try {
     const value = await db.authentication.login(username, password);
     res.send(value);

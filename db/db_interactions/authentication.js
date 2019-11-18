@@ -16,12 +16,11 @@ const addUser = async (username, password) => {
     const testValue = await query(testQuery, [username]);
     const value = await query(insertQuery, [username, hash]);
     if (testValue[0]) {
-      return "username already taken"
+      throw new Error(422);
     }
     return [username, value.insertId];
   } catch (error) {
-    // throw error if db connection fails, or bad SQL query
-    throw new Error(500);
+    handleError(error);
   }
 }
 
@@ -47,6 +46,14 @@ const login = async (username, password) => {
     // throw error if db connection fails, or bad SQL query
     throw new Error(500);
   }
+}
+
+const handleError = (error) => {
+  if (error.message === "422") {
+    throw error
+  }
+  // throw error if db connection fails, or bad SQL query
+  throw new Error(500);
 }
 
 module.exports = { addUser, login };

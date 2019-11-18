@@ -36,7 +36,7 @@ const SignIn = props => {
         password
       });
       if (response) {
-        console.log(response)
+        console.log(response);
         localStorage.setItem("user_id", 1);
         localStorage.setItem("username", username);
       } else {
