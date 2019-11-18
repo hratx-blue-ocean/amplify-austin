@@ -39,6 +39,7 @@ describe("Create a Post route", () => {
         lng: -97.7497
       })
       .then((response) => {
+        console.log(response.body)
         expect(response).to.have.status(200);
         expect(response.body).to.be.a("object");
         expect(response.body.insertId).to.be.a("Number");

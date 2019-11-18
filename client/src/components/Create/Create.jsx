@@ -77,7 +77,7 @@ const Create = props => {
         headline: title,
         description: description,
         eventDate: date,
-        location: `${ location }, Austin, TX`
+        location: `${location}, Austin, TX`
       })
       .then(response => {
         // the line below is the postId that was inserted into our database.
@@ -88,7 +88,7 @@ const Create = props => {
         //redirect to singlePost page;
       })
       .catch(error => {
-        console.log(error)
+        console.log(error);
         handleOpen("error");
       });
   };
