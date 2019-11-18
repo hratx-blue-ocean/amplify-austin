@@ -1,4 +1,4 @@
-#HeaderContainer {
+.headerContainer {
   z-index: 2000;
   position: fixed;
   top: 0;
@@ -15,11 +15,15 @@
   background-color: #6202ee;
 }
 
-#HeaderContainer p {
+.headerContainer p {
   margin: auto;
   font-size: 1.5rem;
 }
 
-#HeaderContainer div {
+.headerContainer div {
   margin: auto;
+}
+
+.navigatingDiv {
+  cursor: pointer;
 }
