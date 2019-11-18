@@ -32,6 +32,7 @@ router.get("/api/main", (req, res) => {
             resolved: currentRow.resolved,
             otherFlag: currentRow.otherFlag,
             eventDate: currentRow.eventDate,
+            address: currentRow.address,
             lat: currentRow.lat,
             lng: currentRow.lng
           };
