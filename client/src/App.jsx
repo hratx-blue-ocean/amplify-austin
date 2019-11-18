@@ -24,7 +24,7 @@ export class App extends React.Component {
       selectedPost: firstPost,
       posts: allIssues,
       filteredCategories: [],
-      selectBy: '',
+      selectBy: null,
       sortSelection: "popularity"
     };
 
