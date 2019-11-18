@@ -22,7 +22,7 @@ const PostContainer = props => {
             key={post.postId}
             postID={post.postId}
             type={post.type}
-            category={post.category}
+            category={post.categoryName}
             title={post.headline}
             description={post.description}
             datecreated={post.created_at}
