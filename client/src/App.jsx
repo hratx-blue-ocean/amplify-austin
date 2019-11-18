@@ -89,6 +89,7 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
+    console.log("These are the selected categories: ", selected);
     let categories = selected.map(elem => {
       return elem.title;
     });
@@ -127,6 +128,7 @@ export class App extends React.Component {
                 <SortFilter
                   sortBy={this.sortBy}
                   selectCategories={this.selectCategories}
+                  filteredCategories={this.state.filteredCategories}
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
@@ -145,6 +147,7 @@ export class App extends React.Component {
                   sortBy={this.sortBy}
                   posts={this.state.posts}
                   selectCategories={this.selectCategories}
+                  filteredCategories={this.state.filteredCategories}
                 />
               </Route>
               <Route path="/posts/:postID">

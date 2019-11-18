@@ -23,7 +23,10 @@ const MapFilter = props => {
         alignItems="center"
       >
         <Grid item xs={6}>
-          <CategorySelect selectCategories={props.selectCategories} />
+          <CategorySelect
+            selectCategories={props.selectCategories}
+            filteredCategories={props.filteredCategories}
+          />
         </Grid>
       </Grid>
     </div>
