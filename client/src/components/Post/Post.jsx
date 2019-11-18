@@ -12,7 +12,7 @@ import Icon from "../Icon/Icon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
 import "typeface-roboto";
-import axios from "axios"
+import axios from "axios";
 import { API } from "../../constants";
 
 const useStyles = makeStyles(theme => ({
@@ -95,7 +95,7 @@ const Post = props => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
     // if other flag, display "other" icon and NOT category icon
@@ -103,18 +103,24 @@ const Post = props => {
       <Grid container spacing={3}>
         <Grid item xs={2} container direction="column">
           <Grid item xs className={styles.arrow}>
-            <IconButton style={amp ? { color: "orange" } : undefined} onClick={handleAmplify} aria-label="delete">
+            <IconButton
+              style={amp ? { color: "orange" } : undefined}
+              onClick={handleAmplify}
+              aria-label="delete"
+            >
               <ArrowUpwardIcon />
             </IconButton>
           </Grid>
           <Grid item xs>
-            <Typography className={styles.arrow}>{amp ? amp : props.votes}</Typography>
+            <Typography className={styles.arrow}>
+              {amp ? amp : props.votes}
+            </Typography>
           </Grid>
         </Grid>
         <Grid item xs={10} container direction="column">
           <Paper
             onClick={() => {
-              history.push(`/posts/${ props.postID }`);
+              history.push(`/posts/${props.postID}`);
             }}
             className={styles.paper}
           >
@@ -128,8 +134,8 @@ const Post = props => {
               {props.category === "other" ? (
                 defaultIcon
               ) : (
-                  <Icon category={props.category} />
-                )}
+                <Icon category={props.category} />
+              )}
             </Grid>
             <Grid
               item
@@ -163,8 +169,8 @@ const Post = props => {
                   {props.favorited === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
+                    <EmptyStarIcon></EmptyStarIcon>
+                  )}
                 </div>
               </Grid>
             </Grid>
