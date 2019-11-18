@@ -71,7 +71,6 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-
     Axios.post("http://localhost:8000/api/issue", {
       creatorId: parseInt(localStorage.getItem("user_id")),
       categoryName: category,

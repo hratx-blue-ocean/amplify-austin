@@ -4,7 +4,7 @@ import axios from "axios";
 import style from "./SignUp.module.css";
 
 const SignUp = props => {
-  const checkPassword = function (password, reenter) {
+  const checkPassword = function(password, reenter) {
     if (password === reenter && password.length >= 8 && password.length <= 32) {
       return true;
     } else {
@@ -12,7 +12,6 @@ const SignUp = props => {
     }
   };
   //to do
-
 
   //post request for new user
   //more password logic
@@ -24,7 +23,7 @@ const SignUp = props => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          console.log(e.target[0].value, e.target[1].value, e.target[2].value)
+          console.log(e.target[0].value, e.target[1].value, e.target[2].value);
           if (!checkPassword(e.target[1].value, e.target[2].value)) {
             alert("passwords did not match or password too short!");
             return;
