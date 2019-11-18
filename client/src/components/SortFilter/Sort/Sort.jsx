@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 const ConditionMenu = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const menuItems = ["popularity", "recent"];
+  const menuItems = ["popularity", "date"];
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);

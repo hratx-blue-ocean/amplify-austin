@@ -34,16 +34,18 @@ export default class Map extends Component {
           defaultCenter={this.state.center}
           defaultZoom={this.state.zoom}
         >
-          {mapable.map((coord, i) => {
+          {mapable.map((post, i) => {
             return (
               <Marker
                 key={i}
-                lat={coord.lat}
-                lng={coord.lng}
-                category={coord.category}
-                isSelected={coord.postId === this.state.selectedMarker}
+                lat={post.lat}
+                lng={post.lng}
+                title={post.headline}
+                otherFlag={post.otherFlag}
+                category={post.categoryName}
+                isSelected={post.postId === this.state.selectedMarker}
                 selectMarker={this.selectMarker}
-                postID={coord.postId}
+                postId={post.postId}
               />
             );
           })}
