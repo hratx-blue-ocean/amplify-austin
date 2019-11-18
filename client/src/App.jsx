@@ -16,6 +16,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
 export class App extends React.Component {
   constructor() {
@@ -94,9 +95,7 @@ export class App extends React.Component {
               <Route path="/signin">
                 <SignIn />
               </Route>
-              <Route path="/create">
-                <Create />
-              </Route>
+              <PrivateRoute path="/create" component={Create} />
               <Route path="/map">
                 <MapPage
                   saveFilters={this.saveFilters}
