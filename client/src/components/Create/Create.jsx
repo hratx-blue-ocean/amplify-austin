@@ -70,14 +70,15 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-    axios.post("http://localhost:8000/api/issue", {
-      creatorId: parseInt(userID),
-      categoryName: category,
-      headline: title,
-      description: description,
-      eventDate: date,
-      location: `${ location }, Austin, TX`
-    })
+    axios
+      .post("http://localhost:8000/api/issue", {
+        creatorId: parseInt(userID),
+        categoryName: category,
+        headline: title,
+        description: description,
+        eventDate: date,
+        location: `${location}, Austin, TX`
+      })
       .then(response => {
         console.log(response.data.postId);
         let currentlyViewedPostId = response.data.postId;
