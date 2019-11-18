@@ -1,60 +1,39 @@
 const connection = require('../db');
+const util = require("util");
 
-const addUser = function (username, password) {
-    return new Promise((resolve, reject) => {
-        const testQuery = "SELECT id FROM users WHERE username =" + username + ";";
-        //test if username already exists
-        connection.query(testQuery, (err, value) => {
-            if (err) {
-                reject(err);
-            } else {
-                if (value[0]) {
-                    //if the user already exists, log it and resolve
-                    console.log('username already exists')
-                    resolve('username already taken')
-                } else {
-                    //otherwise insert username and password
-                    console.log('value = ', value[0])
-                    const insertQuery = "INSERT INTO users (username, password) VALUES (" + username + "," + password + ");";
-                    connection.query(insertQuery, (err, value) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            //send back userId
-                            connection.query(testQuery, (err, value) => {
-                                if (err) {
-                                    reject(err);
-                                } else {
-                                    resolve(value[0]);
-                                }
-                            })
-                        }
-                    })
-                }
-            }
-        })
-    })
+const query = util.promisify(connection.query.bind(connection));
+
+const addUser = async (username, password) => {
+  // test query for if username already exists
+  const testQuery = "SELECT id FROM users WHERE username = ?";
+  // actual insert query
+  const insertQuery = "INSERT INTO users (username, password) VALUES (?,?)"
+  try {
+    const testValue = await query(testQuery, [username]);
+    const value = await query(insertQuery, [username, password]);
+    if (testValue[0]) {
+      return "username already taken"
+    }
+    return [username, value.insertId];
+  } catch (error) {
+    // throw error if db connection fails, or bad SQL query
+    throw new Error(500);
+  }
 }
 
-const login = function (username, password) {
-    return new Promise((resolve, reject) => {
-        const testQuery = "SELECT id FROM users WHERE username=" + username + " AND password=" + password + ";";
-        //test if username and password match
-        connection.query(testQuery, (err, value) => {
-            if (err) {
-                reject(err);
-            } else {
-                //resolve/reject results
-                if (value[0]) {
-                    //successful login, send back userId
-                    resolve(value[0])
-                } else {
-                    //unsuccessful login, send back explanation
-                    resolve('login failed')
-                }
-            }
-        })
-    })
+const login = async (username, password) => {
+  const lookupQuery = "SELECT id FROM users WHERE username = ? AND password= ?";
+  try {
+    const value = await query(lookupQuery, [username, password]);
+    if (value[0]) {
+      return value[0]
+    } else {
+      return "Invalid username or password"
+    }
+  } catch (error) {
+    // throw error if db connection fails, or bad SQL query
+    throw new Error(500);
+  }
 }
 
 module.exports = { addUser, login };
