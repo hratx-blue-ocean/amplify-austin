@@ -138,9 +138,9 @@ export class App extends React.Component {
               <PrivateRoute path="/create" component={Create} />
               <Route path="/map">
                 <MapPage
+                  sortBy={this.sortBy}
                   posts={this.state.posts}
-                  saveFilters={this.saveFilters}
-                  filteredCategories={this.state.filteredCategories}
+                  selectCategories={this.selectCategories}
                 />
               </Route>
               <Route path="/posts/:postID">
