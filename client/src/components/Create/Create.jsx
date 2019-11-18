@@ -79,12 +79,12 @@ const Create = props => {
         headline: title,
         description: description,
         eventDate: date,
-        location: `${ location }, Austin, TX`
+        location: `${location}, Austin, TX`
       })
       .then(response => {
         const postId = response.data.postId;
         if (postId) {
-          history.push(`/posts/${ postId }`)
+          history.push(`/posts/${postId}`);
         }
         //dont need to have a pop up for success because we are going to immediately redirect to new page,
         // so no handleOpen("success") needed
