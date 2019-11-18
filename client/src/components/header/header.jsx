@@ -5,7 +5,7 @@ import Menu from "../Menu/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import { withStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import "./header.css";
+import style from "./header.module.css";
 
 const styles = {
   paper: {
@@ -32,18 +32,19 @@ const Header = props => {
 
   return (
     <React.Fragment>
-      <div data-test="HeaderContainer" id="HeaderContainer">
-        <div>
+      <div data-test="HeaderContainer" className={style.headerContainer}>
+        <div className={style.navigatingDiv}>
           <MenuIcon onClick={toggleMenu} style={{ height: 30, width: 30 }} />
         </div>
         <div
+          className={style.navigatingDiv}
           onClick={() => {
             history.push("/home");
           }}
         >
           <p>Amplify Austin</p> <p>{name}</p>
         </div>
-        <div>
+        <div className={style.navigatingDiv}>
           <MapOutlinedIcon
             style={{ height: 30, width: 30 }}
             onClick={() => {
@@ -52,7 +53,6 @@ const Header = props => {
           />
         </div>
       </div>
-      {/*ToDo Menu */}
       <Drawer
         anchor="left"
         open={menuToggled}
