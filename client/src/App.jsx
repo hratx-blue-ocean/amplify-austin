@@ -24,6 +24,7 @@ export class App extends React.Component {
       selectedPost: firstPost,
       posts: allIssues,
       filteredCategories: [],
+      selectBy: null,
       sortSelection: "popularity"
     };
 
@@ -32,22 +33,19 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.state.sortSelection) {
-      let sortBy = "popularity";
-
-      axios
-        .get("/api/main/", {
-          params: {
-            sortBy: sortBy
-          }
-        })
-        .then(res => {
-          console.log("This is the response: ", res);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+    console.log("Inside componentDidMount");
+    axios
+      .get("/api/main/", {
+        params: {
+          sortBy: this.state.sortSelection
+        }
+      })
+      .then(res => {
+        console.log("This is the response: ", res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   sortBy(condition) {
