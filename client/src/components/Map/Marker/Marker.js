@@ -11,8 +11,8 @@ const Marker = ({ title, category, postId, selectMarker, isSelected }) => {
       {category === "Other" ? (
         defaultIcon
       ) : (
-        <Icon category={category.toLowerCase()} />
-      )}
+          <Icon category={category.toLowerCase()} />
+        )}
       {isSelected && <MiniPost title={title} postId={postId} />}
     </div>
   );

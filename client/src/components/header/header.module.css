@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 50px;
-  background-color: #6202ee;
+  background-color: #34435E;
 }
 
 .headerContainer p {
