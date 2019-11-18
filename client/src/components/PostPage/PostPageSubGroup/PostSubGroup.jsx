@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import style from "../PostPage.module.css";
 
 const PostPageSubGroup = ({ type, categoryName, created_at }) => {
@@ -19,6 +19,6 @@ const PostPageSubGroup = ({ type, categoryName, created_at }) => {
       </div>
     </div>
   );
-}
+};
 
-export default PostPageSubGroup
+export default PostPageSubGroup;

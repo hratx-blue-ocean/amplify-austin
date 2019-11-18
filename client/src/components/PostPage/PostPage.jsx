@@ -21,7 +21,7 @@ const PostPage = () => {
 
   useEffect(() => {
     getPost();
-  }, [])
+  }, []);
 
   const getPost = async () => {
     try {
@@ -32,24 +32,26 @@ const PostPage = () => {
           postId: 53
         }
       });
-      const { data } = response
+      const { data } = response;
       const postData = data;
       if (postData === undefined || !postData.canAmplify === undefined) {
-        console.log("here")
-        throw new Error("no response from GET request")
+        console.log("here");
+        throw new Error("no response from GET request");
       }
-      setPost(postData)
-      setCoords([{
-        lat: postData.lat,
-        lng: postData.lng,
-        category: postData.category
-      }])
+      setPost(postData);
+      setCoords([
+        {
+          lat: postData.lat,
+          lng: postData.lng,
+          category: postData.category
+        }
+      ]);
     } catch (error) {
       // TODO add error page
-      console.log(error)
-      history.push("/")
+      console.log(error);
+      history.push("/");
     }
-  }
+  };
 
   const handleReachOut = () => {
     console.log("Reach Out");
@@ -71,9 +73,15 @@ const PostPage = () => {
       <div className={style.titleField}>
         <div className={style.heading}>
           <h2>{post.headline}</h2>
-          <PostPageSubGroup type={post.type} categorName={post.categorName} created_at={post.created_at} />
+          <PostPageSubGroup
+            type={post.type}
+            categorName={post.categorName}
+            created_at={post.created_at}
+          />
         </div>
-        <div className={style.favorite}><Icon type={ICONLABEL.starEmpty} /></div>
+        <div className={style.favorite}>
+          <Icon type={ICONLABEL.starEmpty} />
+        </div>
       </div>
       <div className={style.descriptionWrapper}>
         <p>{post.description}</p>

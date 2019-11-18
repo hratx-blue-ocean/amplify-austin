@@ -78,7 +78,7 @@ const Create = props => {
         headline: title,
         description: description,
         eventDate: date,
-        location: `${ location }, Austin, TX`
+        location: `${location}, Austin, TX`
       })
       .then(response => {
         console.log(response.data.postId);
