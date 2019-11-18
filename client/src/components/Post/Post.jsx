@@ -104,7 +104,7 @@ const Post = props => {
         <Grid item xs={2} container direction="column">
           <Grid item xs className={styles.arrow}>
             <IconButton
-              style={amp ? { color: "orange" } : undefined}
+              style={amp ? { color: "orange", padding: "0" } : { padding: "0" }}
               onClick={handleAmplify}
               aria-label="delete"
             >
