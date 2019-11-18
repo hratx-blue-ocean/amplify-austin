@@ -3,14 +3,16 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
-export default function SimpleMenu() {
+const ConditionMenu = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const menuItems = ['popularity', 'recent']
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
+    console.log("This is the text from the close: ")
     setAnchorEl(null);
   };
 
@@ -30,9 +32,17 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Popularity</MenuItem>
-        <MenuItem onClick={handleClose}>Recent</MenuItem>
+        {menuItems.map((item, index) => {
+          return (<MenuItem
+            key={index}
+            value={item}
+            onClick={() => { props.sortBy(item) }}
+          />
+          )
+        })}
       </Menu>
     </div>
   );
 }
+
+export default ConditionMenu;
