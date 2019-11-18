@@ -24,7 +24,7 @@ export class App extends React.Component {
       selectedPost: firstPost,
       posts: allIssues,
       filteredCategories: [],
-      sortSelection: 'popularity'
+      sortSelection: "popularity"
     };
 
     this.saveFilters = this.saveFilters.bind(this);
@@ -32,7 +32,7 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Inside componentDidMount")
+    console.log("Inside componentDidMount");
     axios
       .get("/api/main/", {
         params: {
