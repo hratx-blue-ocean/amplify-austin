@@ -59,8 +59,8 @@ export class App extends React.Component {
   }
 
   async getPosts() {
-    let strArry = this.state.filteredCategories.join('/');
-    let userId = localStorage.getItem('user_id');
+    let strArry = this.state.filteredCategories.join("/");
+    let userId = localStorage.getItem("user_id");
 
     try {
       const res = await axios.get(API.MAIN, {
@@ -70,7 +70,7 @@ export class App extends React.Component {
           categories: strArry,
           selectBy: this.state.selectBy
         }
-      })
+      });
       this.setState({
         posts: res.data
       });
