@@ -44,12 +44,11 @@ export class App extends React.Component {
 
   async getInitialPosts() {
     try {
-      const res = await axios
-        .get("http://localhost:8000/api/main/", {
-          params: {
-            sortBy: this.state.sortSelection
-          }
-        })
+      const res = await axios.get("http://localhost:8000/api/main/", {
+        params: {
+          sortBy: this.state.sortSelection
+        }
+      });
       console.log("This is the response: ", res);
     } catch (error) {
       console.log(error);

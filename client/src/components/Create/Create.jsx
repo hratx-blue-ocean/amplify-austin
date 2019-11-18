@@ -76,7 +76,7 @@ const Create = props => {
       headline: title,
       description: description,
       eventDate: date,
-      address: `${ location }, Austin, TX`
+      address: `${location}, Austin, TX`
     })
       .then(res => {
         handleOpen("success");
