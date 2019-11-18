@@ -36,7 +36,7 @@ class Icon extends React.Component {
         return <CarIconCustom />;
       case ICONLABEL.danger:
         return <DangerIcon />;
-      case ICONLABEL.event:
+      case ICONLABEL.events:
         return <EventIcon />;
       case ICONLABEL.food:
         return <FoodIcon />;

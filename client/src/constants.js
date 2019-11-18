@@ -1,9 +1,9 @@
 export const ICONLABEL = {
-  Accessibility: "accessibility",
+  accessibility: "accessibility",
   add: "add",
   car: "car",
   danger: "danger",
-  event: "event",
+  events: "events",
   food: "food",
   garbage: "garbage",
   graffiti: "graffiti",

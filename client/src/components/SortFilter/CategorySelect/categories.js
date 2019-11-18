@@ -2,7 +2,7 @@
 const categories = [
   { title: "accessibility" },
   { title: "danger" },
-  { title: "event" },
+  { title: "events" },
   { title: "food" },
   { title: "garbage" },
   { title: "graffiti" },
