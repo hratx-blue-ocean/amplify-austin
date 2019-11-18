@@ -1,7 +1,6 @@
 import React from "react";
 import Map from "../Map/Map";
 import styles from "./MapPage.module.css";
-import SortFilter from '../SortFilter/SortFilter';
 import MapFilter from './MapFilter'
 
 const MapPage = ({ posts, selectCategories }) => {
