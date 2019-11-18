@@ -27,6 +27,7 @@ export default class Map extends Component {
      * Not neccessarily 'stateful' as it re-renders completely
      * on any change made up in APP
      */
+    console.log("gimme them filtered ones", this.props.filteredCategories);
     let categories = this.props.filteredCategories.join("/");
 
     // const coordinates = dummyCoords();

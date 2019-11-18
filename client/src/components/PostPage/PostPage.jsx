@@ -9,7 +9,7 @@ import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import { Icon } from "@material-ui/core";
 import { ICONLABEL, API } from "../../constants";
 
-const PostPage = () => {
+const PostPage = (props) => {
   // state
   const [post, setPost] = useState({});
   const [coords, setCoords] = useState([]);
@@ -29,7 +29,7 @@ const PostPage = () => {
         params: {
           userId: userID || "",
           // replace with postID
-          postId: 53
+          postId: postID
         }
       });
       const { data } = response;
@@ -92,7 +92,7 @@ const PostPage = () => {
       />
       <div className={style.map}>
         {/* TODO: use coordinates in get request */}
-        <Map coordinates={coords}></Map>
+        <Map filteredCategories={props.filteredCategories} coordinates={coords}></Map>
       </div>
     </div>
   );
