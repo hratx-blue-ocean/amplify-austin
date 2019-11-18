@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
@@ -7,10 +7,17 @@ import style from "./Menu.module.css";
 import { useHistory } from "react-router-dom";
 
 const Menu = props => {
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState();
   const history = useHistory();
-
   const onClose = props.onClose;
+
+  useEffect(() => {
+    if (localStorage.getItem("user_id")) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+  }, [auth])
 
   return (
     <div className={style.NavBarContainer} data-test="NavMenu">
@@ -71,8 +78,8 @@ const Menu = props => {
           <button
             data-test="SignOut"
             onClick={() => {
-              setAuth(false);
-              //todo change logged to false
+              localStorage.removeItem("user_id");
+              localStorage.removeItem("username");
               history.push("/");
               onClose();
             }}
@@ -82,33 +89,33 @@ const Menu = props => {
           </button>
         </div>
       ) : (
-        <>
-          <div>
-            <button
-              data-test="SignIn"
-              onClick={() => {
-                history.push("/signin");
-                onClose();
-              }}
-            >
-              {" "}
-              Sign In{" "}
-            </button>
-          </div>
-          <div>
-            <button
-              data-test="SignUp"
-              onClick={() => {
-                history.push("/signup");
-                onClose();
-              }}
-            >
-              {" "}
-              Sign Up{" "}
-            </button>
-          </div>
-        </>
-      )}
+          <>
+            <div>
+              <button
+                data-test="SignIn"
+                onClick={() => {
+                  history.push("/signin");
+                  onClose();
+                }}
+              >
+                {" "}
+                Sign In{" "}
+              </button>
+            </div>
+            <div>
+              <button
+                data-test="SignUp"
+                onClick={() => {
+                  history.push("/signup");
+                  onClose();
+                }}
+              >
+                {" "}
+                Sign Up{" "}
+              </button>
+            </div>
+          </>
+        )}
     </div>
   );
 };

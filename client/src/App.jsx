@@ -21,7 +21,8 @@ export class App extends React.Component {
     this.state = {
       selectedPost: firstPost,
       posts: allIssues,
-      filteredCategories: []
+      filteredCategories: [],
+      username: ""
     };
     this.saveFilters = this.saveFilters.bind(this);
   }
@@ -32,6 +33,10 @@ export class App extends React.Component {
     this.setState({
       filteredCategories: categories
     });
+  }
+
+  setUsermame(username) {
+    this.setState({ username })
   }
 
   render() {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "../Menu/Menu";
@@ -16,14 +16,20 @@ const styles = {
 
 const Header = props => {
   const [menuToggled, setMenuToggled] = useState(false);
+  const [name, setName] = useState("")
+  const { classes } = props;
+  const username = localStorage.getItem("username");
+  const history = useHistory();
 
   const toggleMenu = () => {
     let reverse = !menuToggled;
     setMenuToggled(reverse);
   };
-  console.log(menuToggled);
-  const { classes } = props;
-  const history = useHistory();
+
+  useEffect(() => {
+    username ? setName(username) : setName("");
+  }, [username, name])
+
   return (
     <React.Fragment>
       <div data-test="HeaderContainer" id="HeaderContainer">
@@ -31,7 +37,7 @@ const Header = props => {
           <MenuIcon onClick={toggleMenu} style={{ height: 30, width: 30 }} />
         </div>
         <div>
-          <p>Amplify Austin</p>
+          <p>Amplify Austin</p> <p>{name}</p>
         </div>
         <div>
           <MapOutlinedIcon
