@@ -27,7 +27,6 @@ const Create = props => {
   const [date, setDate] = useState(new Date());
   const [successToggle, setSuccessToggle] = useState(false);
   const [errorToggle, setErrorToggle] = useState(false);
-
   // The UserID you asked for
   const userID = localStorage.getItem("user_id");
 
@@ -71,14 +70,17 @@ const Create = props => {
   //Submission for the form
   const makeSubmission = () => {
     Axios.post("http://localhost:8000/api/issue", {
-      creatorId: props.creatorId || null,
-      categoryName: category,
-      headline: title,
-      description: description,
-      eventDate: date,
-      address: `${location}, Austin, TX`
+      CreatorId: parseInt(window.localStorage.getItem("user_id")),
+      CategoryName: category,
+      Headline: title,
+      Description: description,
+      EventDate: date,
+      Location: `${location}, Austin, Tx`
     })
       .then(res => {
+        console.log({
+          res
+        });
         handleOpen("success");
       })
       .catch(error => {
