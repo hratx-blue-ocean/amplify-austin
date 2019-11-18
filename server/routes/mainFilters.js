@@ -49,6 +49,11 @@ router.get("/api/main", (req, res) => {
             })
             .then(categoryName => {
               posts[count].categoryName = categoryName;
+              if ((categoryName = "Events")) {
+                posts[count].type = "event";
+              } else {
+                posts[count].type = "issue";
+              }
               count++;
               formatPost();
             });
