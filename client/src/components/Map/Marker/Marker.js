@@ -3,7 +3,7 @@ import Icon from "../../Icon/Icon";
 import MiniPost from "../MiniPost/MiniPost";
 import styles from "./Marker.module.css";
 
-const eventIcon = <Icon category={"townHall"} />;
+const eventIcon = <Icon category={"townhall"} />;
 const defaultIcon = <Icon category={"mapMarker"} />;
 
 const Marker = ({ title, category, postId, selectMarker, isSelected, otherFlag }) => {
@@ -12,7 +12,7 @@ const Marker = ({ title, category, postId, selectMarker, isSelected, otherFlag }
   if (otherFlag) {
     markerIcon = eventIcon;
   } else {
-    markerIcon = (category === 'Other') ? defaultIcon : <Icon category={category} />;
+    markerIcon = (category === 'Other') ? defaultIcon : <Icon category={category.toLowerCase()} />;
   }
   return (
     <div className={styles.marker} onClick={() => selectMarker(postId)}>
