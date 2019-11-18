@@ -10,7 +10,8 @@
     "lint:client": "cd ./client && ./node_modules/.bin/eslint \"src/**/*.{js,jsx}\" && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'",
     "lint:server": "cd ./server && npm run lint",
     "prettier:client": "./node_modules/.bin/prettier --write 'client/src/**/*.{js,jsx}'",
-    "prettier:server": "./node_modules/.bin/prettier --write 'server/routes/**/*.js'"
+    "prettier:server": "./node_modules/.bin/prettier --write 'server/routes/**/*.js'",
+    "deploy:dev": "cd ./client && npm run build && cd ../server && node bin/www"
   },
   "husky": {
     "hooks": {
