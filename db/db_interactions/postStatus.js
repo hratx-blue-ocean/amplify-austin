@@ -1,7 +1,39 @@
 const connection = require('../db');
 
+const validateUserId = function (userId) {
+    return new Promise((resolve, reject) => {
+        const validUserId = "SELECT id FROM users WHERE id=" + userId + ";";
+        connection.query(validUserId, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                if (value[0]) {
+                    resolve('valid userId')
+                } else {
+                    resolve('invalid userId')
+                }
+            }
+        })
+    })
+}
 
-//todo: modifyFavorite should not time out for invalid post/user id's
+const validatePostId = function (postId) {
+    return new Promise((resolve, reject) => {
+        const validPostId = "SELECT id FROM posts WHERE id=" + postId + ";";
+        connection.query(validPostId, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                if (value[0]) {
+                    resolve('valid postId')
+                } else {
+                    resolve('invalid postId')
+                }
+            }
+        })
+    })
+}
+
 const modifyFavorite = function (userId, postId) {
     return new Promise((resolve, reject) => {
         const testQuery = "SELECT id FROM favorites WHERE userId = " + userId + " AND postId = " + postId + ";";
@@ -22,12 +54,34 @@ const modifyFavorite = function (userId, postId) {
                         }
                     })
                 } else {
-                    const insertQuery = "INSERT INTO favorites (userId, postId) VALUES (" + userId + "," + postId + ");";
-                    connection.query(insertQuery, (err, value) => {
+                    //test if valid userid
+                    const validUserId = "SELECT id FROM users WHERE id=" + userId + ";";
+                    connection.query(validUserId, (err, value) => {
                         if (err) {
                             reject(err);
                         } else {
-                            resolve(`postId ${postId} favorited`);
+                            if (value[0]) {
+                                //test if valid postId
+                                const validPostId = "SELECT id from posts WHERE id=" + postId + ";";
+                                connection.query(validPostId, (err, value) => {
+                                    if (err) {
+                                        reject(err)
+                                    } else if (value[0]) {
+                                        const insertQuery = "INSERT INTO favorites (userId, postId) VALUES (" + userId + "," + postId + ");";
+                                        connection.query(insertQuery, (err, value) => {
+                                            if (err) {
+                                                reject(err);
+                                            } else {
+                                                resolve(`postId ${postId} favorited`);
+                                            }
+                                        })
+                                    } else {
+                                        resolve('invalid postId')
+                                    }
+                                })
+                            } else {
+                                resolve('invalid userId')
+                            }
                         }
                     })
                 }
@@ -36,7 +90,6 @@ const modifyFavorite = function (userId, postId) {
     })
 }
 
-//todo: modifyAmplifies should not time out for invalid post/user id's
 const modifyAmplifies = function (userId, postId) {
     return new Promise((resolve, reject) => {
         const testQuery = "SELECT id FROM promotes WHERE userId = " + userId + " AND postId = " + postId + ";";
@@ -68,28 +121,46 @@ const modifyAmplifies = function (userId, postId) {
                         })
                     })
                 } else {
-                    const query1 = "INSERT INTO promotes (userId, postId) VALUES (" + userId + "," + postId + ");";
-                    const query2 = "UPDATE posts SET upvotes=upvotes+1 WHERE id=" + postId + ";";
-                    connection.beginTransaction((err) => {
-                        if (err) { throw err; }
-                        connection.query(query1, (err, value) => {
-                            if (err) {
-                                connection.rollback(() => { throw err });
+                    //test if valid user
+                    validateUserId(userId)
+                        .then((value) => {
+                            if (value === 'valid userId') {
+                                //test if valid postId
+                                validatePostId(postId)
+                                    .then((value) => {
+                                        console.log('value = ', value)
+                                        if (value === 'valid postId') {
+                                            const query1 = "INSERT INTO promotes (userId, postId) VALUES (" + userId + "," + postId + ");";
+                                            const query2 = "UPDATE posts SET upvotes=upvotes+1 WHERE id=" + postId + ";";
+                                            connection.beginTransaction((err) => {
+                                                if (err) { throw err; }
+                                                connection.query(query1, (err, value) => {
+                                                    if (err) {
+                                                        connection.rollback(() => { throw err });
+                                                    }
+                                                    connection.query(query2, (err, value) => {
+                                                        if (err) {
+                                                            connection.rollback(() => { throw err });
+                                                        }
+                                                    })
+                                                    connection.commit((err) => {
+                                                        if (err) {
+                                                            connection.rollback(() => { throw err })
+                                                        } else {
+                                                            resolve(`post ${postId} promoted`)
+                                                        }
+                                                    })
+                                                })
+                                            })
+                                        }
+                                        else {
+                                            resolve('invalid postId');
+                                        }
+                                    })
+                            } else {
+                                resolve('invalid userId');
                             }
-                            connection.query(query2, (err, value) => {
-                                if (err) {
-                                    connection.rollback(() => { throw err });
-                                }
-                            })
-                            connection.commit((err) => {
-                                if (err) {
-                                    connection.rollback(() => { throw err })
-                                } else {
-                                    resolve(`post ${postId} promoted`)
-                                }
-                            })
                         })
-                    })
                 }
             }
         })
