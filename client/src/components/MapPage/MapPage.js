@@ -3,7 +3,7 @@ import Map from "../Map/Map";
 import styles from "./MapPage.module.css";
 import Filter from "../SortFilter/Filter/Filter";
 
-const MapPage = ({ filteredCategories, saveFilters }) => {
+const MapPage = ({ filteredCategories, saveFilters, posts }) => {
   return (
     <div className={styles.container}>
       <div className={styles.subcontainer}>
@@ -11,7 +11,9 @@ const MapPage = ({ filteredCategories, saveFilters }) => {
           <Filter saveFilters={saveFilters} />
         </div>
         <div className={styles.map}>
-          <Map filteredCategories={filteredCategories}></Map>
+          <Map
+            posts={posts}
+            filteredCategories={filteredCategories}></Map>
         </div>
       </div>
     </div>
