@@ -54,7 +54,7 @@ const PostPage = props => {
     }
   };
 
-  const handleFavorite = async (e) => {
+  const handleFavorite = async e => {
     e.stopPropagation();
     try {
       const response = await axios.post(API.FAVORITE, {
@@ -101,8 +101,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                  <EmptyStarIcon></EmptyStarIcon>
-                )}
+                <EmptyStarIcon></EmptyStarIcon>
+              )}
             </div>
           </div>
         </div>
