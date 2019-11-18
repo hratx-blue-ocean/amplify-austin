@@ -5,8 +5,10 @@ import style from "./SignUp.module.css";
 
 const SignUp = props => {
   const checkPassword = function(password, reenter) {
-    if (password === reenter && password.length >= 6 && password.length <= 18) {
+    if (password === reenter && password.length >= 8 && password.length <= 32) {
       return true;
+    } else {
+      return false;
     }
   };
   //to do

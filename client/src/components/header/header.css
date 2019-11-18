@@ -1,10 +1,13 @@
 #HeaderContainer {
   z-index: 2000;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   margin: 0;
   text-align: center;
   align-content: center;
+  height: 9vh;
   color: white;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
