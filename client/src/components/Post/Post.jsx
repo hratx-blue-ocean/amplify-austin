@@ -104,7 +104,7 @@ const Post = props => {
         <Grid item xs={2} container direction="column">
           <Grid item xs className={styles.arrow}>
             <IconButton
-              style={amp ? { color: "orange" } : undefined}
+              style={amp ? { color: "orange", padding: "0" } : { padding: "0" }}
               onClick={handleAmplify}
               aria-label="delete"
             >
@@ -185,7 +185,7 @@ const Post = props => {
               </Grid>
               <Grid item xs={5}>
                 <Typography gutterBottom className={styles.address}>
-                  {props.location}
+                  {props.address}
                 </Typography>
               </Grid>
             </Grid>
