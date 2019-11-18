@@ -88,6 +88,7 @@ export class App extends React.Component {
       return elem.title;
     });
     this.setState({ filteredCategories: categories });
+    console.log("We have reset state")
   }
 
   // Pass this function down to any Filter Component
@@ -99,9 +100,8 @@ export class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.sortSelection === this.state.sortSelection) {
-      return;
-    } else {
+    console.log("State updated!")
+    if (prevState.sortSelection !== this.state.sortSelection || prevState.filteredCategories !== this.state.filteredCategories) {
       this.getPosts();
     }
   }
