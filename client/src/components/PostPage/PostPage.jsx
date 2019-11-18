@@ -43,7 +43,8 @@ const PostPage = props => {
         {
           lat: postData.lat,
           lng: postData.lng,
-          categoryName: postData.categoryName
+          categoryName: postData.categoryName,
+          headline: postData.headline
         }
       ]);
     } catch (error) {
