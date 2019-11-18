@@ -9,7 +9,7 @@ import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import { Icon } from "@material-ui/core";
 import { ICONLABEL, API } from "../../constants";
 
-const PostPage = () => {
+const PostPage = props => {
   // state
   const [post, setPost] = useState(undefined);
   const [coords, setCoords] = useState([]);

@@ -121,7 +121,7 @@ export class App extends React.Component {
                 />
               </Route>
               <Route path="/posts/:postID">
-                <PostPage />
+                <PostPage filteredCategories={this.state.filteredCategories} />
               </Route>
               <Route path="*">
                 {/* TODO: replace with 404 page */}
