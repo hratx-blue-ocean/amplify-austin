@@ -1,10 +1,20 @@
 import React from "react";
-import Chip from "@material-ui/core/Chip";
+// import Chip from "@material-ui/core/Chip";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const Tags = props => {
   let selected = React.createRef();
+  let defaultValues = [];
+
+  if (props.filteredCategories) {
+    console.log("We have some categories here!");
+    categories.forEach(category => {
+      if (props.filteredCategories.includes(category.title)) {
+        defaultValues.push(category);
+      }
+    });
+  }
 
   return (
     <div style={{ width: "100%" }}>
@@ -13,6 +23,7 @@ const Tags = props => {
         id="tags-standard"
         options={categories}
         getOptionLabel={option => option.title}
+        defaultValue={defaultValues}
         onChange={(event, value) => props.selectCategories(value)}
         renderInput={params => (
           <TextField
