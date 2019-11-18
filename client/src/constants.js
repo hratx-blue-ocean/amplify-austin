@@ -1,9 +1,9 @@
 export const ICONLABEL = {
-  Accessibility: "accessibility",
+  accessibility: "accessibility",
   add: "add",
   car: "car",
   danger: "danger",
-  event: "event",
+  events: "events",
   food: "food",
   garbage: "garbage",
   graffiti: "graffiti",
@@ -35,5 +35,6 @@ export const API = {
   LOGIN: APIBASE + "/login",
   SIGNUP: APIBASE + "/signup",
   MAIN: APIBASE + "/main",
-  AMPLIFY: APIBASE + "/modifyAmplifies"
+  AMPLIFY: APIBASE + "/modifyAmplifies",
+  FAVORITE: APIBASE + "/modifyFavorite"
 };
