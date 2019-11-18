@@ -32,7 +32,7 @@ const Header = props => {
         <div>
           <p
             onClick={() => {
-              history.push("/home");
+              history.push("/");
             }}
           >
             Amplify Austin
