@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
 
 const MapFilter = props => {
   const menuStyles = useStyles();
-
   return (
     <div className={menuStyles.root}>
       <Grid
