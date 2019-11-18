@@ -47,21 +47,25 @@ const Menu = props => {
               <ChatOutlinedIcon />
             </button>
           </div>
-          <div onClick={() => {
-            // TODO push w/ filter for users posts
-            history.push("/");
-            onClose();
-          }}>
+          <div
+            onClick={() => {
+              // TODO push w/ filter for users posts
+              history.push("/");
+              onClose();
+            }}
+          >
             <button data-test="MyPosts">
               My Posts
               <ChatOutlinedIcon />
             </button>
           </div>
-          <div onClick={() => {
-            // TODO push w/ filter for users favorites
-            history.push("/")
-            onClose();
-          }}>
+          <div
+            onClick={() => {
+              // TODO push w/ filter for users favorites
+              history.push("/");
+              onClose();
+            }}
+          >
             <button data-test="Favorites">
               Favorites
               <StarBorderOutlinedIcon />
@@ -97,33 +101,33 @@ const Menu = props => {
           </button>
         </div>
       ) : (
-          <>
-            <div>
-              <button
-                data-test="SignIn"
-                onClick={() => {
-                  history.push("/signin");
-                  onClose();
-                }}
-              >
-                {" "}
-                Sign In{" "}
-              </button>
-            </div>
-            <div>
-              <button
-                data-test="SignUp"
-                onClick={() => {
-                  history.push("/signup");
-                  onClose();
-                }}
-              >
-                {" "}
-                Sign Up{" "}
-              </button>
-            </div>
-          </>
-        )}
+        <>
+          <div>
+            <button
+              data-test="SignIn"
+              onClick={() => {
+                history.push("/signin");
+                onClose();
+              }}
+            >
+              {" "}
+              Sign In{" "}
+            </button>
+          </div>
+          <div>
+            <button
+              data-test="SignUp"
+              onClick={() => {
+                history.push("/signup");
+                onClose();
+              }}
+            >
+              {" "}
+              Sign Up{" "}
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
