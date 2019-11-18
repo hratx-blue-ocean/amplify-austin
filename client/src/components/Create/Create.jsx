@@ -82,16 +82,13 @@ const Create = props => {
       .then(response => {
         // the line below is the postId that was inserted into our database.
         let currentlyViewedPostId = response.data.postId;
-        let setStateObj = {
-          currentlyViewedPostId: currentlyViewedPostId
-        };
-        props.todoSetStateFunction(setStateObj);
         //dont need to have a pop up for success because we are going to immediately redirect to new page,
         // so no handleOpen("success") needed
 
-        //redirrect to singlePost page;
+        //redirect to singlePost page;
       })
       .catch(error => {
+        console.log(error)
         handleOpen("error");
       });
   };
