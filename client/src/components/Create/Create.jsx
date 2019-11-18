@@ -29,6 +29,7 @@ const Create = props => {
   const [errorToggle, setErrorToggle] = useState(false);
 
   // The UserID you asked for
+  // Shouldn't this be "window.localStorage.getItem("user_id")" --Ethan
   const userID = localStorage.getItem("user_id");
 
   // Handle Open and Closes for SnackBars
@@ -77,10 +78,11 @@ const Create = props => {
         headline: title,
         description: description,
         eventDate: date,
-        location: `${location}, Austin, TX`
+        location: `${ location }, Austin, TX`
       })
       .then(response => {
         console.log(response.data.postId);
+        // the line below is the postId that was inserted into our database.
         let currentlyViewedPostId = response.data.postId;
         let setStateObj = {
           currentlyViewedPostId: currentlyViewedPostId
