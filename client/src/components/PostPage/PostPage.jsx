@@ -7,7 +7,7 @@ import style from "./PostPage.module.css";
 import { useParams, Redirect, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import { Icon } from "@material-ui/core";
-import { ICONLABEL } from "../../constants";
+import { ICONLABEL, API } from "../../constants";
 
 const PostPage = () => {
   // state
@@ -25,7 +25,7 @@ const PostPage = () => {
 
   const getPost = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/issue/`, {
+      const response = await axios.get(API.ISSUE, {
         params: {
           userId: userID || "",
           // replace with postID

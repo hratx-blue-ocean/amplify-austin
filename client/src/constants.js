@@ -24,3 +24,12 @@ export const ICONLABEL = {
   townhall: "townhall",
   water: "water"
 };
+
+export const API = {
+  HOST: "http://localhost:8000/",
+  BASE: API.HOST + "/api",
+  ISSUE: API.BASE + "/issue",
+  LOGIN: API.BASE + "/login",
+  SIGNUP: API.BASE + "/signup",
+  MAIN: API.BASE + "/main"
+}

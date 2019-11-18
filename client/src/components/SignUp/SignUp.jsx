@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import style from "./SignUp.module.css";
+import { API } from "../../constants";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -27,7 +28,7 @@ const SignUp = () => {
 
   const createAccount = async () => {
     try {
-      const response = await axios.post("http://localhost:8000/api/signup", {
+      const response = await axios.post(API.SIGNUP, {
         username,
         password: password
       });

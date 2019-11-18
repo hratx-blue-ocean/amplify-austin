@@ -17,6 +17,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import { SnackbarContent } from "@material-ui/core";
+import { API } from "../../constants";
 
 const Create = props => {
   const [title, setTitle] = useState("");
@@ -72,7 +73,7 @@ const Create = props => {
   //Submission for the form
   const makeSubmission = () => {
     axios
-      .post("http://localhost:8000/api/issue", {
+      .post(API.ISSUE, {
         creatorId: parseInt(userID),
         categoryName: category,
         headline: title,
