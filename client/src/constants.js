@@ -32,4 +32,4 @@ export const API = {
   LOGIN: API.BASE + "/login",
   SIGNUP: API.BASE + "/signup",
   MAIN: API.BASE + "/main"
-}
+};

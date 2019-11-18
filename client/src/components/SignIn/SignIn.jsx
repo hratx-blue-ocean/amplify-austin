@@ -37,7 +37,7 @@ const SignIn = props => {
         password
       });
       if (response) {
-        localStorage.setItem("user_id", 1);
+        localStorage.setItem("user_id", response.data.id);
         localStorage.setItem("username", username);
       } else {
         throw Error("invalid response");

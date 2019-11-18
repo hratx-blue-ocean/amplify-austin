@@ -82,7 +82,6 @@ const Create = props => {
         location: `${location}, Austin, TX`
       })
       .then(response => {
-        console.log(response.data.postId);
         // the line below is the postId that was inserted into our database.
         let currentlyViewedPostId = response.data.postId;
         let setStateObj = {

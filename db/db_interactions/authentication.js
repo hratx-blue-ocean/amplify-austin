@@ -48,12 +48,35 @@ const login = async (username, password) => {
   }
 }
 
+<<<<<<< HEAD
 const handleError = (error) => {
   if (error.message === "422") {
     throw error
   }
   // throw error if db connection fails, or bad SQL query
   throw new Error(500);
+=======
+const login = function (username, password) {
+    return new Promise((resolve, reject) => {
+        const testQuery = "SELECT id FROM users WHERE username=\'" + username + "\' AND password=\'" + password + "\';";
+        //test if username and password match
+        console.log(testQuery);
+        connection.query(testQuery, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                //resolve/reject results
+                if (value[0]) {
+                    //successful login, send back userId
+                    resolve(value[0])
+                } else {
+                    //unsuccessful login, send back explanation
+                    resolve('login failed')
+                }
+            }
+        })
+    })
+>>>>>>> e4b185b754eea3efabbf4b86c5e3baafca1c1f37
 }
 
 module.exports = { addUser, login };
