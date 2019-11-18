@@ -28,17 +28,14 @@ router.post("/api/login", async (req, res) => {
   } catch (error) {
     console.error(error);
     if (error.message === "422") {
-      res
-        .status(422)
-        .send({
-          message: "Invalid username or password."
-        });
+      res.status(422).send({
+        message: "Invalid username or password."
+      });
     } else {
-      res
-        .status(500)
-        .send({
-          message: "There was an error on the server and the request could not be completed."
-        });
+      res.status(500).send({
+        message:
+          "There was an error on the server and the request could not be completed."
+      });
     }
   }
 });
