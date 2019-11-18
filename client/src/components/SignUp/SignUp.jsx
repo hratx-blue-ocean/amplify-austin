@@ -4,7 +4,7 @@ import axios from "axios";
 import style from "./SignUp.module.css";
 
 const SignUp = props => {
-  const checkPassword = function(password, reenter) {
+  const checkPassword = function (password, reenter) {
     if (password === reenter && password.length >= 8 && password.length <= 32) {
       return true;
     } else {
@@ -12,6 +12,8 @@ const SignUp = props => {
     }
   };
   //to do
+
+
   //post request for new user
   //more password logic
   //styling
@@ -22,16 +24,19 @@ const SignUp = props => {
       <form
         onSubmit={e => {
           e.preventDefault();
+          console.log(e.target[0].value, e.target[1].value, e.target[2].value)
+          if (!checkPassword(e.target[1].value, e.target[2].value)) {
+            alert("passwords did not match or password too short!");
+            return;
+          }
           axios
-            .post("http://localhost:8000/api", {
+            .post("http://localhost:8000/api/signup", {
               username: e.target[0].value,
               password: e.target[1].value
             })
             .then(response => {
-              console.log(
-                "this is the response from you attempt to create account: ",
-                response
-              );
+              localStorage.setItem("user_id", response.data.id);
+              // next direct to main page
             })
             .catch(err => {
               console.log(err);
