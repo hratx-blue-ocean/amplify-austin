@@ -35,7 +35,7 @@ const addPost = function (post) {
 
 const getPost = function (postId, userId) {
     return new Promise((resolve, reject) => {
-        const queryString = "SELECT categoryId, headline, description, status, address, created_at, upvotes, otherFlag, eventDate FROM posts WHERE id = " + postId + ";";
+        const queryString = "SELECT categoryId, headline, description, status, address, created_at, upvotes, otherFlag, eventDate, lat, lng FROM posts WHERE id = " + postId + ";";
         connection.query(queryString, (err, result) => {
             if (err) {
                 reject(err);

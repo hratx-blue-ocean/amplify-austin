@@ -58,7 +58,6 @@ router.get("/api/main", (req, res) => {
       formatPost();
     })
     .catch(err => {
-      console.log(err);
       res.send(err);
     });
 });

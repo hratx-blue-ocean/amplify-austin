@@ -89,8 +89,6 @@ router.post("/api/issue", (req, res) => {
   }
 });
 
-// contactInfo array
-
 router.get("/api/issue", (req, res) => {
   let postId = req.query.postId;
   let userId = req.query.userId;
@@ -106,7 +104,9 @@ router.get("/api/issue", (req, res) => {
         created_at: row[0].created_at,
         amplifyCount: row[0].amplifyCount,
         otherFlag: row[0].otherFlag,
-        eventDate: row[0].eventDate
+        eventDate: row[0].eventDate,
+        lat: row[0].lat,
+        lng: row[0].lng
       };
       const categoryId = row[0].categoryId;
       db.helpers
