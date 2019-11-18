@@ -20,7 +20,7 @@ router.get("/api/main", (req, res) => {
       let count = 0;
       let posts = [];
 
-      const formatPost = function () {
+      const formatPost = function() {
         if (count < rows.length) {
           let currentRow = rows[count];
           posts[count] = {
