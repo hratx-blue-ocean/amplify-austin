@@ -36,7 +36,8 @@ const Header = props => {
         <div className={style.navigatingDiv}>
           <MenuIcon onClick={toggleMenu} style={{ height: 30, width: 30 }} />
         </div>
-        <div className={style.navigatingDiv}
+        <div
+          className={style.navigatingDiv}
           onClick={() => {
             history.push("/home");
           }}
