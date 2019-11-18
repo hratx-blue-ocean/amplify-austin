@@ -11,9 +11,7 @@ const MapPage = ({ filteredCategories, saveFilters, posts }) => {
           <Filter saveFilters={saveFilters} />
         </div>
         <div className={styles.map}>
-          <Map
-            posts={posts}
-            filteredCategories={filteredCategories}></Map>
+          <Map posts={posts} filteredCategories={filteredCategories}></Map>
         </div>
       </div>
     </div>

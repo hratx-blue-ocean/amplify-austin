@@ -33,7 +33,7 @@ const PostPage = () => {
         }
       });
       const { data } = response;
-      console.log(response.data)
+      console.log(response.data);
       const postData = response.data;
       if (postData === undefined) {
         throw new Error("no response from GET request");
@@ -68,7 +68,7 @@ const PostPage = () => {
     // }
   };
   if (post) {
-    console.log("in here")
+    console.log("in here");
     return (
       <div>
         <div className={style.titleField}>
@@ -98,7 +98,7 @@ const PostPage = () => {
       </div>
     );
   } else {
-    return <div>loading</div>
+    return <div>loading</div>;
   }
 };
 

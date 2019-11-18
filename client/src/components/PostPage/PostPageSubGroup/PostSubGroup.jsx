@@ -3,7 +3,10 @@ import style from "../PostPage.module.css";
 
 const PostPageSubGroup = ({ type, categoryName, created_at }) => {
   const dateFormat = { month: "short", day: "numeric", year: "numeric" };
-  const dateCreated = new Date(created_at).toLocaleDateString(undefined, dateFormat)
+  const dateCreated = new Date(created_at).toLocaleDateString(
+    undefined,
+    dateFormat
+  );
   return (
     <div className={style.subheading}>
       <div className={style.subGroup}>
