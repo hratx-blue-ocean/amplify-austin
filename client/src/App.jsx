@@ -31,12 +31,28 @@ export class App extends React.Component {
     this.sortBy = this.sortBy.bind(this);
   }
 
+  componentDidMount() {
+    if (!this.state.sortSelection) {
+      let sortBy = "popularity";
+
+      axios
+        .get("/api/main/", {
+          params: {
+            sortBy: sortBy
+          }
+        })
+        .then(res => {
+          console.log("This is the response: ", res);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
+
   sortBy(condition) {
     let strCondition = condition;
     console.log("sort by function called, this is condition: ", strCondition);
-    this.setState({
-      sortSelection: strCondition
-    });
     // make axios call based on new state
   }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Sort from "./Sort/Sort";
+import ConditionMenu from "./Sort/Sort";
 import CategorySelect from "./CategorySelect/CategorySelect.jsx";
 import NewPostTextField from "../NewPostTextField/NewPostTextField.jsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,7 +25,7 @@ const SortFilter = props => {
         alignItems="center"
       >
         <Grid item xs={6}>
-          <Sort sortBy={props.sortBy} />
+          <ConditionMenu sortBy={props.sortBy} />
         </Grid>
         <Grid item xs={6}>
           <CategorySelect saveFilters={props.saveFilters} />
