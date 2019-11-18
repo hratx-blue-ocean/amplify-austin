@@ -21,7 +21,6 @@ const Header = props => {
     let reverse = !menuToggled;
     setMenuToggled(reverse);
   };
-  console.log(menuToggled);
   const { classes } = props;
   const history = useHistory();
   return (
@@ -31,7 +30,13 @@ const Header = props => {
           <MenuIcon onClick={toggleMenu} style={{ height: 30, width: 30 }} />
         </div>
         <div>
-          <p>Amplify Austin</p>
+          <p
+            onClick={() => {
+              history.push("/home");
+            }}
+          >
+            Amplify Austin
+          </p>
         </div>
         <div>
           <MapOutlinedIcon
