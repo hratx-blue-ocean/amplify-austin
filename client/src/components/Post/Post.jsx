@@ -108,11 +108,11 @@ const Post = props => {
               direction="row"
               className={styles.category}
             >
-              {props.category === "other" ? (
+              {props.category === "Other" ? (
                 defaultIcon
               ) : (
-                <Icon category={props.category} />
-              )}
+                  <Icon category={props.category.toLowerCase()} />
+                )}
             </Grid>
             <Grid
               item
@@ -146,8 +146,8 @@ const Post = props => {
                   {props.favorited === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                    <EmptyStarIcon></EmptyStarIcon>
-                  )}
+                      <EmptyStarIcon></EmptyStarIcon>
+                    )}
                 </div>
               </Grid>
             </Grid>
