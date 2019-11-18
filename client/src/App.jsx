@@ -25,6 +25,7 @@ export class App extends React.Component {
     this.state = {
       selectedPost: firstPost,
       posts: [],
+      categories: [],
       filteredCategories: [],
       selectBy: null,
       sortSelection: "popularity"
@@ -37,10 +38,23 @@ export class App extends React.Component {
   componentDidMount() {
     try {
       this.getInitialPosts();
+      this.getCategories();
     } catch (error) {
       console.error(error);
     }
   }
+
+  async getCategories() {
+    try {
+      const res = await axios.get(API.CATEGORIES)
+      this.setState({
+        categories: res.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   async getInitialPosts() {
     try {
@@ -127,6 +141,7 @@ export class App extends React.Component {
               <Route exact path="/">
                 <SortFilter
                   sortBy={this.sortBy}
+                  categories={this.state.categories}
                   selectCategories={this.selectCategories}
                   filteredCategories={this.state.filteredCategories}
                 ></SortFilter>
@@ -146,6 +161,7 @@ export class App extends React.Component {
                 <MapPage
                   sortBy={this.sortBy}
                   posts={this.state.posts}
+                  categories={this.state.categories}
                   selectCategories={this.selectCategories}
                   filteredCategories={this.state.filteredCategories}
                 />

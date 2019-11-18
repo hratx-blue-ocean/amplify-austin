@@ -29,6 +29,7 @@ const SortFilter = props => {
         </Grid>
         <Grid item xs={6}>
           <CategorySelect
+            categories={props.categories}
             selectCategories={props.selectCategories}
             filteredCategories={props.filteredCategories}
           />

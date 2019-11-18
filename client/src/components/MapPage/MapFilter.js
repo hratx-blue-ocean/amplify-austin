@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
 
 const MapFilter = props => {
   const menuStyles = useStyles();
-
   return (
     <div className={menuStyles.root}>
       <Grid
@@ -24,6 +23,7 @@ const MapFilter = props => {
       >
         <Grid item xs={6}>
           <CategorySelect
+            categories={props.categories}
             selectCategories={props.selectCategories}
             filteredCategories={props.filteredCategories}
           />
