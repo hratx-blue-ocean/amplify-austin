@@ -24,7 +24,7 @@ export class App extends React.Component {
     super();
     this.state = {
       selectedPost: firstPost,
-      posts: allIssues,
+      posts: [],
       filteredCategories: [],
       selectBy: null,
       sortSelection: "popularity"
@@ -50,7 +50,10 @@ export class App extends React.Component {
           sortBy: this.state.sortSelection
         }
       });
-      console.log("This is the response: ", res);
+      console.log("This is the response: ", res.data);
+      this.setState({
+        posts: res.data
+      });
     } catch (error) {
       console.log(error);
     }
