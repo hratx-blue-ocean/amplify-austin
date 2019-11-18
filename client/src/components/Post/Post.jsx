@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import ReportProblemIcon from "@material-ui/icons/ReportProblem";
-import { SvgIcon } from "@material-ui/core";
 import MapMarkerIcon from "../Icons/MapMarkerIcon.jsx";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -14,6 +12,8 @@ import Icon from "../Icon/Icon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
 import "typeface-roboto";
+import axios from "axios";
+import { API } from "../../constants";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -79,6 +79,23 @@ const Post = props => {
   const styles = useStyles();
   const history = useHistory();
   const defaultIcon = <Icon category={"mapMarker"} />;
+  const [amp, setAmp] = useState(undefined);
+
+  const userID = localStorage.getItem("user_id");
+
+  const handleAmplify = async () => {
+    try {
+      const response = await axios.post(API.AMPLIFY, {
+        userId: userID,
+        postId: props.postID
+      });
+      if (response.data.split(" ")[0] === "post") {
+        amp === undefined ? setAmp(props.votes + 1) : setAmp(undefined);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     // if other flag, display "other" icon and NOT category icon
@@ -86,12 +103,18 @@ const Post = props => {
       <Grid container spacing={3}>
         <Grid item xs={2} container direction="column">
           <Grid item xs className={styles.arrow}>
-            <IconButton aria-label="delete">
+            <IconButton
+              style={amp ? { color: "orange" } : undefined}
+              onClick={handleAmplify}
+              aria-label="delete"
+            >
               <ArrowUpwardIcon />
             </IconButton>
           </Grid>
           <Grid item xs>
-            <Typography className={styles.arrow}>{props.votes}</Typography>
+            <Typography className={styles.arrow}>
+              {amp ? amp : props.votes}
+            </Typography>
           </Grid>
         </Grid>
         <Grid item xs={10} container direction="column">
