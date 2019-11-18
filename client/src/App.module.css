@@ -1,6 +1,7 @@
 /* Initial width and height meant
    exclusively for mobile, @medias to be
    applied later to scale for desktops */
+   
 .container {
   display: grid;
   /* max-width: 414px; */
