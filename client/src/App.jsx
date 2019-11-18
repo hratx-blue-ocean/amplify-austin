@@ -30,7 +30,6 @@ export class App extends React.Component {
       sortSelection: "popularity"
     };
 
-    this.saveFilters = this.saveFilters.bind(this);
     this.sortBy = this.sortBy.bind(this);
     this.selectCategories = this.selectCategories.bind(this);
   }
@@ -91,14 +90,6 @@ export class App extends React.Component {
     console.log("We have reset state");
   }
 
-  // Pass this function down to any Filter Component
-  // used. Otherwise shit won't work
-  saveFilters(categories) {
-    this.setState({
-      filteredCategories: categories
-    });
-  }
-
   componentDidUpdate(prevProps, prevState) {
     console.log("State updated!");
     if (
@@ -125,7 +116,6 @@ export class App extends React.Component {
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
-                  saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
                 ></PostContainer>
               </Route>
