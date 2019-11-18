@@ -37,13 +37,13 @@ export class App extends React.Component {
 
   componentDidMount() {
     try {
-      this.getPosts();
+      this.getInitialPosts();
     } catch (error) {
       console.error(error);
     }
   }
 
-  async getPosts() {
+  async getInitialPosts() {
     try {
       const res = await axios.get(API.MAIN, {
         params: {
@@ -58,20 +58,32 @@ export class App extends React.Component {
     }
   }
 
+  async getPosts() {
+    let strArry = this.state.filteredCategories.join('/');
+    let userId = localStorage.getItem('user_id');
+
+    try {
+      const res = await axios.get(API.MAIN, {
+        params: {
+          userId: userId,
+          sortBy: this.state.sortSelection,
+          categories: strArry,
+          selectBy: this.state.selectBy
+        }
+      })
+      this.setState({
+        posts: res.data
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   sortBy(condition) {
     this.setState({ sortSelection: condition });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.sortSelection === this.state.sortSelection) {
-      return;
-    } else {
-      this.getPosts();
-    }
-  }
-
   selectCategories(selected) {
-    console.log("These are the updated categories: ", selected);
     let categories = selected.map(elem => {
       return elem.title;
     });
@@ -84,6 +96,14 @@ export class App extends React.Component {
     this.setState({
       filteredCategories: categories
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sortSelection === this.state.sortSelection) {
+      return;
+    } else {
+      this.getPosts();
+    }
   }
 
   render() {
