@@ -18,6 +18,7 @@ import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import { SnackbarContent } from "@material-ui/core";
 import { API } from "../../constants";
+import { useHistory } from "react-router-dom";
 
 const Create = props => {
   const [title, setTitle] = useState("");
@@ -30,6 +31,7 @@ const Create = props => {
   const [errorToggle, setErrorToggle] = useState(false);
 
   const userID = localStorage.getItem("user_id");
+  const history = useHistory();
 
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
@@ -77,11 +79,13 @@ const Create = props => {
         headline: title,
         description: description,
         eventDate: date,
-        location: `${location}, Austin, TX`
+        location: `${ location }, Austin, TX`
       })
       .then(response => {
-        // the line below is the postId that was inserted into our database.
-        let currentlyViewedPostId = response.data.postId;
+        const postId = response.data.postId;
+        if (postId) {
+          history.push(`/posts/${ postId }`)
+        }
         //dont need to have a pop up for success because we are going to immediately redirect to new page,
         // so no handleOpen("success") needed
 
