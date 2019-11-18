@@ -80,7 +80,6 @@ export class App extends React.Component {
           <div className={styles.header}>
             <Header />
           </div>
-          {/* {this.state.posts ? */}
           <div className={styles.component}>
             <Switch>
               <Route exact path="/">
@@ -116,10 +115,6 @@ export class App extends React.Component {
               </Route>
             </Switch>
           </div>
-          {/* : */}
-          {/* <div>loading</div> */}
-          {/* } */}
-          {/* TODO add loading page */}
         </div>
       </Router>
     );
