@@ -185,7 +185,7 @@ const Post = props => {
               </Grid>
               <Grid item xs={5}>
                 <Typography gutterBottom className={styles.address}>
-                  {props.location}
+                  {props.address}
                 </Typography>
               </Grid>
             </Grid>

@@ -26,7 +26,7 @@ const PostContainer = props => {
             title={post.headline}
             description={post.description}
             datecreated={post.created_at}
-            location={post.location}
+            address={post.address}
             votes={post.upvotes}
             username={post.username}
             status={post.status}
