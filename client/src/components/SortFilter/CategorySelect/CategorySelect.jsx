@@ -3,7 +3,10 @@ import Chip from "@material-ui/core/Chip";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-export default function Tags() {
+const Tags = props => {
+
+  let selected = React.createRef();
+
   return (
     <div style={{ width: "100%" }}>
       <Autocomplete
@@ -11,7 +14,7 @@ export default function Tags() {
         id="tags-standard"
         options={categories}
         getOptionLabel={option => option.title}
-        defaultValue={[categories[0].title]}
+        onChange={(event, value) => props.selectCategories(value)}
         renderInput={params => (
           <TextField
             {...params}
@@ -43,3 +46,5 @@ const categories = [
   { title: "water" },
   { title: "other" }
 ];
+
+export default Tags;

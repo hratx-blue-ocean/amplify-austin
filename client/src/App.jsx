@@ -32,6 +32,7 @@ export class App extends React.Component {
 
     this.saveFilters = this.saveFilters.bind(this);
     this.sortBy = this.sortBy.bind(this);
+    this.selectCategories = this.selectCategories.bind(this);
   }
 
   componentDidMount() {
@@ -67,6 +68,14 @@ export class App extends React.Component {
     }
   }
 
+  selectCategories(selected) {
+    console.log("These are the updated categories: ", selected)
+    let categories = selected.map((elem) => {
+      return elem.title;
+    });
+    this.setState({ filteredCategories: categories });
+  };
+
   // Pass this function down to any Filter Component
   // used. Otherwise shit won't work
   saveFilters(categories) {
@@ -87,7 +96,7 @@ export class App extends React.Component {
               <Route exact path="/">
                 <SortFilter
                   sortBy={this.sortBy}
-                  saveFilters={this.saveFilters}
+                  selectCategories={this.selectCategories}
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
