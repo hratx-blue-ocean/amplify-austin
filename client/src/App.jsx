@@ -35,15 +35,14 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Inside componentDidMount");
     try {
-      this.getInitialPosts();
+      this.getPosts();
     } catch (error) {
       console.error(error);
     }
   }
 
-  async getInitialPosts() {
+  async getPosts() {
     try {
       const res = await axios.get(API.MAIN, {
         params: {
@@ -57,9 +56,15 @@ export class App extends React.Component {
   }
 
   sortBy(condition) {
-    let strCondition = condition;
-    // console.log("sort by function called, this is condition: ", strCondition);
-    // make axios call based on new state
+    this.setState({ sortSelection: condition });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sortSelection === this.state.sortSelection) {
+      return;
+    } else {
+      this.getPosts();
+    }
   }
 
   // Pass this function down to any Filter Component
