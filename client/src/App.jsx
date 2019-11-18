@@ -30,20 +30,19 @@ export class App extends React.Component {
       sortSelection: "popularity"
     };
 
-    this.saveFilters = this.saveFilters.bind(this);
     this.sortBy = this.sortBy.bind(this);
     this.selectCategories = this.selectCategories.bind(this);
   }
 
   componentDidMount() {
     try {
-      this.getPosts();
+      this.getInitialPosts();
     } catch (error) {
       console.error(error);
     }
   }
 
-  async getPosts() {
+  async getInitialPosts() {
     try {
       const res = await axios.get(API.MAIN, {
         params: {
@@ -58,32 +57,47 @@ export class App extends React.Component {
     }
   }
 
+  async getPosts() {
+    let strArry = this.state.filteredCategories.join("/");
+    let userId = localStorage.getItem("user_id");
+
+    try {
+      const res = await axios.get(API.MAIN, {
+        params: {
+          userId: userId,
+          sortBy: this.state.sortSelection,
+          categories: strArry,
+          selectBy: this.state.selectBy
+        }
+      });
+      this.setState({
+        posts: res.data
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   sortBy(condition) {
     this.setState({ sortSelection: condition });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.sortSelection === this.state.sortSelection) {
-      return;
-    } else {
-      this.getPosts();
-    }
-  }
-
   selectCategories(selected) {
-    console.log("These are the updated categories: ", selected);
     let categories = selected.map(elem => {
       return elem.title;
     });
     this.setState({ filteredCategories: categories });
+    console.log("We have reset state");
   }
 
-  // Pass this function down to any Filter Component
-  // used. Otherwise shit won't work
-  saveFilters(categories) {
-    this.setState({
-      filteredCategories: categories
-    });
+  componentDidUpdate(prevProps, prevState) {
+    console.log("State updated!");
+    if (
+      prevState.sortSelection !== this.state.sortSelection ||
+      prevState.filteredCategories !== this.state.filteredCategories
+    ) {
+      this.getPosts();
+    }
   }
 
   render() {
@@ -102,7 +116,6 @@ export class App extends React.Component {
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
-                  saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
                 ></PostContainer>
               </Route>
@@ -115,9 +128,9 @@ export class App extends React.Component {
               <PrivateRoute path="/create" component={Create} />
               <Route path="/map">
                 <MapPage
+                  sortBy={this.sortBy}
                   posts={this.state.posts}
-                  saveFilters={this.saveFilters}
-                  filteredCategories={this.state.filteredCategories}
+                  selectCategories={this.selectCategories}
                 />
               </Route>
               <Route path="/posts/:postID">

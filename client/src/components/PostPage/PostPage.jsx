@@ -43,7 +43,7 @@ const PostPage = props => {
         {
           lat: postData.lat,
           lng: postData.lng,
-          categoryName: postData.category
+          categoryName: postData.categoryName
         }
       ]);
     } catch (error) {
@@ -76,7 +76,7 @@ const PostPage = props => {
             <h2>{post.headline}</h2>
             <PostPageSubGroup
               type={post.type}
-              categorName={post.categorName}
+              categoryName={post.categoryName}
               created_at={post.created_at}
             />
           </div>

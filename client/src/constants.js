@@ -1,5 +1,5 @@
 export const ICONLABEL = {
-  accessibility: "accessibility",
+  Accessibility: "accessibility",
   add: "add",
   car: "car",
   danger: "danger",
@@ -25,11 +25,15 @@ export const ICONLABEL = {
   water: "water"
 };
 
+const HOST = "http://localhost:8000";
+const APIBASE = HOST + "/api";
+
 export const API = {
-  HOST: "http://localhost:8000",
-  BASE: "http://localhost:8000/api",
-  ISSUE: "http://localhost:8000/api/issue",
-  LOGIN: "http://localhost:8000/api/login",
-  SIGNUP: "http://localhost:8000/api/signup",
-  MAIN: "http://localhost:8000/api/main"
+  HOST,
+  APIBASE,
+  ISSUE: APIBASE + "/issue",
+  LOGIN: APIBASE + "/login",
+  SIGNUP: APIBASE + "/signup",
+  MAIN: APIBASE + "/main",
+  AMPLIFY: APIBASE + "/modifyAmplifies"
 };
