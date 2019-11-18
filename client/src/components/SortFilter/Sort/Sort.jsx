@@ -1,22 +1,22 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     justifyContent: "flex-start",
-    minWidth: '30%'
-  },
+    minWidth: "30%"
+  }
 }));
 
 const Sort = props => {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const menuItems = ["popularity", "date"];
 
@@ -35,7 +35,9 @@ const Sort = props => {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Sort By...</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">
+          Sort By...
+        </InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
@@ -60,9 +62,6 @@ const Sort = props => {
       </FormControl>
     </div>
   );
-}
+};
 
 export default Sort;
-
-
-
