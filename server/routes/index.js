@@ -4,6 +4,7 @@ const mainFilters = require("./mainFilters");
 const map = require("./map");
 const postStatus = require("./postStatus");
 const userSpecific = require("./userSpecific");
+const categoryList = require("./categoryList");
 
 module.exports = {
   singlePost,
@@ -11,5 +12,6 @@ module.exports = {
   mainFilters,
   map,
   postStatus,
-  userSpecific
+  userSpecific,
+  categoryList
 };

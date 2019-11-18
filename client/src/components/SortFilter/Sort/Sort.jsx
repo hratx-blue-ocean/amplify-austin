@@ -1,34 +1,51 @@
 import React from "react";
-import axios from "axios";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
-export class Sort extends React.Component {
-  render() {
-    //temporary
-    let theState = {
-      popDate: true
-    };
-    return (
-      <input
-        type={"button"}
-        onSubmit={e => {
-          if (theState.popDate) {
-            axios.get("/popular").then(popPosts => {
-              //give jonny this array of objecys sorted by date
-            });
-          } else {
-            axios
-              .get("http://localhost:8000/api")
-              .then(popPosts => {
-                //give Jonny boy this array of objects sorted  by popular
-              })
-              .catch(err => {
-                console.log(err);
-              });
-          }
-        }}
-      ></input>
-    );
-  }
-}
+const ConditionMenu = props => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const menuItems = ["popularity", "recent"];
 
-export default Sort;
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    console.log("This is the text from the close: ");
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        Sort By:
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {menuItems.map((item, index) => {
+          return (
+            <MenuItem
+              key={index}
+              value={item}
+              onClick={() => {
+                props.sortBy(item);
+              }}
+            />
+          );
+        })}
+      </Menu>
+    </div>
+  );
+};
+
+export default ConditionMenu;
