@@ -69,12 +69,12 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    console.log("These are the updated categories: ", selected)
-    let categories = selected.map((elem) => {
+    console.log("These are the updated categories: ", selected);
+    let categories = selected.map(elem => {
       return elem.title;
     });
     this.setState({ filteredCategories: categories });
-  };
+  }
 
   // Pass this function down to any Filter Component
   // used. Otherwise shit won't work

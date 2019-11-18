@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const Tags = props => {
-
   let selected = React.createRef();
 
   return (
@@ -28,7 +27,7 @@ const Tags = props => {
       />
     </div>
   );
-}
+};
 
 const categories = [
   { title: "accessibility" },
