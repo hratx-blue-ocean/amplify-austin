@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -17,6 +17,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import { SnackbarContent } from "@material-ui/core";
+import { API } from "../../constants";
 
 const Create = props => {
   const [title, setTitle] = useState("");
@@ -28,8 +29,6 @@ const Create = props => {
   const [successToggle, setSuccessToggle] = useState(false);
   const [errorToggle, setErrorToggle] = useState(false);
 
-  // The UserID you asked for
-  // Shouldn't this be "window.localStorage.getItem("user_id")" --Ethan
   const userID = localStorage.getItem("user_id");
 
   // Handle Open and Closes for SnackBars
@@ -71,25 +70,25 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-    Axios.post("http://localhost:8000/api/issue", {
-      creatorId: parseInt(localStorage.getItem("user_id")),
-      categoryName: category,
-      headline: title,
-      description: description,
-      eventDate: date,
-      location: `${location}, Austin, TX`
-    })
+    axios
+      .post(API.ISSUE, {
+        creatorId: parseInt(userID),
+        categoryName: category,
+        headline: title,
+        description: description,
+        eventDate: date,
+        location: `${location}, Austin, TX`
+      })
       .then(response => {
         // the line below is the postId that was inserted into our database.
         let currentlyViewedPostId = response.data.postId;
-        // pass this id to the post page (where the details for a single post are rendered) through params
-
-        //dont need to have a pop up for success because we are going to immediately dirrect to new page,
+        //dont need to have a pop up for success because we are going to immediately redirect to new page,
         // so no handleOpen("success") needed
 
-        //redirrect to singlePost page;
+        //redirect to singlePost page;
       })
       .catch(error => {
+        console.log(error);
         handleOpen("error");
       });
   };

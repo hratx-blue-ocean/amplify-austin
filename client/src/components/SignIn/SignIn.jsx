@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import style from "./SignIn.module.css";
+import { API } from "../../constants";
 
 const SignIn = props => {
   const history = useHistory();
@@ -29,33 +30,23 @@ const SignIn = props => {
     }
   };
 
-  const authenticateUser = () => {
-    return new Promise((resolve, reject) => {
-      axios
-        .post("http://localhost:8000/api/login", {
-          username: username,
-          password: password
-        })
-        .then(response => {
-          if (response.data.id) {
-            localStorage.setItem("user_id", response.data.id);
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          reject(err);
-        });
-    });
-    // if (response) {
-    //   localStorage.setItem("user_id", 1);
-    //   localStorage.setItem("username", username);
-    // } else {
-    //   throw Error("invalid response");
-    // }
-    // return true;
+  const authenticateUser = async () => {
+    try {
+      const response = await axios.post(API.LOGIN, {
+        username,
+        password
+      });
+      if (response) {
+        localStorage.setItem("user_id", response.data.id);
+        localStorage.setItem("username", username);
+      } else {
+        throw Error("invalid response");
+      }
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   };
 
   const loginUser = async () => {

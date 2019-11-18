@@ -16,6 +16,8 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { API } from "./constants";
 
 export class App extends React.Component {
   constructor() {
@@ -43,7 +45,7 @@ export class App extends React.Component {
 
   async getInitialPosts() {
     try {
-      const res = await axios.get("http://localhost:8000/api/main/", {
+      const res = await axios.get(API.MAIN, {
         params: {
           sortBy: this.state.sortSelection
         }
@@ -94,9 +96,7 @@ export class App extends React.Component {
               <Route path="/signin">
                 <SignIn />
               </Route>
-              <Route path="/create">
-                <Create />
-              </Route>
+              <PrivateRoute path="/create" component={Create} />
               <Route path="/map">
                 <MapPage
                   saveFilters={this.saveFilters}
