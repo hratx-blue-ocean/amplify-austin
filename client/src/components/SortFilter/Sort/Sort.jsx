@@ -12,7 +12,6 @@ const ConditionMenu = props => {
   };
 
   const handleClose = () => {
-    console.log("This is the text from the close: ");
     setAnchorEl(null);
   };
 
@@ -32,17 +31,17 @@ const ConditionMenu = props => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {menuItems.map((item, index) => {
-          return (
-            <MenuItem
-              key={index}
-              value={item}
-              onClick={() => {
-                props.sortBy(item);
-              }}
-            />
-          );
-        })}
+        {menuItems.map((option, index) => (
+          <MenuItem
+            key={option}
+            value={option}
+            onClick={() => {
+              props.sortBy(option);
+            }}
+          >
+            {option}
+          </MenuItem>
+        ))}
       </Menu>
     </div>
   );
