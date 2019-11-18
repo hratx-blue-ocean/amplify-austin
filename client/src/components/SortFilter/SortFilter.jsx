@@ -28,7 +28,7 @@ const SortFilter = props => {
           <ConditionMenu sortBy={props.sortBy} />
         </Grid>
         <Grid item xs={6}>
-          <CategorySelect saveFilters={props.saveFilters} />
+          <CategorySelect selectCategories={props.selectCategories} />
         </Grid>
         <Grid item xs={12}>
           <NewPostTextField></NewPostTextField>
