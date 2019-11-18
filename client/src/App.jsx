@@ -53,7 +53,7 @@ export class App extends React.Component {
       console.log("This is the response: ", res.data);
       this.setState({
         posts: res.data
-      })
+      });
     } catch (error) {
       console.log(error);
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "../Icon/Icon"
+import Icon from "../Icon/Icon";
 import { ICONLABEL } from "../../constants";
 
 export class Favorite extends React.Component {
@@ -17,8 +17,8 @@ export class Favorite extends React.Component {
         {this.props.favorite ? (
           <Icon type={ICONLABEL.starFilled} />
         ) : (
-            <Icon type={ICONLABEL.starEmpty} />
-          )}
+          <Icon type={ICONLABEL.starEmpty} />
+        )}
       </div>
     );
   }
