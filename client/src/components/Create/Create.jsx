@@ -72,7 +72,7 @@ const Create = props => {
   //Submission for the form
   const makeSubmission = () => {
     Axios.post("http://localhost:8000/api/issue", {
-      creatorId: parseInt(window.localStorage.getItem("user_id")),
+      creatorId: parseInt(localStorage.getItem("user_id")),
       categoryName: category,
       headline: title,
       description: description,

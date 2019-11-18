@@ -2,7 +2,7 @@ const connection = require('../db');
 
 const addUser = function (username, password) {
     return new Promise((resolve, reject) => {
-        const testQuery = "SELECT id FROM users WHERE username =" + username + ";";
+        const testQuery = "SELECT id FROM users WHERE username =\'" + username + "\';";
         //test if username already exists
         connection.query(testQuery, (err, value) => {
             if (err) {
@@ -15,7 +15,7 @@ const addUser = function (username, password) {
                 } else {
                     //otherwise insert username and password
                     console.log('value = ', value[0])
-                    const insertQuery = "INSERT INTO users (username, password) VALUES (" + username + "," + password + ");";
+                    const insertQuery = "INSERT INTO users (username, password) VALUES (\'" + username + "\',\'" + password + "\');";
                     connection.query(insertQuery, (err, value) => {
                         if (err) {
                             reject(err);
