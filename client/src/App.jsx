@@ -32,18 +32,18 @@ export class App extends React.Component {
 
     this.saveFilters = this.saveFilters.bind(this);
     this.sortBy = this.sortBy.bind(this);
+    this.selectCategories = this.selectCategories.bind(this);
   }
 
   componentDidMount() {
-    console.log("Inside componentDidMount");
     try {
-      this.getInitialPosts();
+      this.getPosts();
     } catch (error) {
       console.error(error);
     }
   }
 
-  async getInitialPosts() {
+  async getPosts() {
     try {
       const res = await axios.get(API.MAIN, {
         params: {
@@ -60,9 +60,23 @@ export class App extends React.Component {
   }
 
   sortBy(condition) {
-    let strCondition = condition;
-    // console.log("sort by function called, this is condition: ", strCondition);
-    // make axios call based on new state
+    this.setState({ sortSelection: condition });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sortSelection === this.state.sortSelection) {
+      return;
+    } else {
+      this.getPosts();
+    }
+  }
+
+  selectCategories(selected) {
+    console.log("These are the updated categories: ", selected);
+    let categories = selected.map(elem => {
+      return elem.title;
+    });
+    this.setState({ filteredCategories: categories });
   }
 
   // Pass this function down to any Filter Component
@@ -85,7 +99,7 @@ export class App extends React.Component {
               <Route exact path="/">
                 <SortFilter
                   sortBy={this.sortBy}
-                  saveFilters={this.saveFilters}
+                  selectCategories={this.selectCategories}
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
