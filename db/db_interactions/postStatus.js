@@ -43,7 +43,6 @@ const modifyFavorite = function (userId, postId) {
                 reject(err);
             } else {
                 //if they already favorited, delete the row
-                console.log(value[0])
                 if (value[0]) {
                     const deleteQuery = "DELETE FROM favorites WHERE userId = " + userId + " AND postId = " + postId + ";";
                     connection.query(deleteQuery, (err, value) => {
@@ -55,35 +54,28 @@ const modifyFavorite = function (userId, postId) {
                     })
                 } else {
                     //test if valid userid
-                    const validUserId = "SELECT id FROM users WHERE id=" + userId + ";";
-                    connection.query(validUserId, (err, value) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            if (value[0]) {
-                                //test if valid postId
-                                const validPostId = "SELECT id from posts WHERE id=" + postId + ";";
-                                connection.query(validPostId, (err, value) => {
-                                    if (err) {
-                                        reject(err)
-                                    } else if (value[0]) {
-                                        const insertQuery = "INSERT INTO favorites (userId, postId) VALUES (" + userId + "," + postId + ");";
-                                        connection.query(insertQuery, (err, value) => {
-                                            if (err) {
-                                                reject(err);
-                                            } else {
-                                                resolve(`postId ${postId} favorited`);
-                                            }
-                                        })
-                                    } else {
-                                        resolve('invalid postId')
-                                    }
-                                })
+                    validateUserId(userId)
+                        .then((value) => {
+                            if (value === 'valid userId') {
+                                validatePostId(postId)
+                                    .then((value) => {
+                                        if (value === 'valid postId') {
+                                            const insertQuery = "INSERT INTO favorites (userId, postId) VALUES (" + userId + "," + postId + ");";
+                                            connection.query(insertQuery, (err, value) => {
+                                                if (err) {
+                                                    reject(err);
+                                                } else {
+                                                    resolve(`postId ${postId} favorited`);
+                                                }
+                                            })
+                                        } else {
+                                            resolve('invalid postId')
+                                        }
+                                    })
                             } else {
                                 resolve('invalid userId')
                             }
-                        }
-                    })
+                        })
                 }
             }
         })
@@ -128,7 +120,6 @@ const modifyAmplifies = function (userId, postId) {
                                 //test if valid postId
                                 validatePostId(postId)
                                     .then((value) => {
-                                        console.log('value = ', value)
                                         if (value === 'valid postId') {
                                             const query1 = "INSERT INTO promotes (userId, postId) VALUES (" + userId + "," + postId + ");";
                                             const query2 = "UPDATE posts SET upvotes=upvotes+1 WHERE id=" + postId + ";";

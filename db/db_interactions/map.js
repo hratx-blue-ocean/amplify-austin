@@ -21,8 +21,6 @@ function getPostCoordinates(categories) {
 
     queryString = queryString + categoryClause + ";";
 
-    console.log(queryString);
-
     connection.query(queryString, (err, result) => {
       if (err) {
         reject(err);
