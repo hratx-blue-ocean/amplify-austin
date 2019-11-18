@@ -89,7 +89,7 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    console.log("These are the selected categories: ", selected)
+    console.log("These are the selected categories: ", selected);
     let categories = selected.map(elem => {
       return elem.title;
     });
