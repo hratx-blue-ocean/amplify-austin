@@ -24,7 +24,6 @@ export class App extends React.Component {
       selectedPost: firstPost,
       posts: allIssues,
       filteredCategories: [],
-      username: "",
       selectBy: null,
       sortSelection: "popularity"
     };
@@ -67,10 +66,6 @@ export class App extends React.Component {
     this.setState({
       filteredCategories: categories
     });
-  }
-
-  setUsermame(username) {
-    this.setState({ username });
   }
 
   render() {
