@@ -28,6 +28,9 @@ const Create = props => {
   const [successToggle, setSuccessToggle] = useState(false);
   const [errorToggle, setErrorToggle] = useState(false);
 
+  // The UserID you asked for
+  const userID = localStorage.getItem("user_id");
+
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
     if (specificToggle === "success") {
@@ -67,15 +70,13 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-    Axios.post("./api/issue", {
+    Axios.post("http://localhost:8000/api/issue", {
       creatorId: props.creatorId || null,
       categoryName: category,
       headline: title,
       description: description,
       eventDate: date,
-      address: `${location}, Ausitn, Tx`,
-      lat: 0.0,
-      long: 0.0
+      address: `${ location }, Austin, TX`
     })
       .then(res => {
         handleOpen("success");
@@ -245,7 +246,7 @@ const Create = props => {
               <CheckCircleIcon
                 className={clsx(classes.icon, classes.iconVariant)}
               />
-              Error with submission
+              Submission was successful
             </span>
           }
           action={[

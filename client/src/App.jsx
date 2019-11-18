@@ -25,6 +25,7 @@ export class App extends React.Component {
       posts: allIssues,
       filteredCategories: [],
       username: "",
+      selectBy: null,
       sortSelection: "popularity"
     };
 
@@ -33,20 +34,25 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.state.sortSelection) {
-      let sortBy = "popularity";
-      axios
-        .get("/api/main/", {
+    console.log("Inside componentDidMount");
+    try {
+      this.getInitialPosts();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getInitialPosts() {
+    try {
+      const res = await axios
+        .get("http://localhost:8000/api/main/", {
           params: {
-            sortBy: sortBy
+            sortBy: this.state.sortSelection
           }
         })
-        .then(res => {
-          console.log("This is the response: ", res);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      console.log("This is the response: ", res);
+    } catch (error) {
+      console.log(error);
     }
   }
 
