@@ -80,6 +80,7 @@ const Post = props => {
   const history = useHistory();
   const defaultIcon = <Icon category={"mapMarker"} />;
   const [amp, setAmp] = useState(undefined);
+  const [fave, setFave] = useState(props.favorite);
 
   const userID = localStorage.getItem("user_id");
 
@@ -91,6 +92,21 @@ const Post = props => {
       });
       if (response.data.split(" ")[0] === "post") {
         amp === undefined ? setAmp(props.votes + 1) : setAmp(undefined);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleFavorite = async (e) => {
+    e.stopPropagation();
+    try {
+      const response = await axios.post(API.FAVORITE, {
+        userId: userID,
+        postId: props.postID
+      });
+      if (response.data.split(" ")[0] === "postId") {
+        setFave(!fave);
       }
     } catch (error) {
       console.error(error);
@@ -120,7 +136,7 @@ const Post = props => {
         <Grid item xs={10} container direction="column">
           <Paper
             onClick={() => {
-              history.push(`/posts/${props.postID}`);
+              history.push(`/posts/${ props.postID }`);
             }}
             className={styles.paper}
           >
@@ -160,13 +176,8 @@ const Post = props => {
               </Grid>
               <Grid item xs={2} className={styles.star}>
                 {/* width: 100% */}
-                <div
-                  onClick={e => {
-                    e.stopPropagation();
-                    console.log("clicked");
-                  }}
-                >
-                  {props.favorited === true ? (
+                <div onClick={handleFavorite}>
+                  {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
                       <EmptyStarIcon></EmptyStarIcon>

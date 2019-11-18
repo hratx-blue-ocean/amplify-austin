@@ -35,5 +35,6 @@ export const API = {
   LOGIN: APIBASE + "/login",
   SIGNUP: APIBASE + "/signup",
   MAIN: APIBASE + "/main",
-  AMPLIFY: APIBASE + "/modifyAmplifies"
+  AMPLIFY: APIBASE + "/modifyAmplifies",
+  FAVORITE: APIBASE + "/modifyFavorite"
 };

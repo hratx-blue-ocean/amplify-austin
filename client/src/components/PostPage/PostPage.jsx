@@ -6,13 +6,15 @@ import Map from "../Map/Map";
 import style from "./PostPage.module.css";
 import { useParams, Redirect, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
-import { Icon } from "@material-ui/core";
-import { ICONLABEL, API } from "../../constants";
+import { API } from "../../constants";
+import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
+import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
 
 const PostPage = props => {
   // state
   const [post, setPost] = useState(undefined);
   const [coords, setCoords] = useState([]);
+  const [fave, setFave] = useState(props.favorite);
   // token
   const userID = localStorage.getItem("user_id");
   // helpers
@@ -32,8 +34,7 @@ const PostPage = props => {
           postId: postID
         }
       });
-      const { data } = response;
-      console.log(response.data);
+
       const postData = response.data;
       if (postData === undefined) {
         throw new Error("no response from GET request");
@@ -50,6 +51,21 @@ const PostPage = props => {
       // TODO add error page
       console.error(error);
       history.push("/");
+    }
+  };
+
+  const handleFavorite = async (e) => {
+    e.stopPropagation();
+    try {
+      const response = await axios.post(API.FAVORITE, {
+        userId: userID,
+        postId: postID
+      });
+      if (response.data.split(" ")[0] === "postId") {
+        setFave(!fave);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -81,7 +97,13 @@ const PostPage = props => {
             />
           </div>
           <div className={style.favorite}>
-            <Icon type={ICONLABEL.starEmpty} />
+            <div onClick={handleFavorite}>
+              {fave === true ? (
+                <FilledStarIcon></FilledStarIcon>
+              ) : (
+                  <EmptyStarIcon></EmptyStarIcon>
+                )}
+            </div>
           </div>
         </div>
         <div className={style.descriptionWrapper}>
