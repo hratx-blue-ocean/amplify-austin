@@ -36,7 +36,7 @@ export class App extends React.Component {
   }
 
   setUsermame(username) {
-    this.setState({ username })
+    this.setState({ username });
   }
 
   render() {

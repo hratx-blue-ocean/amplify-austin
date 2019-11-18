@@ -17,7 +17,7 @@ const Menu = props => {
     } else {
       setAuth(false);
     }
-  }, [auth])
+  }, [auth]);
 
   return (
     <div className={style.NavBarContainer} data-test="NavMenu">
@@ -89,33 +89,33 @@ const Menu = props => {
           </button>
         </div>
       ) : (
-          <>
-            <div>
-              <button
-                data-test="SignIn"
-                onClick={() => {
-                  history.push("/signin");
-                  onClose();
-                }}
-              >
-                {" "}
-                Sign In{" "}
-              </button>
-            </div>
-            <div>
-              <button
-                data-test="SignUp"
-                onClick={() => {
-                  history.push("/signup");
-                  onClose();
-                }}
-              >
-                {" "}
-                Sign Up{" "}
-              </button>
-            </div>
-          </>
-        )}
+        <>
+          <div>
+            <button
+              data-test="SignIn"
+              onClick={() => {
+                history.push("/signin");
+                onClose();
+              }}
+            >
+              {" "}
+              Sign In{" "}
+            </button>
+          </div>
+          <div>
+            <button
+              data-test="SignUp"
+              onClick={() => {
+                history.push("/signup");
+                onClose();
+              }}
+            >
+              {" "}
+              Sign Up{" "}
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

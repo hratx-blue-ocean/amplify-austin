@@ -8,13 +8,13 @@ const SignIn = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleUsername = (e) => {
+  const handleUsername = e => {
     setUsername(e.target.value);
-  }
+  };
 
-  const handlePassword = (e) => {
+  const handlePassword = e => {
     setPassword(e.target.value);
-  }
+  };
 
   const checkInputs = () => {
     if (
@@ -41,9 +41,9 @@ const SignIn = props => {
       return true;
     } catch (error) {
       console.error(error);
-      return false
+      return false;
     }
-  }
+  };
 
   const loginUser = async () => {
     try {
@@ -52,15 +52,15 @@ const SignIn = props => {
       if (validInput && authenticated) {
         setUsername("");
         setPassword("");
-        history.push("/")
+        history.push("/");
       } else {
-        throw Error("bad credentials")
+        throw Error("bad credentials");
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
       window.alert("invalid credentials, please try again");
     }
-  }
+  };
   // TODO
   // styling
 
@@ -70,7 +70,7 @@ const SignIn = props => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          loginUser()
+          loginUser();
         }}
       >
         <div>

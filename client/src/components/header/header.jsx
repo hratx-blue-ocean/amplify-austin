@@ -16,7 +16,7 @@ const styles = {
 
 const Header = props => {
   const [menuToggled, setMenuToggled] = useState(false);
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
   const { classes } = props;
   const username = localStorage.getItem("username");
   const history = useHistory();
@@ -28,7 +28,7 @@ const Header = props => {
 
   useEffect(() => {
     username ? setName(username) : setName("");
-  }, [username, name])
+  }, [username, name]);
 
   return (
     <React.Fragment>
