@@ -59,7 +59,7 @@ const Header = props => {
         onClose={toggleMenu}
         classes={{ paper: classes.paper }}
       >
-        <Menu onClose={toggleMenu} />
+        <Menu onClose={toggleMenu} changeSelectBy={props.changeSelectBy} />
       </Drawer>
     </React.Fragment>
   );

@@ -60,7 +60,12 @@ export class App extends React.Component {
   async getPosts() {
     let strArry = this.state.filteredCategories.join("/");
     let userId = localStorage.getItem("user_id");
-
+    console.log("getting posts", {
+      userId: userId,
+      sortBy: this.state.sortSelection,
+      categories: strArry,
+      selectBy: this.state.selectBy
+    });
     try {
       const res = await axios.get(API.MAIN, {
         params: {
@@ -70,6 +75,7 @@ export class App extends React.Component {
           selectBy: this.state.selectBy
         }
       });
+      console.log(res.data);
       this.setState({
         posts: res.data
       });
@@ -92,12 +98,20 @@ export class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     console.log("State updated!");
+    console.log(this.state.selectBy);
     if (
       prevState.sortSelection !== this.state.sortSelection ||
-      prevState.filteredCategories !== this.state.filteredCategories
+      prevState.filteredCategories !== this.state.filteredCategories ||
+      prevState.selectBy !== this.state.selectBy
     ) {
       this.getPosts();
     }
+  }
+
+  changeSelectBy(selection) {
+    this.setState({
+      selectBy: selection
+    });
   }
 
   render() {
@@ -105,7 +119,7 @@ export class App extends React.Component {
       <Router>
         <div className={styles.container}>
           <div className={styles.header}>
-            <Header />
+            <Header changeSelectBy={this.changeSelectBy.bind(this)} />
           </div>
           <div className={styles.component}>
             <Switch>
