@@ -69,6 +69,9 @@ const getFavorited = function (postId, userId) {
 
 const getCategoryName = function (categoryId) {
     return new Promise((resolve, reject) => {
+        if (!categoryId) {
+            resolve(null)
+        }
         const queryString = "SELECT name FROM categories WHERE id = " + categoryId;
         connection.query(queryString, (err, value) => {
             if (err) {

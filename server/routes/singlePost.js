@@ -43,7 +43,7 @@ router.post("/api/issue", (req, res) => {
         return db.singlePost.addPost(requestInput);
       })
       .then(result => {
-        res.send(result);
+        res.send({ postId: result.insertId });
       })
       .catch(err => {
         res.send(err);
