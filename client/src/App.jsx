@@ -50,7 +50,6 @@ export class App extends React.Component {
           sortBy: this.state.sortSelection
         }
       });
-      console.log("This is the response: ", res.data);
       this.setState({
         posts: res.data
       });
