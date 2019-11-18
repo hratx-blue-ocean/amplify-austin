@@ -24,6 +24,7 @@ const MapFilter = props => {
       >
         <Grid item xs={6}>
           <CategorySelect
+            categories={props.categories}
             selectCategories={props.selectCategories}
             filteredCategories={props.filteredCategories}
           />
