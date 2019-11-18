@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "@material-ui/core";
+import Icon from "../Icon/Icon";
 import { ICONLABEL } from "../../constants";
 
 export class Favorite extends React.Component {
