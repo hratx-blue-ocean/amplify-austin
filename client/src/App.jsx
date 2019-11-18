@@ -50,7 +50,6 @@ export class App extends React.Component {
           sortBy: this.state.sortSelection
         }
       });
-      console.log("This is the response: ", res.data);
       this.setState({
         posts: res.data
       });
@@ -116,6 +115,7 @@ export class App extends React.Component {
               <PrivateRoute path="/create" component={Create} />
               <Route path="/map">
                 <MapPage
+                  posts={this.state.posts}
                   saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
                 />
