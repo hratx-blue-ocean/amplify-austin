@@ -33,20 +33,21 @@ export class App extends React.Component {
 
   componentDidMount() {
     if (!this.state.sortSelection) {
-      let sortBy = 'popularity';
+      let sortBy = "popularity";
 
-      axios.get('/api/main/', {
-        params: {
-          sortBy: sortBy,
-        }
-      })
-        .then((res) => {
-          console.log("This is the response: ", res)
+      axios
+        .get("/api/main/", {
+          params: {
+            sortBy: sortBy
+          }
         })
-        .catch((error) => {
-          console.log(error)
+        .then(res => {
+          console.log("This is the response: ", res);
         })
-    };
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 
   sortBy(condition) {

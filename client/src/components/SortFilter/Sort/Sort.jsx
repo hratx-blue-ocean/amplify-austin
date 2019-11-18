@@ -5,14 +5,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 const ConditionMenu = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const menuItems = ['popularity', 'recent']
+  const menuItems = ["popularity", "recent"];
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    console.log("This is the text from the close: ")
+    console.log("This is the text from the close: ");
     setAnchorEl(null);
   };
 
@@ -33,16 +33,19 @@ const ConditionMenu = props => {
         onClose={handleClose}
       >
         {menuItems.map((item, index) => {
-          return (<MenuItem
-            key={index}
-            value={item}
-            onClick={() => { props.sortBy(item) }}
-          />
-          )
+          return (
+            <MenuItem
+              key={index}
+              value={item}
+              onClick={() => {
+                props.sortBy(item);
+              }}
+            />
+          );
         })}
       </Menu>
     </div>
   );
-}
+};
 
 export default ConditionMenu;
