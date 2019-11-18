@@ -29,6 +29,7 @@ const Create = props => {
   const [errorToggle, setErrorToggle] = useState(false);
 
   // The UserID you asked for
+  // Shouldn't this be "window.localStorage.getItem("user_id")" --Ethan
   const userID = localStorage.getItem("user_id");
 
   // Handle Open and Closes for SnackBars
@@ -80,11 +81,10 @@ const Create = props => {
     })
       .then(response => {
         console.log(response.data.postId);
+        // the line below is the postId that was inserted into our database.
         let currentlyViewedPostId = response.data.postId;
-        let setStateObj = {
-          currentlyViewedPostId: currentlyViewedPostId
-        };
-        props.todoSetStateFunction(setStateObj);
+        // pass this id to the post page (where the details for a single post are rendered) through params
+
         //dont need to have a pop up for success because we are going to immediately dirrect to new page,
         // so no handleOpen("success") needed
 
