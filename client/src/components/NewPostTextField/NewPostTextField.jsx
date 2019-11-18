@@ -17,10 +17,10 @@ const NewPostTextField = props => {
   const classes = useStyles();
   const history = useHistory();
 
-  const handleRedirect = (e) => {
+  const handleRedirect = e => {
     e.preventDefault();
     history.push("/create");
-  }
+  };
 
   return (
     <div>
@@ -30,7 +30,11 @@ const NewPostTextField = props => {
             <AccountCircle />
           </Grid>
           <Grid item>
-            <TextField onClick={handleRedirect} id="input-with-icon-grid" label="Add a new post..." />
+            <TextField
+              onClick={handleRedirect}
+              id="input-with-icon-grid"
+              label="Add a new post..."
+            />
           </Grid>
         </Grid>
       </div>
