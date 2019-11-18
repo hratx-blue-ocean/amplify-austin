@@ -2,6 +2,11 @@ import React from "react";
 import style from "../PostPage.module.css";
 
 const PostPageSubGroup = ({ type, categoryName, created_at }) => {
+  const dateFormat = { month: "short", day: "numeric", year: "numeric" };
+  const dateCreated = new Date(created_at).toLocaleDateString(
+    undefined,
+    dateFormat
+  );
   return (
     <div className={style.subheading}>
       <div className={style.subGroup}>
@@ -14,8 +19,7 @@ const PostPageSubGroup = ({ type, categoryName, created_at }) => {
       </div>
       <div className={style.subGroup}>
         <h4>Date Reported: </h4>
-        {console.log(typeof created_at)}
-        <h6>{created_at}</h6>
+        <h6>{dateCreated}</h6>
       </div>
     </div>
   );

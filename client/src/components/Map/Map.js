@@ -25,6 +25,7 @@ export default class Map extends Component {
   }
 
   render() {
+    const mapable = this.props.posts || this.props.coordinates;
     return (
       // Important! Always set the container width & height explicitly
       <div style={{ height: "100%", width: "100%" }}>
@@ -33,7 +34,7 @@ export default class Map extends Component {
           defaultCenter={this.state.center}
           defaultZoom={this.state.zoom}
         >
-          {this.props.posts.map((coord, i) => {
+          {mapable.map((coord, i) => {
             return (
               <Marker
                 key={i}

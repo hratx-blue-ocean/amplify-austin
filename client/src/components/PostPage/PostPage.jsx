@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { PostPageButtons } from "./PostPageButtons/PostPageButtons";
-import coords from "../MapPage/dummyCoordinates";
+// import coords from "../MapPage/dummyCoordinates";
 import Map from "../Map/Map";
 import style from "./PostPage.module.css";
 import { useParams, Redirect, useHistory } from "react-router-dom";
@@ -11,7 +11,7 @@ import { ICONLABEL, API } from "../../constants";
 
 const PostPage = () => {
   // state
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState(undefined);
   const [coords, setCoords] = useState([]);
   // token
   const userID = localStorage.getItem("user_id");
@@ -29,13 +29,13 @@ const PostPage = () => {
         params: {
           userId: userID || "",
           // replace with postID
-          postId: 53
+          postId: postID
         }
       });
       const { data } = response;
-      const postData = data;
-      if (postData === undefined || !postData.canAmplify === undefined) {
-        console.log("here");
+      console.log(response.data);
+      const postData = response.data;
+      if (postData === undefined) {
         throw new Error("no response from GET request");
       }
       setPost(postData);
@@ -43,12 +43,12 @@ const PostPage = () => {
         {
           lat: postData.lat,
           lng: postData.lng,
-          category: postData.category
+          categoryName: postData.category
         }
       ]);
     } catch (error) {
       // TODO add error page
-      console.log(error);
+      console.error(error);
       history.push("/");
     }
   };
@@ -67,35 +67,39 @@ const PostPage = () => {
     //   axios.post("/ENDPOINT/postID", (resolved))
     // }
   };
-
-  return (
-    <div>
-      <div className={style.titleField}>
-        <div className={style.heading}>
-          <h2>{post.headline}</h2>
-          <PostPageSubGroup
-            type={post.type}
-            categorName={post.categorName}
-            created_at={post.created_at}
-          />
+  if (post) {
+    console.log("in here");
+    return (
+      <div>
+        <div className={style.titleField}>
+          <div className={style.heading}>
+            <h2>{post.headline}</h2>
+            <PostPageSubGroup
+              type={post.type}
+              categorName={post.categorName}
+              created_at={post.created_at}
+            />
+          </div>
+          <div className={style.favorite}>
+            <Icon type={ICONLABEL.starEmpty} />
+          </div>
         </div>
-        <div className={style.favorite}>
-          <Icon type={ICONLABEL.starEmpty} />
+        <div className={style.descriptionWrapper}>
+          <p>{post.description}</p>
+        </div>
+        <PostPageButtons
+          resolved={post && post.status === "resolved" ? true : false}
+          handleResolveDispute={handleResolveDispute}
+        />
+        <div className={style.map}>
+          {/* TODO: use coordinates in get request */}
+          <Map coordinates={coords}></Map>
         </div>
       </div>
-      <div className={style.descriptionWrapper}>
-        <p>{post.description}</p>
-      </div>
-      <PostPageButtons
-        resolved={post && post.status === "resolved" ? true : false}
-        handleResolveDispute={handleResolveDispute}
-      />
-      <div className={style.map}>
-        {/* TODO: use coordinates in get request */}
-        <Map coordinates={coords}></Map>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return <div>loading</div>;
+  }
 };
 
 export default PostPage;
