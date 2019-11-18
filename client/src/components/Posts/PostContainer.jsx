@@ -17,7 +17,6 @@ const PostContainer = props => {
   return (
     <div className={postContStyles.root}>
       {props.postData.map(post => {
-
         return (
           <Post
             key={post.postId}
