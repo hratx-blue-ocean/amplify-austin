@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 import { centerATX, zoom } from "./map-constants";
 import Marker from "./Marker/Marker";
 import dummyCoords from "../MapPage/dummyCoordinates";
+import axios from 'axios';
 
 // Make sure this component is always wrapped in a div
 // If left to roam freely, it will take up the entire screen like a dick
@@ -14,9 +15,12 @@ export default class Map extends Component {
       center: centerATX,
       zoom: zoom
     };
+
   }
 
   componentDidMount() {
+
+    console.log('Map component did mount aka made another api call');
     /**
      * GET REQUEST for coordinates/marker info using
      * this.props.filteredCategories
@@ -25,15 +29,26 @@ export default class Map extends Component {
      * Not neccessarily 'stateful' as it re-renders completely
      * on any change made up in APP
      */
-    const coordinates = dummyCoords();
-    const center = centerOf(coordinates);
-    //  possible 'zoom' calculation could be done
-    this.setState({
-      coordinates: coordinates,
-      center: center || this.state.center,
-      selectedMarker: null
-    });
-    this.selectMarker = this.selectMarker.bind(this);
+    let categories = this.props.filteredCategories.join("/");
+
+
+    // const coordinates = dummyCoords();
+    axios.get("http://localhost:8000/api/map", {
+      params: {
+        categories: categories
+      }
+    })
+      .then(response => {
+        console.log("heres your coordinates. bitch:", response.data);
+        // const center = centerOf(response.data);
+        //  possible 'zoom' calculation could be done
+        this.setState({
+          coordinates: response.data,
+          // center: center || this.state.center,
+          selectedMarker: null
+        });
+        this.selectMarker = this.selectMarker.bind(this);
+      })
   }
 
   selectMarker(postId) {

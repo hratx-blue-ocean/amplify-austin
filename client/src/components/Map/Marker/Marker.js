@@ -1,14 +1,14 @@
 import React from "react";
-import Icons from "../../Icon/Icon";
+import Icon from "../../Icon/Icon";
 import MiniPost from "../MiniPost/MiniPost";
 import styles from "./Marker.module.css";
 
-const defaultIcon = <Icons category={"mapMarker"} />;
+const defaultIcon = <Icon category={"mapMarker"} />;
 
 const Marker = ({ category, postID, selectMarker, isSelected }) => {
   return (
     <div className={styles.marker} onClick={() => selectMarker(postID)}>
-      {category === "other" ? defaultIcon : <Icons category={category} />}
+      {category === "other" ? defaultIcon : <Icon category={category} />}
       {isSelected && <MiniPost category={category} postID={postID} />}
     </div>
   );

@@ -18,7 +18,7 @@ router.get("/api/map", (req, res) => {
       let count = 0;
       let posts = [];
 
-      const formatPost = function() {
+      const formatPost = function () {
         if (count < rows.length) {
           posts[count] = {
             postId: rows[count].id,
@@ -28,7 +28,7 @@ router.get("/api/map", (req, res) => {
           db.helpers
             .getCategoryName(rows[count].categoryId)
             .then(categoryName => {
-              posts[count].categoryName = categoryName;
+              posts[count].category = categoryName.toLowerCase();
               count++;
               formatPost();
             });
