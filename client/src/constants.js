@@ -26,10 +26,10 @@ export const ICONLABEL = {
 };
 
 export const API = {
-  HOST: "http://localhost:8000/",
-  BASE: API.HOST + "/api",
-  ISSUE: API.BASE + "/issue",
-  LOGIN: API.BASE + "/login",
-  SIGNUP: API.BASE + "/signup",
-  MAIN: API.BASE + "/main"
+  HOST: "http://localhost:8000",
+  BASE: "http://localhost:8000/api",
+  ISSUE: "http://localhost:8000/api/issue",
+  LOGIN: "http://localhost:8000/api/login",
+  SIGNUP: "http://localhost:8000/api/signup",
+  MAIN: "http://localhost:8000/api/main"
 };
