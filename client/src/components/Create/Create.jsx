@@ -83,16 +83,16 @@ const Create = props => {
         let currentlyViewedPostId = response.data.postId;
         let setStateObj = {
           currentlyViewedPostId: currentlyViewedPostId
-        }
+        };
         props.todoSetStateFunction(setStateObj);
-        //dont need to have a pop up for success because we are going to immediately dirrect to new page, 
+        //dont need to have a pop up for success because we are going to immediately dirrect to new page,
         // so no handleOpen("success") needed
 
         //redirrect to singlePost page;
       })
       .catch(error => {
         handleOpen("error");
-      })
+      });
   };
 
   //This will render the differences between the issue and event pages
