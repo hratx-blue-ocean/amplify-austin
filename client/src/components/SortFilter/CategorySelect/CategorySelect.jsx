@@ -8,7 +8,6 @@ const Tags = props => {
   let defaultValues = [];
 
   if (props.filteredCategories) {
-    console.log("We have some categories here!");
     categories.forEach(category => {
       if (props.filteredCategories.includes(category.title)) {
         defaultValues.push(category);

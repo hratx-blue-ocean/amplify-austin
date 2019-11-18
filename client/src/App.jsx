@@ -89,16 +89,13 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    console.log("These are the selected categories: ", selected);
     let categories = selected.map(elem => {
       return elem.title;
     });
     this.setState({ filteredCategories: categories });
-    console.log("We have reset state");
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("State updated!");
     console.log(this.state.selectBy);
     if (
       prevState.sortSelection !== this.state.sortSelection ||
