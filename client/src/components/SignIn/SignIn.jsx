@@ -31,8 +31,12 @@ const SignIn = props => {
 
   const authenticateUser = async () => {
     try {
-      const response = axios.get("http://localhost:8000/api");
+      const response = await axios.post("http://localhost:8000/api/login", {
+        username,
+        password
+      });
       if (response) {
+        console.log(response)
         localStorage.setItem("user_id", 1);
         localStorage.setItem("username", username);
       } else {
