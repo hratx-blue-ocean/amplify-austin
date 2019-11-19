@@ -32,19 +32,19 @@ const Header = props => {
 
   const navToHome = () => {
     history.push("/");
-  }
+  };
 
   const navToSignIn = () => {
     history.push("/signin");
-  }
+  };
 
   const navToSignUp = () => {
     history.push("/signup");
-  }
+  };
 
   const navToMap = () => {
     history.push("/map");
-  }
+  };
 
   return (
     <React.Fragment>
@@ -61,14 +61,13 @@ const Header = props => {
             onClick={navToHome}
           />
           {name === "Login / Sign-Up" ? (
-            <p
-              className={style.conditionalRenderP}
-            >
-              <span onClick={navToSignIn}>Login</span> / <span onClick={navToSignUp}>Sign Up</span>
+            <p className={style.conditionalRenderP}>
+              <span onClick={navToSignIn}>Login</span> /{" "}
+              <span onClick={navToSignUp}>Sign Up</span>
             </p>
           ) : (
-              <p className={style.conditionalRenderP}>{name}</p>
-            )}
+            <p className={style.conditionalRenderP}>{name}</p>
+          )}
         </div>
         <div className={style.navigatingDiv}>
           <MapOutlinedIcon

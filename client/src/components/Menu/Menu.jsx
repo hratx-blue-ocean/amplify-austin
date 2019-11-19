@@ -108,33 +108,33 @@ const Menu = props => {
           </Button>
         </div>
       ) : (
-          <>
-            <div>
-              <Button
-                onClick={() => {
-                  history.push("/signin");
-                  onClose();
-                }}
-                variant="contained"
-              >
-                {" "}
-                Login{" "}
-              </Button>
-            </div>
-            <div>
-              <Button
-                onClick={() => {
-                  history.push("/signup");
-                  onClose();
-                }}
-                variant="contained"
-              >
-                {" "}
-                Sign Up{" "}
-              </Button>
-            </div>
-          </>
-        )}
+        <>
+          <div>
+            <Button
+              onClick={() => {
+                history.push("/signin");
+                onClose();
+              }}
+              variant="contained"
+            >
+              {" "}
+              Login{" "}
+            </Button>
+          </div>
+          <div>
+            <Button
+              onClick={() => {
+                history.push("/signup");
+                onClose();
+              }}
+              variant="contained"
+            >
+              {" "}
+              Sign Up{" "}
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
