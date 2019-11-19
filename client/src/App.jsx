@@ -32,6 +32,7 @@ export class App extends React.Component {
     };
 
     this.sortBy = this.sortBy.bind(this);
+    this.changeSelectBy = this.changeSelectBy.bind(this);
     this.selectCategories = this.selectCategories.bind(this);
   }
 
@@ -47,8 +48,13 @@ export class App extends React.Component {
   async getCategories() {
     try {
       const res = await axios.get(API.CATEGORIES);
+      const categories = res.data;
+      if (localStorage.getItem("user_id")) {
+        categories.unshift('myPosts');
+        categories.unshift('favorites');
+      }
       this.setState({
-        categories: res.data
+        categories: categories
       });
     } catch (error) {
       console.log(error);
@@ -103,14 +109,31 @@ export class App extends React.Component {
 
   selectCategories(selected) {
     console.log("These are the selected categories: ", selected);
-    let categories = selected.map(elem => {
-      return elem.title;
-    });
-    this.setState({ filteredCategories: categories });
+    let categories = [];
+    let favoritesIndex = -1;
+    let myPostsIndex = -1;
+    selected.forEach((category, i) => {
+      if (category.title === 'Favorites') {
+        favoritesIndex = i;
+      } else if (category.title === 'MyPosts') {
+        myPostsIndex = i;
+      } else {
+        categories.push(category.title);
+      }
+    })
+    let selectByState = null;
+    if (favoritesIndex > myPostsIndex) {
+      selectByState = 'favorites';
+    } else if (favoritesIndex < myPostsIndex) {
+      selectByState = 'myPosts';
+    }
+    this.setState({
+      filteredCategories: selectByState ? [selectByState].concat(categories) : categories,
+      selectBy: selectByState
+    }, () => console.log(this.state));
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state.selectBy);
     if (
       prevState.sortSelection !== this.state.sortSelection ||
       prevState.filteredCategories !== this.state.filteredCategories ||
@@ -121,9 +144,10 @@ export class App extends React.Component {
   }
 
   changeSelectBy(selection) {
+    console.log(selection)
     this.setState({
       selectBy: selection
-    });
+    }, () => console.log(this.state));
   }
 
   render() {
@@ -139,6 +163,7 @@ export class App extends React.Component {
                 <SortFilter
                   sortBy={this.sortBy}
                   categories={this.state.categories}
+                  changeSelectBy={this.changeSelectBy}
                   selectCategories={this.selectCategories}
                   filteredCategories={this.state.filteredCategories}
                 ></SortFilter>

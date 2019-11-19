@@ -7,23 +7,23 @@ const Tags = props => {
   if (props.filteredCategories) {
     props.categories.forEach(category => {
       if (props.filteredCategories.includes(category)) {
-        defaultValues.push({ title: category });
+        defaultValues.push({ title: `${category.charAt(0).toUpperCase()}${category.slice(1)}` });
       }
     });
   }
-
+  console.log('---default values...again...', defaultValues);
   return (
     <div style={{ width: "100%" }}>
       <Autocomplete
         style={{ margin: "0" }}
         multiple
         id="tags-standard"
-        options={props.categories.map(cat => {
-          return { title: cat };
+        options={props.categories.map(category => {
+          return { title: `${category.charAt(0).toUpperCase()}${category.slice(1)}` };
         })}
         getOptionLabel={option => option.title}
         defaultValue={defaultValues}
-        onChange={(event, value) => props.selectCategories(value)}
+        onChange={(event, value) => { props.selectCategories(value) }}
         renderInput={params => (
           <TextField
             {...params}
