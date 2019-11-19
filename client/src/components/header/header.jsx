@@ -30,6 +30,22 @@ const Header = props => {
     username ? setName(username) : setName("Login / Sign-Up");
   }, [username, name]);
 
+  const navToHome = () => {
+    history.push("/");
+  }
+
+  const navToSignIn = () => {
+    history.push("/signin");
+  }
+
+  const navToSignUp = () => {
+    history.push("/signup");
+  }
+
+  const navToMap = () => {
+    history.push("/map");
+  }
+
   return (
     <React.Fragment>
       <div data-test="HeaderContainer" className={style.headerContainer}>
@@ -42,29 +58,22 @@ const Header = props => {
             width="60"
             src="amplify_austinwhite.png"
             className={style.navigatingDiv}
-            onClick={() => {
-              history.push("/");
-            }}
+            onClick={navToHome}
           />
           {name === "Login / Sign-Up" ? (
             <p
               className={style.conditionalRenderP}
-              onClick={() => {
-                history.push("/signin");
-              }}
             >
-              {name}
+              <span onClick={navToSignIn}>Login</span> / <span onClick={navToSignUp}>Sign Up</span>
             </p>
           ) : (
-            <p className={style.conditionalRenderP}>{name}</p>
-          )}
+              <p className={style.conditionalRenderP}>{name}</p>
+            )}
         </div>
         <div className={style.navigatingDiv}>
           <MapOutlinedIcon
             style={{ height: 30, width: 30 }}
-            onClick={() => {
-              history.push("/map");
-            }}
+            onClick={navToMap}
           />
         </div>
       </div>
