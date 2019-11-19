@@ -12,7 +12,7 @@
     "prettier:client": "./node_modules/.bin/prettier --write 'client/src/**/*.{js,jsx}'",
     "prettier:server": "./node_modules/.bin/prettier --write 'server/routes/**/*.js'",
     "deploy:dev": "npm run setup && cd ./client && npm run build && cd ../server && node bin/www",
-    "deploy:build": "cd ./client && npm run build"
+    "deploy:build": "npm run setup && cd ./client && npm run build"
   },
   "husky": {
     "hooks": {
