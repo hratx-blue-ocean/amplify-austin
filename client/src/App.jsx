@@ -27,6 +27,7 @@ export class App extends React.Component {
       posts: [],
       categories: [],
       filteredCategories: [],
+      categoryListReference: [],
       selectBy: null,
       sortSelection: "popularity"
     };
@@ -50,7 +51,7 @@ export class App extends React.Component {
       const res = await axios.get(API.CATEGORIES);
       const categories = res.data;
       this.setState({
-        categories: categories
+        categories: localStorage.getItem("user_id") ? ['myPosts', 'favorites'].concat(categories) : categories
       });
     } catch (error) {
       console.log(error);
@@ -108,6 +109,7 @@ export class App extends React.Component {
     let favoritesIndex = -1;
     let myPostsIndex = -1;
     selected.forEach((category, i) => {
+      console.log(category.title)
       if (category.title === 'favorites') {
         favoritesIndex = i;
       } else if (category.title === 'myPosts') {
@@ -123,6 +125,7 @@ export class App extends React.Component {
       selectByState = 'myPosts';
     }
     this.setState({
+      categoryListReference: selectByState ? [selectByState].concat(categories) : categories,
       filteredCategories: categories,
       selectBy: selectByState
     }, () => console.log(this.state));
@@ -159,8 +162,8 @@ export class App extends React.Component {
                   sortBy={this.sortBy}
                   changeSelectBy={this.changeSelectBy}
                   selectCategories={this.selectCategories}
-                  categories={localStorage.getItem("user_id") ? ['myPosts', 'favorites'].concat(this.state.categories) : this.state.categories}
-                  filteredCategories={this.state.selectBy ? [this.state.selectBy].concat(this.state.filteredCategories) : this.state.filteredCategories}
+                  categories={this.state.categories}
+                  filteredCategories={this.state.categoryListReference}
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
@@ -179,8 +182,8 @@ export class App extends React.Component {
                   sortBy={this.sortBy}
                   posts={this.state.posts}
                   selectCategories={this.selectCategories}
-                  categories={localStorage.getItem("user_id") ? ['myPosts', 'favorites'].concat(this.state.categories) : this.state.categories}
-                  filteredCategories={this.state.selectBy ? [this.state.selectBy].concat(this.state.filteredCategories) : this.state.filteredCategories}
+                  categories={this.state.categories}
+                  filteredCategories={this.state.categoryListReference}
                 />
               </Route>
               <Route path="/posts/:postID">
