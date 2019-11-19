@@ -37,5 +37,7 @@ export const API = {
   MAIN: APIBASE + "/main",
   AMPLIFY: APIBASE + "/modifyAmplifies",
   FAVORITE: APIBASE + "/modifyFavorite",
+  RESOLVE: APIBASE + "/markResolved",
+  DISPUTE: APIBASE + "/dispute",
   CATEGORIES: APIBASE + "/categories"
 };

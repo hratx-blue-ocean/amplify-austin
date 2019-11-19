@@ -15,6 +15,7 @@ const PostPage = props => {
   const [post, setPost] = useState(undefined);
   const [coords, setCoords] = useState([]);
   const [fave, setFave] = useState(props.favorite);
+  const [resolved, setResolved] = useState(undefined);
   // token
   const userID = localStorage.getItem("user_id");
   // helpers
@@ -30,7 +31,6 @@ const PostPage = props => {
       const response = await axios.get(API.ISSUE, {
         params: {
           userId: userID || "",
-          // replace with postID
           postId: postID
         }
       });
@@ -39,19 +39,28 @@ const PostPage = props => {
       if (postData === undefined) {
         throw new Error("no response from GET request");
       }
-      setPost(postData);
-      setCoords([
-        {
-          lat: postData.lat,
-          lng: postData.lng,
-          categoryName: postData.categoryName,
-          headline: postData.headline
-        }
-      ]);
+      setPostState(postData);
     } catch (error) {
       // TODO add error page
       console.error(error);
       history.push("/");
+    }
+  };
+
+  const setPostState = data => {
+    setPost(data);
+    setCoords([
+      {
+        lat: data.lat,
+        lng: data.lng,
+        categoryName: data.categoryName,
+        headline: data.headline
+      }
+    ]);
+    if (data.status === "disputed" || data.status === "open") {
+      setResolved(false);
+    } else {
+      setResolved(true);
     }
   };
 
@@ -70,14 +79,16 @@ const PostPage = props => {
     }
   };
 
-  const handleResolveDispute = () => {
-    console.log("Resolved or Disputed");
-    // TODO set post status to resolved or disputed
-    // if (this.post.resolved) {
-    //   axios.post("/ENDPOINT/postID", (dispute))
-    // } else {
-    //   axios.post("/ENDPOINT/postID", (resolved))
-    // }
+  const handleResolveDispute = async () => {
+    const ENDPOINT = resolved ? API.DISPUTE : API.RESOLVE;
+    const response = await axios.post(ENDPOINT, {
+      userId: userID,
+      postId: postID
+    });
+    // TODO: verify status
+    if (response.data.split(" ")[0] === "postId") {
+      setResolved(resolved ? false : true);
+    }
   };
 
   if (post) {
@@ -107,11 +118,10 @@ const PostPage = props => {
         </div>
         <PostPageButtons
           contacts={post.contacts}
-          resolved={post && post.status === "resolved" ? true : false}
+          resolved={resolved}
           handleResolveDispute={handleResolveDispute}
         />
         <div className={style.map}>
-          {/* TODO: use coordinates in get request */}
           <Map coordinates={coords}></Map>
         </div>
       </div>
