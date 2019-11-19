@@ -13,7 +13,7 @@ const containerStyles = makeStyles(theme => ({
 
 const PostContainer = props => {
   const postContStyles = containerStyles();
-  console.log(props);
+  // console.log(props);
   return (
     <div className={postContStyles.root}>
       {props.postData.map(post => {
