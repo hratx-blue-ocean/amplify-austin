@@ -27,9 +27,8 @@ export class App extends React.Component {
       posts: [],
       categories: [],
       filteredCategories: [],
-      categoryListReference: [],
       selectBy: null,
-      sortSelection: "popularity"
+      sortSelection: ["popularity"]
     };
 
     this.sortBy = this.sortBy.bind(this);
@@ -49,9 +48,8 @@ export class App extends React.Component {
   async getCategories() {
     try {
       const res = await axios.get(API.CATEGORIES);
-      const categories = res.data;
       this.setState({
-        categories: localStorage.getItem("user_id") ? ['myPosts', 'favorites'].concat(categories) : categories
+        categories: res.data
       });
     } catch (error) {
       console.log(error);
@@ -105,30 +103,12 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    let categories = [];
-    let favoritesIndex = -1;
-    let myPostsIndex = -1;
-    selected.forEach((category, i) => {
-      console.log(category.title)
-      if (category.title === 'favorites') {
-        favoritesIndex = i;
-      } else if (category.title === 'myPosts') {
-        myPostsIndex = i;
-      } else if (!categories.includes(category.title)) {
-        categories.push(category.title);
-      }
+    const categories = selected.map((category) => {
+      return category.title
     })
-    let selectByState = null;
-    if (favoritesIndex > myPostsIndex) {
-      selectByState = 'favorites';
-    } else if (favoritesIndex < myPostsIndex) {
-      selectByState = 'myPosts';
-    }
     this.setState({
-      categoryListReference: selectByState ? [selectByState].concat(categories) : categories,
       filteredCategories: categories,
-      selectBy: selectByState
-    }, () => console.log(this.state));
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -142,10 +122,9 @@ export class App extends React.Component {
   }
 
   changeSelectBy(selection) {
-    console.log(selection)
     this.setState({
       selectBy: selection
-    }, () => console.log(this.state));
+    });
   }
 
   render() {
@@ -160,10 +139,9 @@ export class App extends React.Component {
               <Route exact path="/">
                 <SortFilter
                   sortBy={this.sortBy}
-                  changeSelectBy={this.changeSelectBy}
-                  selectCategories={this.selectCategories}
                   categories={this.state.categories}
-                  filteredCategories={this.state.categoryListReference}
+                  selectCategories={this.selectCategories}
+                  filteredCategories={this.state.filteredCategories}
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
@@ -179,11 +157,12 @@ export class App extends React.Component {
               <PrivateRoute path="/create" component={Create} />
               <Route path="/map">
                 <MapPage
-                  sortBy={this.sortBy}
                   posts={this.state.posts}
-                  selectCategories={this.selectCategories}
+                  selectBy={this.state.selectBy}
                   categories={this.state.categories}
-                  filteredCategories={this.state.categoryListReference}
+                  changeSelectBy={this.changeSelectBy}
+                  selectCategories={this.selectCategories}
+                  filteredCategories={this.state.filteredCategories}
                 />
               </Route>
               <Route path="/posts/:postID">
