@@ -46,15 +46,14 @@ export class App extends React.Component {
 
   async getCategories() {
     try {
-      const res = await axios.get(API.CATEGORIES)
+      const res = await axios.get(API.CATEGORIES);
       this.setState({
         categories: res.data
-      })
+      });
     } catch (error) {
       console.log(error);
     }
   }
-
 
   async getInitialPosts() {
     try {
