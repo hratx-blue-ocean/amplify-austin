@@ -70,11 +70,6 @@ const PostPage = props => {
     }
   };
 
-  const handleReachOut = () => {
-    console.log("Reach Out");
-    // TODO send notification to contact list
-  };
-
   const handleResolveDispute = () => {
     console.log("Resolved or Disputed");
     // TODO set post status to resolved or disputed
@@ -84,8 +79,8 @@ const PostPage = props => {
     //   axios.post("/ENDPOINT/postID", (resolved))
     // }
   };
+
   if (post) {
-    console.log("in here");
     return (
       <div>
         <div className={style.titleField}>
@@ -111,6 +106,7 @@ const PostPage = props => {
           <p>{post.description}</p>
         </div>
         <PostPageButtons
+          contacts={post.contacts}
           resolved={post && post.status === "resolved" ? true : false}
           handleResolveDispute={handleResolveDispute}
         />

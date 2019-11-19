@@ -3,27 +3,29 @@
    applied later to scale for desktops */
 
    
-.container {
-  display: grid;
-  /* max-width: 414px; */
-  height: 100vh;
-  grid-template-rows: 56px 1fr;
-  margin: auto;
-  max-width: 600px;
-  grid-template-areas: 
-    "header"
-    "component";
-}
-
-.header {
-  width: 100%;
-  height: 100%;
-  grid-area: header;
-}
-
-.component {
-  height: 100%;
-  grid-area: component;
-  padding: 0 5%;
-  margin-top: 1vh;
-}
+   .container {
+    display: grid;
+    /* max-width: 414px; */
+    height: 100vh;
+    grid-template-rows: 56px 1fr;
+    margin: auto;
+    margin-top: 5%;
+    max-width: 600px;
+    min-width: 500px;
+    grid-template-areas: 
+      "header"
+      "component";
+  }
+  
+  .header {
+    width: 100%;
+    height: 100%;
+    grid-area: header;
+  }
+  
+  .component {
+    height: 100%;
+    grid-area: component;
+    padding: 0 5%;
+    margin-top: 1vh;
+  }
