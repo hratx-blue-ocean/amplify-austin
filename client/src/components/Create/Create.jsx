@@ -24,7 +24,6 @@ import { useHistory } from "react-router-dom";
 
 const Create = props => {
   let categories = [];
-  const [geoLocation, setGeoLocation] = useState("");
   const [category, setCategory] = useState("Category");
   const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
@@ -101,6 +100,10 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
+    if (!category || !title || !description || !location) {
+      alert("Required fields are missing!");
+      return;
+    }
     axios
       .post(API.ISSUE, {
         creatorId: parseInt(userID),
