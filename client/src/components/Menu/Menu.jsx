@@ -25,6 +25,8 @@ const Menu = props => {
         <button
           data-test="Home"
           onClick={() => {
+            // TODO push w/ filter for users favorites
+            props.changeSelectBy(null);
             history.push("/");
             onClose();
           }}
@@ -47,26 +49,30 @@ const Menu = props => {
               <ChatOutlinedIcon />
             </button>
           </div>
-          <div
-            onClick={() => {
-              // TODO push w/ filter for users posts
-              history.push("/");
-              onClose();
-            }}
-          >
-            <button data-test="MyPosts">
+          <div>
+            <button
+              data-test="MyPosts"
+              onClick={() => {
+                // TODO push w/ filter for users posts
+                props.changeSelectBy("myPosts");
+                history.push("/");
+                onClose();
+              }}
+            >
               My Posts
               <ChatOutlinedIcon />
             </button>
           </div>
-          <div
-            onClick={() => {
-              // TODO push w/ filter for users favorites
-              history.push("/");
-              onClose();
-            }}
-          >
-            <button data-test="Favorites">
+          <div>
+            <button
+              data-test="Favorites"
+              onClick={() => {
+                // TODO push w/ filter for users posts
+                props.changeSelectBy("favorites");
+                history.push("/");
+                onClose();
+              }}
+            >
               Favorites
               <StarBorderOutlinedIcon />
             </button>

@@ -80,6 +80,7 @@ const Post = props => {
   const history = useHistory();
   const defaultIcon = <Icon category={"mapMarker"} />;
   const [amp, setAmp] = useState(undefined);
+  const [fave, setFave] = useState(props.favorite);
 
   const userID = localStorage.getItem("user_id");
 
@@ -97,6 +98,21 @@ const Post = props => {
     }
   };
 
+  const handleFavorite = async e => {
+    e.stopPropagation();
+    try {
+      const response = await axios.post(API.FAVORITE, {
+        userId: userID,
+        postId: props.postID
+      });
+      if (response.data.split(" ")[0] === "postId") {
+        setFave(!fave);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     // if other flag, display "other" icon and NOT category icon
     <div className={styles.root}>
@@ -104,7 +120,7 @@ const Post = props => {
         <Grid item xs={2} container direction="column">
           <Grid item xs className={styles.arrow}>
             <IconButton
-              style={amp ? { color: "orange" } : undefined}
+              style={amp ? { color: "orange", padding: "0" } : { padding: "0" }}
               onClick={handleAmplify}
               aria-label="delete"
             >
@@ -134,8 +150,8 @@ const Post = props => {
               {props.category === "Other" ? (
                 defaultIcon
               ) : (
-                  <Icon category={props.category.toLowerCase()} />
-                )}
+                <Icon category={props.category.toLowerCase()} />
+              )}
             </Grid>
             <Grid
               item
@@ -160,17 +176,12 @@ const Post = props => {
               </Grid>
               <Grid item xs={2} className={styles.star}>
                 {/* width: 100% */}
-                <div
-                  onClick={e => {
-                    e.stopPropagation();
-                    console.log("clicked");
-                  }}
-                >
-                  {props.favorited === true ? (
+                <div onClick={handleFavorite}>
+                  {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
+                    <EmptyStarIcon></EmptyStarIcon>
+                  )}
                 </div>
               </Grid>
             </Grid>
@@ -185,7 +196,7 @@ const Post = props => {
               </Grid>
               <Grid item xs={5}>
                 <Typography gutterBottom className={styles.address}>
-                  {props.location}
+                  {props.address}
                 </Typography>
               </Grid>
             </Grid>

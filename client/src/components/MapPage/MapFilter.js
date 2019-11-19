@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
 
 const MapFilter = props => {
   const menuStyles = useStyles();
-
   return (
     <div className={menuStyles.root}>
       <Grid
@@ -23,7 +22,11 @@ const MapFilter = props => {
         alignItems="center"
       >
         <Grid item xs={6}>
-          <CategorySelect selectCategories={props.selectCategories} />
+          <CategorySelect
+            categories={props.categories}
+            selectCategories={props.selectCategories}
+            filteredCategories={props.filteredCategories}
+          />
         </Grid>
       </Grid>
     </div>

@@ -8,7 +8,8 @@ const MiniPost = ({ title, postId }) => {
   return (
     <div className={styles.container}>
       <div onClick={() => history.push(`posts/${postId}`)}>
-        {`${title.slice(0, 26)}`}{title.length > 25 && `...`}
+        {`${title.slice(0, 26)}`}
+        {title.length > 25 && `...`}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@
 }
 
 .RadioContainer {
+  margin-top: 15%;
   padding: auto;
   display: grid;
   grid-template-rows: 1fr;
@@ -21,4 +22,10 @@
   display: Flex;
   margin: auto auto;
   align-content: center;
+}
+
+.LocationDiv {
+  display: grid;
+  grid-template-rows: 0.5fr 0.5fr;
+  grid-template-columns: 1fr;
 }

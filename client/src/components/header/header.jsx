@@ -9,7 +9,7 @@ import style from "./header.module.css";
 
 const styles = {
   paper: {
-    background: "#6202ee",
+    background: "#34435E",
     color: "white"
   }
 };
@@ -59,7 +59,7 @@ const Header = props => {
         onClose={toggleMenu}
         classes={{ paper: classes.paper }}
       >
-        <Menu onClose={toggleMenu} />
+        <Menu onClose={toggleMenu} changeSelectBy={props.changeSelectBy} />
       </Drawer>
     </React.Fragment>
   );
