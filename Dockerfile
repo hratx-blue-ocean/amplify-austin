@@ -1,7 +1,12 @@
-FROM node:10.17.0-alpine
-WORKDIR /src/app
-RUN npm run setup
+FROM node:10
+WORKDIR /usr/src/app
+COPY package*.json ./
+COPY ./client/package*.json ./
+COPY ./db/package*.json ./
+COPY ./server/package*.json ./
+RUN npm install
 COPY . .
-RUN npm run deploy
+RUN npm run deploy:build
 EXPOSE 8000
-CMD [ "node", "server.js" ]
+CMD [ "node", "./server/bin/www" ]
+
