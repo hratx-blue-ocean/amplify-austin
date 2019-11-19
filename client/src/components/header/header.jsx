@@ -46,7 +46,7 @@ const Header = props => {
               history.push("/");
             }}
           />
-          {name === "Login / Sign-Up" ?
+          {name === "Login / Sign-Up" ? (
             <p
               className={style.conditionalRenderP}
               onClick={() => {
@@ -55,13 +55,9 @@ const Header = props => {
             >
               {name}
             </p>
-            :
-            <p
-              className={style.conditionalRenderP}
-            >
-              {name}
-            </p>
-          }
+          ) : (
+            <p className={style.conditionalRenderP}>{name}</p>
+          )}
         </div>
         <div className={style.navigatingDiv}>
           <MapOutlinedIcon
