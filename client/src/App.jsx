@@ -28,7 +28,7 @@ export class App extends React.Component {
       categories: [],
       filteredCategories: [],
       selectBy: null,
-      sortSelection: ["popularity"]
+      sortSelection: "popularity"
     };
 
     this.sortBy = this.sortBy.bind(this);
