@@ -1,11 +1,10 @@
 .NavBarContainer {
   position: relative;
-  top: 9vh;
+  top: 14vh;
   bottom: 0;
   display: grid;
   grid-template-columns: 200px;
-  grid-template-rows: repeat(7, .5fr);
-
+  grid-template-rows: repeat(7, 0.5fr);
 }
 
 .NavBarContainer button {

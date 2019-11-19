@@ -27,7 +27,7 @@ const Header = props => {
   };
 
   useEffect(() => {
-    username ? setName(username) : setName("");
+    username ? setName(username) : setName("Login / Sign-Up");
   }, [username, name]);
 
   return (
@@ -36,13 +36,26 @@ const Header = props => {
         <div className={style.navigatingDiv}>
           <MenuIcon onClick={toggleMenu} style={{ height: 30, width: 30 }} />
         </div>
-        <div
-          className={style.navigatingDiv}
-          onClick={() => {
-            history.push("/home");
-          }}
-        >
-          <p>Amplify Austin</p> <p>{name}</p>
+        <div>
+          <img
+            height="50"
+            width="60"
+            src="amplify_austinwhite.png"
+            className={style.navigatingDiv}
+            onClick={() => {
+              history.push("/");
+            }}
+          />
+          <p
+            id={style.conditionalRenderP}
+            onClick={() => {
+              if (name === "Login / Sign-Up") {
+                history.push("/signin");
+              }
+            }}
+          >
+            {name}
+          </p>
         </div>
         <div className={style.navigatingDiv}>
           <MapOutlinedIcon
