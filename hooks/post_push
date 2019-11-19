@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker tag production:latest 351788166609.dkr.ecr.us-east-2.amazonaws.com/amplifyaustin:latest
+docker tag blueoceanhr/production:latest 351788166609.dkr.ecr.us-east-2.amazonaws.com/amplifyaustin:latest
 docker push 351788166609.dkr.ecr.us-east-2.amazonaws.com/blueocean/production:latest
