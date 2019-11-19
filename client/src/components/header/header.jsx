@@ -16,9 +16,7 @@ const styles = {
 
 const Header = props => {
   const [menuToggled, setMenuToggled] = useState(false);
-  const [name, setName] = useState("");
   const { classes } = props;
-  const username = localStorage.getItem("username");
   const history = useHistory();
 
   const toggleMenu = () => {
@@ -26,20 +24,8 @@ const Header = props => {
     setMenuToggled(reverse);
   };
 
-  useEffect(() => {
-    username ? setName(username) : setName("Login / Sign-Up");
-  }, [username, name]);
-
   const navToHome = () => {
     history.push("/");
-  };
-
-  const navToSignIn = () => {
-    history.push("/signin");
-  };
-
-  const navToSignUp = () => {
-    history.push("/signup");
   };
 
   const navToMap = () => {
@@ -60,14 +46,6 @@ const Header = props => {
             className={style.navigatingDiv}
             onClick={navToHome}
           />
-          {name === "Login / Sign-Up" ? (
-            <p className={style.conditionalRenderP}>
-              <span onClick={navToSignIn}>Login</span> /{" "}
-              <span onClick={navToSignUp}>Sign Up</span>
-            </p>
-          ) : (
-            <p className={style.conditionalRenderP}>{name}</p>
-          )}
         </div>
         <div className={style.navigatingDiv}>
           <MapOutlinedIcon

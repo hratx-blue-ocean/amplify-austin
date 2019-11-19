@@ -11,17 +11,27 @@ const Menu = props => {
   const [auth, setAuth] = useState();
   const history = useHistory();
   const onClose = props.onClose;
+  const username = localStorage.getItem("username");
+  const [name, setName] = useState("");
 
   useEffect(() => {
+    username ? setName(username) : setName("Login / Sign-Up");
     if (localStorage.getItem("user_id")) {
       setAuth(true);
     } else {
       setAuth(false);
     }
-  }, [auth]);
+  }, [auth, username, name]);
 
   return (
     <div className={style.NavBarContainer} data-test="NavMenu">
+      <div>
+        {name === "Login / Sign-Up" ? (
+          ""
+        ) : (
+          <p className={style.conditionalRenderP}>{name}</p>
+        )}
+      </div>
       <div>
         <Button
           onClick={() => {
@@ -75,7 +85,7 @@ const Menu = props => {
               variant="contained"
               endIcon={<StarBorderOutlinedIcon />}
             >
-              Favorites
+              Watch List
             </Button>
           </div>
         </>
