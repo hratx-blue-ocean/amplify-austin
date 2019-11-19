@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import clsx from "clsx";
-import CurrentLocationButton from './CurrentLocationButton';
+import CurrentLocationButton from "./CurrentLocationButton";
 import TextField from "@material-ui/core/TextField";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -60,7 +60,6 @@ const Create = props => {
         ];
       });
   }, []);
-
 
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
