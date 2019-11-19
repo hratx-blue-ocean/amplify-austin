@@ -15,7 +15,7 @@ const Tags = props => {
   return (
     <div style={{ width: "100%" }}>
       <Autocomplete
-        style={{ margin: '0' }}
+        style={{ margin: "0" }}
         multiple
         id="tags-standard"
         options={props.categories.map(cat => {
