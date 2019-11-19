@@ -1,30 +1,26 @@
 .headerContainer {
-  z-index: 2000;
+  z-index: 2;
   position: fixed;
-  top: -15px;
+  top: 0px;
   left: 0;
   right: 0;
   margin: 0;
   text-align: center;
   align-content: center;
-  height: 14vh;
+  height: 10vh;
   color: white;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 50px;
+  /* grid-template-rows: 50px; */
   background-color: #34435e;
 }
 
-.headerContainer p {
-  margin: auto;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-#conditionalRenderP {
+.conditionalRenderP {
   margin: auto;
   font-size: 14px;
   cursor: pointer;
 }
+
 .headerContainer div {
   margin: auto;
 }

@@ -118,7 +118,7 @@ const Menu = props => {
               variant="contained"
             >
               {" "}
-              Sign In{" "}
+              Login{" "}
             </Button>
           </div>
           <div>
