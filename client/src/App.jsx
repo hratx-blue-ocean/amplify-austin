@@ -105,11 +105,11 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    const categories = selected.map((category) => {
-      return category.title
-    })
+    const categories = selected.map(category => {
+      return category.title;
+    });
     this.setState({
-      filteredCategories: categories,
+      filteredCategories: categories
     });
   }
 
@@ -133,7 +133,7 @@ export class App extends React.Component {
     return (
       <Router>
         <div className={styles.container}>
-            <Header changeSelectBy={this.changeSelectBy.bind(this)} />
+          <Header changeSelectBy={this.changeSelectBy.bind(this)} />
           {/* <div className={styles.header}>
           </div> */}
           <div className={styles.component}>
@@ -179,7 +179,7 @@ export class App extends React.Component {
             </Switch>
           </div>
         </div>
-      </Router >
+      </Router>
     );
   }
 }
