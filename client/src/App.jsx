@@ -49,10 +49,6 @@ export class App extends React.Component {
     try {
       const res = await axios.get(API.CATEGORIES);
       const categories = res.data;
-      if (localStorage.getItem("user_id")) {
-        categories.unshift('myPosts');
-        categories.unshift('favorites');
-      }
       this.setState({
         categories: categories
       });
@@ -108,16 +104,15 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    console.log("These are the selected categories: ", selected);
     let categories = [];
     let favoritesIndex = -1;
     let myPostsIndex = -1;
     selected.forEach((category, i) => {
-      if (category.title === 'Favorites') {
+      if (category.title === 'favorites') {
         favoritesIndex = i;
-      } else if (category.title === 'MyPosts') {
+      } else if (category.title === 'myPosts') {
         myPostsIndex = i;
-      } else {
+      } else if (!categories.includes(category.title)) {
         categories.push(category.title);
       }
     })
@@ -128,7 +123,7 @@ export class App extends React.Component {
       selectByState = 'myPosts';
     }
     this.setState({
-      filteredCategories: selectByState ? [selectByState].concat(categories) : categories,
+      filteredCategories: categories,
       selectBy: selectByState
     }, () => console.log(this.state));
   }
@@ -162,10 +157,10 @@ export class App extends React.Component {
               <Route exact path="/">
                 <SortFilter
                   sortBy={this.sortBy}
-                  categories={this.state.categories}
                   changeSelectBy={this.changeSelectBy}
                   selectCategories={this.selectCategories}
-                  filteredCategories={this.state.filteredCategories}
+                  categories={localStorage.getItem("user_id") ? ['myPosts', 'favorites'].concat(this.state.categories) : this.state.categories}
+                  filteredCategories={this.state.selectBy ? [this.state.selectBy].concat(this.state.filteredCategories) : this.state.filteredCategories}
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
@@ -183,9 +178,9 @@ export class App extends React.Component {
                 <MapPage
                   sortBy={this.sortBy}
                   posts={this.state.posts}
-                  categories={this.state.categories}
                   selectCategories={this.selectCategories}
-                  filteredCategories={this.state.filteredCategories}
+                  categories={localStorage.getItem("user_id") ? ['myPosts', 'favorites'].concat(this.state.categories) : this.state.categories}
+                  filteredCategories={this.state.selectBy ? [this.state.selectBy].concat(this.state.filteredCategories) : this.state.filteredCategories}
                 />
               </Route>
               <Route path="/posts/:postID">
@@ -198,7 +193,7 @@ export class App extends React.Component {
             </Switch>
           </div>
         </div>
-      </Router>
+      </Router >
     );
   }
 }
