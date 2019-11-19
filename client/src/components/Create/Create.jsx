@@ -100,7 +100,7 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-    if (!category || !title || !description || !location) {
+    if (category === "Category" || !title || !description || !location) {
       alert("Required fields are missing!");
       return;
     }
