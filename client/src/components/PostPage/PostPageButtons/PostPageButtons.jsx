@@ -16,33 +16,24 @@ export const PostPageButtons = ({ status, contact, handleStatus }) => {
       <button onClick={handleOpen} className={style.reachOutBtn}>
         Reach Out
       </button>
-      <ReachOutDialog
-        contact={contact}
-        open={open}
-        onClose={handleClose}
-      />
+      <ReachOutDialog contact={contact} open={open} onClose={handleClose} />
       {status === "resolved" ? (
-        <button
-          onClick={handleStatus}
-          className={style.disputeBtn}
-        >
+        <button onClick={handleStatus} className={style.disputeBtn}>
           Dispute Resolution
         </button>
-      ) : status === "disputed" ?
-          <button
-            disabled
-            title={"The resolution of this issue is currently in dispute"}
-            className={style.disputed}
-          >
-            Disputed...
-        </button> : (
-            <button
-              onClick={handleStatus}
-              className={style.resolvedBtn}
-            >
-              Mark Resolved
+      ) : status === "disputed" ? (
+        <button
+          disabled
+          title={"The resolution of this issue is currently in dispute"}
+          className={style.disputed}
+        >
+          Disputed...
         </button>
-          )}
+      ) : (
+        <button onClick={handleStatus} className={style.resolvedBtn}>
+          Mark Resolved
+        </button>
+      )}
     </div>
   );
 };

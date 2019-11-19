@@ -2,7 +2,7 @@ import React from "react";
 import CategorySelect from "../SortFilter/CategorySelect/CategorySelect";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import MapPostSelect from './MapPostSelect';
+import MapPostSelect from "./MapPostSelect";
 
 const useStyles = makeStyles(theme => ({
   root: {
