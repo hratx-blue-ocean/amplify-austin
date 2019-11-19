@@ -1,5 +1,5 @@
 FROM node:10
-WORKDIR /usr/src/app
+WORKDIR /production
 COPY . .
 RUN npm run deploy:build
 EXPOSE 8000
