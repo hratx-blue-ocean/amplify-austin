@@ -16,19 +16,13 @@ const styles = {
 
 const Header = props => {
   const [menuToggled, setMenuToggled] = useState(false);
-  const [name, setName] = useState("");
   const { classes } = props;
-  const username = localStorage.getItem("username");
   const history = useHistory();
 
   const toggleMenu = () => {
     let reverse = !menuToggled;
     setMenuToggled(reverse);
   };
-
-  useEffect(() => {
-    username ? setName(username) : setName("Login / Sign-Up");
-  }, [username, name]);
 
   const navToHome = () => {
     history.push("/");
