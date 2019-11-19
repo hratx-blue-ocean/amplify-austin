@@ -133,9 +133,9 @@ export class App extends React.Component {
     return (
       <Router>
         <div className={styles.container}>
-          <div className={styles.header}>
             <Header changeSelectBy={this.changeSelectBy.bind(this)} />
-          </div>
+          {/* <div className={styles.header}>
+          </div> */}
           <div className={styles.component}>
             <Switch>
               <Route exact path="/">
