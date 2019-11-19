@@ -27,6 +27,46 @@ const deleteRow = function (tableName, rowId) {
     })
 }
 
+const modifyEntry = function (tableName, colName, newVal, conditionCol, conditionVal) {
+    return new Promise((resolve, reject) => {
+        const modifyEntry = `UPDATE ${tableName} SET ${colName}=${newVal} WHERE ${conditionCol}=${conditionVal}` + ';'
+        console.log(modifyEntry);
+        connection.query(modifyEntry, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(value);
+            }
+        })
+    })
+}
+
+const selectVal = function (tableName, colName, conditionCol, conditionVal, returnKey) {
+    return new Promise((resolve, reject) => {
+        const selectEntry = `SELECT ${colName} FROM ${tableName} WHERE ${conditionCol}=${conditionVal}` + ';'
+        connection.query(selectEntry, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                console.log('resolveVal helper', value[0].status)
+                resolve(value[0][returnKey]);
+            }
+        })
+    })
+}
+
+const promisedQuery = function (query) {
+    return new Promise((resolve, reject) => {
+        connection.query(query, (err, value) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(value);
+            }
+        })
+    })
+}
+
 const getCanAmplify = function (postId, userId) {
     return new Promise((resolve, reject) => {
         if (!userId) {
@@ -97,4 +137,4 @@ const getContacts = function (categoryId) {
         })
     })
 }
-module.exports = { getRow, deleteRow, getCanAmplify, getFavorited, getCategoryName, getContacts }
+module.exports = { getRow, deleteRow, modifyEntry, selectVal, promisedQuery, getCanAmplify, getFavorited, getCategoryName, getContacts }
