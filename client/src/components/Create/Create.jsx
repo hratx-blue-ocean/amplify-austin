@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import clsx from "clsx";
+import CurrentLocationButton from './CurrentLocationButton';
 import TextField from "@material-ui/core/TextField";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -22,6 +23,7 @@ import { useHistory } from "react-router-dom";
 
 const Create = props => {
   let categories = [];
+  const [geoLocation, setGeoLocation] = useState("");
   const [category, setCategory] = useState("Category");
   const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
@@ -58,6 +60,7 @@ const Create = props => {
         ];
       });
   }, []);
+
 
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
@@ -259,6 +262,7 @@ const Create = props => {
           >
             Submit
           </Button>
+          <CurrentLocationButton setGeoLocation={setGeoLocation} />
         </div>
       </div>
       {/* This is the success or error section */}
