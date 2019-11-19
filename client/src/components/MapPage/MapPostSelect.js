@@ -31,7 +31,7 @@ export default function SimpleSelect(props) {
         >
           <MenuItem value={null}>All Posts</MenuItem>
           <MenuItem value={'myPosts'}>My Posts</MenuItem>
-          <MenuItem value={'favorites'}>Favorites</MenuItem>
+          <MenuItem value={'favorites'}>Watch List</MenuItem>
         </Select>
       </FormControl>
     </div>
