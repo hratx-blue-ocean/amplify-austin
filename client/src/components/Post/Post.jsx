@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: "1%"
   },
   address: {
-    marginRight: '7px',
+    marginRight: "7px",
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: "0.75rem",
@@ -151,8 +151,8 @@ const Post = props => {
               {props.category === "Other" ? (
                 defaultIcon
               ) : (
-                  <Icon category={props.category.toLowerCase()} />
-                )}
+                <Icon category={props.category.toLowerCase()} />
+              )}
             </Grid>
             <Grid
               item
@@ -181,8 +181,8 @@ const Post = props => {
                   {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
+                    <EmptyStarIcon></EmptyStarIcon>
+                  )}
                 </div>
               </Grid>
             </Grid>
