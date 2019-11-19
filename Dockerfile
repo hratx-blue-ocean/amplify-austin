@@ -2,6 +2,6 @@ FROM node:10
 WORKDIR /production
 COPY . .
 RUN npm run deploy:build
-EXPOSE 8000
+EXPOSE 8080
 CMD [ "node", "./server/bin/www" ]
 
