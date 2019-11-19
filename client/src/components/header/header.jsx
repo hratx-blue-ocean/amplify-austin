@@ -34,14 +34,6 @@ const Header = props => {
     history.push("/");
   };
 
-  const navToSignIn = () => {
-    history.push("/signin");
-  };
-
-  const navToSignUp = () => {
-    history.push("/signup");
-  };
-
   const navToMap = () => {
     history.push("/map");
   };
@@ -60,14 +52,6 @@ const Header = props => {
             className={style.navigatingDiv}
             onClick={navToHome}
           />
-          {name === "Login / Sign-Up" ? (
-            <p className={style.conditionalRenderP}>
-              <span onClick={navToSignIn}>Login</span> /{" "}
-              <span onClick={navToSignUp}>Sign Up</span>
-            </p>
-          ) : (
-            <p className={style.conditionalRenderP}>{name}</p>
-          )}
         </div>
         <div className={style.navigatingDiv}>
           <MapOutlinedIcon

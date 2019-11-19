@@ -7,8 +7,11 @@ import SignIn from "./components/SignIn/SignIn";
 import MapPage from "./components/MapPage/MapPage";
 import PostPage from "./components/PostPage/PostPage";
 import Create from "./components/Create/Create";
+import Title from "./components/header/title";
 import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
+import UserStatus from "./components/userStatus/UserStatus";
+
 import { allIssues, firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
@@ -30,7 +33,6 @@ export class App extends React.Component {
       selectBy: null,
       sortSelection: "popularity"
     };
-
     this.sortBy = this.sortBy.bind(this);
     this.selectCategories = this.selectCategories.bind(this);
   }
@@ -136,6 +138,8 @@ export class App extends React.Component {
           <div className={styles.component}>
             <Switch>
               <Route exact path="/">
+                <UserStatus />
+                <Title title={this.state.selectBy} />
                 <SortFilter
                   sortBy={this.sortBy}
                   categories={this.state.categories}
