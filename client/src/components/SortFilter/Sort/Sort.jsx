@@ -1,50 +1,67 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
 
-const ConditionMenu = props => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    justifyContent: "flex-start",
+    minWidth: "30%"
+  }
+}));
+
+const Sort = props => {
+  const classes = useStyles();
+  const [age, setAge] = React.useState("");
+  const [open, setOpen] = React.useState(false);
   const menuItems = ["popularity", "date"];
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
+  const handleChange = event => {
+    setAge(event.target.value);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
   };
 
   return (
     <div>
-      <Button
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        Sort By:
-      </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {menuItems.map((option, index) => (
-          <MenuItem
-            key={option}
-            value={option}
-            onClick={() => {
-              props.sortBy(option);
-            }}
-          >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-controlled-open-select-label">
+          Sort By...
+        </InputLabel>
+        <Select
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={age}
+          onChange={handleChange}
+        >
+          {menuItems.map((option, index) => (
+            <MenuItem
+              key={option}
+              value={option}
+              onClick={() => {
+                props.sortBy(option);
+              }}
+            >
+              {option}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </div>
   );
 };
 
-export default ConditionMenu;
+export default Sort;
