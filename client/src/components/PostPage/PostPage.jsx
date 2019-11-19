@@ -39,7 +39,7 @@ const PostPage = props => {
       if (postData === undefined) {
         throw new Error("no response from GET request");
       }
-      setPostState(postData)
+      setPostState(postData);
     } catch (error) {
       // TODO add error page
       console.error(error);
@@ -47,7 +47,7 @@ const PostPage = props => {
     }
   };
 
-  const setPostState = (data) => {
+  const setPostState = data => {
     setPost(data);
     setCoords([
       {
@@ -58,11 +58,11 @@ const PostPage = props => {
       }
     ]);
     if (data.status === "disputed" || data.status === "open") {
-      setResolved(false)
+      setResolved(false);
     } else {
-      setResolved(true)
+      setResolved(true);
     }
-  }
+  };
 
   const handleFavorite = async e => {
     e.stopPropagation();
@@ -108,8 +108,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                  <EmptyStarIcon></EmptyStarIcon>
-                )}
+                <EmptyStarIcon></EmptyStarIcon>
+              )}
             </div>
           </div>
         </div>
