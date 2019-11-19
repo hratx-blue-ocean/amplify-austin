@@ -1,16 +1,13 @@
 import React from "react";
-// import Chip from "@material-ui/core/Chip";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const Tags = props => {
-  let selected = React.createRef();
   let defaultValues = [];
-
   if (props.filteredCategories) {
-    categories.forEach(category => {
-      if (props.filteredCategories.includes(category.title)) {
-        defaultValues.push(category);
+    props.categories.forEach(category => {
+      if (props.filteredCategories.includes(category)) {
+        defaultValues.push({ title: category });
       }
     });
   }
@@ -20,7 +17,7 @@ const Tags = props => {
       <Autocomplete
         multiple
         id="tags-standard"
-        options={categories}
+        options={props.categories.map((cat) => { return { title: cat } })}
         getOptionLabel={option => option.title}
         defaultValue={defaultValues}
         onChange={(event, value) => props.selectCategories(value)}
@@ -38,22 +35,5 @@ const Tags = props => {
     </div>
   );
 };
-
-const categories = [
-  { title: "accessibility" },
-  { title: "danger" },
-  { title: "events" },
-  { title: "food" },
-  { title: "garbage" },
-  { title: "graffiti" },
-  { title: "music" },
-  { title: "nature" },
-  { title: "parking" },
-  { title: "pet" },
-  { title: "school" },
-  { title: "townhall" },
-  { title: "water" },
-  { title: "other" }
-];
 
 export default Tags;

@@ -23,12 +23,14 @@ const SortFilter = props => {
         justify="center"
         direction="row"
         alignItems="center"
+        style={{ margin: '0' }}
       >
         <Grid item xs={6}>
           <ConditionMenu sortBy={props.sortBy} />
         </Grid>
         <Grid item xs={6}>
           <CategorySelect
+            categories={props.categories}
             selectCategories={props.selectCategories}
             filteredCategories={props.filteredCategories}
           />

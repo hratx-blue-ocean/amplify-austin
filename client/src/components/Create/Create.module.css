@@ -23,3 +23,9 @@
   margin: auto auto;
   align-content: center;
 }
+
+.LocationDiv {
+  display: grid;
+  grid-template-rows: 0.5fr 0.5fr;
+  grid-template-columns: 1fr;
+}
