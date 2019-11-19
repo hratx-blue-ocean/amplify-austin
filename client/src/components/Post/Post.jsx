@@ -67,6 +67,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: "1%"
   },
   address: {
+    marginRight: "7px",
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: "0.75rem",
