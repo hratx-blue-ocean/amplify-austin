@@ -8,14 +8,13 @@ class CurrentLocationButton extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <button onClick={() => {
           if (!this.props.isGeolocationAvailable) {
             console.log('GeoLocation is not available on this browser!')
           } else if (!this.props.isGeolocationEnabled) {
-            console.log('Geolacation is not enabled')
+            console.log('GeoLocation is not enabled')
           } else {
             // Nab Latitude and Longitude, send off to Google API for decoding
             let key = `&key=${process.env.REACT_APP_MAP_API_KEY}`;
@@ -36,7 +35,7 @@ class CurrentLocationButton extends React.Component {
                     shortAddress = `${shortAddress} ${addressPart}`;
                   }
                 }
-                console.log(shortAddress.trim());
+                this.props.setLocation(shortAddress.trim());
               })
           }
         }}>Where I'm At</button>

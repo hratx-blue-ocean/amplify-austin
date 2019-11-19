@@ -225,6 +225,7 @@ const Create = props => {
               onChange={event => {
                 setLocation(event.target.value);
               }}
+              value={location}
               fullWidth={true}
               label="Location"
               margin="normal"
@@ -262,7 +263,7 @@ const Create = props => {
           >
             Submit
           </Button>
-          <CurrentLocationButton setGeoLocation={setGeoLocation} />
+          <CurrentLocationButton setLocation={setLocation} />
         </div>
       </div>
       {/* This is the success or error section */}
