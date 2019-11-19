@@ -37,11 +37,9 @@ const Create = props => {
     axios
       .get("http://localhost:8000/api/categories")
       .then(res => {
-        console.log(res.data);
         setHungry(res.data);
       })
       .catch(error => {
-        console.log("error occured within the creation of categories");
         categories = [
           "Category",
           "Accessibility",
@@ -194,7 +192,9 @@ const Create = props => {
               setTitle(event.target.value);
             }}
             fullWidth={true}
-            placeholder="Title"
+            label="Title"
+            color="secondary"
+            margin="normal"
             required={true}
             variant="outlined"
           />
@@ -206,38 +206,46 @@ const Create = props => {
               setDescription(event.target.value);
             }}
             fullWidth={true}
-            placeholder="Description"
+            label="Description"
+            margin="normal"
             required={true}
+            color="secondary"
             variant="outlined"
             multiline={true}
             rows={10}
           />
         </div>
         {/* This is the location section */}
-        <div className={Style.ContentsDiv}>
-          <TextField
-            onChange={event => {
-              setLocation(event.target.value);
-            }}
-            fullWidth={true}
-            placeholder="Location"
-            required={true}
-            variant="outlined"
-          />
-          <TextField
-            fullWidth={true}
-            placeholder="Austin"
-            required={true}
-            variant="outlined"
-            disabled={true}
-          />
-          <TextField
-            fullWidth={true}
-            placeholder="Tx"
-            required={true}
-            variant="outlined"
-            disabled={true}
-          />
+        <div className={Style.LocationDiv}>
+          <div className={Style.ContentsDiv}>
+            <TextField
+              onChange={event => {
+                setLocation(event.target.value);
+              }}
+              fullWidth={true}
+              label="Location"
+              margin="normal"
+              color="secondary"
+              required={true}
+              variant="outlined"
+            />
+          </div>
+          <div className={Style.ContentsDiv}>
+            <TextField
+              fullWidth={true}
+              label="Austin"
+              margin="normal"
+              variant="outlined"
+              disabled={true}
+            />
+            <TextField
+              fullWidth={true}
+              label="Tx"
+              margin="normal"
+              variant="outlined"
+              disabled={true}
+            />
+          </div>
         </div>
         {/* This is the issue or event section */}
         <div className={Style.ContentsDiv}>{IssueOrEventRender()}</div>
