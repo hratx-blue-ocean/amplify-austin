@@ -1,6 +1,6 @@
 .NavBarContainer {
   position: relative;
-  top: 14vh;
+  top: 9vh;
   bottom: 0;
   display: grid;
   grid-template-columns: 200px;
