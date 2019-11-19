@@ -15,9 +15,12 @@ const Tags = props => {
   return (
     <div style={{ width: "100%" }}>
       <Autocomplete
+        style={{ margin: "0" }}
         multiple
         id="tags-standard"
-        options={props.categories.map((cat) => { return { title: cat } })}
+        options={props.categories.map(cat => {
+          return { title: cat };
+        })}
         getOptionLabel={option => option.title}
         defaultValue={defaultValues}
         onChange={(event, value) => props.selectCategories(value)}
