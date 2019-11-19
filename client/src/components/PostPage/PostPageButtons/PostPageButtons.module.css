@@ -18,7 +18,8 @@
 }
 
 .disputeBtn {
-  background-color: darkorange;
+  background-color: rgb(84, 84, 196);
+  color: white;
 }
 
 .resolvedBtn {
