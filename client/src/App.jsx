@@ -107,11 +107,9 @@ export class App extends React.Component {
       return elem.title;
     });
     this.setState({ filteredCategories: categories });
-    console.log("We have reset state");
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("State updated!");
     console.log(this.state.selectBy);
     if (
       prevState.sortSelection !== this.state.sortSelection ||
