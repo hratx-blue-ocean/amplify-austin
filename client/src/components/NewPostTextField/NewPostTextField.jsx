@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -14,6 +15,12 @@ const useStyles = makeStyles(theme => ({
 
 const NewPostTextField = props => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleRedirect = e => {
+    e.preventDefault();
+    history.push("/create");
+  };
 
   return (
     <div>
@@ -23,7 +30,11 @@ const NewPostTextField = props => {
             <AccountCircle />
           </Grid>
           <Grid item>
-            <TextField id="input-with-icon-grid" label="Add a new post..." />
+            <TextField
+              onClick={handleRedirect}
+              id="input-with-icon-grid"
+              label="Add a new post..."
+            />
           </Grid>
         </Grid>
       </div>

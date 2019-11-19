@@ -36,7 +36,7 @@ class Icon extends React.Component {
         return <CarIconCustom />;
       case ICONLABEL.danger:
         return <DangerIcon />;
-      case ICONLABEL.event:
+      case ICONLABEL.events:
         return <EventIcon />;
       case ICONLABEL.food:
         return <FoodIcon />;
@@ -77,7 +77,8 @@ class Icon extends React.Component {
       case ICONLABEL.water:
         return <WaterIcon />;
       default:
-        return undefined;
+        // TODO pick a default icon
+        return <MapMarkerIcon />;
     }
   }
 }

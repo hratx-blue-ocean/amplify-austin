@@ -3,7 +3,7 @@ export const ICONLABEL = {
   add: "add",
   car: "car",
   danger: "danger",
-  event: "event",
+  events: "events",
   food: "food",
   garbage: "garbage",
   graffiti: "graffiti",
@@ -23,4 +23,21 @@ export const ICONLABEL = {
   starFilled: "filledStar",
   townhall: "townhall",
   water: "water"
+};
+
+const HOST = "http://localhost:8000";
+const APIBASE = HOST + "/api";
+
+export const API = {
+  HOST,
+  APIBASE,
+  ISSUE: APIBASE + "/issue",
+  LOGIN: APIBASE + "/login",
+  SIGNUP: APIBASE + "/signup",
+  MAIN: APIBASE + "/main",
+  AMPLIFY: APIBASE + "/modifyAmplifies",
+  FAVORITE: APIBASE + "/modifyFavorite",
+  RESOLVE: APIBASE + "/markResolved",
+  DISPUTE: APIBASE + "/dispute",
+  CATEGORIES: APIBASE + "/categories"
 };

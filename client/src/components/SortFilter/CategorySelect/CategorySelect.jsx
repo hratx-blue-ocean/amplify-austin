@@ -1,23 +1,37 @@
 import React from "react";
-import Chip from "@material-ui/core/Chip";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-export default function Tags() {
+const Tags = props => {
+  const defaultValues = [];
+  // Don't let it break if it's ever undefined
+  if (props.filteredCategories) {
+    props.categories.forEach(category => {
+      if (props.filteredCategories.includes(category)) {
+        defaultValues.push({ title: category });
+      }
+    });
+  }
+
   return (
     <div style={{ width: "100%" }}>
       <Autocomplete
+        style={{ margin: "0" }}
         multiple
         id="tags-standard"
-        options={categories}
+        options={props.categories.map(category => {
+          return { title: category };
+        })}
         getOptionLabel={option => option.title}
-        defaultValue={[categories[0].title]}
+        getOptionDisabled={option => props.filteredCategories.includes(option.title)}
+        defaultValue={defaultValues}
+        onChange={(event, value) => props.selectCategories(value)}
         renderInput={params => (
           <TextField
             {...params}
             variant="standard"
-            label="Category: "
-            placeholder="Select a category to sort by..."
+            label="Categories"
+            placeholder="Filter by..."
             margin="normal"
             fullWidth
           />
@@ -25,21 +39,6 @@ export default function Tags() {
       />
     </div>
   );
-}
+};
 
-const categories = [
-  { title: "accessibility" },
-  { title: "danger" },
-  { title: "event" },
-  { title: "food" },
-  { title: "garbage" },
-  { title: "graffiti" },
-  { title: "music" },
-  { title: "nature" },
-  { title: "parking" },
-  { title: "pet" },
-  { title: "school" },
-  { title: "townhall" },
-  { title: "water" },
-  { title: "other" }
-];
+export default Tags;

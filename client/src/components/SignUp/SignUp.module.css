@@ -4,9 +4,11 @@
   width: 256.78px;
   height: 47.79px;
 }
+
 .textFeild::placeholder{
   padding-left: 12px;
 }
+
 input[type="text"],[type="password"] {
   padding-left: 12px;
   font-size: 130%;
@@ -14,12 +16,12 @@ input[type="text"],[type="password"] {
 
 .button {
   margin-top: 5%;
-    padding: 5px 10px;
-    border-radius: 3px;
-    border: 1px solid lightgray;
-    box-shadow: 1px 2px 2px -2px;
-    width: 100%;
-    height: 45px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  box-shadow: 1px 2px 2px -2px;
+  width: 100%;
+  height: 45px;
 }
 .container {
   display: flex;
@@ -31,5 +33,4 @@ input[type="text"],[type="password"] {
   margin-top: 20px;
   width: 100%;
   text-align: center;
-  
 }

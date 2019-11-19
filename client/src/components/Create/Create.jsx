@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import Axios from "axios";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import clsx from "clsx";
+import CurrentLocationButton from "./CurrentLocationButton";
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -17,20 +19,48 @@ import CloseIcon from "@material-ui/icons/Close";
 import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import { SnackbarContent } from "@material-ui/core";
+import { API } from "../../constants";
+import { useHistory } from "react-router-dom";
 
 const Create = props => {
+  let categories = [];
+  const [geoLocation, setGeoLocation] = useState("");
+  const [category, setCategory] = useState("Category");
+  const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
   const [issueOrEvent, setIssueOrEvent] = useState("Issue");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
-  const [category, setCategory] = useState("category");
   const [date, setDate] = useState(new Date());
   const [successToggle, setSuccessToggle] = useState(false);
   const [errorToggle, setErrorToggle] = useState(false);
-
-  // The UserID you asked for
-  // Shouldn't this be "window.localStorage.getItem("user_id")" --Ethan
   const userID = localStorage.getItem("user_id");
+  const history = useHistory();
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/categories")
+      .then(res => {
+        setHungry(res.data);
+      })
+      .catch(error => {
+        categories = [
+          "Category",
+          "Accessibility",
+          "Danger",
+          "Event",
+          "Garbage",
+          "Graffiti",
+          "Music",
+          "Nature",
+          "Parking",
+          "Pets",
+          "School",
+          "Townhall",
+          "Water",
+          "Other"
+        ];
+      });
+  }, []);
 
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
@@ -71,26 +101,29 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
-    Axios.post("http://localhost:8000/api/issue", {
-      creatorId: parseInt(window.localStorage.getItem("user_id")),
-      categoryName: category,
-      headline: title,
-      description: description,
-      eventDate: date,
-      location: `${location}, Austin, TX`
-    })
+    axios
+      .post(API.ISSUE, {
+        creatorId: parseInt(userID),
+        categoryName: category,
+        headline: title,
+        description: description,
+        eventDate: date,
+        location: `${location}, Austin, TX`
+      })
       .then(response => {
-        console.log(response.data.postId);
-        // the line below is the postId that was inserted into our database.
-        let currentlyViewedPostId = response.data.postId;
-        // pass this id to the post page (where the details for a single post are rendered) through params
-
-        //dont need to have a pop up for success because we are going to immediately dirrect to new page,
+        const postId = response.data.postId;
+        if (postId) {
+          history.push(`/posts/${postId}`);
+        } else {
+          handleOpen("error");
+        }
+        //dont need to have a pop up for success because we are going to immediately redirect to new page,
         // so no handleOpen("success") needed
 
-        //redirrect to singlePost page;
+        //redirect to singlePost page;
       })
       .catch(error => {
+        console.log(error);
         handleOpen("error");
       });
   };
@@ -106,20 +139,9 @@ const Create = props => {
               setCategory(event.target.value);
             }}
           >
-            <MenuItem value={"category"}>Category</MenuItem>
-            <MenuItem value={"accessibility"}>Accessibility</MenuItem>
-            <MenuItem value={"danger"}>Danger</MenuItem>
-            <MenuItem value={"event"}>Event</MenuItem>
-            <MenuItem value={"garbage"}>Garbage</MenuItem>
-            <MenuItem value={"graffiti"}>Graffiti</MenuItem>
-            <MenuItem value={"music"}>Music</MenuItem>
-            <MenuItem value={"nature"}>Nature</MenuItem>
-            <MenuItem value={"parking"}>Parking</MenuItem>
-            <MenuItem value={"pet"}>Pet</MenuItem>
-            <MenuItem value={"school"}>School</MenuItem>
-            <MenuItem value={"townhall"}>Townhall</MenuItem>
-            <MenuItem value={"water"}>Water</MenuItem>
-            <MenuItem value={"other"}>Other</MenuItem>
+            {hungry.map(option => {
+              return <MenuItem value={option}>{option}</MenuItem>;
+            })}
           </Select>
         </React.Fragment>
       );
@@ -173,7 +195,9 @@ const Create = props => {
               setTitle(event.target.value);
             }}
             fullWidth={true}
-            placeholder="Title"
+            label="Title"
+            color="secondary"
+            margin="normal"
             required={true}
             variant="outlined"
           />
@@ -185,38 +209,54 @@ const Create = props => {
               setDescription(event.target.value);
             }}
             fullWidth={true}
-            placeholder="Description"
+            label="Description"
+            margin="normal"
             required={true}
+            color="secondary"
             variant="outlined"
             multiline={true}
             rows={10}
           />
         </div>
         {/* This is the location section */}
-        <div className={Style.ContentsDiv}>
-          <TextField
-            onChange={event => {
-              setLocation(event.target.value);
-            }}
-            fullWidth={true}
-            placeholder="Location"
-            required={true}
-            variant="outlined"
-          />
-          <TextField
-            fullWidth={true}
-            placeholder="Austin"
-            required={true}
-            variant="outlined"
-            disabled={true}
-          />
-          <TextField
-            fullWidth={true}
-            placeholder="Tx"
-            required={true}
-            variant="outlined"
-            disabled={true}
-          />
+        <div className={Style.LocationDiv}>
+          <div className={Style.ContentsDiv}>
+            <TextField
+              onChange={event => {
+                setLocation(event.target.value);
+              }}
+              value={location}
+              fullWidth={true}
+              label="Location"
+              margin="normal"
+              color="secondary"
+              required={true}
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CurrentLocationButton setLocation={setLocation} />
+                  </InputAdornment>
+                )
+              }}
+            />
+          </div>
+          <div className={Style.ContentsDiv}>
+            <TextField
+              fullWidth={true}
+              label="Austin"
+              margin="normal"
+              variant="outlined"
+              disabled={true}
+            />
+            <TextField
+              fullWidth={true}
+              label="TX"
+              margin="normal"
+              variant="outlined"
+              disabled={true}
+            />
+          </div>
         </div>
         {/* This is the issue or event section */}
         <div className={Style.ContentsDiv}>{IssueOrEventRender()}</div>

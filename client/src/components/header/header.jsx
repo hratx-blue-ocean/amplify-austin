@@ -9,16 +9,14 @@ import style from "./header.module.css";
 
 const styles = {
   paper: {
-    background: "#6202ee",
+    background: "#34435E",
     color: "white"
   }
 };
 
 const Header = props => {
   const [menuToggled, setMenuToggled] = useState(false);
-  const [name, setName] = useState("");
   const { classes } = props;
-  const username = localStorage.getItem("username");
   const history = useHistory();
 
   const toggleMenu = () => {
@@ -26,9 +24,13 @@ const Header = props => {
     setMenuToggled(reverse);
   };
 
-  useEffect(() => {
-    username ? setName(username) : setName("");
-  }, [username, name]);
+  const navToHome = () => {
+    history.push("/");
+  };
+
+  const navToMap = () => {
+    history.push("/map");
+  };
 
   return (
     <React.Fragment>
@@ -36,20 +38,19 @@ const Header = props => {
         <div className={style.navigatingDiv}>
           <MenuIcon onClick={toggleMenu} style={{ height: 30, width: 30 }} />
         </div>
-        <div
-          className={style.navigatingDiv}
-          onClick={() => {
-            history.push("/home");
-          }}
-        >
-          <p>Amplify Austin</p> <p>{name}</p>
+        <div>
+          <img
+            height="50"
+            width="60"
+            src="amplify_austinwhite.png"
+            className={style.navigatingDiv}
+            onClick={navToHome}
+          />
         </div>
         <div className={style.navigatingDiv}>
           <MapOutlinedIcon
             style={{ height: 30, width: 30 }}
-            onClick={() => {
-              history.push("/map");
-            }}
+            onClick={navToMap}
           />
         </div>
       </div>
@@ -59,7 +60,7 @@ const Header = props => {
         onClose={toggleMenu}
         classes={{ paper: classes.paper }}
       >
-        <Menu onClose={toggleMenu} />
+        <Menu onClose={toggleMenu} changeSelectBy={props.changeSelectBy} />
       </Drawer>
     </React.Fragment>
   );

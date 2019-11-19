@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import { centerATX, zoom } from "./map-constants";
 import Marker from "./Marker/Marker";
-import dummyCoords from "../MapPage/dummyCoordinates";
 
 // Make sure this component is always wrapped in a div
 // If left to roam freely, it will take up the entire screen like a dick
@@ -11,28 +10,10 @@ export default class Map extends Component {
     super(props);
     this.state = {
       coordinates: [],
-      center: centerATX,
+      center: centerATX || centerOf(this.props.posts),
+      selectedMarker: null,
       zoom: zoom
     };
-  }
-
-  componentDidMount() {
-    /**
-     * GET REQUEST for coordinates/marker info using
-     * this.props.filteredCategories
-     *
-     * Calculate center based on those coordinates
-     * Not neccessarily 'stateful' as it re-renders completely
-     * on any change made up in APP
-     */
-    const coordinates = dummyCoords();
-    const center = centerOf(coordinates);
-    //  possible 'zoom' calculation could be done
-    this.setState({
-      coordinates: coordinates,
-      center: center || this.state.center,
-      selectedMarker: null
-    });
     this.selectMarker = this.selectMarker.bind(this);
   }
 
@@ -44,6 +25,7 @@ export default class Map extends Component {
   }
 
   render() {
+    const mapable = this.props.posts || this.props.coordinates;
     return (
       // Important! Always set the container width & height explicitly
       <div style={{ height: "100%", width: "100%" }}>
@@ -52,16 +34,18 @@ export default class Map extends Component {
           defaultCenter={this.state.center}
           defaultZoom={this.state.zoom}
         >
-          {this.state.coordinates.map((coord, i) => {
+          {mapable.map((post, i) => {
             return (
               <Marker
                 key={i}
-                lat={coord.lat}
-                lng={coord.lng}
-                category={coord.category}
-                isSelected={coord.lat === this.state.selectedMarker}
+                lat={post.lat}
+                lng={post.lng}
+                title={post.headline}
+                otherFlag={post.otherFlag}
+                category={post.categoryName}
+                isSelected={post.postId === this.state.selectedMarker}
                 selectMarker={this.selectMarker}
-                postID={coord.postId}
+                postId={post.postId}
               />
             );
           })}

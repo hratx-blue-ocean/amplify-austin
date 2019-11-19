@@ -7,8 +7,11 @@ import SignIn from "./components/SignIn/SignIn";
 import MapPage from "./components/MapPage/MapPage";
 import PostPage from "./components/PostPage/PostPage";
 import Create from "./components/Create/Create";
+import Title from "./components/header/title";
 import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
+import UserStatus from "./components/userStatus/UserStatus";
+
 import { allIssues, firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
@@ -16,55 +19,113 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { API } from "./constants";
 
 export class App extends React.Component {
   constructor() {
     super();
     this.state = {
       selectedPost: firstPost,
-      posts: allIssues,
+      posts: [],
+      categories: [],
       filteredCategories: [],
       selectBy: null,
       sortSelection: "popularity"
     };
-
-    this.saveFilters = this.saveFilters.bind(this);
     this.sortBy = this.sortBy.bind(this);
+    this.changeSelectBy = this.changeSelectBy.bind(this);
+    this.selectCategories = this.selectCategories.bind(this);
   }
 
   componentDidMount() {
-    console.log("Inside componentDidMount");
     try {
       this.getInitialPosts();
+      this.getCategories();
     } catch (error) {
       console.error(error);
     }
   }
 
+  async getCategories() {
+    try {
+      const res = await axios.get(API.CATEGORIES);
+      this.setState({
+        categories: res.data
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getInitialPosts() {
     try {
-      const res = await axios.get("http://localhost:8000/api/main/", {
+      const res = await axios.get(API.MAIN, {
         params: {
           sortBy: this.state.sortSelection
         }
       });
-      console.log("This is the response: ", res);
+      this.setState({
+        posts: res.data
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getPosts() {
+    let strArry = this.state.filteredCategories.join("/");
+    let userId = localStorage.getItem("user_id");
+    console.log("getting posts", {
+      userId: userId,
+      sortBy: this.state.sortSelection,
+      categories: strArry,
+      selectBy: this.state.selectBy
+    });
+    try {
+      const res = await axios.get(API.MAIN, {
+        params: {
+          userId: userId,
+          sortBy: this.state.sortSelection,
+          categories: strArry,
+          selectBy: this.state.selectBy
+        }
+      });
+      console.log(res.data);
+      this.setState({
+        posts: res.data
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
   sortBy(condition) {
-    let strCondition = condition;
-    // console.log("sort by function called, this is condition: ", strCondition);
-    // make axios call based on new state
+    this.setState({ sortSelection: condition });
   }
 
-  // Pass this function down to any Filter Component
-  // used. Otherwise shit won't work
-  saveFilters(categories) {
+  selectCategories(selected) {
+    const categories = selected.map((category) => {
+      return category.title
+    })
     this.setState({
-      filteredCategories: categories
+      filteredCategories: categories,
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.sortSelection !== this.state.sortSelection ||
+      prevState.filteredCategories !== this.state.filteredCategories ||
+      prevState.selectBy !== this.state.selectBy
+    ) {
+      this.getPosts();
+    }
+  }
+
+  changeSelectBy(selection) {
+    this.setState({
+      selectBy: selection
     });
   }
 
@@ -73,18 +134,21 @@ export class App extends React.Component {
       <Router>
         <div className={styles.container}>
           <div className={styles.header}>
-            <Header />
+            <Header changeSelectBy={this.changeSelectBy.bind(this)} />
           </div>
           <div className={styles.component}>
             <Switch>
               <Route exact path="/">
+                <UserStatus />
+                <Title title={this.state.selectBy} />
                 <SortFilter
                   sortBy={this.sortBy}
-                  saveFilters={this.saveFilters}
+                  categories={this.state.categories}
+                  selectCategories={this.selectCategories}
+                  filteredCategories={this.state.filteredCategories}
                 ></SortFilter>
                 <PostContainer
                   postData={this.state.posts}
-                  saveFilters={this.saveFilters}
                   filteredCategories={this.state.filteredCategories}
                 ></PostContainer>
               </Route>
@@ -94,17 +158,19 @@ export class App extends React.Component {
               <Route path="/signin">
                 <SignIn />
               </Route>
-              <Route path="/create">
-                <Create />
-              </Route>
+              <PrivateRoute path="/create" component={Create} />
               <Route path="/map">
                 <MapPage
-                  saveFilters={this.saveFilters}
+                  posts={this.state.posts}
+                  selectBy={this.state.selectBy}
+                  categories={this.state.categories}
+                  changeSelectBy={this.changeSelectBy}
+                  selectCategories={this.selectCategories}
                   filteredCategories={this.state.filteredCategories}
                 />
               </Route>
               <Route path="/posts/:postID">
-                <PostPage />
+                <PostPage filteredCategories={this.state.filteredCategories} />
               </Route>
               <Route path="*">
                 {/* TODO: replace with 404 page */}
@@ -113,7 +179,7 @@ export class App extends React.Component {
             </Switch>
           </div>
         </div>
-      </Router>
+      </Router >
     );
   }
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import style from "./SignIn.module.css";
+import { API } from "../../constants";
 
 const SignIn = props => {
   const history = useHistory();
@@ -31,9 +32,12 @@ const SignIn = props => {
 
   const authenticateUser = async () => {
     try {
-      const response = axios.get("http://localhost:8000/api");
-      if (response) {
-        localStorage.setItem("user_id", 1);
+      const response = await axios.post(API.LOGIN, {
+        username,
+        password
+      });
+      if (response && response.data && response.data.id) {
+        localStorage.setItem("user_id", response.data.id);
         localStorage.setItem("username", username);
       } else {
         throw Error("invalid response");

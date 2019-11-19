@@ -1,105 +1,134 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { PostPageButtons } from "./PostPageButtons/PostPageButtons";
-import { firstPost } from "../../FAKEDATA";
-import coords from "../MapPage/dummyCoordinates";
+// import coords from "../MapPage/dummyCoordinates";
 import Map from "../Map/Map";
 import style from "./PostPage.module.css";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect, useHistory } from "react-router-dom";
+import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
+import { API } from "../../constants";
+import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
+import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
 
-const PostPage = () => {
-  let userId = window.localStorage.getItem("user_id");
-
-  // const { postId } = useParams();
-  const [post, setPost] = useState({});
-  // const [coords, setCoords] = useState([]);
-  // Ethan commented out line below
-  // const resolved = (post && post.resolved) || true;
-  const resolved = (post && post.status === "resolved") || true;
-
-  // useEffect(() => {
-  //   const postData = axios.get(`/ENDPOINT/issue/${postID}/`${userid ? userid : undefined}`);
-  //   setPost(postData.data)
-  //   setCoords([{
-  //     lat: postData.lat,
-  //     lng: postData.lng,
-  //     category: postData.category
-  //   }])
-  // },[post, coords])
-
-  const handleReachOut = () => {
-    console.log("Reach Out");
-    // if (this.post.resolved) {
-    //   axios.post("/ENDPOINT/issue/postid/userID", (dispute))
-    // } else {
-    //   axios.post("/ENDPOINT/issue/postid/userID", (resolved))
-    // }
-  };
-
-  const handleResolveDispute = () => {
-    console.log("Resolved or Disputed");
-    // if (this.post.resolved) {
-    //   axios.post("/ENDPOINT/postID", (dispute))
-    // } else {
-    //   axios.post("/ENDPOINT/postID", (resolved))
-    // }
-  };
+const PostPage = props => {
+  // state
+  const [post, setPost] = useState(undefined);
+  const [coords, setCoords] = useState([]);
+  const [fave, setFave] = useState(props.favorite);
+  const [resolved, setResolved] = useState(undefined);
+  // token
+  const userID = localStorage.getItem("user_id");
+  // helpers
+  const { postID } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
-    console.log("hello from post PAge");
-    axios
-      .get("http://localhost:8000/api/issue", {
-        params: {
-          userId: userId,
-          postId: 53
-        }
-      })
-      .then(response => {
-        console.log(response);
-        setPost(response.data);
-      });
+    getPost();
   }, []);
 
-  if (!post.created_at) {
-    return <div></div>;
-  }
+  const getPost = async () => {
+    try {
+      const response = await axios.get(API.ISSUE, {
+        params: {
+          userId: userID || "",
+          postId: postID
+        }
+      });
 
-  console.log(typeof post.created_at);
-  return (
-    <div>
-      <div className={style.titleField}>
-        <div className={style.heading}>
-          <h2>{post.headline}</h2>
-          <div className={style.subheading}>
-            <div className={style.subGroup}>
-              <h4>Type: </h4>
-              <h6>{post.type}</h6>
-            </div>
-            <div className={style.subGroup}>
-              <h4>Category: </h4>
-              <h6>{post.categoryName}</h6>
-            </div>
-            <div className={style.subGroup}>
-              <h4>Date Reported: </h4>
-              <h6>{post.created_at}</h6>
+      const postData = response.data;
+      if (postData === undefined) {
+        throw new Error("no response from GET request");
+      }
+      setPostState(postData);
+    } catch (error) {
+      // TODO add error page
+      console.error(error);
+      history.push("/");
+    }
+  };
+
+  const setPostState = data => {
+    setPost(data);
+    setCoords([
+      {
+        lat: data.lat,
+        lng: data.lng,
+        categoryName: data.categoryName,
+        headline: data.headline
+      }
+    ]);
+    if (data.status === "disputed" || data.status === "open") {
+      setResolved(false);
+    } else {
+      setResolved(true);
+    }
+  };
+
+  const handleFavorite = async e => {
+    e.stopPropagation();
+    try {
+      const response = await axios.post(API.FAVORITE, {
+        userId: userID,
+        postId: postID
+      });
+      if (response.data.split(" ")[0] === "postId") {
+        setFave(!fave);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleResolveDispute = async () => {
+    const ENDPOINT = resolved ? API.DISPUTE : API.RESOLVE;
+    const response = await axios.post(ENDPOINT, {
+      userId: userID,
+      postId: postID
+    });
+    // TODO: verify status
+    if (response.data.split(" ")[0] === "postId") {
+      setResolved(resolved ? false : true);
+    }
+  };
+
+  if (post) {
+    return (
+      <div>
+        <div className={style.titleField}>
+          <div className={style.heading}>
+            <h2>{post.headline}</h2>
+            <PostPageSubGroup
+              type={post.type}
+              categoryName={post.categoryName}
+              created_at={post.created_at}
+            />
+          </div>
+          <div className={style.favorite}>
+            <div onClick={handleFavorite}>
+              {fave === true ? (
+                <FilledStarIcon></FilledStarIcon>
+              ) : (
+                <EmptyStarIcon></EmptyStarIcon>
+              )}
             </div>
           </div>
         </div>
-        <div className={style.favorite}>STAR</div>
+        <div className={style.descriptionWrapper}>
+          <p>{post.description}</p>
+        </div>
+        <PostPageButtons
+          contacts={post.contacts}
+          resolved={resolved}
+          handleResolveDispute={handleResolveDispute}
+        />
+        <div className={style.map}>
+          <Map coordinates={coords}></Map>
+        </div>
       </div>
-      <div className={style.descriptionWrapper}>
-        <p>{post.description}</p>
-      </div>
-      <PostPageButtons
-        resolved={resolved}
-        handleResolveDispute={handleResolveDispute}
-      />
-      <div className={style.map}>
-        {/* TODO: use coordinates in get request */}
-        <Map coordinates={coords()}></Map>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return <div>loading</div>;
+  }
 };
 
 export default PostPage;

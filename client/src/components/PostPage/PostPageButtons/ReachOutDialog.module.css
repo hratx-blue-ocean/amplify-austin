@@ -1,0 +1,32 @@
+.headings {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.headingText {
+  font-weight: 400;
+}
+
+.numberHeading {
+  font-weight: 600;
+  font-style: normal;
+}
+
+.link, .link:visited {
+  color:inherit;
+}
+
+.phoneLink, .phoneLink:visited {
+  color: blue;
+}
+
+.link, .phoneLink {
+  text-decoration: none;
+  font-style: normal;
+}
+
+.link:hover, .phoneLink:hover {
+  color: blue;
+  text-decoration: underline;
+}
+

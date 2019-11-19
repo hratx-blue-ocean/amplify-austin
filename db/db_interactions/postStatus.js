@@ -1,4 +1,5 @@
 const connection = require('../db');
+const helpers = require('./helpers');
 
 const validateUserId = function (userId) {
     return new Promise((resolve, reject) => {
@@ -43,7 +44,6 @@ const modifyFavorite = function (userId, postId) {
                 reject(err);
             } else {
                 //if they already favorited, delete the row
-                console.log(value[0])
                 if (value[0]) {
                     const deleteQuery = "DELETE FROM favorites WHERE userId = " + userId + " AND postId = " + postId + ";";
                     connection.query(deleteQuery, (err, value) => {
@@ -55,35 +55,28 @@ const modifyFavorite = function (userId, postId) {
                     })
                 } else {
                     //test if valid userid
-                    const validUserId = "SELECT id FROM users WHERE id=" + userId + ";";
-                    connection.query(validUserId, (err, value) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            if (value[0]) {
-                                //test if valid postId
-                                const validPostId = "SELECT id from posts WHERE id=" + postId + ";";
-                                connection.query(validPostId, (err, value) => {
-                                    if (err) {
-                                        reject(err)
-                                    } else if (value[0]) {
-                                        const insertQuery = "INSERT INTO favorites (userId, postId) VALUES (" + userId + "," + postId + ");";
-                                        connection.query(insertQuery, (err, value) => {
-                                            if (err) {
-                                                reject(err);
-                                            } else {
-                                                resolve(`postId ${postId} favorited`);
-                                            }
-                                        })
-                                    } else {
-                                        resolve('invalid postId')
-                                    }
-                                })
+                    validateUserId(userId)
+                        .then((value) => {
+                            if (value === 'valid userId') {
+                                validatePostId(postId)
+                                    .then((value) => {
+                                        if (value === 'valid postId') {
+                                            const insertQuery = "INSERT INTO favorites (userId, postId) VALUES (" + userId + "," + postId + ");";
+                                            connection.query(insertQuery, (err, value) => {
+                                                if (err) {
+                                                    reject(err);
+                                                } else {
+                                                    resolve(`postId ${postId} favorited`);
+                                                }
+                                            })
+                                        } else {
+                                            resolve('invalid postId')
+                                        }
+                                    })
                             } else {
                                 resolve('invalid userId')
                             }
-                        }
-                    })
+                        })
                 }
             }
         })
@@ -128,7 +121,6 @@ const modifyAmplifies = function (userId, postId) {
                                 //test if valid postId
                                 validatePostId(postId)
                                     .then((value) => {
-                                        console.log('value = ', value)
                                         if (value === 'valid postId') {
                                             const query1 = "INSERT INTO promotes (userId, postId) VALUES (" + userId + "," + postId + ");";
                                             const query2 = "UPDATE posts SET upvotes=upvotes+1 WHERE id=" + postId + ";";
@@ -167,55 +159,176 @@ const modifyAmplifies = function (userId, postId) {
     })
 }
 
+
+
 const markResolved = function (userId, postId) {
     return new Promise((resolve, reject) => {
-        const testQuery = "SELECT status FROM posts WHERE id = " + postId + ";";
-        connection.query(testQuery, (err, value) => {
-            if (err) {
-                reject(err);
-            } else {
-                //if they already favorited, delete the row
-                if (value[0]) {
-                    const resolvedQuery = "UPDATE posts SET status='resolved' WHERE id=" + postId + ";";
-                    connection.query(resolvedQuery, (err, value) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(`post ${postId} marked resolved`);
-                        }
-                    })
+        //test userId & postId are valid
+        validateUserId(userId)
+            .then((value) => {
+                if (value === 'invalid userId') {
+                    resolve(value);
                 } else {
-                    resolve(`post ${postId} does not exist`)
+                    return validatePostId(postId)
                 }
-            }
-        })
+            })
+            .then((value) => {
+                if (value === 'invalid postId') {
+                    resolve(value);
+                } else {
+                    //get post details
+                    helpers.getRow('posts', postId)
+                        .then((value) => {
+                            const status = value[0].status;
+                            const resolved = value[0].resolved;
+                            const creatorId = value[0].creatorId;
+
+                            //test that user has not already marked resolved
+                            const query = `SELECT id FROM resolves WHERE userId=${userId} AND postId=${postId};`;
+                            helpers.promisedQuery(query)
+                                .then((value) => {
+                                    //user has already marked a post resolved, do nothing but return status
+                                    if (value.length > 0) {
+                                        resolve(status)
+                                        //user has not already marked a post resolved, rest of logic...
+                                    } else {
+                                        //if not already resolved
+                                        if (status !== 'resolved') {
+                                            //if user is the post creator OR adding one more resolved would make more than 2 resolveds
+                                            if (creatorId == userId || resolved >= 2) {
+                                                //mark resolved
+                                                helpers.modifyEntry('posts', 'status', "'resolved'", 'id', postId)
+                                                    //reset resolved count
+                                                    .then((value) => {
+                                                        return helpers.modifyEntry('posts', 'resolved', 0, 'id', postId)
+                                                    })
+                                                    //reset resolve join table for specefic postId
+                                                    .then((value) => {
+                                                        const resetResolveTbl = `DELETE FROM resolves WHERE postId= ${postId};`;
+                                                        return helpers.promisedQuery(resetResolveTbl);
+                                                    })
+                                                    .then((value) => {
+                                                        //get status
+                                                        return helpers.selectVal('posts', 'status', 'id', postId, 'status')
+                                                    })
+                                                    .then((value) => {
+                                                        //resolve status
+                                                        resolve(value)
+                                                    })
+                                            } else {
+                                                //status wont change, but resolved count needs to be updated & joint table updated
+                                                helpers.modifyEntry('posts', 'resolved', resolved + 1, 'id', postId)
+                                                    .then((value) => {
+                                                        const insertResolveTbl = `INSERT INTO resolves (userId, postId) VALUES (${userId}, ${postId});`;
+                                                        return helpers.promisedQuery(insertResolveTbl);
+                                                    })
+                                                    .then((value) => {
+                                                        //resolve status
+                                                        return helpers.selectVal('posts', 'status', 'id', postId, 'status')
+                                                    })
+                                                    .then((value) => {
+                                                        //resolve status
+                                                        resolve(value)
+                                                    })
+                                            }
+                                        } else {
+                                            resolve(status);
+                                        }
+                                    }
+                                })
+                        })
+                        .catch((err) => {
+                            if (err) {
+                                reject(err);
+                            }
+                        })
+                }
+            })
     })
 }
 
 const dispute = function (userId, postId) {
     return new Promise((resolve, reject) => {
-        //find post status
-        const testQuery = "SELECT status FROM posts WHERE id = " + postId + ";";
-        connection.query(testQuery, (err, value) => {
-            if (err) {
-                reject(err);
-            } else {
-                //if postId valid, make disputed
-                if (value[0]) {
-                    const disputedQuery = "UPDATE posts SET status='disputed' WHERE id=" + postId + ";";
-                    connection.query(disputedQuery, (err, value) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(`postId ${postId} marked disputed`);
-                        }
-                    })
+        //test userId & postId are valid
+        validateUserId(userId)
+            .then((value) => {
+                if (value === 'invalid userId') {
+                    resolve(value);
+                } else {
+                    return validatePostId(postId)
                 }
-                else {
-                    resolve(`post ${postId} does not exist`)
+            })
+            .then((value) => {
+                if (value === 'invalid postId') {
+                    resolve(value);
+                } else {
+                    //get post details
+                    helpers.getRow('posts', postId)
+                        .then((value) => {
+                            const status = value[0].status;
+                            const disputed = value[0].disputed;
+
+                            //test that user has not already marked disputed
+                            const query = `SELECT id FROM disputes WHERE userId=${userId} AND postId=${postId};`;
+                            helpers.promisedQuery(query)
+                                .then((value) => {
+                                    //user has already marked a post disputed, do nothing but return status
+                                    if (value.length > 0) {
+                                        resolve(status)
+                                        //user has not already marked a post disputed, rest of logic...
+                                    } else {
+                                        //if not already disputed
+                                        if (status === 'resolved') {
+                                            //if adding one more dispute would make more than 2 disputes
+                                            if (disputed >= 2) {
+                                                //mark disputed
+                                                helpers.modifyEntry('posts', 'status', "'disputed'", 'id', postId)
+                                                    //reset disputed count
+                                                    .then((value) => {
+                                                        return helpers.modifyEntry('posts', 'disputed', 0, 'id', postId)
+                                                    })
+                                                    //reset disputes join table for specefic postId
+                                                    .then((value) => {
+                                                        const resetDisputesTbl = `DELETE FROM disputes WHERE postId= ${postId};`;
+                                                        return helpers.promisedQuery(resetDisputesTbl);
+                                                    })
+                                                    .then((value) => {
+                                                        //get status
+                                                        return helpers.selectVal('posts', 'status', 'id', postId, 'status')
+                                                    })
+                                                    .then((value) => {
+                                                        //resolve status
+                                                        resolve(value)
+                                                    })
+                                            } else {
+                                                //status wont change, but dispute count needs to be updated & join table updated
+                                                helpers.modifyEntry('posts', 'disputed', disputed + 1, 'id', postId)
+                                                    .then((value) => {
+                                                        const insertDisputesTbl = `INSERT INTO disputes (userId, postId) VALUES (${userId}, ${postId});`;
+                                                        return helpers.promisedQuery(insertDisputesTbl);
+                                                    })
+                                                    .then((value) => {
+                                                        //resolve status
+                                                        return helpers.selectVal('posts', 'status', 'id', postId, 'status')
+                                                    })
+                                                    .then((value) => {
+                                                        //resolve status
+                                                        resolve(value)
+                                                    })
+                                            }
+                                        } else {
+                                            resolve(status);
+                                        }
+                                    }
+                                })
+                        })
+                        .catch((err) => {
+                            if (err) {
+                                reject(err);
+                            }
+                        })
                 }
-            }
-        })
+            })
     })
 }
 
