@@ -70,11 +70,6 @@ const PostPage = props => {
     }
   };
 
-  const handleReachOut = () => {
-    console.log("Reach Out");
-    // TODO send notification to contact list
-  };
-
   const handleResolveDispute = () => {
     console.log("Resolved or Disputed");
     // TODO set post status to resolved or disputed
@@ -84,8 +79,8 @@ const PostPage = props => {
     //   axios.post("/ENDPOINT/postID", (resolved))
     // }
   };
+
   if (post) {
-    console.log(post);
     return (
       <div>
         <div className={style.titleField}>
@@ -102,8 +97,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                <EmptyStarIcon></EmptyStarIcon>
-              )}
+                  <EmptyStarIcon></EmptyStarIcon>
+                )}
             </div>
           </div>
         </div>

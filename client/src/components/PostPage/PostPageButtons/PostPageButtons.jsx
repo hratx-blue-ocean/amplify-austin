@@ -29,13 +29,13 @@ export const PostPageButtons = props => {
           Dispute Resolution
         </button>
       ) : (
-        <button
-          onClick={props.handleResolveDispute}
-          className={style.resolvedBtn}
-        >
-          Mark Resolved
+          <button
+            onClick={props.handleResolveDispute}
+            className={style.resolvedBtn}
+          >
+            Mark Resolved
         </button>
-      )}
+        )}
     </div>
   );
 };
