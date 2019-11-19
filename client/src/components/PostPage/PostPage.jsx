@@ -4,7 +4,7 @@ import { PostPageButtons } from "./PostPageButtons/PostPageButtons";
 // import coords from "../MapPage/dummyCoordinates";
 import Map from "../Map/Map";
 import style from "./PostPage.module.css";
-import { useParams, Redirect, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import { API } from "../../constants";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
@@ -108,8 +108,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                <EmptyStarIcon></EmptyStarIcon>
-              )}
+                  <EmptyStarIcon></EmptyStarIcon>
+                )}
             </div>
           </div>
         </div>

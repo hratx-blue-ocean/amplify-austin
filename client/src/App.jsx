@@ -9,7 +9,7 @@ import PostPage from "./components/PostPage/PostPage";
 import Create from "./components/Create/Create";
 import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
-import { allIssues, firstPost } from "./FAKEDATA";
+import { firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
   Switch,
