@@ -4,6 +4,7 @@ import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import MapOutLinedIcon from "@material-ui/icons/MapOutlined";
 import style from "./Menu.module.css";
+import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 
 const Menu = props => {
@@ -22,115 +23,115 @@ const Menu = props => {
   return (
     <div className={style.NavBarContainer} data-test="NavMenu">
       <div>
-        <button
-          data-test="Home"
+        <Button
           onClick={() => {
             // TODO push w/ filter for users favorites
             props.changeSelectBy(null);
             history.push("/");
             onClose();
           }}
+          variant="contained"
+          endIcon={<HomeOutlinedIcon />}
         >
           Home
-          <HomeOutlinedIcon />
-        </button>
+        </Button>
       </div>
       {auth && (
         <>
           <div>
-            <button
-              data-test="Create"
+            <Button
               onClick={() => {
                 history.push("/create");
                 onClose();
               }}
+              variant="contained"
+              endIcon={<ChatOutlinedIcon />}
             >
               Create Post
-              <ChatOutlinedIcon />
-            </button>
+            </Button>
           </div>
           <div>
-            <button
-              data-test="MyPosts"
+            <Button
               onClick={() => {
                 // TODO push w/ filter for users posts
                 props.changeSelectBy("myPosts");
                 history.push("/");
                 onClose();
               }}
+              variant="contained"
+              endIcon={<ChatOutlinedIcon />}
             >
               My Posts
-              <ChatOutlinedIcon />
-            </button>
+            </Button>
           </div>
           <div>
-            <button
-              data-test="Favorites"
+            <Button
               onClick={() => {
                 // TODO push w/ filter for users posts
                 props.changeSelectBy("favorites");
                 history.push("/");
                 onClose();
               }}
+              variant="contained"
+              endIcon={<StarBorderOutlinedIcon />}
             >
               Favorites
-              <StarBorderOutlinedIcon />
-            </button>
+            </Button>
           </div>
         </>
       )}
       <div>
-        <button
-          data-test="Map"
+        <Button
           onClick={() => {
             history.push("/map");
             onClose();
           }}
+          variant="contained"
+          endIcon={<MapOutLinedIcon />}
         >
           Map
-          <MapOutLinedIcon />
-        </button>
+        </Button>
       </div>
       {auth ? (
         <div>
-          <button
-            data-test="SignOut"
+          <Button
             onClick={() => {
               localStorage.removeItem("user_id");
               localStorage.removeItem("username");
               history.push("/");
               onClose();
             }}
+            variant="contained"
           >
             {" "}
             Sign Out{" "}
-          </button>
+          </Button>
         </div>
       ) : (
         <>
           <div>
-            <button
-              data-test="SignIn"
+            <Button
               onClick={() => {
                 history.push("/signin");
                 onClose();
               }}
+              variant="contained"
             >
               {" "}
               Sign In{" "}
-            </button>
+            </Button>
           </div>
           <div>
-            <button
-              data-test="SignUp"
+            <Button
               onClick={() => {
                 history.push("/signup");
                 onClose();
               }}
+              variant="contained"
             >
               {" "}
               Sign Up{" "}
-            </button>
+            </Button>
           </div>
         </>
       )}
