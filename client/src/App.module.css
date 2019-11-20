@@ -1,16 +1,19 @@
 /* Initial width and height meant
    exclusively for mobile, @medias to be
    applied later to scale for desktops */
-
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
    
    .container {
     display: grid;
     /* max-width: 414px; */
+    position: relative;
     height: 100vh;
     grid-template-rows: 56px 1fr;
     margin: auto;
-    margin-top: 5%;
-    max-width: 600px;
+    margin-top: 1%;
+    max-width: 750px;
     min-width: 500px;
     grid-template-areas: 
       "header"

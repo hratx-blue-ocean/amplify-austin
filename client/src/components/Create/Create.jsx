@@ -3,6 +3,7 @@ import axios from "axios";
 import clsx from "clsx";
 import CurrentLocationButton from "./CurrentLocationButton";
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -23,7 +24,6 @@ import { useHistory } from "react-router-dom";
 
 const Create = props => {
   let categories = [];
-  const [geoLocation, setGeoLocation] = useState("");
   const [category, setCategory] = useState("Category");
   const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
@@ -100,6 +100,10 @@ const Create = props => {
   let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
+    if (category === "Category" || !title || !description || !location) {
+      alert("Required fields are missing!");
+      return;
+    }
     axios
       .post(API.ISSUE, {
         creatorId: parseInt(userID),
@@ -231,6 +235,13 @@ const Create = props => {
               color="secondary"
               required={true}
               variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CurrentLocationButton setLocation={setLocation} />
+                  </InputAdornment>
+                )
+              }}
             />
           </div>
           <div className={Style.ContentsDiv}>
@@ -243,7 +254,7 @@ const Create = props => {
             />
             <TextField
               fullWidth={true}
-              label="Tx"
+              label="TX"
               margin="normal"
               variant="outlined"
               disabled={true}
@@ -262,7 +273,6 @@ const Create = props => {
           >
             Submit
           </Button>
-          <CurrentLocationButton setLocation={setLocation} />
         </div>
       </div>
       {/* This is the success or error section */}

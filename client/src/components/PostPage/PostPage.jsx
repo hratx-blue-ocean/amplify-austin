@@ -4,7 +4,7 @@ import { PostPageButtons } from "./PostPageButtons/PostPageButtons";
 // import coords from "../MapPage/dummyCoordinates";
 import Map from "../Map/Map";
 import style from "./PostPage.module.css";
-import { useParams, Redirect, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import { API } from "../../constants";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
@@ -15,7 +15,7 @@ const PostPage = props => {
   const [post, setPost] = useState(undefined);
   const [coords, setCoords] = useState([]);
   const [fave, setFave] = useState(props.favorite);
-  const [resolved, setResolved] = useState(undefined);
+  const [status, setStatus] = useState(undefined);
   // token
   const userID = localStorage.getItem("user_id");
   // helpers
@@ -57,11 +57,7 @@ const PostPage = props => {
         headline: data.headline
       }
     ]);
-    if (data.status === "disputed" || data.status === "open") {
-      setResolved(false);
-    } else {
-      setResolved(true);
-    }
+    setStatus(data.status);
   };
 
   const handleFavorite = async e => {
@@ -79,19 +75,20 @@ const PostPage = props => {
     }
   };
 
-  const handleResolveDispute = async () => {
-    const ENDPOINT = resolved ? API.DISPUTE : API.RESOLVE;
+  const handleStatus = async () => {
+    const ENDPOINT = status === "resolved" ? API.DISPUTE : API.RESOLVE;
     const response = await axios.post(ENDPOINT, {
       userId: userID,
       postId: postID
     });
-    // TODO: verify status
-    if (response.data.split(" ")[0] === "postId") {
-      setResolved(resolved ? false : true);
-    }
+    const newStatus = response.data;
+    setStatus(newStatus);
   };
 
   if (post) {
+    {
+      console.log(post);
+    }
     return (
       <div>
         <div className={style.titleField}>
@@ -108,8 +105,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                <EmptyStarIcon></EmptyStarIcon>
-              )}
+                  <EmptyStarIcon></EmptyStarIcon>
+                )}
             </div>
           </div>
         </div>
@@ -117,9 +114,9 @@ const PostPage = props => {
           <p>{post.description}</p>
         </div>
         <PostPageButtons
-          contacts={post.contacts}
-          resolved={resolved}
-          handleResolveDispute={handleResolveDispute}
+          contact={post.contacts[0]}
+          status={status}
+          handleStatus={handleStatus}
         />
         <div className={style.map}>
           <Map coordinates={coords}></Map>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./PostPageButtons.module.css";
 import ReachOutDialog from "./ReachOutDialog";
 
-export const PostPageButtons = props => {
+export const PostPageButtons = ({ status, contact, handleStatus }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -16,23 +16,21 @@ export const PostPageButtons = props => {
       <button onClick={handleOpen} className={style.reachOutBtn}>
         Reach Out
       </button>
-      <ReachOutDialog
-        contact={props.contacts[0]}
-        open={open}
-        onClose={handleClose}
-      />
-      {props.resolved ? (
-        <button
-          onClick={props.handleResolveDispute}
-          className={style.disputeBtn}
-        >
+      <ReachOutDialog contact={contact} open={open} onClose={handleClose} />
+      {status === "resolved" ? (
+        <button onClick={handleStatus} className={style.disputeBtn}>
           Dispute Resolution
         </button>
-      ) : (
+      ) : status === "disputed" ? (
         <button
-          onClick={props.handleResolveDispute}
-          className={style.resolvedBtn}
+          disabled
+          title={"The resolution of this issue is currently in dispute"}
+          className={style.disputed}
         >
+          Disputed...
+        </button>
+      ) : (
+        <button onClick={handleStatus} className={style.resolvedBtn}>
           Mark Resolved
         </button>
       )}

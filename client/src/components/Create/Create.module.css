@@ -24,6 +24,14 @@
   align-content: center;
 }
 
+.getLocationDiv {
+  margin-top: 18px;
+  margin-bottom: 8px;
+  margin-left: 5px;
+  display: flex;
+  align-content: center;
+}
+
 .LocationDiv {
   display: grid;
   grid-template-rows: 0.5fr 0.5fr;
