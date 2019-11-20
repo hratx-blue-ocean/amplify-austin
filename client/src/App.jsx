@@ -7,8 +7,11 @@ import SignIn from "./components/SignIn/SignIn";
 import MapPage from "./components/MapPage/MapPage";
 import PostPage from "./components/PostPage/PostPage";
 import Create from "./components/Create/Create";
+import Title from "./components/header/title";
 import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
+import UserStatus from "./components/userStatus/UserStatus";
+
 import { allIssues, firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
@@ -30,8 +33,8 @@ export class App extends React.Component {
       selectBy: null,
       sortSelection: "popularity"
     };
-
     this.sortBy = this.sortBy.bind(this);
+    this.changeSelectBy = this.changeSelectBy.bind(this);
     this.selectCategories = this.selectCategories.bind(this);
   }
 
@@ -102,15 +105,15 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    console.log("These are the selected categories: ", selected);
-    let categories = selected.map(elem => {
-      return elem.title;
+    const categories = selected.map((category) => {
+      return category.title
+    })
+    this.setState({
+      filteredCategories: categories,
     });
-    this.setState({ filteredCategories: categories });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state.selectBy);
     if (
       prevState.sortSelection !== this.state.sortSelection ||
       prevState.filteredCategories !== this.state.filteredCategories ||
@@ -136,6 +139,8 @@ export class App extends React.Component {
           <div className={styles.component}>
             <Switch>
               <Route exact path="/">
+                <UserStatus />
+                <Title title={this.state.selectBy} />
                 <SortFilter
                   sortBy={this.sortBy}
                   categories={this.state.categories}
@@ -156,9 +161,10 @@ export class App extends React.Component {
               <PrivateRoute path="/create" component={Create} />
               <Route path="/map">
                 <MapPage
-                  sortBy={this.sortBy}
                   posts={this.state.posts}
+                  selectBy={this.state.selectBy}
                   categories={this.state.categories}
+                  changeSelectBy={this.changeSelectBy}
                   selectCategories={this.selectCategories}
                   filteredCategories={this.state.filteredCategories}
                 />
@@ -173,7 +179,7 @@ export class App extends React.Component {
             </Switch>
           </div>
         </div>
-      </Router>
+      </Router >
     );
   }
 }

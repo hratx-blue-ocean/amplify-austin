@@ -5,7 +5,9 @@ import MapFilter from "./MapFilter";
 
 const MapPage = ({
   posts,
+  selectBy,
   categories,
+  changeSelectBy,
   selectCategories,
   filteredCategories
 }) => {
@@ -14,7 +16,9 @@ const MapPage = ({
       <div className={styles.subcontainer}>
         <div className={styles.filter}>
           <MapFilter
+            selectBy={selectBy}
             categories={categories}
+            changeSelectBy={changeSelectBy}
             selectCategories={selectCategories}
             filteredCategories={filteredCategories}
           ></MapFilter>
