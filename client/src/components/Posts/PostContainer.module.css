@@ -1,0 +1,15 @@
+.imgContainer {
+  z-index: -1;
+  position: absolute;
+  top: 45%;
+  height: 100%;
+  width: 100%;
+}
+
+.errorContainer {
+  position: absolute;
+  top: 45%;
+  left: 15%;
+  width: 60%;
+  color: #c6c6c6;
+}
