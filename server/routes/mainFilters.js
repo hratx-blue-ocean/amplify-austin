@@ -31,8 +31,8 @@ router.get("/api/main", (req, res) => {
             resolved: currentRow.resolved,
             otherFlag: currentRow.otherFlag,
             eventDate: currentRow.eventDate,
-            canAmplify: !currentRow.promoteId,
-            favorited: !!currentRow.favoritesId,
+            canAmplify: !currentRow.promoteId || false,
+            favorited: !!currentRow.favoritesId || false,
             address: currentRow.address,
             lat: currentRow.lat,
             lng: currentRow.lng
