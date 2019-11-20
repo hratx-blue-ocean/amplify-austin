@@ -10,7 +10,6 @@ router.get("/api", (req, res) => {
 });
 
 router.post("/api/issue", (req, res) => {
-  console.log("We're trying to post something!");
   const postInfo = req.body;
   if (typeof postInfo.location === "string") {
     var apiStr = postInfo.location.replace(/ /g, "+");
