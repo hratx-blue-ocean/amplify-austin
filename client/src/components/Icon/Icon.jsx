@@ -18,7 +18,7 @@ import MusicIcon from "../Icons/MusicIcon";
 import NatureIcon from "../Icons/NatureIcon";
 import MenuIconCustom from "../Icons/MenuIconCustom";
 import ParkingIcon from "../Icons/ParkingIcon";
-import PetIcon from "../Icons/PetIcon";
+import PetsIcon from "../Icons/PetIcon";
 import SchoolHouseIcon from "../Icons/SchoolHouseIcon";
 import SettingsIconCustom from "../Icons/SettingsIconCustom";
 import TownHallIconCustom from "../Icons/TownHallIcon";
@@ -62,8 +62,8 @@ class Icon extends React.Component {
         return <NatureIcon />;
       case ICONLABEL.parking:
         return <ParkingIcon />;
-      case ICONLABEL.pet:
-        return <PetIcon />;
+      case ICONLABEL.pets:
+        return <PetsIcon />;
       case ICONLABEL.school:
         return <SchoolHouseIcon />;
       case ICONLABEL.settings:

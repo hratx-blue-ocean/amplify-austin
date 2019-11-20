@@ -16,7 +16,7 @@ export const ICONLABEL = {
   nature: "nature",
   menu: "menu",
   parking: "parking",
-  pet: "pet",
+  pets: "pets",
   school: "school",
   settings: "settings",
   starEmpty: "emptyStar",
