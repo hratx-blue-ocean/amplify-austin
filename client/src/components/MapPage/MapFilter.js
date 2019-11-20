@@ -22,12 +22,14 @@ const MapFilter = props => {
         direction="row"
         alignItems="center"
       >
-        <Grid item xs={6}>
-          <MapPostSelect
-            selectBy={props.selectBy}
-            changeSelectBy={props.changeSelectBy}
-          />
-        </Grid>
+        {localStorage.getItem("user_id") && (
+          <Grid item xs={6}>
+            <MapPostSelect
+              selectBy={props.selectBy}
+              changeSelectBy={props.changeSelectBy}
+            />
+          </Grid>
+        )}
         <Grid item xs={6}>
           <CategorySelect
             categories={props.categories}

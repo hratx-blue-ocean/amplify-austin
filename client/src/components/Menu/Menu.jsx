@@ -108,7 +108,7 @@ const Menu = props => {
             onClick={() => {
               localStorage.removeItem("user_id");
               localStorage.removeItem("username");
-              history.push("/");
+              history.push("/signin");
               onClose();
             }}
             variant="contained"

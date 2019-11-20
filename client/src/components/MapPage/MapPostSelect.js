@@ -29,8 +29,13 @@ export default function SimpleSelect(props) {
           className={classes.selectEmpty}
         >
           <MenuItem value={null}>All Posts</MenuItem>
+<<<<<<< HEAD
           <MenuItem value={"myPosts"}>My Posts</MenuItem>
           <MenuItem value={"favorites"}>Favorites</MenuItem>
+=======
+          <MenuItem value={'myPosts'}>My Posts</MenuItem>
+          <MenuItem value={'favorites'}>Watch List</MenuItem>
+>>>>>>> a5bc2e6c56e3e11abd041c75f1a3e7713ad5ecf6
         </Select>
       </FormControl>
     </div>
