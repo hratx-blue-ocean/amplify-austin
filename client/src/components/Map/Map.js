@@ -11,17 +11,8 @@ export default class Map extends Component {
     this.state = {
       coordinates: [],
       center: centerATX || centerOf(this.props.posts),
-      selectedMarker: null,
       zoom: zoom
     };
-    this.selectMarker = this.selectMarker.bind(this);
-  }
-
-  selectMarker(postId) {
-    const newId = this.state.selectedMarker === postId ? null : postId;
-    this.setState({
-      selectedMarker: newId
-    });
   }
 
   render() {
@@ -40,12 +31,10 @@ export default class Map extends Component {
                 key={i}
                 lat={post.lat}
                 lng={post.lng}
+                postId={post.postId}
                 title={post.headline}
                 otherFlag={post.otherFlag}
                 category={post.categoryName}
-                isSelected={post.postId === this.state.selectedMarker}
-                selectMarker={this.selectMarker}
-                postId={post.postId}
               />
             );
           })}
