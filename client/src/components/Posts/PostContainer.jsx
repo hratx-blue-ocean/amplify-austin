@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Post from "../Post/Post.jsx";
+import Styles from "./PostContainer.module.css";
 
 const containerStyles = makeStyles(theme => ({
   root: {
@@ -12,8 +13,25 @@ const containerStyles = makeStyles(theme => ({
 }));
 
 const PostContainer = props => {
+  const checkForEmpty = () => {
+    if (props.postData.length === 0) {
+      return (
+        <div>
+          <h1 className={Styles.errorContainer}>
+            There are no issues or events that fit your request!{" "}
+          </h1>
+          <img
+            className={Styles.imgContainer}
+            src="amplify_austin_grey.png"
+            height="500px"
+            width="500px"
+          ></img>
+        </div>
+      );
+    }
+  };
+
   const postContStyles = containerStyles();
-  // console.log(props);
   return (
     <div className={postContStyles.root}>
       {props.postData.map(post => {
@@ -30,10 +48,11 @@ const PostContainer = props => {
             votes={post.upvotes}
             username={post.username}
             status={post.status}
-            favorited={post.favorited}
+            isFavorited={post.isFavorited}
           />
         );
       })}
+      {checkForEmpty()}
     </div>
   );
 };
