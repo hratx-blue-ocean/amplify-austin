@@ -2,10 +2,3 @@
   position: relative;
   cursor: pointer;
 }
- .minipost{
-   visibility: hidden;
- }
-
- .minipost:hover {
-   visibility: visible;
- }
