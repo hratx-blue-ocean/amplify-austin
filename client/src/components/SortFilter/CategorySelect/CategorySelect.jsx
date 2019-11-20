@@ -23,7 +23,9 @@ const Tags = props => {
           return { title: category };
         })}
         getOptionLabel={option => option.title}
-        getOptionDisabled={option => props.filteredCategories.includes(option.title)}
+        getOptionDisabled={option =>
+          props.filteredCategories.includes(option.title)
+        }
         defaultValue={defaultValues}
         onChange={(event, value) => props.selectCategories(value)}
         renderInput={params => (
