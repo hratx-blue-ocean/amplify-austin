@@ -105,8 +105,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                  <EmptyStarIcon></EmptyStarIcon>
-                )}
+                <EmptyStarIcon></EmptyStarIcon>
+              )}
             </div>
           </div>
         </div>
