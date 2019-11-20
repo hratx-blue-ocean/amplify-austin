@@ -1,7 +1,7 @@
 {
-  "name": "myatx",
+  "name": "amplifyaustin",
   "version": "0.1.0",
-  "description": "MyATX community involvement and map",
+  "description": "Amplify Austin community involvement and map",
   "main": "index.js",
   "scripts": {
     "setup": "npm install && cd ./client && npm install && cd ../server && npm install && cd ../db && npm install",
@@ -11,7 +11,8 @@
     "lint:server": "cd ./server && npm run lint",
     "prettier:client": "./node_modules/.bin/prettier --write 'client/src/**/*.{js,jsx}'",
     "prettier:server": "./node_modules/.bin/prettier --write 'server/routes/**/*.js'",
-    "deploy:dev": "npm run setup && cd ./client && npm run build && cd ../server && node bin/www"
+    "deploy:dev": "npm run setup && cd ./client && npm run build && cd ../server && node bin/www",
+    "deploy:build": "cd ./client && npm run build"
   },
   "husky": {
     "hooks": {
@@ -20,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hratx-blue-ocean/myatx-community.git"
+    "url": "git+https://github.com/hratx-blue-ocean/amplify-austin.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hratx-blue-ocean/myatx-community/issues"
+    "url": "https://github.com/hratx-blue-ocean/amplify-austin/issues"
   },
-  "homepage": "https://github.com/hratx-blue-ocean/myatx-community#readme",
+  "homepage": "https://github.com/hratx-blue-ocean/amplify-austin#readme",
   "dependencies": {
     "axios": "0.19.0",
     "dotenv": "8.0.0",

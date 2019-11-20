@@ -18,7 +18,7 @@ router.get("/api/main", (req, res) => {
       let count = 0;
       let posts = [];
 
-      const formatPost = function () {
+      const formatPost = function() {
         if (count < rows.length) {
           let currentRow = rows[count];
           posts[count] = {
@@ -38,7 +38,7 @@ router.get("/api/main", (req, res) => {
             lng: currentRow.lng
           };
 
-          if ((posts[count].categoryName === "Events")) {
+          if (posts[count].categoryName === "Events") {
             posts[count].type = "event";
           } else {
             posts[count].type = "issue";
