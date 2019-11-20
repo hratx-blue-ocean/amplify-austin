@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactModal from 'react-modal';
-import Style from './NotificationModal.module.css'
+import React from "react";
+import ReactModal from "react-modal";
+import Style from "./NotificationModal.module.css";
 
-ReactModal.setAppElement('body');
+ReactModal.setAppElement("body");
 
 const NotificationModal = ({ display, toggleDisplayModal }) => {
   if (display) {
@@ -11,9 +11,9 @@ const NotificationModal = ({ display, toggleDisplayModal }) => {
       <div className={Style.modal}>
         <p>You must be logged in to use this feature! AWESOME COLOR</p>
       </div>
-    )
+    );
   } else {
-    return null
+    return null;
   }
-}
+};
 export default NotificationModal;

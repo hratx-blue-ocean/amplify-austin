@@ -29,7 +29,6 @@ class CurrentLocationButton extends React.Component {
 
             const request = `${https}${coordinates}${key}`;
             axios.get(request).then(results => {
-              console.log(results);
               let shortAddress = "";
               const addressComponents =
                 results.data.results[0].address_components;

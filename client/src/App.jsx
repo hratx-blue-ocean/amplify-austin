@@ -21,17 +21,18 @@ import {
 } from "react-router-dom";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { API } from "./constants";
+import Loading from "./components/Loading/Loading";
 
 export class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedPost: firstPost,
       posts: [],
       categories: [],
       filteredCategories: [],
       selectBy: null,
-      sortSelection: "popularity"
+      sortSelection: "popularity",
+      response: undefined
     };
     this.sortBy = this.sortBy.bind(this);
     this.changeSelectBy = this.changeSelectBy.bind(this);
@@ -47,6 +48,10 @@ export class App extends React.Component {
     }
   }
 
+  // componentWillUpdate() {
+  //   if ()
+  // }
+
   async getCategories() {
     try {
       const res = await axios.get(API.CATEGORIES);
@@ -54,12 +59,13 @@ export class App extends React.Component {
         categories: res.data
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   async getInitialPosts() {
     try {
+      this.setState({ response: false });
       const res = await axios.get(API.MAIN, {
         params: {
           sortBy: this.state.sortSelection,
@@ -67,11 +73,13 @@ export class App extends React.Component {
         }
       });
       this.setState({
-        posts: res.data
+        posts: res.data,
+        response: true
       });
-      console.log(res.data);
     } catch (error) {
-      console.log(error);
+      // true so no posts displays instead of spinner
+      this.setState({ response: true });
+      // TODO error component
     }
   }
 
@@ -79,21 +87,23 @@ export class App extends React.Component {
     let strArry = this.state.filteredCategories.join("/");
     let userId = localStorage.getItem("user_id");
     try {
-      console.log("again");
-      console.log(res.data);
+      this.setState({ response: false });
       const res = await axios.get(API.MAIN, {
         params: {
           userId: userId,
           sortBy: this.state.sortSelection,
           categories: strArry,
-          selectBy: this.state.selectBy
+          selectBy: this.state.selectBy,
+          response: true
         }
       });
       this.setState({
         posts: res.data
       });
     } catch (error) {
-      console.log(error);
+      // true so no posts displays instead of spinner
+      this.setState({ response: true });
+      console.error(error);
     }
   }
 
@@ -144,10 +154,14 @@ export class App extends React.Component {
                   selectCategories={this.selectCategories}
                   filteredCategories={this.state.filteredCategories}
                 ></SortFilter>
-                <PostContainer
-                  postData={this.state.posts}
-                  filteredCategories={this.state.filteredCategories}
-                ></PostContainer>
+                {this.state.response ? (
+                  <PostContainer
+                    postData={this.state.posts}
+                    filteredCategories={this.state.filteredCategories}
+                  />
+                ) : (
+                    <Loading />
+                  )}
               </Route>
               <Route path="/signup">
                 <SignUp />

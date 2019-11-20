@@ -44,7 +44,7 @@ const SignIn = props => {
       }
       return true;
     } catch (error) {
-      console.error(error);
+      window.alert("invalid credentials, please try again");
       return false;
     }
   };
@@ -61,7 +61,6 @@ const SignIn = props => {
         throw Error("bad credentials");
       }
     } catch (error) {
-      console.error(error);
       window.alert("invalid credentials, please try again");
     }
   };

@@ -8,8 +8,8 @@ export default function OtherIcon() {
       otherIcon: {
         color: "#3D9970"
       }
-    }
-  };
+    };
+  }
 
   const classes = makeStyles(iconStyles());
 
