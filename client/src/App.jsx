@@ -153,13 +153,14 @@ export class App extends React.Component {
                   selectCategories={this.selectCategories}
                   filteredCategories={this.state.filteredCategories}
                 ></SortFilter>
-                {this.state.response ?
+                {this.state.response ? (
                   <PostContainer
                     postData={this.state.posts}
                     filteredCategories={this.state.filteredCategories}
-                  /> :
+                  />
+                ) : (
                   <Loading />
-                }
+                )}
               </Route>
               <Route path="/signup">
                 <SignUp />

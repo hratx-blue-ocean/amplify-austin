@@ -17,7 +17,7 @@ import MsgIcon from "../Icons/MsgIcon";
 import MusicIcon from "../Icons/MusicIcon";
 import NatureIcon from "../Icons/NatureIcon";
 import MenuIconCustom from "../Icons/MenuIconCustom";
-import OtherIcon from '../Icons/OtherIcon';
+import OtherIcon from "../Icons/OtherIcon";
 import ParkingIcon from "../Icons/ParkingIcon";
 import PetsIcon from "../Icons/PetIcon";
 import SchoolHouseIcon from "../Icons/SchoolHouseIcon";

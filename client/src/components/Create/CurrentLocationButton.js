@@ -23,11 +23,11 @@ class CurrentLocationButton extends React.Component {
             console.log("GeoLocation is not enabled");
           } else {
             // Nab Latitude and Longitude, send off to Google API for decoding
-            let key = `&key=${ process.env.REACT_APP_MAP_API_KEY }`;
+            let key = `&key=${process.env.REACT_APP_MAP_API_KEY}`;
             let https = `https://maps.googleapis.com/maps/api/geocode/json?latlng=`;
-            let coordinates = `${ this.props.coords.latitude },${ this.props.coords.longitude }`;
+            let coordinates = `${this.props.coords.latitude},${this.props.coords.longitude}`;
 
-            const request = `${ https }${ coordinates }${ key }`;
+            const request = `${https}${coordinates}${key}`;
             axios.get(request).then(results => {
               let shortAddress = "";
               const addressComponents =
@@ -37,7 +37,7 @@ class CurrentLocationButton extends React.Component {
                 if (addressPart === "Austin" || addressPart === "Texas") {
                   break;
                 } else {
-                  shortAddress = `${ shortAddress } ${ addressPart }`;
+                  shortAddress = `${shortAddress} ${addressPart}`;
                 }
               }
               this.props.setLocation(shortAddress.trim());

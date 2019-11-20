@@ -4,7 +4,6 @@ import Icon from "../../Icon/Icon";
 import MiniPost from "../MiniPost/MiniPost";
 import styles from "./Marker.module.css";
 
-
 const Marker = ({ title, category, postId }) => {
   const history = useHistory();
   const [showTitle, toggleTitle] = useState(false);
@@ -13,7 +12,8 @@ const Marker = ({ title, category, postId }) => {
       className={styles.marker}
       onClick={() => history.push(`posts/${postId}`)}
       onMouseEnter={() => toggleTitle(true)}
-      onMouseLeave={() => toggleTitle(false)}>
+      onMouseLeave={() => toggleTitle(false)}
+    >
       <Icon category={category.toLowerCase()} />
       {showTitle && <MiniPost title={title} />}
     </div>
