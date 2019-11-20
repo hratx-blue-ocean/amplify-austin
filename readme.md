@@ -1,10 +1,10 @@
-# MyATX Community
+# Amplify Austin
 [![Build Status](https://travis-ci.com/hratx-blue-ocean/myatx-community.svg?branch=master)](https://travis-ci.com/hratx-blue-ocean/myatx-community)
 
 ## TODO: headline / graphic
 
 ## Table of Contents
-- [MyATX Community](#myatx-community)
+- [Amplify Austin](#amplify-austin)
   - [TODO: headline / graphic](#todo-headline--graphic)
   - [Table of Contents](#table-of-contents)
   - [Demo](#demo)
@@ -31,23 +31,49 @@
 * [Seth](https://github.com/projectlewis)
 * [Taylor](http://github.com/atgeorge11)
 * [Tye](https://github.com/tyemacon)
+* [Chris](https://gargoylepastures.com)
 
 ## About
-This project was a brief 1-week sprint where our team tried to complete an MVP for an [Open Austin](https://www.open-austin.org/) project
+This project was a brief 1-week sprint where our team completed an MVP for an [Open Austin](https://www.open-austin.org/) project
 
 ### What does the app do? 
-    * What problem does it solve? Who uses it?
-    * Why was it built?
-    * User Inputs and Outputs
+    
+    Amplify Austin facilitates civic engagement by providing a platform through which its residents and their city officials can easily interact to solve concerns important to Austin. 
+
+    We enable users to raise awareness of community issues in need of address to the city officials responsible for addressing them. City officials can use our application to gauge issues of importance to residents. We also provide a venue for community members to organize and promote events in the Austin area.
+    
+    User Inputs and Outputs
+    
+    
+    We have
 
 ## Technologies
-
+#### Front End
+* React
+* React Router
+* Material-UI
+#### Back End
+* MySQL
+* Express
+* Node.js
+* AWS RDS
+#### Additional Technologies
+* Docker
+* Travis CI
+* Google Maps API
+* AWS EC2
 ## SetUp and Requirements
-* TODO: What is required to run this app. IE: MySQL, docker, etc
-
+* MySQL/RDS Database
+* Google Maps API Key with Geolocation, Geocoding, and JavaScript Map API enabled
+* Add environmental variable for Google Maps API key to `.env` file in root directory **and** client directory
+* Add environmental variable for RDS password to `.env` file in root directory
 ## Scripts
-* TODO: What is required to run this app. IE: MySQL, docker, etc
-  
+#### Development
+1. `npm run setup` in root directory (installs all dependencies in all folders)
+1. `npm run start` in server directory ()
+1. `npm run start` in client directory 
+#### Production
+1. `npm run deploy` in root directory
 ## How to Use?
     * What happens behind the scenes when the user interacts with it? 
     * OR What are all the place the data travels?  What happens to that data?

@@ -14,7 +14,7 @@ const PostPage = props => {
   // state
   const [post, setPost] = useState(undefined);
   const [coords, setCoords] = useState([]);
-  const [fave, setFave] = useState(props.favorite);
+  const [fave, setFave] = useState(undefined);
   const [status, setStatus] = useState(undefined);
   // token
   const userID = localStorage.getItem("user_id");
@@ -36,10 +36,12 @@ const PostPage = props => {
       });
 
       const postData = response.data;
+      console.log(postData);
       if (postData === undefined) {
         throw new Error("no response from GET request");
       }
       setPostState(postData);
+      setFave(postData.isFavorited);
     } catch (error) {
       // TODO add error page
       console.error(error);
@@ -86,9 +88,6 @@ const PostPage = props => {
   };
 
   if (post) {
-    {
-      console.log(post);
-    }
     return (
       <div>
         <div className={style.titleField}>
