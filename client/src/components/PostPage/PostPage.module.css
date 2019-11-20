@@ -17,6 +17,10 @@
   right: 3%;
 }
 
+.favorite > div > div {
+  margin-bottom: 40px;
+}
+
 .heading > h2 {
   text-align: center;
   margin-bottom: 0;

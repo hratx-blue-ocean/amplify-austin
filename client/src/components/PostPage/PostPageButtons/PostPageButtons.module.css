@@ -4,7 +4,7 @@
   margin: 5px 0 10px;
 }
 
-.reachOutBtn, .resolvedBtn, .disputeBtn {
+.reachOutBtn, .resolvedBtn, .disputeBtn, .disputed {
   margin-top: 10px;
   padding: 5px 10px;
   border-radius: 3px;
@@ -17,7 +17,11 @@
   cursor: pointer;
 }
 
-.disputeBtn {
+.disputed {
+  font-weight: 600;
+}
+
+.disputeBtn, .disputed {
   background-color: rgb(84, 84, 196);
   color: white;
 }
