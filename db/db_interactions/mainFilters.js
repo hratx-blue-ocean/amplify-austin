@@ -2,6 +2,7 @@ const connection = require('../db');
 
 const getPosts = function (userId, selectBy, sortBy, categories) {
     return new Promise((resolve, reject) => {
+
         let queryString = "SELECT posts.id, headline, categoryId, created_at, eventDate, upvotes, address, status, otherFlag, lat, lng, address, categories.name"
 
         if (userId) {
