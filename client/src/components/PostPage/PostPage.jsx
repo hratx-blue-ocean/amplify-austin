@@ -9,6 +9,7 @@ import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import { API } from "../../constants";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
+import Loading from "../Loading/Loading";
 
 const PostPage = props => {
   // state
@@ -36,7 +37,6 @@ const PostPage = props => {
       });
 
       const postData = response.data;
-      console.log(postData);
       if (postData === undefined) {
         throw new Error("no response from GET request");
       }
@@ -44,7 +44,6 @@ const PostPage = props => {
       setFave(postData.isFavorited);
     } catch (error) {
       // TODO add error page
-      console.error(error);
       history.push("/");
     }
   };
@@ -104,8 +103,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                <EmptyStarIcon></EmptyStarIcon>
-              )}
+                  <EmptyStarIcon></EmptyStarIcon>
+                )}
             </div>
           </div>
         </div>
@@ -123,7 +122,7 @@ const PostPage = props => {
       </div>
     );
   } else {
-    return <div>loading</div>;
+    return <Loading />;
   }
 };
 
