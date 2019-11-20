@@ -10,7 +10,9 @@ import Create from "./components/Create/Create";
 import Title from "./components/header/title";
 import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
-import { firstPost } from "./FAKEDATA";
+import UserStatus from "./components/userStatus/UserStatus";
+
+import { allIssues, firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
   Switch,
@@ -103,11 +105,11 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    const categories = selected.map(category => {
-      return category.title;
-    });
+    const categories = selected.map((category) => {
+      return category.title
+    })
     this.setState({
-      filteredCategories: categories
+      filteredCategories: categories,
     });
   }
 
@@ -177,7 +179,7 @@ export class App extends React.Component {
             </Switch>
           </div>
         </div>
-      </Router>
+      </Router >
     );
   }
 }
