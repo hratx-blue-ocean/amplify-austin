@@ -105,11 +105,11 @@ export class App extends React.Component {
   }
 
   selectCategories(selected) {
-    const categories = selected.map((category) => {
-      return category.title
-    })
+    const categories = selected.map(category => {
+      return category.title;
+    });
     this.setState({
-      filteredCategories: categories,
+      filteredCategories: categories
     });
   }
 
@@ -179,7 +179,7 @@ export class App extends React.Component {
             </Switch>
           </div>
         </div>
-      </Router >
+      </Router>
     );
   }
 }
