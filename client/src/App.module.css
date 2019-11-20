@@ -8,10 +8,11 @@
    .container {
     display: grid;
     /* max-width: 414px; */
+    position: relative;
     height: 100vh;
     grid-template-rows: 56px 1fr;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 1%;
     max-width: 750px;
     min-width: 500px;
     grid-template-areas: 
