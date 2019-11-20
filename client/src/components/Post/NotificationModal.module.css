@@ -1,0 +1,45 @@
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  bottom: 0.5%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  min-width: 500px;
+  max-width: 750px;
+  height: 40px;
+  font-size: 16px;
+  background-color: rgb(238, 255, 0);
+  border-color: rgb(100, 100, 100);
+  border-radius: 3%;
+  outline: none;
+  z-index: 10;
+  box-shadow:  0 0 5px  rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 0 5px  rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 0 5px  rgba(0,0,0,0.1);
+  -o-box-shadow: 0 0 5px  rgba(0,0,0,0.1);
+  overflow-y: hidden;
+  animation-name: popup, fadeout;
+  animation-duration: 0.3s, 1s;
+  animation-delay: 0s, 2s;
+}
+
+@keyframes popup {
+  from {
+    bottom: -2%;
+  }
+  to {
+    bottom: 0.5%;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1
+  }
+  to{
+    opacity: 0;
+  }
+}

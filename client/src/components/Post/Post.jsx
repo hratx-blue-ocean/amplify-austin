@@ -11,6 +11,7 @@ import Moment from "react-moment";
 import Icon from "../Icon/Icon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
+import NotificationModal from './NotificationModal'
 import "typeface-roboto";
 import axios from "axios";
 import { API } from "../../constants";
@@ -82,10 +83,15 @@ const Post = props => {
   const defaultIcon = <Icon category={"mapMarker"} />;
   const [amp, setAmp] = useState(undefined);
   const [fave, setFave] = useState(props.favorite);
+  const [displayModal, toggleDisplayModal] = useState(false);
 
   const userID = localStorage.getItem("user_id");
 
   const handleAmplify = async () => {
+    if (!userID) {
+      toggleDisplayModal(!displayModal);
+      return;
+    }
     try {
       const response = await axios.post(API.AMPLIFY, {
         userId: userID,
@@ -101,6 +107,10 @@ const Post = props => {
 
   const handleFavorite = async e => {
     e.stopPropagation();
+    if (!userID) {
+      toggleDisplayModal(!displayModal);
+      return;
+    }
     try {
       const response = await axios.post(API.FAVORITE, {
         userId: userID,
@@ -117,6 +127,10 @@ const Post = props => {
   return (
     // if other flag, display "other" icon and NOT category icon
     <div className={styles.root}>
+      <NotificationModal
+        display={displayModal}
+        toggleDisplayModal={toggleDisplayModal}
+      />
       <Grid container spacing={3}>
         <Grid item xs={2} container direction="column">
           <Grid item xs className={styles.arrow}>
@@ -151,8 +165,8 @@ const Post = props => {
               {props.category === "Other" ? (
                 defaultIcon
               ) : (
-                <Icon category={props.category.toLowerCase()} />
-              )}
+                  <Icon category={props.category.toLowerCase()} />
+                )}
             </Grid>
             <Grid
               item
@@ -181,8 +195,8 @@ const Post = props => {
                   {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                    <EmptyStarIcon></EmptyStarIcon>
-                  )}
+                      <EmptyStarIcon></EmptyStarIcon>
+                    )}
                 </div>
               </Grid>
             </Grid>
