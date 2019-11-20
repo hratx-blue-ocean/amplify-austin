@@ -4,7 +4,6 @@ import Icon from "../../Icon/Icon";
 import MiniPost from "../MiniPost/MiniPost";
 import styles from "./Marker.module.css";
 
-const defaultIcon = <Icon category={"mapMarker"} />;
 
 const Marker = ({ title, category, postId }) => {
   const history = useHistory();
@@ -15,11 +14,7 @@ const Marker = ({ title, category, postId }) => {
       onClick={() => history.push(`posts/${postId}`)}
       onMouseEnter={() => toggleTitle(true)}
       onMouseLeave={() => toggleTitle(false)}>
-      {category === "Other" ? (
-        defaultIcon
-      ) : (
-          <Icon category={category.toLowerCase()} />
-        )}
+      <Icon category={category.toLowerCase()} />
       {showTitle && <MiniPost title={title} />}
     </div>
   );
