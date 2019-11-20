@@ -120,13 +120,8 @@ const Create = props => {
         } else {
           handleOpen("error");
         }
-        //dont need to have a pop up for success because we are going to immediately redirect to new page,
-        // so no handleOpen("success") needed
-
-        //redirect to singlePost page;
       })
       .catch(error => {
-        console.log(error);
         handleOpen("error");
       });
   };

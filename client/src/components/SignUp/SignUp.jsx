@@ -64,7 +64,6 @@ const SignUp = () => {
   };
 
   const handleError = error => {
-    console.error(error);
     if (error.message === "422") {
       setUsername("");
       window.alert("That username is already in use. Please try another.");
