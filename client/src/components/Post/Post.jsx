@@ -80,7 +80,6 @@ const useStyles = makeStyles(theme => ({
 const Post = props => {
   const styles = useStyles();
   const history = useHistory();
-  const defaultIcon = <Icon category={"mapMarker"} />;
   const [amp, setAmp] = useState(undefined);
   const [fave, setFave] = useState(props.favorite);
   const [displayModal, toggleDisplayModal] = useState(false);
@@ -162,11 +161,7 @@ const Post = props => {
               direction="row"
               className={styles.category}
             >
-              {props.category === "Other" ? (
-                defaultIcon
-              ) : (
-                  <Icon category={props.category.toLowerCase()} />
-                )}
+              <Icon category={props.category.toLowerCase()} />
             </Grid>
             <Grid
               item
