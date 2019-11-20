@@ -68,7 +68,7 @@ export class App extends React.Component {
       this.setState({
         posts: res.data
       });
-      console.log(res.data)
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }

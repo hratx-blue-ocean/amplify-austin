@@ -137,7 +137,7 @@ const Post = props => {
         <Grid item xs={10} container direction="column">
           <Paper
             onClick={() => {
-              history.push(`/posts/${ props.postID }`);
+              history.push(`/posts/${props.postID}`);
             }}
             className={styles.paper}
           >
@@ -151,8 +151,8 @@ const Post = props => {
               {props.category === "Other" ? (
                 defaultIcon
               ) : (
-                  <Icon category={props.category.toLowerCase()} />
-                )}
+                <Icon category={props.category.toLowerCase()} />
+              )}
             </Grid>
             <Grid
               item
@@ -181,8 +181,8 @@ const Post = props => {
                   {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
+                    <EmptyStarIcon></EmptyStarIcon>
+                  )}
                 </div>
               </Grid>
             </Grid>
