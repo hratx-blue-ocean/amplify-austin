@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker tag blueoceanhr/production:latest 351788166609.dkr.ecr.us-east-2.amazonaws.com/amplifyaustin:latest
-docker push 351788166609.dkr.ecr.us-east-2.amazonaws.com/amplifyaustin/production:latest
+docker pull blueoceanhr/production:latest
+docker tag blueoceanhr/production 351788166609.dkr.ecr.us-east-2.amazonaws.com/amplifyaustin:latest
+docker push 351788166609.dkr.ecr.us-east-2.amazonaws.com/amplifyaustin:latest
