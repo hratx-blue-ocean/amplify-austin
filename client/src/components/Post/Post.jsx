@@ -81,7 +81,7 @@ const Post = props => {
   const history = useHistory();
   const defaultIcon = <Icon category={"mapMarker"} />;
   const [amp, setAmp] = useState(undefined);
-  const [fave, setFave] = useState(props.favorite);
+  const [fave, setFave] = useState(props.isFavorited);
 
   const userID = localStorage.getItem("user_id");
 

@@ -32,7 +32,6 @@ const PostContainer = props => {
   };
 
   const postContStyles = containerStyles();
-  // console.log(props);
   return (
     <div className={postContStyles.root}>
       {props.postData.map(post => {
@@ -49,7 +48,7 @@ const PostContainer = props => {
             votes={post.upvotes}
             username={post.username}
             status={post.status}
-            favorited={post.favorited}
+            isFavorited={post.isFavorited}
           />
         );
       })}
