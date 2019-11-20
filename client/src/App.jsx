@@ -62,7 +62,8 @@ export class App extends React.Component {
     try {
       const res = await axios.get(API.MAIN, {
         params: {
-          sortBy: this.state.sortSelection
+          sortBy: this.state.sortSelection,
+          userId: localStorage.getItem("user_id")
         }
       });
       this.setState({
@@ -78,6 +79,8 @@ export class App extends React.Component {
     let strArry = this.state.filteredCategories.join("/");
     let userId = localStorage.getItem("user_id");
     try {
+      console.log("again");
+      console.log(res.data);
       const res = await axios.get(API.MAIN, {
         params: {
           userId: userId,
@@ -164,7 +167,7 @@ export class App extends React.Component {
                 />
               </Route>
               <Route path="/posts/:postID">
-                <PostPage filteredCategories={this.state.filteredCategories} />
+                <PostPage getPosts={this.getPosts} filteredCategories={this.state.filteredCategories} />
               </Route>
               <Route path="*">
                 {/* TODO: replace with 404 page */}
