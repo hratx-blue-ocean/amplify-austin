@@ -25,6 +25,7 @@ const Header = props => {
   };
 
   const navToHome = () => {
+    props.changeSelectBy(null);
     history.push("/");
   };
 
