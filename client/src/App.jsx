@@ -68,6 +68,7 @@ export class App extends React.Component {
       this.setState({
         posts: res.data
       });
+      console.log(res.data)
     } catch (error) {
       console.log(error);
     }
@@ -76,12 +77,6 @@ export class App extends React.Component {
   async getPosts() {
     let strArry = this.state.filteredCategories.join("/");
     let userId = localStorage.getItem("user_id");
-    console.log("getting posts", {
-      userId: userId,
-      sortBy: this.state.sortSelection,
-      categories: strArry,
-      selectBy: this.state.selectBy
-    });
     try {
       const res = await axios.get(API.MAIN, {
         params: {
@@ -91,7 +86,6 @@ export class App extends React.Component {
           selectBy: this.state.selectBy
         }
       });
-      console.log(res.data);
       this.setState({
         posts: res.data
       });
