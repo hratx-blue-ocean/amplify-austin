@@ -142,7 +142,7 @@ const Post = props => {
         setFave(!fave);
       }
     } catch (error) {
-      console.error(error);
+      setErrorToggle(true);
     }
   };
 
@@ -233,8 +233,8 @@ const Post = props => {
                     {fave === true ? (
                       <VisibilityIcon></VisibilityIcon>
                     ) : (
-                      <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                    )}
+                        <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                      )}
                   </div>
                 </Grid>
               </Grid>
