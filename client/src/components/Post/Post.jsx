@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     fontFamily: "Roboto",
-    fontWeight: '500',
+    fontWeight: "500",
     paddingLeft: "10%",
     fontSize: "1rem",
     justifyContent: "flex-start"
@@ -191,8 +191,8 @@ const Post = props => {
                   {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
+                    <EmptyStarIcon></EmptyStarIcon>
+                  )}
                 </div>
               </Grid>
             </Grid>
