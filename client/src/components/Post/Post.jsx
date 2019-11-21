@@ -82,7 +82,8 @@ const useStyles = makeStyles(theme => ({
 const Post = props => {
   const styles = useStyles();
   const history = useHistory();
-  const [amp, setAmp] = useState(undefined);
+  const [amp, setAmp] = useState(!props.canAmplify);
+  const [votes, setVotes] = useState(props.votes);
   const [fave, setFave] = useState(undefined);
   const [displayModal, toggleDisplayModal] = useState(false);
   const [errorToggle, setErrorToggle] = useState(false);
@@ -103,7 +104,12 @@ const Post = props => {
         postId: props.postID
       });
       if (response.data.split(" ")[0] === "post") {
-        amp === undefined ? setAmp(props.votes + 1) : setAmp(undefined);
+        if (amp) {
+          setVotes(votes - 1);
+        } else {
+          setVotes(votes + 1);
+        }
+        setAmp(!amp);
       }
     } catch (error) {
       setErrorToggle(true);
@@ -131,30 +137,76 @@ const Post = props => {
 
   return (
     // if other flag, display "other" icon and NOT category icon
-
     <React.Fragment>
-      <div className={styles.root}>
-        <NotificationModal
-          display={displayModal}
-          toggleDisplayModal={toggleDisplayModal}
-        />
-        <Grid container spacing={3}>
-          <Grid item xs={2} container direction="column">
-            <Grid item xs className={styles.arrow}>
-              <IconButton
-                style={
-                  amp ? { color: "orange", padding: "0" } : { padding: "0" }
-                }
-                onClick={handleAmplify}
-                aria-label="delete"
-              >
-                <ArrowUpwardIcon />
-              </IconButton>
+    <div className={styles.root}>
+      <NotificationModal
+        display={displayModal}
+        toggleDisplayModal={toggleDisplayModal}
+      />
+      <Grid container spacing={3}>
+        <Grid item xs={2} container direction="column">
+          <Grid item xs className={styles.arrow}>
+            <IconButton
+              style={amp ? { color: "orange", padding: "0" } : { padding: "0" }}
+              onClick={handleAmplify}
+              aria-label="delete"
+            >
+              <ArrowUpwardIcon />
+            </IconButton>
+          </Grid>
+          <Grid item xs>
+            <Typography className={styles.arrow}>
+              {votes}
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid item xs={10} container direction="column">
+          <Paper
+            onClick={() => {
+              history.push(`/posts/${props.postID}`);
+            }}
+            className={styles.paper}
+          >
+            <Grid
+              item
+              xs={12}
+              container
+              direction="row"
+              className={styles.category}
+            >
+              <Icon category={props.category.toLowerCase()} />
             </Grid>
-            <Grid item xs>
-              <Typography className={styles.arrow}>
-                {amp ? amp : props.votes}
-              </Typography>
+            <Grid
+              item
+              xs={12}
+              container
+              direction="row"
+              className={styles.row2}
+            >
+              <Grid item xs={10}>
+                <Typography
+                  className={styles.title}
+                  gutterBottom
+                  fontSize={{
+                    xs: "h6.fontSize",
+                    sm: "h4.fontSize",
+                    md: "h3.fontSize"
+                  }}
+                  noWrap
+                >
+                  {props.title}
+                </Typography>
+              </Grid>
+              <Grid item xs={2} className={styles.star}>
+                {/* width: 100% */}
+                <div onClick={handleFavorite}>
+                  {fave === true ? (
+                    <FilledStarIcon></FilledStarIcon>
+                  ) : (
+                      <EmptyStarIcon></EmptyStarIcon>
+                    )}
+                </div>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={10} container direction="column">
