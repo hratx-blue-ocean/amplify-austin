@@ -29,11 +29,12 @@ const NewPostTextField = props => {
           <Grid item>
             <AccountCircle />
           </Grid>
-          <Grid item>
+          <Grid item xs={10}>
             <TextField
               onClick={handleRedirect}
               id="input-with-icon-grid"
               label="Add a new post..."
+              fullWidth={true}
             />
           </Grid>
         </Grid>

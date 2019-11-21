@@ -5,6 +5,11 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 0,
+    alignContent: "center",
+    justifyContent: "center"
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120
@@ -14,11 +19,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 export default function SimpleSelect(props) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
       <FormControl className={classes.formControl}>
         <Select
           value={props.selectBy}

@@ -12,7 +12,6 @@ import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
 import UserStatus from "./components/userStatus/UserStatus";
 
-import { allIssues, firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,10 +28,10 @@ export class App extends React.Component {
     this.state = {
       posts: [],
       categories: [],
-      filteredCategories: [],
       selectBy: null,
-      sortSelection: "popularity",
-      response: undefined
+      response: undefined,
+      filteredCategories: [],
+      sortSelection: "popularity"
     };
     this.sortBy = this.sortBy.bind(this);
     this.changeSelectBy = this.changeSelectBy.bind(this);
@@ -161,8 +160,8 @@ export class App extends React.Component {
                     filteredCategories={this.state.filteredCategories}
                   />
                 ) : (
-                  <Loading />
-                )}
+                    <Loading />
+                  )}
               </Route>
               <Route path="/signup">
                 <SignUp />
