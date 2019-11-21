@@ -26,7 +26,7 @@ export const ICONLABEL = {
   water: "water"
 };
 
-const HOST = "http://localhost:8000";
+const HOST = "http://localhost";
 const APIBASE = HOST + "/api";
 
 export const API = {
