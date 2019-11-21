@@ -25,6 +25,7 @@ const PostContainer = props => {
             src="amplify_austin_grey.png"
             height="500px"
             width="500px"
+            alt=""
           ></img>
         </div>
       );
