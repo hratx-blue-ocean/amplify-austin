@@ -6,7 +6,7 @@ import Map from "../Map/Map";
 import style from "./PostPage.module.css";
 import { useParams, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
-import NotificationModal from "../NotificationModal/NotificationModal"
+import NotificationModal from "../NotificationModal/NotificationModal";
 import { API } from "../../constants";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
@@ -81,7 +81,7 @@ const PostPage = props => {
   const handleStatus = async () => {
     if (!userID) {
       toggleDisplayModal(true);
-      return
+      return;
     }
     const ENDPOINT = status === "resolved" ? API.DISPUTE : API.RESOLVE;
     const response = await axios.post(ENDPOINT, {
@@ -113,8 +113,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                  <EmptyStarIcon></EmptyStarIcon>
-                )}
+                <EmptyStarIcon></EmptyStarIcon>
+              )}
             </div>
           </div>
         </div>
