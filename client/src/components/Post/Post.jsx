@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: "right"
   },
   addressGrid: {
-    display: 'inline',
+    display: "inline",
     textAlign: "left",
     justifyContent: "flex-end"
   },
@@ -146,24 +146,24 @@ const Post = props => {
     }
   };
 
-  const shortenAddreses = (address) => {
-    let abrevAddress = '';
+  const shortenAddreses = address => {
+    let abrevAddress = "";
     let j;
     if (address.length <= 20) {
-      j = address.length
+      j = address.length;
     } else if (address.length > 20) {
       j = 20;
-    };
+    }
 
     for (var i = 0; i < j; i++) {
       abrevAddress += address[i];
-    };
+    }
 
     abrevAddress += "...";
-    return abrevAddress
+    return abrevAddress;
   };
 
-  let abbreviatedAddress = shortenAddreses(props.address)
+  let abbreviatedAddress = shortenAddreses(props.address);
 
   return (
     // if other flag, display "other" icon and NOT category icon
@@ -233,8 +233,8 @@ const Post = props => {
                     {fave === true ? (
                       <VisibilityIcon></VisibilityIcon>
                     ) : (
-                        <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                      )}
+                      <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                    )}
                   </div>
                 </Grid>
               </Grid>
