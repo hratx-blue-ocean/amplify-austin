@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     margin: "",
     maxWidth: "100%",
-    background: "#c4c4c4",
+    background: "#E8E8E8",
     "&:hover": {
       background: "#DCDCDC"
     }
@@ -48,13 +48,13 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     fontFamily: "Roboto",
-    fontStyle: "normal",
+    fontWeight: "500",
     paddingLeft: "10%",
     fontSize: "1rem",
     justifyContent: "flex-start"
   },
   star: {
-    paddingLeft: "2%",
+    paddingLeft: "10%",
     width: "100%"
   },
   date: {
@@ -73,8 +73,9 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: "0.75rem",
-    justifyContent: "flex-start",
-    paddingBottom: "1%"
+    justifyContent: "flex-end",
+    paddingBottom: "1%",
+    paddingLeft: "2%"
   }
 }));
 
