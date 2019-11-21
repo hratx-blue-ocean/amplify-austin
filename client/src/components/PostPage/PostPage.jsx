@@ -123,8 +123,8 @@ const PostPage = props => {
                 {fave === true ? (
                   <VisibilityIcon></VisibilityIcon>
                 ) : (
-                    <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                  )}
+                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                )}
               </div>
             </div>
           </div>

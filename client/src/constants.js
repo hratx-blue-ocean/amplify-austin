@@ -43,7 +43,10 @@ export const CATEGORIES = [
   "Other"
 ];
 
-const HOST = process.env.NODE_ENV === "development" ? "http://localhost:8000" : "http://ec2-3-15-215-157.us-east-2.compute.amazonaws.com"
+const HOST =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000"
+    : "http://ec2-3-15-215-157.us-east-2.compute.amazonaws.com";
 const APIBASE = HOST + "/api";
 
 export const API = {
