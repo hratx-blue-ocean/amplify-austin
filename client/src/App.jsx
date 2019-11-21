@@ -72,6 +72,7 @@ export class App extends React.Component {
           userId: localStorage.getItem("user_id")
         }
       });
+      console.log(res);
       this.setState({
         posts: res.data,
         response: true
