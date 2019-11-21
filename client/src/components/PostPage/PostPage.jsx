@@ -69,6 +69,10 @@ const PostPage = props => {
 
   const handleFavorite = async e => {
     e.stopPropagation();
+    if (!userID) {
+      toggleDisplayModal(!displayModal);
+      return;
+    }
     try {
       const response = await axios.post(API.FAVORITE, {
         userId: userID,
@@ -103,6 +107,7 @@ const PostPage = props => {
           <NotificationModal
             display={displayModal}
             toggleDisplayModal={toggleDisplayModal}
+            message={"You must be logged in to use this feature!"}
           />
           <div className={style.titleField}>
             <div className={style.heading}>
@@ -118,8 +123,8 @@ const PostPage = props => {
                 {fave === true ? (
                   <VisibilityIcon></VisibilityIcon>
                 ) : (
-                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                )}
+                    <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                  )}
               </div>
             </div>
           </div>

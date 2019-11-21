@@ -8,9 +8,10 @@
   transform: translate(-50%, -50%);
   width: 100%;
   min-width: 500px;
-  max-width: 750px;
-  height: 40px;
+  max-width: 650px;
+  height: 60px;
   font-size: 16px;
+  font-weight: 500;
   background-color: #fcd66f;
   border-color: rgb(100, 100, 100);
   border-radius: 3%;
