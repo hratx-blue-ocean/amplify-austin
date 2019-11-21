@@ -72,13 +72,18 @@ export class App extends React.Component {
           response: true
         }
       });
-      this.setState({
-        posts: res.data,
-        response: true,
-      }, () => {
-        // Momentarily keep the initial response on page load output
-        if (mounting) { console.log(this.state.posts) }
-      });
+      this.setState(
+        {
+          posts: res.data,
+          response: true
+        },
+        () => {
+          // Momentarily keep the initial response on page load output
+          if (mounting) {
+            console.log(this.state.posts);
+          }
+        }
+      );
     } catch (error) {
       // true so no posts displays instead of spinner
       this.setState({ response: true });
@@ -139,8 +144,8 @@ export class App extends React.Component {
                     filteredCategories={this.state.filteredCategories}
                   />
                 ) : (
-                    <Loading />
-                  )}
+                  <Loading />
+                )}
               </Route>
               <Route path="/signup">
                 <SignUp />
