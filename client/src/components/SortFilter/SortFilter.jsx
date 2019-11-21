@@ -19,7 +19,7 @@ const SortFilter = props => {
     <div className={menuStyles.root}>
       <Grid
         container
-        spacing={10}
+        spacing={2}
         justify="center"
         direction="row"
         alignItems="center"

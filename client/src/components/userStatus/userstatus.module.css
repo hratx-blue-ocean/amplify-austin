@@ -1,27 +1,13 @@
 .conditionalRenderP {
   position: absolute;
-  top: 8%;
-  bottom: auto;
-  right: auto;
-  left: 85%;
-  text-align: right;
-  font-size: 1rem;
-  cursor: pointer;
-  color: blue;
-}
-
-.logout {
-  position: absolute;
-  top: 8%;
-  bottom: auto;
-  right: auto;
-  left: 87%;
-  text-align: right;
+  top: -18px;
+  right: 1px;
   font-size: 1rem;
   cursor: pointer;
   color: blue;
 }
 
 .subheader {
+  position: relative;
   margin-top: 5%;
 }
