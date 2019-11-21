@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import MapOutLinedIcon from "@material-ui/icons/MapOutlined";
 import style from "./Menu.module.css";
@@ -83,7 +84,7 @@ const Menu = props => {
                 onClose();
               }}
               variant="contained"
-              endIcon={<StarBorderOutlinedIcon />}
+              endIcon={<VisibilityOutlinedIcon />}
             >
               Watch List
             </Button>
