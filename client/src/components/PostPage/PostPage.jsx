@@ -11,6 +11,7 @@ import { API } from "../../constants";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
 import Loading from "../Loading/Loading";
+import ErrorModal from "../NotificationModal/ErrorModal";
 
 const PostPage = props => {
   // state
@@ -24,6 +25,8 @@ const PostPage = props => {
   // helpers
   const { postID } = useParams();
   const history = useHistory();
+  // error
+  const [errorToggle, setErrorToggle] = useState(false);
 
   useEffect(() => {
     getPost();
@@ -75,7 +78,7 @@ const PostPage = props => {
         setFave(!fave);
       }
     } catch (error) {
-      console.error(error);
+      setErrorToggle(true);
     }
   };
 
@@ -95,42 +98,49 @@ const PostPage = props => {
 
   if (post) {
     return (
-      <div>
-        <NotificationModal
-          display={displayModal}
-          toggleDisplayModal={toggleDisplayModal}
-        />
-        <div className={style.titleField}>
-          <div className={style.heading}>
-            <h2>{post.headline}</h2>
-            <PostPageSubGroup
-              type={post.type}
-              categoryName={post.categoryName}
-              created_at={post.created_at}
-            />
-          </div>
-          <div className={style.favorite}>
-            <div onClick={handleFavorite}>
-              {fave === true ? (
-                <FilledStarIcon></FilledStarIcon>
-              ) : (
-                <EmptyStarIcon></EmptyStarIcon>
-              )}
+      <React.Fragment>
+        <div>
+          <NotificationModal
+            display={displayModal}
+            toggleDisplayModal={toggleDisplayModal}
+          />
+          <div className={style.titleField}>
+            <div className={style.heading}>
+              <h2>{post.headline}</h2>
+              <PostPageSubGroup
+                type={post.type}
+                categoryName={post.categoryName}
+                created_at={post.created_at}
+              />
+            </div>
+            <div className={style.favorite}>
+              <div onClick={handleFavorite}>
+                {fave === true ? (
+                  <FilledStarIcon></FilledStarIcon>
+                ) : (
+                  <EmptyStarIcon></EmptyStarIcon>
+                )}
+              </div>
             </div>
           </div>
+          <div className={style.descriptionWrapper}>
+            <p>{post.description}</p>
+          </div>
+          <PostPageButtons
+            contact={post.contacts[0]}
+            status={status}
+            handleStatus={handleStatus}
+          />
+          <div className={style.map}>
+            <Map coordinates={coords}></Map>
+          </div>
         </div>
-        <div className={style.descriptionWrapper}>
-          <p>{post.description}</p>
-        </div>
-        <PostPageButtons
-          contact={post.contacts[0]}
-          status={status}
-          handleStatus={handleStatus}
+        <ErrorModal
+          CurrentState={errorToggle}
+          ChangeState={setErrorToggle.bind(this)}
+          Message="An Error Occured"
         />
-        <div className={style.map}>
-          <Map coordinates={coords}></Map>
-        </div>
-      </div>
+      </React.Fragment>
     );
   } else {
     return <Loading />;
