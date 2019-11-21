@@ -28,15 +28,20 @@ const CurrentLocationButton = props => {
             let key = `&key=${process.env.REACT_APP_MAP_API_KEY}`;
             let https = `https://maps.googleapis.com/maps/api/geocode/json?latlng=`;
             let coordinates = `${props.coords.latitude},${props.coords.longitude}`;
-
             const request = `${https}${coordinates}${key}`;
             axios
               .get(request)
               .then(results => {
                 if (results.data.results.length) {
                   let shortAddress = "";
-                  const addressComponents =
-                    results.data.results[0].address_components;
+                  const addressComponents = results.data.results[0].address_components;
+                  // Make sure address is within Austin
+                  const addressCheck = addressComponents.map((part) => part.long_name)
+                  if (!addressCheck.includes('Austin')) {
+                    setErrorMessage("Invalid location: Must be in Austin, TX");
+                    setErrorToggle(true);
+                    return
+                  }
                   for (let i = 0; i < addressComponents.length; i++) {
                     let addressPart = addressComponents[i].long_name;
                     if (addressPart === "Austin" || addressPart === "Texas") {
