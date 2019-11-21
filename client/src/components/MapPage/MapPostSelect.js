@@ -7,7 +7,7 @@ import Select from "@material-ui/core/Select";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 0,
-    alignContent: "center",
+    alignContent: "flex-end",
     justifyContent: "center"
   },
   formControl: {
@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2)
   }
 }));
-
 
 export default function SimpleSelect(props) {
   const classes = useStyles();

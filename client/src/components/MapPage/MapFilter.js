@@ -20,7 +20,7 @@ const MapFilter = props => {
         spacing={10}
         justify="center"
         direction="row"
-        alignItems="center"
+        alignItems="flex-end"
       >
         {localStorage.getItem("user_id") && (
           <Grid item xs={6}>

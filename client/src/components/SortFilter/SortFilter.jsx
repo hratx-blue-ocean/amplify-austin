@@ -35,9 +35,9 @@ const SortFilter = props => {
           />
         </Grid>
         <Grid item xs={12}>
-          {localStorage.getItem("user_id") &&
+          {localStorage.getItem("user_id") && (
             <NewPostTextField></NewPostTextField>
-          }
+          )}
         </Grid>
       </Grid>
     </div>
