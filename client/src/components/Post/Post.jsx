@@ -9,8 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Moment from "react-moment";
 import Icon from "../Icon/Icon";
-import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
-import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import NotificationModal from "../NotificationModal/NotificationModal";
 import ErrorModal from "../NotificationModal/ErrorModal";
 import "typeface-roboto";
@@ -201,60 +201,10 @@ const Post = props => {
                   {/* width: 100% */}
                   <div onClick={handleFavorite}>
                     {fave === true ? (
-                      <FilledStarIcon></FilledStarIcon>
+                      <VisibilityIcon></VisibilityIcon>
                     ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
-                  </div>
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>
-          <Grid item xs={10} container direction="column">
-            <Paper
-              onClick={() => {
-                history.push(`/posts/${props.postID}`);
-              }}
-              className={styles.paper}
-            >
-              <Grid
-                item
-                xs={12}
-                container
-                direction="row"
-                className={styles.category}
-              >
-                <Icon category={props.category.toLowerCase()} />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                container
-                direction="row"
-                className={styles.row2}
-              >
-                <Grid item xs={10}>
-                  <Typography
-                    className={styles.title}
-                    gutterBottom
-                    fontSize={{
-                      xs: "h6.fontSize",
-                      sm: "h4.fontSize",
-                      md: "h3.fontSize"
-                    }}
-                    noWrap
-                  >
-                    {props.title}
-                  </Typography>
-                </Grid>
-                <Grid item xs={2} className={styles.star}>
-                  {/* width: 100% */}
-                  <div onClick={handleFavorite}>
-                    {fave === true ? (
-                      <FilledStarIcon></FilledStarIcon>
-                    ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
+                        <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                      )}
                   </div>
                 </Grid>
               </Grid>
