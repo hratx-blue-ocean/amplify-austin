@@ -9,8 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Moment from "react-moment";
 import Icon from "../Icon/Icon";
-import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
-import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import NotificationModal from "../NotificationModal/NotificationModal";
 import ErrorModal from "../NotificationModal/ErrorModal";
 import "typeface-roboto";
@@ -147,7 +147,9 @@ const Post = props => {
           <Grid item xs={2} container direction="column">
             <Grid item xs className={styles.arrow}>
               <IconButton
-                style={amp ? { color: "orange", padding: "0" } : { padding: "0" }}
+                style={
+                  amp ? { color: "orange", padding: "0" } : { padding: "0" }
+                }
                 onClick={handleAmplify}
                 aria-label="delete"
               >
@@ -155,9 +157,7 @@ const Post = props => {
               </IconButton>
             </Grid>
             <Grid item xs>
-              <Typography className={styles.arrow}>
-                {votes}
-              </Typography>
+              <Typography className={styles.arrow}>{votes}</Typography>
             </Grid>
           </Grid>
           <Grid item xs={10} container direction="column">
@@ -201,10 +201,10 @@ const Post = props => {
                   {/* width: 100% */}
                   <div onClick={handleFavorite}>
                     {fave === true ? (
-                      <FilledStarIcon></FilledStarIcon>
+                      <VisibilityIcon></VisibilityIcon>
                     ) : (
-                        <EmptyStarIcon></EmptyStarIcon>
-                      )}
+                      <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                    )}
                   </div>
                 </Grid>
               </Grid>

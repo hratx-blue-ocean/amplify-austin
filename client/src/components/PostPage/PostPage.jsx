@@ -8,8 +8,8 @@ import { useParams, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import NotificationModal from "../NotificationModal/NotificationModal";
 import { API } from "../../constants";
-import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
-import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loading from "../Loading/Loading";
 import ErrorModal from "../NotificationModal/ErrorModal";
 
@@ -116,9 +116,9 @@ const PostPage = props => {
             <div className={style.favorite}>
               <div onClick={handleFavorite}>
                 {fave === true ? (
-                  <FilledStarIcon></FilledStarIcon>
+                  <VisibilityIcon></VisibilityIcon>
                 ) : (
-                  <EmptyStarIcon></EmptyStarIcon>
+                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
                 )}
               </div>
             </div>
