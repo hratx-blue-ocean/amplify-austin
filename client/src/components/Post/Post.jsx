@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
@@ -11,7 +11,7 @@ import Moment from "react-moment";
 import Icon from "../Icon/Icon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
-import NotificationModal from "./NotificationModal";
+import NotificationModal from "../NotificationModal/NotificationModal";
 import "typeface-roboto";
 import axios from "axios";
 import { API } from "../../constants";
@@ -82,8 +82,12 @@ const Post = props => {
   const styles = useStyles();
   const history = useHistory();
   const [amp, setAmp] = useState(undefined);
-  const [fave, setFave] = useState(props.favorite);
+  const [fave, setFave] = useState(undefined);
   const [displayModal, toggleDisplayModal] = useState(false);
+
+  useEffect(() => {
+    setFave(props.isFavorited);
+  }, []);
 
   const userID = localStorage.getItem("user_id");
 
