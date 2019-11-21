@@ -3,12 +3,16 @@ import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import style from "./SignIn.module.css";
 import { API } from "../../constants";
+import ErrorModal from "../NotificationModal/ErrorModal";
 
 const SignIn = props => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [errorToggle, setErrorToggle] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(
+    "An error has occured please try again"
+  );
   const handleUsername = e => {
     setUsername(e.target.value);
   };
@@ -44,7 +48,8 @@ const SignIn = props => {
       }
       return true;
     } catch (error) {
-      window.alert("invalid credentials, please try again");
+      setErrorMessage("Invalid credentials, please try again");
+      setErrorToggle(true);
       return false;
     }
   };
@@ -61,50 +66,58 @@ const SignIn = props => {
         throw Error("bad credentials");
       }
     } catch (error) {
-      window.alert("invalid credentials, please try again");
+      setErrorMessage("Invalid credentials, please try again");
+      setErrorToggle(true);
     }
   };
   // TODO
   // styling
 
   return (
-    <div className={style.container}>
-      <h3 className={style.textInfo}>Sign In</h3>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          loginUser();
-        }}
-      >
-        <div>
-          <input
-            type={"text"}
-            id={"username"}
-            placeholder={"username"}
-            value={username}
-            onChange={handleUsername}
-            className={style.textFeild}
-          ></input>
+    <React.Fragment>
+      <div className={style.container}>
+        <h3 className={style.textInfo}>Sign In</h3>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            loginUser();
+          }}
+        >
+          <div>
+            <input
+              type={"text"}
+              id={"username"}
+              placeholder={"username"}
+              value={username}
+              onChange={handleUsername}
+              className={style.textFeild}
+            ></input>
+          </div>
+          <div>
+            <input
+              type={"password"}
+              placeholder={"password"}
+              value={password}
+              onChange={handlePassword}
+              className={style.textFeild}
+            ></input>
+          </div>
+          <div>
+            <button type={"submit"} className={style.button}>
+              Sign In
+            </button>
+          </div>
+        </form>
+        <div className={style.textInfo}>
+          Don't have an account? <Link to="/signup">Sign Up!</Link>
         </div>
-        <div>
-          <input
-            type={"password"}
-            placeholder={"password"}
-            value={password}
-            onChange={handlePassword}
-            className={style.textFeild}
-          ></input>
-        </div>
-        <div>
-          <button type={"submit"} className={style.button}>
-            Sign In
-          </button>
-        </div>
-      </form>
-      <div className={style.textInfo}>
-        Don't have an account? <Link to="/signup">Sign Up!</Link>
       </div>
-    </div>
+      <ErrorModal
+        CurrentState={errorToggle}
+        ChangeState={setErrorToggle.bind(this)}
+        Message={errorMessage}
+      />
+    </React.Fragment>
   );
 };
 

@@ -190,6 +190,9 @@ const markResolved = function (userId, postId) {
                                     //user has already marked a post resolved, do nothing but return status
                                     if (value.length > 0) {
                                         resolve(status)
+                                        const queryString = `DELETE FROM resolves WHERE userId = ${userId} AND postId = ${postId}`;
+                                        //MAKE A QUERY TO DELETE THE RESOLVE TO ALLOW A USER TO UNDO THEIR RESOLVE
+
                                         //user has not already marked a post resolved, rest of logic...
                                     } else {
                                         //if not already resolved

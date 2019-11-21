@@ -31,7 +31,8 @@ export class App extends React.Component {
       selectBy: null,
       response: undefined,
       filteredCategories: [],
-      sortSelection: "popularity"
+      sortSelection: "popularity",
+      stateChanger: 0
     };
     this.sortBy = this.sortBy.bind(this);
     this.changeSelectBy = this.changeSelectBy.bind(this);
@@ -108,7 +109,8 @@ export class App extends React.Component {
     if (
       prevState.sortSelection !== this.state.sortSelection ||
       prevState.filteredCategories !== this.state.filteredCategories ||
-      prevState.selectBy !== this.state.selectBy
+      prevState.selectBy !== this.state.selectBy ||
+      prevState.stateChanger !== this.state.stateChanger
     ) {
       this.getPosts();
     }
@@ -116,7 +118,8 @@ export class App extends React.Component {
 
   changeSelectBy(selection) {
     this.setState({
-      selectBy: selection
+      selectBy: selection,
+      stateChanger: Math.random()
     });
   }
 
