@@ -159,7 +159,9 @@ const Post = props => {
           <Grid item xs={2} container direction="column">
             <Grid item xs className={styles.arrow}>
               <IconButton
-                style={amp ? { color: "orange", padding: "0" } : { padding: "0" }}
+                style={
+                  amp ? { color: "orange", padding: "0" } : { padding: "0" }
+                }
                 onClick={handleAmplify}
                 aria-label="delete"
               >
@@ -167,9 +169,7 @@ const Post = props => {
               </IconButton>
             </Grid>
             <Grid item xs>
-              <Typography className={styles.arrow}>
-                {votes}
-              </Typography>
+              <Typography className={styles.arrow}>{votes}</Typography>
             </Grid>
           </Grid>
           <Grid item xs={10} container direction="column">
@@ -215,8 +215,8 @@ const Post = props => {
                     {fave === true ? (
                       <FilledStarIcon></FilledStarIcon>
                     ) : (
-                        <EmptyStarIcon></EmptyStarIcon>
-                      )}
+                      <EmptyStarIcon></EmptyStarIcon>
+                    )}
                   </div>
                 </Grid>
               </Grid>
