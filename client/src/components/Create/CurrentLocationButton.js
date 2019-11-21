@@ -34,13 +34,16 @@ const CurrentLocationButton = props => {
               .then(results => {
                 if (results.data.results.length) {
                   let shortAddress = "";
-                  const addressComponents = results.data.results[0].address_components;
+                  const addressComponents =
+                    results.data.results[0].address_components;
                   // Make sure address is within Austin
-                  const addressCheck = addressComponents.map((part) => part.long_name)
-                  if (!addressCheck.includes('Austin')) {
+                  const addressCheck = addressComponents.map(
+                    part => part.long_name
+                  );
+                  if (!addressCheck.includes("Austin")) {
                     setErrorMessage("Invalid location: Must be in Austin, TX");
                     setErrorToggle(true);
-                    return
+                    return;
                   }
                   for (let i = 0; i < addressComponents.length; i++) {
                     let addressPart = addressComponents[i].long_name;
