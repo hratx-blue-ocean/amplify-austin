@@ -26,7 +26,27 @@ export const ICONLABEL = {
   water: "water"
 };
 
-const HOST = "http://localhost:8000";
+export const CATEGORIES = [
+  "Category",
+  "Accessibility",
+  "Danger",
+  "Event",
+  "Garbage",
+  "Graffiti",
+  "Music",
+  "Nature",
+  "Parking",
+  "Pets",
+  "School",
+  "Townhall",
+  "Water",
+  "Other"
+];
+
+const HOST =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000"
+    : "http://ec2-3-15-215-157.us-east-2.compute.amazonaws.com";
 const APIBASE = HOST + "/api";
 
 export const API = {
