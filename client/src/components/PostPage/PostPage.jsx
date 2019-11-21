@@ -57,7 +57,8 @@ const PostPage = props => {
         lat: data.lat,
         lng: data.lng,
         categoryName: data.categoryName,
-        headline: data.headline
+        headline: data.headline,
+        postId: postID
       }
     ]);
     setStatus(data.status);
@@ -113,8 +114,8 @@ const PostPage = props => {
               {fave === true ? (
                 <FilledStarIcon></FilledStarIcon>
               ) : (
-                <EmptyStarIcon></EmptyStarIcon>
-              )}
+                  <EmptyStarIcon></EmptyStarIcon>
+                )}
             </div>
           </div>
         </div>

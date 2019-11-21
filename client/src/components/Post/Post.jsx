@@ -85,8 +85,8 @@ const Post = props => {
   const [displayModal, toggleDisplayModal] = useState(false);
 
   useEffect(() => {
-    setFave(props.isFavorited)
-  }, [])
+    setFave(props.isFavorited);
+  }, []);
 
   const userID = localStorage.getItem("user_id");
 
