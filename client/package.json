@@ -12,6 +12,7 @@
     "google-map-react": "1.1.5",
     "moment": "^2.24.0",
     "react": "16.11.0",
+    "react-device-detect": "^1.9.10",
     "react-dom": "16.11.0",
     "react-geolocated": "^3.0.1",
     "react-modal": "^3.11.1",
