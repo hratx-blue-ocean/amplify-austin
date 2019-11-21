@@ -29,8 +29,7 @@ const deleteRow = function (tableName, rowId) {
 
 const modifyEntry = function (tableName, colName, newVal, conditionCol, conditionVal) {
     return new Promise((resolve, reject) => {
-        const modifyEntry = `UPDATE ${tableName} SET ${colName}=${newVal} WHERE ${conditionCol}=${conditionVal}` + ';'
-        console.log(modifyEntry);
+        const modifyEntry = `UPDATE ${tableName} SET ${colName}=${newVal} WHERE ${conditionCol}=${conditionVal}` + ';';
         connection.query(modifyEntry, (err, value) => {
             if (err) {
                 reject(err);
@@ -47,9 +46,10 @@ const selectVal = function (tableName, colName, conditionCol, conditionVal, retu
         connection.query(selectEntry, (err, value) => {
             if (err) {
                 reject(err);
-            } else {
-                console.log('resolveVal helper', value[0].status)
+            } else if (returnKey) {
                 resolve(value[0][returnKey]);
+            } else {
+                resolve(value[0])
             }
         })
     })
