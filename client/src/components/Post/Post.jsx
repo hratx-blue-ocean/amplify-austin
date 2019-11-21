@@ -81,7 +81,8 @@ const useStyles = makeStyles(theme => ({
 const Post = props => {
   const styles = useStyles();
   const history = useHistory();
-  const [amp, setAmp] = useState(undefined);
+  const [amp, setAmp] = useState(!props.canAmplify);
+  const [votes, setVotes] = useState(props.votes);
   const [fave, setFave] = useState(undefined);
   const [displayModal, toggleDisplayModal] = useState(false);
 
@@ -102,7 +103,12 @@ const Post = props => {
         postId: props.postID
       });
       if (response.data.split(" ")[0] === "post") {
-        amp === undefined ? setAmp(props.votes + 1) : setAmp(undefined);
+        if (amp) {
+          setVotes(votes - 1);
+        } else {
+          setVotes(votes + 1);
+        }
+        setAmp(!amp);
       }
     } catch (error) {
       console.error(error);
@@ -148,7 +154,7 @@ const Post = props => {
           </Grid>
           <Grid item xs>
             <Typography className={styles.arrow}>
-              {amp ? amp : props.votes}
+              {votes}
             </Typography>
           </Grid>
         </Grid>
@@ -195,8 +201,8 @@ const Post = props => {
                   {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                    <EmptyStarIcon></EmptyStarIcon>
-                  )}
+                      <EmptyStarIcon></EmptyStarIcon>
+                    )}
                 </div>
               </Grid>
             </Grid>
