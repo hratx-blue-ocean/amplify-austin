@@ -284,23 +284,40 @@ const dispute = function (userId, postId) {
                         .then((value) => {
                             const status = value[0].status;
                             const disputed = value[0].disputed;
+                            const creatorId = value[0].creatorId;
 
                             //test that user has not already marked disputed
                             const query = `SELECT id FROM disputes WHERE userId=${userId} AND postId=${postId};`;
                             helpers.promisedQuery(query)
                                 .then((value) => {
-                                    //user has already marked a post disputed, do nothing but return status
+                                    //user has already marked a post disputed
                                     if (value.length > 0) {
-                                        resolve({ status, disputed })
-                                        //user has not already marked a post disputed, rest of logic...
+                                        const userDisputed = false;
+                                        //DELETE THE DISPUTE TO ALLOW A USER TO UNDO THEIR DISPUTE
+                                        const queryString = `DELETE FROM disputes WHERE userId = ${userId} AND postId = ${postId}`;
+                                        helpers.promisedQuery(queryString)
+                                            .then((value) => {
+                                                //REDUCE POSTS DISPUTED COUNT
+                                                return helpers.modifyEntry('posts', 'disputed', disputed - 1, 'id', postId)
+                                            })
+                                            .then((value) => {
+                                                //get status
+                                                return helpers.selectVal('posts', '*', 'id', postId)
+                                            })
+                                            .then((value) => {
+                                                resolve({ status: value.status, disputed: value.disputed, userDisputed: userDisputed })
+                                            })
+
+                                        //user has not already marked a post resolved...
                                     } else {
-                                        //if not already disputed
+                                        //if resolved
                                         if (status === 'resolved') {
-                                            //if adding one more dispute would make more than 2 disputes
+                                            //if adding one more dispute would make more than 2 disputeds
                                             if (disputed >= 2) {
+                                                const userDisputed = false;
                                                 //mark disputed
                                                 helpers.modifyEntry('posts', 'status', "'disputed'", 'id', postId)
-                                                    //reset disputed count
+                                                    //reset dispute count
                                                     .then((value) => {
                                                         return helpers.modifyEntry('posts', 'disputed', 0, 'id', postId)
                                                     })
@@ -311,14 +328,15 @@ const dispute = function (userId, postId) {
                                                     })
                                                     .then((value) => {
                                                         //get status
-                                                        return helpers.selectVal('posts', 'status', 'id', postId, 'status')
+                                                        return helpers.selectVal('posts', '*', 'id', postId)
                                                     })
                                                     .then((value) => {
                                                         //resolve status
-                                                        resolve({ value, disputed })
+                                                        resolve({ status: value.status, disputed: value.disputed, userDisputed: userDisputed })
                                                     })
                                             } else {
-                                                //status wont change, but dispute count needs to be updated & join table updated
+                                                const userDisputed = true;
+                                                //status wont change, but resolved count needs to be updated & joint table updated
                                                 helpers.modifyEntry('posts', 'disputed', disputed + 1, 'id', postId)
                                                     .then((value) => {
                                                         const insertDisputesTbl = `INSERT INTO disputes (userId, postId) VALUES (${userId}, ${postId});`;
@@ -326,15 +344,15 @@ const dispute = function (userId, postId) {
                                                     })
                                                     .then((value) => {
                                                         //resolve status
-                                                        return helpers.selectVal('posts', 'status', 'id', postId, 'status')
+                                                        return helpers.selectVal('posts', '*', 'id', postId)
                                                     })
                                                     .then((value) => {
                                                         //resolve status
-                                                        resolve({ value, disputed })
+                                                        resolve({ status: value.status, disputed: value.disputed, userDisputed: userDisputed })
                                                     })
                                             }
                                         } else {
-                                            resolve({ status, disputed });
+                                            resolve({ status: status, disputed: disputed, userResolved: false });
                                         }
                                     }
                                 })
