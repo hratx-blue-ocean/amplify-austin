@@ -9,8 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Moment from "react-moment";
 import Icon from "../Icon/Icon";
-import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
-import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import NotificationModal from "../NotificationModal/NotificationModal";
 import "typeface-roboto";
 import axios from "axios";
@@ -24,9 +24,9 @@ const useStyles = makeStyles(theme => ({
   paper: {
     margin: "",
     maxWidth: "100%",
-    background: "#E8E8E8",
+    background: "#c5d1e8",
     "&:hover": {
-      background: "#DCDCDC"
+      background: "#8dade8"
     }
   },
   arrow: {
@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-start"
   },
   star: {
-    paddingLeft: "10%",
+    paddingLeft: "7%",
     width: "100%"
   },
   date: {
@@ -67,11 +67,12 @@ const useStyles = makeStyles(theme => ({
   },
   mapIcon: {
     paddingBottom: "1%",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    textAlign: "right"
   },
   addressGrid: {
-    textAlign: "right",
-    display: "flex",
+    display: 'inline',
+    textAlign: "left",
     justifyContent: "flex-end"
   },
   address: {
@@ -81,10 +82,8 @@ const useStyles = makeStyles(theme => ({
     fontStyle: "normal",
     fontSize: "0.75rem",
     flexWrap: "nowrap",
-    justifyContent: "flex-end",
     paddingBottom: "1%",
     paddingLeft: "2%",
-    textAlign: "right",
     paddingRight: "1%",
     display: "inline-block"
   }
@@ -146,6 +145,25 @@ const Post = props => {
       console.error(error);
     }
   };
+
+  const shortenAddreses = (address) => {
+    let abrevAddress = '';
+    let j;
+    if (address.length <= 20) {
+      j = address.length
+    } else if (address.length > 20) {
+      j = 20;
+    };
+
+    for (var i = 0; i < j; i++) {
+      abrevAddress += address[i];
+    };
+
+    abrevAddress += "...";
+    return abrevAddress
+  };
+
+  let abbreviatedAddress = shortenAddreses(props.address)
 
   return (
     // if other flag, display "other" icon and NOT category icon
@@ -213,10 +231,10 @@ const Post = props => {
                   {/* width: 100% */}
                   <div onClick={handleFavorite}>
                     {fave === true ? (
-                      <FilledStarIcon></FilledStarIcon>
+                      <VisibilityIcon></VisibilityIcon>
                     ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
+                        <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                      )}
                   </div>
                 </Grid>
               </Grid>
@@ -231,7 +249,7 @@ const Post = props => {
                 </Grid>
                 <Grid item xs={4} className={styles.addressGrid}>
                   <Typography gutterBottom className={styles.address}>
-                    {props.address}
+                    {abbreviatedAddress}
                   </Typography>
                 </Grid>
               </Grid>

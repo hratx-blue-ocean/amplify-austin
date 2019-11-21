@@ -47,11 +47,13 @@ const CurrentLocationButton = props => {
                   }
                   props.setLocation(shortAddress.trim());
                 } else {
-                  console.log("Error reading your location");
+                  setErrorMessage("Error reading your location");
+                  setErrorToggle(true);
                 }
               })
               .catch(err => {
-                console.log("Error reading your location");
+                setErrorMessage("Error reading your location");
+                setErrorToggle(true);
               });
           }
         }}
