@@ -9,10 +9,10 @@
     display: grid;
     /* max-width: 414px; */
     position: relative;
-    height: 100vh;
+    height: 98vh;
     grid-template-rows: 56px 1fr;
     margin: auto;
-    margin-top: 1%;
+    margin-top: 0.5%;
     max-width: 750px;
     min-width: 500px;
     grid-template-areas: 
@@ -30,5 +30,4 @@
     height: 100%;
     grid-area: component;
     padding: 0 5%;
-    margin-top: 1vh;
   }
