@@ -9,12 +9,13 @@ import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import { API } from "../../constants";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
+import Loading from "../Loading/Loading";
 
 const PostPage = props => {
   // state
   const [post, setPost] = useState(undefined);
   const [coords, setCoords] = useState([]);
-  const [fave, setFave] = useState(props.favorite);
+  const [fave, setFave] = useState(undefined);
   const [status, setStatus] = useState(undefined);
   // token
   const userID = localStorage.getItem("user_id");
@@ -40,9 +41,9 @@ const PostPage = props => {
         throw new Error("no response from GET request");
       }
       setPostState(postData);
+      setFave(postData.isFavorited);
     } catch (error) {
       // TODO add error page
-      console.error(error);
       history.push("/");
     }
   };
@@ -86,9 +87,6 @@ const PostPage = props => {
   };
 
   if (post) {
-    {
-      console.log(post);
-    }
     return (
       <div>
         <div className={style.titleField}>
@@ -124,7 +122,7 @@ const PostPage = props => {
       </div>
     );
   } else {
-    return <div>loading</div>;
+    return <Loading />;
   }
 };
 
