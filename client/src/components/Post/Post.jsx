@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
@@ -11,7 +11,7 @@ import Moment from "react-moment";
 import Icon from "../Icon/Icon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
-import NotificationModal from "./NotificationModal";
+import NotificationModal from "../NotificationModal/NotificationModal";
 import "typeface-roboto";
 import axios from "axios";
 import { API } from "../../constants";
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     margin: "",
     maxWidth: "100%",
-    background: "#c4c4c4",
+    background: "#E8E8E8",
     "&:hover": {
       background: "#DCDCDC"
     }
@@ -47,13 +47,13 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     fontFamily: "Roboto",
-    fontStyle: "normal",
+    fontWeight: "500",
     paddingLeft: "10%",
     fontSize: "1rem",
     justifyContent: "flex-start"
   },
   star: {
-    paddingLeft: "2%",
+    paddingLeft: "10%",
     width: "100%"
   },
   date: {
@@ -72,8 +72,9 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: "0.75rem",
-    justifyContent: "flex-start",
-    paddingBottom: "1%"
+    justifyContent: "flex-end",
+    paddingBottom: "1%",
+    paddingLeft: "2%"
   }
 }));
 
@@ -81,8 +82,12 @@ const Post = props => {
   const styles = useStyles();
   const history = useHistory();
   const [amp, setAmp] = useState(undefined);
-  const [fave, setFave] = useState(props.favorite);
+  const [fave, setFave] = useState(undefined);
   const [displayModal, toggleDisplayModal] = useState(false);
+
+  useEffect(() => {
+    setFave(props.isFavorited);
+  }, []);
 
   const userID = localStorage.getItem("user_id");
 

@@ -37,7 +37,7 @@ const Create = props => {
   const history = useHistory();
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/categories")
+      .get(API.CATEGORIES)
       .then(res => {
         setHungry(res.data);
       })

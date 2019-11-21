@@ -9,7 +9,11 @@ const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
     paddingLeft: "15%",
-    paddingBottom: "2%"
+    paddingBottom: "2%",
+    fontSize: "32px"
+  },
+  icon: {
+    fontSize: "inherit"
   }
 }));
 
@@ -25,15 +29,16 @@ const NewPostTextField = props => {
   return (
     <div>
       <div className={classes.margin}>
-        <Grid container spacing={1} justify="flex-start" alignItems="center">
+        <Grid container spacing={1} justify="flex-start" alignItems="flex-end">
           <Grid item>
-            <AccountCircle />
+            <AccountCircle className={classes.icon} />
           </Grid>
-          <Grid item>
+          <Grid item xs={10}>
             <TextField
               onClick={handleRedirect}
               id="input-with-icon-grid"
               label="Add a new post..."
+              fullWidth={true}
             />
           </Grid>
         </Grid>

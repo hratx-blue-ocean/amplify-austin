@@ -6,6 +6,7 @@ import Map from "../Map/Map";
 import style from "./PostPage.module.css";
 import { useParams, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
+import NotificationModal from "../NotificationModal/NotificationModal";
 import { API } from "../../constants";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
@@ -17,6 +18,7 @@ const PostPage = props => {
   const [coords, setCoords] = useState([]);
   const [fave, setFave] = useState(undefined);
   const [status, setStatus] = useState(undefined);
+  const [displayModal, toggleDisplayModal] = useState(false);
   // token
   const userID = localStorage.getItem("user_id");
   // helpers
@@ -55,7 +57,8 @@ const PostPage = props => {
         lat: data.lat,
         lng: data.lng,
         categoryName: data.categoryName,
-        headline: data.headline
+        headline: data.headline,
+        postId: postID
       }
     ]);
     setStatus(data.status);
@@ -77,6 +80,10 @@ const PostPage = props => {
   };
 
   const handleStatus = async () => {
+    if (!userID) {
+      toggleDisplayModal(true);
+      return;
+    }
     const ENDPOINT = status === "resolved" ? API.DISPUTE : API.RESOLVE;
     const response = await axios.post(ENDPOINT, {
       userId: userID,
@@ -89,6 +96,10 @@ const PostPage = props => {
   if (post) {
     return (
       <div>
+        <NotificationModal
+          display={displayModal}
+          toggleDisplayModal={toggleDisplayModal}
+        />
         <div className={style.titleField}>
           <div className={style.heading}>
             <h2>{post.headline}</h2>

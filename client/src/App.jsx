@@ -12,7 +12,6 @@ import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
 import UserStatus from "./components/userStatus/UserStatus";
 
-import { allIssues, firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,10 +28,10 @@ export class App extends React.Component {
     this.state = {
       posts: [],
       categories: [],
-      filteredCategories: [],
       selectBy: null,
-      sortSelection: "popularity",
-      response: undefined
+      response: undefined,
+      filteredCategories: [],
+      sortSelection: "popularity"
     };
     this.sortBy = this.sortBy.bind(this);
     this.changeSelectBy = this.changeSelectBy.bind(this);
@@ -41,16 +40,12 @@ export class App extends React.Component {
 
   componentDidMount() {
     try {
-      this.getInitialPosts();
+      this.getPosts(true);
       this.getCategories();
     } catch (error) {
       console.error(error);
     }
   }
-
-  // componentWillUpdate() {
-  //   if ()
-  // }
 
   async getCategories() {
     try {
@@ -63,26 +58,7 @@ export class App extends React.Component {
     }
   }
 
-  async getInitialPosts() {
-    try {
-      this.setState({ response: false });
-      const res = await axios.get(API.MAIN, {
-        params: {
-          sortBy: this.state.sortSelection
-        }
-      });
-      this.setState({
-        posts: res.data,
-        response: true
-      });
-    } catch (error) {
-      // true so no posts displays instead of spinner
-      this.setState({ response: true });
-      // TODO error component
-    }
-  }
-
-  async getPosts() {
+  async getPosts(mounting) {
     let strArry = this.state.filteredCategories.join("/");
     let userId = localStorage.getItem("user_id");
     try {
@@ -97,7 +73,11 @@ export class App extends React.Component {
         }
       });
       this.setState({
-        posts: res.data
+        posts: res.data,
+        response: true,
+      }, () => {
+        // Momentarily keep the initial response on page load output
+        if (mounting) { console.log(this.state.posts) }
       });
     } catch (error) {
       // true so no posts displays instead of spinner
@@ -180,7 +160,10 @@ export class App extends React.Component {
                 />
               </Route>
               <Route path="/posts/:postID">
-                <PostPage filteredCategories={this.state.filteredCategories} />
+                <PostPage
+                  getPosts={this.getPosts}
+                  filteredCategories={this.state.filteredCategories}
+                />
               </Route>
               <Route path="*">
                 {/* TODO: replace with 404 page */}
