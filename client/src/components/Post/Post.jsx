@@ -203,8 +203,8 @@ const Post = props => {
                     {fave === true ? (
                       <VisibilityIcon></VisibilityIcon>
                     ) : (
-                        <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                      )}
+                      <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                    )}
                   </div>
                 </Grid>
               </Grid>
