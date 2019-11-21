@@ -3,12 +3,12 @@
   top: 9vh;
   bottom: 0;
   display: grid;
-  grid-template-columns: 200px;
+  grid-template-columns: 280px;
   grid-template-rows: repeat(8, 0.5fr);
 }
 
 .NavBarContainer button {
-  margin: 9% 5%;
+  margin: 10% 20%;
   background-color: white;
   height: 3rem;
   width: 11rem;
