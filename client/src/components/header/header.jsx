@@ -43,7 +43,7 @@ const Header = props => {
           <img
             height="50"
             width="60"
-            src="amplify_austinwhite.png"
+            src="https://amplify-austin.s3.us-east-2.amazonaws.com/amplify_austinwhite.png"
             className={style.navigatingDiv}
             onClick={navToHome}
           />

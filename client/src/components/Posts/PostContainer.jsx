@@ -50,6 +50,7 @@ const PostContainer = props => {
             username={post.username}
             status={post.status}
             isFavorited={post.isFavorited}
+            canAmplify={post.canAmplify}
           />
         );
       })}
