@@ -18,7 +18,7 @@ router.get("/api/main", (req, res) => {
       let count = 0;
       let posts = [];
 
-      const formatPost = function() {
+      const formatPost = function () {
         if (count < rows.length) {
           let currentRow = rows[count];
           posts[count] = {
@@ -32,7 +32,7 @@ router.get("/api/main", (req, res) => {
             otherFlag: currentRow.otherFlag,
             eventDate: currentRow.eventDate,
             canAmplify: !currentRow.promoteId || false,
-            favorited: !!currentRow.favoritesId || false,
+            isFavorited: !!currentRow.favoritesId || false,
             address: currentRow.address,
             lat: currentRow.lat,
             lng: currentRow.lng

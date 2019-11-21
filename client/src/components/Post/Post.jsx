@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
@@ -81,8 +81,12 @@ const Post = props => {
   const styles = useStyles();
   const history = useHistory();
   const [amp, setAmp] = useState(undefined);
-  const [fave, setFave] = useState(props.favorite);
+  const [fave, setFave] = useState(undefined);
   const [displayModal, toggleDisplayModal] = useState(false);
+
+  useEffect(() => {
+    setFave(props.isFavorited)
+  }, [])
 
   const userID = localStorage.getItem("user_id");
 
