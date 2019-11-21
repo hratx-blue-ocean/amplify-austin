@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     margin: "",
     maxWidth: "100%",
-    background: "#92a8d1",
+    background: "#c5d1e8",
     "&:hover": {
       background: "#8dade8"
     }
@@ -203,8 +203,8 @@ const Post = props => {
                     {fave === true ? (
                       <VisibilityIcon></VisibilityIcon>
                     ) : (
-                      <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                    )}
+                        <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                      )}
                   </div>
                 </Grid>
               </Grid>
