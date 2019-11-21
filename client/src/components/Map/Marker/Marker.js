@@ -14,7 +14,7 @@ const Marker = ({ title, category, postId }) => {
     if (location.pathname === `/posts/${postId}`) {
       setOnPostPage(true);
     }
-  }, []);
+  }, [location.pathname, postId]);
 
   return (
     <div

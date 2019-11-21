@@ -100,7 +100,7 @@ const Post = props => {
 
   useEffect(() => {
     setFave(props.isFavorited);
-  }, []);
+  }, [props.isFavorited]);
 
   const userID = localStorage.getItem("user_id");
 
