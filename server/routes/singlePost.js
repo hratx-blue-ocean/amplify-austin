@@ -55,7 +55,7 @@ router.post("/api/issue", (req, res) => {
       "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
       apiStr +
       "&key=" +
-      process.env.REACT_APP_GOOGLEMAPSAPIKEY;
+      process.env.REACT_APP_MAP_API_KEY;
     //make api get request for atlong
     let address;
     axios
