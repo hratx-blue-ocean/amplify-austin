@@ -18,19 +18,23 @@
 }
 
 .disputed {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .disputeBtn, .disputed {
-  background-color: rgb(84, 84, 196);
+  background-color: #2f4abf;
   color: white;
 }
 
 .resolvedBtn {
-  background-color: darkseagreen;
+  /* background-color: darkseagreen; */
+  /* background-color: #75b795; */
+  background-color: #8ec4a8;
 }
 
 .reachOutBtn {
-  background-color: lightgoldenrodyellow;
+  /* background-color: lightgoldenrodyellow; */
+  /* background-color: #f9df98; */
+  background-color: #fce299;
 }
   
