@@ -11,7 +11,7 @@ import Moment from "react-moment";
 import Icon from "../Icon/Icon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
-import NotificationModal from "./NotificationModal";
+import NotificationModal from "../NotificationModal/NotificationModal";
 import "typeface-roboto";
 import axios from "axios";
 import { API } from "../../constants";
@@ -190,8 +190,8 @@ const Post = props => {
                   {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                    <EmptyStarIcon></EmptyStarIcon>
-                  )}
+                      <EmptyStarIcon></EmptyStarIcon>
+                    )}
                 </div>
               </Grid>
             </Grid>
