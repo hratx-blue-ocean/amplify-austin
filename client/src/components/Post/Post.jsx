@@ -70,7 +70,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-end"
   },
   addressGrid: {
-    textAlign: "right"
+    textAlign: "right",
+    display: "flex",
+    justifyContent: "flex-end"
   },
   address: {
     marginRight: "7px",
@@ -157,9 +159,7 @@ const Post = props => {
           <Grid item xs={2} container direction="column">
             <Grid item xs className={styles.arrow}>
               <IconButton
-                style={
-                  amp ? { color: "orange", padding: "0" } : { padding: "0" }
-                }
+                style={amp ? { color: "orange", padding: "0" } : { padding: "0" }}
                 onClick={handleAmplify}
                 aria-label="delete"
               >
@@ -167,7 +167,9 @@ const Post = props => {
               </IconButton>
             </Grid>
             <Grid item xs>
-              <Typography className={styles.arrow}>{votes}</Typography>
+              <Typography className={styles.arrow}>
+                {votes}
+              </Typography>
             </Grid>
           </Grid>
           <Grid item xs={10} container direction="column">
@@ -213,13 +215,13 @@ const Post = props => {
                     {fave === true ? (
                       <FilledStarIcon></FilledStarIcon>
                     ) : (
-                      <EmptyStarIcon></EmptyStarIcon>
-                    )}
+                        <EmptyStarIcon></EmptyStarIcon>
+                      )}
                   </div>
                 </Grid>
               </Grid>
               <Grid item xs={12} container direction="row">
-                <Grid item xs={6}>
+                <Grid item xs={7}>
                   <Typography className={styles.date} gutterBottom>
                     <Moment format="MMM Do, YYYY">{props.datecreated}</Moment>
                   </Typography>
@@ -227,7 +229,7 @@ const Post = props => {
                 <Grid item xs={1} className={styles.mapIcon}>
                   <MapMarkerIcon />
                 </Grid>
-                <Grid item xs={5} className={styles.addressGrid}>
+                <Grid item xs={4} className={styles.addressGrid}>
                   <Typography gutterBottom className={styles.address}>
                     {props.address}
                   </Typography>
