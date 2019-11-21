@@ -24,9 +24,9 @@ const useStyles = makeStyles(theme => ({
   paper: {
     margin: "",
     maxWidth: "100%",
-    background: "#E8E8E8",
+    background: "#c5d1e8",
     "&:hover": {
-      background: "#DCDCDC"
+      background: "#8dade8"
     }
   },
   arrow: {
@@ -142,6 +142,7 @@ const Post = props => {
         <NotificationModal
           display={displayModal}
           toggleDisplayModal={toggleDisplayModal}
+          message={"You must be logged in to use this feature!"}
         />
         <Grid container spacing={3}>
           <Grid item xs={2} container direction="column">
