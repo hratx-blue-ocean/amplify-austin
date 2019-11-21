@@ -26,20 +26,28 @@ class CurrentLocationButton extends React.Component {
             let coordinates = `${this.props.coords.latitude},${this.props.coords.longitude}`;
 
             const request = `${https}${coordinates}${key}`;
-            axios.get(request).then(results => {
-              let shortAddress = "";
-              const addressComponents =
-                results.data.results[0].address_components;
-              for (let i = 0; i < addressComponents.length; i++) {
-                let addressPart = addressComponents[i].long_name;
-                if (addressPart === "Austin" || addressPart === "Texas") {
-                  break;
+            axios.get(request)
+              .then(results => {
+                if (results.data.results.length) {
+                  let shortAddress = "";
+                  const addressComponents =
+                    results.data.results[0].address_components;
+                  for (let i = 0; i < addressComponents.length; i++) {
+                    let addressPart = addressComponents[i].long_name;
+                    if (addressPart === "Austin" || addressPart === "Texas") {
+                      break;
+                    } else {
+                      shortAddress = `${shortAddress} ${addressPart}`;
+                    }
+                  }
+                  this.props.setLocation(shortAddress.trim());
                 } else {
-                  shortAddress = `${shortAddress} ${addressPart}`;
+                  console.log('Error reading your location');
                 }
-              }
-              this.props.setLocation(shortAddress.trim());
-            });
+              })
+              .catch((err) => {
+                console.log('Error reading your location');
+              })
           }
         }}
       >
