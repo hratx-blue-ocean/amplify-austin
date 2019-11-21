@@ -55,7 +55,7 @@ router.post("/api/issue", (req, res) => {
       "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
       apiStr +
       "&key=" +
-      process.env.REACT_APP_GOOGLEMAPSAPIKEY;
+      process.env.REACT_APP_MAP_API_KEY;
     //make api get request for atlong
     let address;
     axios
@@ -97,6 +97,7 @@ router.get("/api/issue", (req, res) => {
     .then(row => {
       let post = {
         headline: row[0].headline,
+        categoryName: row[0].categoryName,
         description: row[0].description,
         status: row[0].status,
         address: row[0].address,
@@ -104,29 +105,42 @@ router.get("/api/issue", (req, res) => {
         amplifyCount: row[0].amplifyCount,
         otherFlag: row[0].otherFlag,
         eventDate: row[0].eventDate,
+        isFavorited: !!row[0].favoritesId,
+        canAmplify: !row[0].promotesId,
+        contacts: [
+          {
+            phoneNumber: row[0].phoneNumber,
+            email: row[0].email,
+            name: row[0].name,
+            department: row[0].department,
+            position: row[0].position
+          }
+        ],
         lat: row[0].lat,
         lng: row[0].lng
       };
-      const categoryId = row[0].categoryId;
-      db.helpers
-        .getCategoryName(categoryId)
-        .then(categoryName => {
-          console.log(categoryName);
-          post.categoryName = categoryName;
-          return db.helpers.getCanAmplify(postId, userId);
-        })
-        .then(bool => {
-          post.canAmplify = bool;
-          return db.helpers.getFavorited(postId, userId);
-        })
-        .then(bool => {
-          post.isFavorited = bool;
-          return db.helpers.getContacts(categoryId);
-        })
-        .then(contacts => {
-          post.contacts = contacts;
-          res.send(post);
-        });
+
+      res.send(post);
+      // const categoryId = row[0].categoryId;
+      // db.helpers
+      //   .getCategoryName(categoryId)
+      //   .then(categoryName => {
+      //     console.log(categoryName);
+      //     post.categoryName = categoryName;
+      //     return db.helpers.getCanAmplify(postId, userId);
+      //   })
+      //   .then(bool => {
+      //     post.canAmplify = bool;
+      //     return db.helpers.getFavorited(postId, userId);
+      //   })
+      //   .then(bool => {
+      //     post.isFavorited = bool;
+      //     return db.helpers.getContacts(categoryId);
+      //   })
+      //   .then(contacts => {
+      //     post.contacts = contacts;
+      //     res.send(post);
+      //   });
     })
     .catch(err => {
       console.log(err);
