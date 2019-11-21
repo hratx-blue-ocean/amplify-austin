@@ -57,7 +57,8 @@ const PostPage = props => {
         lat: data.lat,
         lng: data.lng,
         categoryName: data.categoryName,
-        headline: data.headline
+        headline: data.headline,
+        postId: postID
       }
     ]);
     setStatus(data.status);

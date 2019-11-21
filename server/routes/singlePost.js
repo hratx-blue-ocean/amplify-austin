@@ -113,8 +113,7 @@ router.get("/api/issue", (req, res) => {
             email: row[0].email,
             name: row[0].name,
             department: row[0].department,
-            position: row[0].position,
-
+            position: row[0].position
           }
         ],
         lat: row[0].lat,
