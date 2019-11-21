@@ -1,29 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { geolocated } from "react-geolocated";
 import Fab from "@material-ui/core/Fab";
 import MyLocationIcon from "@material-ui/icons/MyLocation";
+import ErrorModal from "../NotificationModal/ErrorModal";
 
-class CurrentLocationButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const CurrentLocationButton = props => {
+  const [errorToggle, setErrorToggle] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(
+    "An error has occured please try again"
+  );
 
-  render() {
-    return (
+  return (
+    <React.Fragment>
       <Fab
         color="primary"
         size="small"
         onClick={() => {
-          if (!this.props.isGeolocationAvailable) {
-            console.log("GeoLocation is not available on this browser!");
-          } else if (!this.props.isGeolocationEnabled) {
-            console.log("GeoLocation is not enabled");
+          if (!props.isGeolocationAvailable) {
+            setErrorMessage("GeoLocation is not available on this browser!");
+            setErrorToggle(true);
+          } else if (!props.isGeolocationEnabled) {
+            setErrorMessage("GeoLocation is not enabled");
+            setErrorToggle(true);
           } else {
             // Nab Latitude and Longitude, send off to Google API for decoding
             let key = `&key=${process.env.REACT_APP_MAP_API_KEY}`;
             let https = `https://maps.googleapis.com/maps/api/geocode/json?latlng=`;
-            let coordinates = `${this.props.coords.latitude},${this.props.coords.longitude}`;
+            let coordinates = `${props.coords.latitude},${props.coords.longitude}`;
 
             const request = `${https}${coordinates}${key}`;
             axios.get(request).then(results => {
@@ -38,16 +42,21 @@ class CurrentLocationButton extends React.Component {
                   shortAddress = `${shortAddress} ${addressPart}`;
                 }
               }
-              this.props.setLocation(shortAddress.trim());
+              props.setLocation(shortAddress.trim());
             });
           }
         }}
       >
         <MyLocationIcon />
       </Fab>
-    );
-  }
-}
+      <ErrorModal
+        CurrentState={errorToggle}
+        ChangeState={setErrorToggle.bind(this)}
+        Message={errorMessage}
+      />
+    </React.Fragment>
+  );
+};
 
 export default geolocated({
   positionOptions: {

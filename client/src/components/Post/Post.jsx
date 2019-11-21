@@ -12,6 +12,7 @@ import Icon from "../Icon/Icon";
 import EmptyStarIcon from "../Icons/EmptyStarIcon.jsx";
 import FilledStarIcon from "../Icons/FilledStarIcon.jsx";
 import NotificationModal from "../NotificationModal/NotificationModal";
+import ErrorModal from "../NotificationModal/ErrorModal";
 import "typeface-roboto";
 import axios from "axios";
 import { API } from "../../constants";
@@ -83,13 +84,13 @@ const Post = props => {
   const [amp, setAmp] = useState(undefined);
   const [fave, setFave] = useState(undefined);
   const [displayModal, toggleDisplayModal] = useState(false);
+  const [errorToggle, setErrorToggle] = useState(false);
 
   useEffect(() => {
     setFave(props.isFavorited);
   }, []);
 
   const userID = localStorage.getItem("user_id");
-
   const handleAmplify = async () => {
     if (!userID) {
       toggleDisplayModal(!displayModal);
@@ -104,7 +105,7 @@ const Post = props => {
         amp === undefined ? setAmp(props.votes + 1) : setAmp(undefined);
       }
     } catch (error) {
-      console.error(error);
+      setErrorToggle(true);
     }
   };
 
@@ -123,101 +124,111 @@ const Post = props => {
         setFave(!fave);
       }
     } catch (error) {
-      console.error(error);
+      setErrorToggle(true);
     }
   };
 
   return (
     // if other flag, display "other" icon and NOT category icon
-    <div className={styles.root}>
-      <NotificationModal
-        display={displayModal}
-        toggleDisplayModal={toggleDisplayModal}
+
+    <React.Fragment>
+      <div className={styles.root}>
+        <NotificationModal
+          display={displayModal}
+          toggleDisplayModal={toggleDisplayModal}
+        />
+        <Grid container spacing={3}>
+          <Grid item xs={2} container direction="column">
+            <Grid item xs className={styles.arrow}>
+              <IconButton
+                style={
+                  amp ? { color: "orange", padding: "0" } : { padding: "0" }
+                }
+                onClick={handleAmplify}
+                aria-label="delete"
+              >
+                <ArrowUpwardIcon />
+              </IconButton>
+            </Grid>
+            <Grid item xs>
+              <Typography className={styles.arrow}>
+                {amp ? amp : props.votes}
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={10} container direction="column">
+            <Paper
+              onClick={() => {
+                history.push(`/posts/${props.postID}`);
+              }}
+              className={styles.paper}
+            >
+              <Grid
+                item
+                xs={12}
+                container
+                direction="row"
+                className={styles.category}
+              >
+                <Icon category={props.category.toLowerCase()} />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                container
+                direction="row"
+                className={styles.row2}
+              >
+                <Grid item xs={10}>
+                  <Typography
+                    className={styles.title}
+                    gutterBottom
+                    fontSize={{
+                      xs: "h6.fontSize",
+                      sm: "h4.fontSize",
+                      md: "h3.fontSize"
+                    }}
+                    noWrap
+                  >
+                    {props.title}
+                  </Typography>
+                </Grid>
+                <Grid item xs={2} className={styles.star}>
+                  {/* width: 100% */}
+                  <div onClick={handleFavorite}>
+                    {fave === true ? (
+                      <FilledStarIcon></FilledStarIcon>
+                    ) : (
+                      <EmptyStarIcon></EmptyStarIcon>
+                    )}
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} container direction="row">
+                <Grid item xs={6}>
+                  <Typography className={styles.date} gutterBottom>
+                    <Moment format="MMM Do, YYYY">{props.datecreated}</Moment>
+                  </Typography>
+                </Grid>
+                <Grid item xs={1}>
+                  <MapMarkerIcon />
+                </Grid>
+                <Grid item xs={5}>
+                  <Typography gutterBottom className={styles.address}>
+                    {props.address}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+      <ErrorModal
+        CurrentState={errorToggle}
+        ChangeState={setErrorToggle.bind(this)}
+        Message="An Error Occured"
       />
-      <Grid container spacing={3}>
-        <Grid item xs={2} container direction="column">
-          <Grid item xs className={styles.arrow}>
-            <IconButton
-              style={amp ? { color: "orange", padding: "0" } : { padding: "0" }}
-              onClick={handleAmplify}
-              aria-label="delete"
-            >
-              <ArrowUpwardIcon />
-            </IconButton>
-          </Grid>
-          <Grid item xs>
-            <Typography className={styles.arrow}>
-              {amp ? amp : props.votes}
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid item xs={10} container direction="column">
-          <Paper
-            onClick={() => {
-              history.push(`/posts/${props.postID}`);
-            }}
-            className={styles.paper}
-          >
-            <Grid
-              item
-              xs={12}
-              container
-              direction="row"
-              className={styles.category}
-            >
-              <Icon category={props.category.toLowerCase()} />
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              container
-              direction="row"
-              className={styles.row2}
-            >
-              <Grid item xs={10}>
-                <Typography
-                  className={styles.title}
-                  gutterBottom
-                  fontSize={{
-                    xs: "h6.fontSize",
-                    sm: "h4.fontSize",
-                    md: "h3.fontSize"
-                  }}
-                  noWrap
-                >
-                  {props.title}
-                </Typography>
-              </Grid>
-              <Grid item xs={2} className={styles.star}>
-                {/* width: 100% */}
-                <div onClick={handleFavorite}>
-                  {fave === true ? (
-                    <FilledStarIcon></FilledStarIcon>
-                  ) : (
-                    <EmptyStarIcon></EmptyStarIcon>
-                  )}
-                </div>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} container direction="row">
-              <Grid item xs={6}>
-                <Typography className={styles.date} gutterBottom>
-                  <Moment format="MMM Do, YYYY">{props.datecreated}</Moment>
-                </Typography>
-              </Grid>
-              <Grid item xs={1}>
-                <MapMarkerIcon />
-              </Grid>
-              <Grid item xs={5}>
-                <Typography gutterBottom className={styles.address}>
-                  {props.address}
-                </Typography>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
-      </Grid>
-    </div>
+    </React.Fragment>
   );
 };
 

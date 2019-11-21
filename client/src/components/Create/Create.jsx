@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import clsx from "clsx";
 import CurrentLocationButton from "./CurrentLocationButton";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -10,18 +9,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
-import Snackbar from "@material-ui/core/Snackbar";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import ErrorIcon from "@material-ui/icons/Error";
 import Style from "./Create.module.css";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import { green } from "@material-ui/core/colors";
-import { makeStyles } from "@material-ui/core/styles";
-import { SnackbarContent } from "@material-ui/core";
 import { API } from "../../constants";
 import { useHistory } from "react-router-dom";
-
+import ErrorModal from "../NotificationModal/ErrorModal";
+import SuccessModal from "../NotificationModal/SuccessModal";
 const Create = props => {
   let categories = [];
   const [category, setCategory] = useState("Category");
@@ -69,39 +61,11 @@ const Create = props => {
       setErrorToggle(true);
     }
   };
-  const handleClose = specificToggle => {
-    if (specificToggle === "success") {
-      setSuccessToggle(false);
-    } else if (specificToggle === "error") {
-      setErrorToggle(false);
-    }
-  };
 
-  //Styles for pop menus
-  const styles = makeStyles(theme => ({
-    success: {
-      backgroundColor: green[600]
-    },
-    error: {
-      backgroundColor: theme.palette.error.dark
-    },
-    icon: {
-      fontSize: 20
-    },
-    iconVariant: {
-      opacity: 0.9,
-      marginRight: theme.spacing(1)
-    },
-    message: {
-      display: "flex",
-      alignItems: "center"
-    }
-  }));
-  let classes = styles();
   //Submission for the form
   const makeSubmission = () => {
     if (category === "Category" || !title || !description || !location) {
-      alert("Required fields are missing!");
+      handleOpen("error");
       return;
     }
     axios
@@ -132,7 +96,9 @@ const Create = props => {
       return (
         <React.Fragment>
           <Select
-            value={category}
+            variant="outlined"
+            defaultValue="Accessibility"
+            value={categories[0]}
             onChange={event => {
               setCategory(event.target.value);
             }}
@@ -273,82 +239,18 @@ const Create = props => {
       {/* This is the success or error section */}
 
       {/* Success */}
-
-      <Snackbar
-        className={classes.success}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center"
-        }}
-        open={successToggle}
-        autoHideDuration={10000}
-        onClose={() => {
-          handleClose("success");
-        }}
-      >
-        <SnackbarContent
-          className={classes.success}
-          message={
-            <span className={classes.message}>
-              <CheckCircleIcon
-                className={clsx(classes.icon, classes.iconVariant)}
-              />
-              Submission was successful
-            </span>
-          }
-          action={[
-            <IconButton
-              className={classes.icon}
-              key="close"
-              aria-label="close"
-              color="inherit"
-              onClick={() => {
-                handleClose("success");
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          ]}
-        />
-      </Snackbar>
+      <SuccessModal
+        CurrentState={successToggle}
+        ChangeState={setSuccessToggle.bind(this)}
+        Message="Success!"
+      />
 
       {/* Error */}
-
-      <Snackbar
-        className={classes.error}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center"
-        }}
-        open={errorToggle}
-        autoHideDuration={10000}
-        onClose={() => {
-          handleClose("error");
-        }}
-      >
-        <SnackbarContent
-          className={classes.error}
-          message={
-            <span className={classes.message}>
-              <ErrorIcon className={clsx(classes.icon, classes.iconVariant)} />
-              Error with submission
-            </span>
-          }
-          action={[
-            <IconButton
-              className={classes.icon}
-              key="close"
-              aria-label="close"
-              color="inherit"
-              onClick={() => {
-                handleClose("error");
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          ]}
-        />
-      </Snackbar>
+      <ErrorModal
+        CurrentState={errorToggle}
+        ChangeState={setErrorToggle.bind(this)}
+        Message="An Error Occured With Submission"
+      />
     </React.Fragment>
   );
 };
