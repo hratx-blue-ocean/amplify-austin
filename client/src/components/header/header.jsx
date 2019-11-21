@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "../Menu/Menu";
@@ -6,9 +6,14 @@ import Drawer from "@material-ui/core/Drawer";
 import { withStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import style from "./header.module.css";
-
+const drawerWidth = 280;
 const styles = {
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0
+  },
   paper: {
+    width: drawerWidth,
     background: "#34435E",
     color: "white"
   }
@@ -16,8 +21,21 @@ const styles = {
 
 const Header = props => {
   const [menuToggled, setMenuToggled] = useState(false);
+  const [drawertype, setDrawerType] = useState(
+    window.innerWidth > 1250 ? "permanent" : "temporary"
+  );
   const { classes } = props;
   const history = useHistory();
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1250) {
+        setDrawerType("permanent");
+      } else {
+        setDrawerType("temporary");
+      }
+    });
+  });
 
   const toggleMenu = () => {
     let reverse = !menuToggled;
@@ -56,7 +74,9 @@ const Header = props => {
         </div>
       </div>
       <Drawer
+        className={style.Drawer}
         anchor="left"
+        variant={drawertype}
         open={menuToggled}
         onClose={toggleMenu}
         classes={{ paper: classes.paper }}
