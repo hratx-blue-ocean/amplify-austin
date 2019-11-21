@@ -15,6 +15,7 @@
 .favorite {
   position: absolute;
   right: 3%;
+  cursor: pointer;
 }
 
 .favorite > div > div {

@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   paper: {
+    cursor: "pointer",
     margin: "",
     maxWidth: "100%",
     background: "#c5d1e8",
@@ -55,7 +56,8 @@ const useStyles = makeStyles(theme => ({
   },
   star: {
     paddingLeft: "7%",
-    width: "100%"
+    width: "100%",
+    cursor: "pointer"
   },
   date: {
     fontFamily: "Roboto",
