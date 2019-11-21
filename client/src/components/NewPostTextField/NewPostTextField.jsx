@@ -29,7 +29,7 @@ const NewPostTextField = props => {
   return (
     <div>
       <div className={classes.margin}>
-        <Grid container spacing={1} justify="flex-start" alignItems="flex-end">
+        <Grid container spacing={1} justify="center" alignItems="flex-end">
           <Grid item>
             <AccountCircle className={classes.icon} />
           </Grid>
