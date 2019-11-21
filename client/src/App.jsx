@@ -12,7 +12,6 @@ import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
 import UserStatus from "./components/userStatus/UserStatus";
 
-import { allIssues, firstPost } from "./FAKEDATA";
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,16 +20,17 @@ import {
 } from "react-router-dom";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { API } from "./constants";
+import Loading from "./components/Loading/Loading";
 
 export class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedPost: firstPost,
       posts: [],
       categories: [],
-      filteredCategories: [],
       selectBy: null,
+      response: undefined,
+      filteredCategories: [],
       sortSelection: "popularity"
     };
     this.sortBy = this.sortBy.bind(this);
@@ -47,6 +47,10 @@ export class App extends React.Component {
     }
   }
 
+  // componentWillUpdate() {
+  //   if ()
+  // }
+
   async getCategories() {
     try {
       const res = await axios.get(API.CATEGORIES);
@@ -54,49 +58,52 @@ export class App extends React.Component {
         categories: res.data
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   async getInitialPosts() {
     try {
+      this.setState({ response: false });
       const res = await axios.get(API.MAIN, {
         params: {
-          sortBy: this.state.sortSelection
+          sortBy: this.state.sortSelection,
+          userId: localStorage.getItem("user_id")
         }
       });
+      console.log(res);
       this.setState({
-        posts: res.data
+        posts: res.data,
+        response: true
       });
     } catch (error) {
-      console.log(error);
+      // true so no posts displays instead of spinner
+      this.setState({ response: true });
+      // TODO error component
     }
   }
 
   async getPosts() {
     let strArry = this.state.filteredCategories.join("/");
     let userId = localStorage.getItem("user_id");
-    console.log("getting posts", {
-      userId: userId,
-      sortBy: this.state.sortSelection,
-      categories: strArry,
-      selectBy: this.state.selectBy
-    });
     try {
+      this.setState({ response: false });
       const res = await axios.get(API.MAIN, {
         params: {
           userId: userId,
           sortBy: this.state.sortSelection,
           categories: strArry,
-          selectBy: this.state.selectBy
+          selectBy: this.state.selectBy,
+          response: true
         }
       });
-      console.log(res.data);
       this.setState({
         posts: res.data
       });
     } catch (error) {
-      console.log(error);
+      // true so no posts displays instead of spinner
+      this.setState({ response: true });
+      console.error(error);
     }
   }
 
@@ -147,10 +154,14 @@ export class App extends React.Component {
                   selectCategories={this.selectCategories}
                   filteredCategories={this.state.filteredCategories}
                 ></SortFilter>
-                <PostContainer
-                  postData={this.state.posts}
-                  filteredCategories={this.state.filteredCategories}
-                ></PostContainer>
+                {this.state.response ? (
+                  <PostContainer
+                    postData={this.state.posts}
+                    filteredCategories={this.state.filteredCategories}
+                  />
+                ) : (
+                  <Loading />
+                )}
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -170,7 +181,10 @@ export class App extends React.Component {
                 />
               </Route>
               <Route path="/posts/:postID">
-                <PostPage filteredCategories={this.state.filteredCategories} />
+                <PostPage
+                  getPosts={this.getPosts}
+                  filteredCategories={this.state.filteredCategories}
+                />
               </Route>
               <Route path="*">
                 {/* TODO: replace with 404 page */}

@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { geolocated } from "react-geolocated";
-import Style from "./Create.module.css";
-import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import MyLocationIcon from "@material-ui/icons/MyLocation";
 
@@ -29,7 +27,6 @@ class CurrentLocationButton extends React.Component {
 
             const request = `${https}${coordinates}${key}`;
             axios.get(request).then(results => {
-              console.log(results);
               let shortAddress = "";
               const addressComponents =
                 results.data.results[0].address_components;

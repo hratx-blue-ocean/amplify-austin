@@ -25,6 +25,7 @@ const PostContainer = props => {
             src="amplify_austin_grey.png"
             height="500px"
             width="500px"
+            alt=""
           ></img>
         </div>
       );
@@ -32,7 +33,6 @@ const PostContainer = props => {
   };
 
   const postContStyles = containerStyles();
-  // console.log(props);
   return (
     <div className={postContStyles.root}>
       {props.postData.map(post => {
@@ -49,7 +49,7 @@ const PostContainer = props => {
             votes={post.upvotes}
             username={post.username}
             status={post.status}
-            favorited={post.favorited}
+            isFavorited={post.isFavorited}
           />
         );
       })}

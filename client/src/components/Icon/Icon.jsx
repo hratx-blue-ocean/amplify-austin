@@ -17,6 +17,7 @@ import MsgIcon from "../Icons/MsgIcon";
 import MusicIcon from "../Icons/MusicIcon";
 import NatureIcon from "../Icons/NatureIcon";
 import MenuIconCustom from "../Icons/MenuIconCustom";
+import OtherIcon from "../Icons/OtherIcon";
 import ParkingIcon from "../Icons/ParkingIcon";
 import PetsIcon from "../Icons/PetIcon";
 import SchoolHouseIcon from "../Icons/SchoolHouseIcon";
@@ -58,6 +59,8 @@ class Icon extends React.Component {
         return <MsgIcon />;
       case ICONLABEL.music:
         return <MusicIcon />;
+      case ICONLABEL.other:
+        return <OtherIcon />;
       case ICONLABEL.nature:
         return <NatureIcon />;
       case ICONLABEL.parking:
@@ -77,7 +80,6 @@ class Icon extends React.Component {
       case ICONLABEL.water:
         return <WaterIcon />;
       default:
-        // TODO pick a default icon
         return <MapMarkerIcon />;
     }
   }

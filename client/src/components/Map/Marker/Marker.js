@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import Icon from "../../Icon/Icon";
 import MiniPost from "../MiniPost/MiniPost";
 import styles from "./Marker.module.css";
 
-const defaultIcon = <Icon category={"mapMarker"} />;
+const Marker = ({ title, category, postId }) => {
+  const history = useHistory();
+  const [showTitle, toggleTitle] = useState(false);
+  const [onPostPage, setOnPostPage] = useState(undefined);
 
-const Marker = ({ title, category, postId, selectMarker, isSelected }) => {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname === `/posts/${postId}`) {
+      setOnPostPage(true);
+    }
+  }, []);
+
   return (
-    <div className={styles.marker} onClick={() => selectMarker(postId)}>
-      {category === "Other" ? (
-        defaultIcon
-      ) : (
-        <Icon category={category.toLowerCase()} />
-      )}
-      {isSelected && <MiniPost title={title} postId={postId} />}
+    <div
+      className={styles.marker}
+      onMouseEnter={() => toggleTitle(true)}
+      onMouseLeave={() => toggleTitle(false)}
+      onClick={() => !onPostPage && history.push(`/posts/${postId}`)}
+    >
+      <Icon category={category.toLowerCase()} />
+      {showTitle && <MiniPost title={title} />}
     </div>
   );
 };

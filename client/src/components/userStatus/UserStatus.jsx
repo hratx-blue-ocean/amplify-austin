@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
-import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
-import MenuIcon from "@material-ui/icons/Menu";
-import Menu from "../Menu/Menu";
-import Drawer from "@material-ui/core/Drawer";
-import { withStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import styles from "./userstatus.module.css";
 
 const Userstatus = props => {
-  const [menuToggled, setMenuToggled] = useState(false);
   const [name, setName] = useState("");
-  const { classes } = props;
   const username = localStorage.getItem("username");
   const history = useHistory();
 
@@ -26,7 +19,7 @@ const Userstatus = props => {
   };
 
   return (
-    <div>
+    <div className={styles.subheader}>
       {!username ? (
         <p className={styles.conditionalRenderP}>
           <span onClick={navToSignIn}>Login</span> /{" "}
@@ -39,7 +32,7 @@ const Userstatus = props => {
             localStorage.removeItem("username");
             history.push("/signin");
           }}
-          className={styles.conditionalRenderP}
+          className={styles.logout}
         >
           Log Out
         </p>
