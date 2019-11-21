@@ -45,11 +45,10 @@ const CurrentLocationButton = props => {
                       shortAddress = `${shortAddress} ${addressPart}`;
                     }
                   }
-                  this.props.setLocation(shortAddress.trim());
+                  props.setLocation(shortAddress.trim());
                 } else {
                   console.log("Error reading your location");
                 }
-               props.setLocation(shortAddress.trim());
               })
               .catch(err => {
                 console.log("Error reading your location");
