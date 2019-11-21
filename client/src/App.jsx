@@ -68,9 +68,11 @@ export class App extends React.Component {
       this.setState({ response: false });
       const res = await axios.get(API.MAIN, {
         params: {
-          sortBy: this.state.sortSelection
+          sortBy: this.state.sortSelection,
+          userId: localStorage.getItem("user_id")
         }
       });
+      console.log(res);
       this.setState({
         posts: res.data,
         response: true
@@ -159,8 +161,8 @@ export class App extends React.Component {
                     filteredCategories={this.state.filteredCategories}
                   />
                 ) : (
-                  <Loading />
-                )}
+                    <Loading />
+                  )}
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -180,7 +182,7 @@ export class App extends React.Component {
                 />
               </Route>
               <Route path="/posts/:postID">
-                <PostPage filteredCategories={this.state.filteredCategories} />
+                <PostPage getPosts={this.getPosts} filteredCategories={this.state.filteredCategories} />
               </Route>
               <Route path="*">
                 {/* TODO: replace with 404 page */}
