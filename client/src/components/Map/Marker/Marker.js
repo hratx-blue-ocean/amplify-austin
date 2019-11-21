@@ -12,9 +12,9 @@ const Marker = ({ title, category, postId }) => {
   const location = useLocation();
   useEffect(() => {
     if (location.pathname === `/posts/${postId}`) {
-      setOnPostPage(true)
+      setOnPostPage(true);
     }
-  }, [])
+  }, []);
 
   return (
     <div
