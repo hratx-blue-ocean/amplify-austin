@@ -65,16 +65,25 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: "1%"
   },
   mapIcon: {
-    paddingBottom: "1%"
+    paddingBottom: "1%",
+    justifyContent: "flex-end"
+  },
+  addressGrid: {
+    textAlign: "right"
   },
   address: {
     marginRight: "7px",
+    width: "auto",
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: "0.75rem",
+    flexWrap: "nowrap",
     justifyContent: "flex-end",
     paddingBottom: "1%",
-    paddingLeft: "2%"
+    paddingLeft: "2%",
+    textAlign: "right",
+    paddingRight: "1%",
+    display: "inline-block"
   }
 }));
 
@@ -195,8 +204,8 @@ const Post = props => {
                   {fave === true ? (
                     <FilledStarIcon></FilledStarIcon>
                   ) : (
-                    <EmptyStarIcon></EmptyStarIcon>
-                  )}
+                      <EmptyStarIcon></EmptyStarIcon>
+                    )}
                 </div>
               </Grid>
             </Grid>
@@ -206,10 +215,10 @@ const Post = props => {
                   <Moment format="MMM Do, YYYY">{props.datecreated}</Moment>
                 </Typography>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item xs={1} className={styles.mapIcon}>
                 <MapMarkerIcon />
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={5} className={styles.addressGrid}>
                 <Typography gutterBottom className={styles.address}>
                   {props.address}
                 </Typography>
