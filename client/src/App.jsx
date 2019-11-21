@@ -73,6 +73,7 @@ export class App extends React.Component {
           response: true
         }
       });
+      console.log(res);
       this.setState({
         posts: res.data,
         response: true,
@@ -144,6 +145,7 @@ export class App extends React.Component {
                 ) : (
                     <Loading />
                   )}
+                {/* <div className={styles.footer}>BLUE</div> */}
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -173,7 +175,9 @@ export class App extends React.Component {
                 <Redirect to="/" />
               </Route>
             </Switch>
+            {/* <div className={styles.footerSpaceHolder}></div> */}
           </div>
+          <div className={styles.footer}></div>
         </div>
       </Router>
     );

@@ -10,14 +10,20 @@
     /* max-width: 414px; */
     position: relative;
     height: 100vh;
-    grid-template-rows: 56px 1fr;
-    margin: auto;
-    margin-top: 1%;
     max-width: 750px;
     min-width: 500px;
+    grid-template-rows: 56px 1fr;
+    /* margin: auto; */
+    margin-top: 1%;
     grid-template-areas: 
       "header"
-      "component";
+      "component"
+      "footer";
+  }
+
+  .marginContainer {
+    max-width: 750px;
+    min-width: 500px;
   }
   
   .header {
@@ -27,8 +33,28 @@
   }
   
   .component {
+    margin: auto;
     height: 100%;
+    max-width: 750px;
+    min-width: 500px;
     grid-area: component;
     padding: 0 5%;
     margin-top: 1vh;
+  }
+
+  .footer {
+    width: 100vw;
+    /* position: fixed; */
+    margin: 0px;
+    /* bottom: 0px; */
+    background-color: blue;
+    height: 50px;
+  }
+
+  .footerSpaceHolder {
+    overflow: visible;
+    background-color: blue;
+    width: 100vw;
+    height: 50px;
+    grid-area: footer;
   }

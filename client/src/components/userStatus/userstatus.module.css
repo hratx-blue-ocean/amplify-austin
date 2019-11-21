@@ -8,6 +8,7 @@
   font-size: 1rem;
   cursor: pointer;
   color: blue;
+  margin: 0px;
 }
 
 .logout {
@@ -20,6 +21,7 @@
   font-size: 1rem;
   cursor: pointer;
   color: blue;
+  margin: 0px;
 }
 
 .subheader {
