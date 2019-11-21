@@ -3,9 +3,7 @@ import { useHistory } from "react-router-dom";
 import styles from "./userstatus.module.css";
 
 const Userstatus = props => {
-  const [menuToggled, setMenuToggled] = useState(false);
   const [name, setName] = useState("");
-  const { classes } = props;
   const username = localStorage.getItem("username");
   const history = useHistory();
 
@@ -34,7 +32,7 @@ const Userstatus = props => {
             localStorage.removeItem("username");
             history.push("/signin");
           }}
-          className={styles.conditionalRenderP}
+          className={styles.logout}
         >
           Log Out
         </p>

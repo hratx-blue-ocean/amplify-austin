@@ -19,7 +19,7 @@ const SortFilter = props => {
     <div className={menuStyles.root}>
       <Grid
         container
-        spacing={12}
+        spacing={10}
         justify="center"
         direction="row"
         alignItems="center"
@@ -35,7 +35,9 @@ const SortFilter = props => {
           />
         </Grid>
         <Grid item xs={12}>
-          <NewPostTextField></NewPostTextField>
+          {localStorage.getItem("user_id") && (
+            <NewPostTextField></NewPostTextField>
+          )}
         </Grid>
       </Grid>
     </div>
