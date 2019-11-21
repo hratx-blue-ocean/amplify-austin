@@ -172,6 +172,7 @@ const Post = props => {
         <NotificationModal
           display={displayModal}
           toggleDisplayModal={toggleDisplayModal}
+          message={"You must be logged in to use this feature!"}
         />
         <Grid container spacing={3}>
           <Grid item xs={2} container direction="column">
