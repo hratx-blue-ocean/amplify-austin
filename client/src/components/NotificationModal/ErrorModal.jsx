@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.error.dark
   },
   icon: {
-    fontSize: 20,
+    fontSize: 20
   },
   iconVariant: {
     opacity: 0.9,
