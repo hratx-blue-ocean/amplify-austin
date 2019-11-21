@@ -35,7 +35,24 @@ const addPost = function (post) {
 
 const getPost = function (postId, userId) {
     return new Promise((resolve, reject) => {
-        const queryString = "SELECT categoryId, headline, description, status, address, created_at, upvotes, otherFlag, eventDate, lat, lng FROM posts WHERE id = " + postId + ";";
+        let queryString = "SELECT categoryId, headline, description, status, address, created_at, upvotes, otherFlag, eventDate, lat, lng, ";
+        queryString += "categories.name AS categoryName, contacts.phoneNumber AS phoneNumber, contacts.email AS email, contacts.name AS name, contacts.department AS department, contacts.position AS position";
+
+        if (userId) {
+            queryString += ", favorites.id AS favoritesId, promotes.id AS promotesId"
+        }
+
+        queryString += " FROM posts ";
+        queryString += "LEFT JOIN categories ON posts.categoryId = categories.id ";
+        queryString += "LEFT JOIN contacts ON contacts.id = (SELECT contactId FROM categories WHERE id = posts.categoryId) ";
+
+        if (userId) {
+            queryString = queryString + "LEFT JOIN favorites ON posts.id = favorites.postId AND favorites.userId = " + userId + " ";
+            queryString = queryString + "LEFT JOIN promotes ON posts.id = promotes.postId AND promotes.userId = " + userId + " ";
+        }
+
+        queryString += "WHERE posts.id = " + postId + ";";
+
         connection.query(queryString, (err, result) => {
             if (err) {
                 reject(err);
