@@ -208,6 +208,7 @@ const Post = props => {
                 </div>
               </Grid>
             </Grid>
+          </Paper>
           </Grid>
           <Grid item xs={10} container direction="column">
             <Paper
