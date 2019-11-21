@@ -11,17 +11,17 @@ const Marker = ({ title, category, postId }) => {
 
   const location = useLocation();
   useEffect(() => {
-    if (location.pathname === `/posts/${postId}`) {
+    if (location.pathname === `/posts/${ postId }`) {
       setOnPostPage(true);
     }
-  }, []);
+  }, [location.pathname, postId]);
 
   return (
     <div
       className={styles.marker}
       onMouseEnter={() => toggleTitle(true)}
       onMouseLeave={() => toggleTitle(false)}
-      onClick={() => !onPostPage && history.push(`/posts/${postId}`)}
+      onClick={() => !onPostPage && history.push(`/posts/${ postId }`)}
     >
       <Icon category={category.toLowerCase()} />
       {showTitle && <MiniPost title={title} />}

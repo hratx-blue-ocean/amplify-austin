@@ -100,7 +100,7 @@ const Post = props => {
 
   useEffect(() => {
     setFave(props.isFavorited);
-  }, []);
+  }, [props.isFavorited]);
 
   const userID = localStorage.getItem("user_id");
 
@@ -194,7 +194,7 @@ const Post = props => {
           <Grid item xs={10} container direction="column">
             <Paper
               onClick={() => {
-                history.push(`/posts/${props.postID}`);
+                history.push(`/posts/${ props.postID }`);
               }}
               className={styles.paper}
             >
@@ -234,8 +234,8 @@ const Post = props => {
                     {fave === true ? (
                       <VisibilityIcon></VisibilityIcon>
                     ) : (
-                      <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                    )}
+                        <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                      )}
                   </div>
                 </Grid>
               </Grid>
