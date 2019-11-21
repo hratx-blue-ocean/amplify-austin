@@ -11,7 +11,7 @@ import Title from "./components/header/title";
 import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
 import UserStatus from "./components/userStatus/UserStatus";
-import WelcomePopUp from "./components/ModalPopUp/ModalPopUp.jsx"
+import WelcomePopUp from "./components/ModalPopUp/ModalPopUp.jsx";
 
 import {
   BrowserRouter as Router,
@@ -149,8 +149,8 @@ export class App extends React.Component {
                     filteredCategories={this.state.filteredCategories}
                   />
                 ) : (
-                    <Loading />
-                  )}
+                  <Loading />
+                )}
               </Route>
               <Route path="/signup">
                 <SignUp />
