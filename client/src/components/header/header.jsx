@@ -59,6 +59,7 @@ const Header = props => {
         </div>
         <div>
           <img
+            alt="main logo"
             height="50"
             width="60"
             src="https://amplify-austin.s3.us-east-2.amazonaws.com/amplify_austinwhite.png"

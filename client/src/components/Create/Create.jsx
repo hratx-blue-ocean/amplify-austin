@@ -10,12 +10,12 @@ import Radio from "@material-ui/core/Radio";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import Style from "./Create.module.css";
-import { API } from "../../constants";
+import { API, CATEGORIES } from "../../constants";
 import { useHistory } from "react-router-dom";
 import ErrorModal from "../NotificationModal/ErrorModal";
 import SuccessModal from "../NotificationModal/SuccessModal";
 const Create = props => {
-  let categories = [];
+  const categories = [];
   const [category, setCategory] = useState("Category");
   const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
@@ -27,29 +27,15 @@ const Create = props => {
   const [errorToggle, setErrorToggle] = useState(false);
   const userID = localStorage.getItem("user_id");
   const history = useHistory();
+
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/categories")
+      .get(API.CATEGORIES)
       .then(res => {
         setHungry(res.data);
       })
-      .catch(error => {
-        categories = [
-          "Category",
-          "Accessibility",
-          "Danger",
-          "Event",
-          "Garbage",
-          "Graffiti",
-          "Music",
-          "Nature",
-          "Parking",
-          "Pets",
-          "School",
-          "Townhall",
-          "Water",
-          "Other"
-        ];
+      .catch(() => {
+        setCategory(CATEGORIES);
       });
   }, []);
 

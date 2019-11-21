@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import MapOutLinedIcon from "@material-ui/icons/MapOutlined";
 import style from "./Menu.module.css";
 import Button from "@material-ui/core/Button";
@@ -107,7 +106,6 @@ const Menu = props => {
         <div>
           <Button
             onClick={() => {
-              localStorage.removeItem("user_id");
               localStorage.removeItem("username");
               history.push("/signin");
               onClose();
