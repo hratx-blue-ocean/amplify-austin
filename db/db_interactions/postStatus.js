@@ -189,7 +189,7 @@ const markResolved = function (userId, postId) {
                                 .then((value) => {
                                     //user has already marked a post resolved
                                     if (value.length > 0) {
-                                        const userResolved = false;
+                                        const userMarked = false;
                                         //DELETE THE RESOLVE TO ALLOW A USER TO UNDO THEIR RESOLVE
                                         const queryString = `DELETE FROM resolves WHERE userId = ${userId} AND postId = ${postId}`;
                                         helpers.promisedQuery(queryString)
@@ -202,7 +202,7 @@ const markResolved = function (userId, postId) {
                                                 return helpers.selectVal('posts', '*', 'id', postId)
                                             })
                                             .then((value) => {
-                                                resolve({ status: value.status, resolved: value.resolved, userResolved: userResolved })
+                                                resolve({ status: value.status, count: value.resolved, userMarked: userMarked })
                                             })
 
                                         //user has not already marked a post resolved...
@@ -211,7 +211,7 @@ const markResolved = function (userId, postId) {
                                         if (status !== 'resolved') {
                                             //if user is the post creator OR adding one more resolved would make more than 2 resolveds
                                             if (creatorId == userId || resolved >= 2) {
-                                                const userResolved = false;
+                                                const userMarked = false;
                                                 //mark resolved
                                                 helpers.modifyEntry('posts', 'status', "'resolved'", 'id', postId)
                                                     //reset resolved count
@@ -229,10 +229,10 @@ const markResolved = function (userId, postId) {
                                                     })
                                                     .then((value) => {
                                                         //resolve status
-                                                        resolve({ status: value.status, resolved: value.resolved, userResolved: userResolved })
+                                                        resolve({ status: value.status, count: value.resolved, userMarked: userMarked })
                                                     })
                                             } else {
-                                                const userResolved = true;
+                                                const userMarked = true;
                                                 //status wont change, but resolved count needs to be updated & joint table updated
                                                 helpers.modifyEntry('posts', 'resolved', resolved + 1, 'id', postId)
                                                     .then((value) => {
@@ -245,11 +245,11 @@ const markResolved = function (userId, postId) {
                                                     })
                                                     .then((value) => {
                                                         //resolve status
-                                                        resolve({ status: value.status, resolved: value.resolved, userResolved: userResolved })
+                                                        resolve({ status: value.status, count: value.resolved, userMarked: userMarked })
                                                     })
                                             }
                                         } else {
-                                            resolve({ status, resolved, userResolved: false });
+                                            resolve({ status: status, count: resolved, userMarked: false });
                                         }
                                     }
                                 })
@@ -284,7 +284,6 @@ const dispute = function (userId, postId) {
                         .then((value) => {
                             const status = value[0].status;
                             const disputed = value[0].disputed;
-                            const creatorId = value[0].creatorId;
 
                             //test that user has not already marked disputed
                             const query = `SELECT id FROM disputes WHERE userId=${userId} AND postId=${postId};`;
@@ -292,7 +291,7 @@ const dispute = function (userId, postId) {
                                 .then((value) => {
                                     //user has already marked a post disputed
                                     if (value.length > 0) {
-                                        const userDisputed = false;
+                                        const userMarked = false;
                                         //DELETE THE DISPUTE TO ALLOW A USER TO UNDO THEIR DISPUTE
                                         const queryString = `DELETE FROM disputes WHERE userId = ${userId} AND postId = ${postId}`;
                                         helpers.promisedQuery(queryString)
@@ -305,7 +304,7 @@ const dispute = function (userId, postId) {
                                                 return helpers.selectVal('posts', '*', 'id', postId)
                                             })
                                             .then((value) => {
-                                                resolve({ status: value.status, disputed: value.disputed, userDisputed: userDisputed })
+                                                resolve({ status: value.status, count: value.disputed, userMarked: userMarked })
                                             })
 
                                         //user has not already marked a post resolved...
@@ -314,7 +313,7 @@ const dispute = function (userId, postId) {
                                         if (status === 'resolved') {
                                             //if adding one more dispute would make more than 2 disputeds
                                             if (disputed >= 2) {
-                                                const userDisputed = false;
+                                                const userMarked = false;
                                                 //mark disputed
                                                 helpers.modifyEntry('posts', 'status', "'disputed'", 'id', postId)
                                                     //reset dispute count
@@ -332,10 +331,10 @@ const dispute = function (userId, postId) {
                                                     })
                                                     .then((value) => {
                                                         //resolve status
-                                                        resolve({ status: value.status, disputed: value.disputed, userDisputed: userDisputed })
+                                                        resolve({ status: value.status, count: value.disputed, userMarked: userMarked })
                                                     })
                                             } else {
-                                                const userDisputed = true;
+                                                const userMarked = true;
                                                 //status wont change, but resolved count needs to be updated & joint table updated
                                                 helpers.modifyEntry('posts', 'disputed', disputed + 1, 'id', postId)
                                                     .then((value) => {
@@ -348,11 +347,11 @@ const dispute = function (userId, postId) {
                                                     })
                                                     .then((value) => {
                                                         //resolve status
-                                                        resolve({ status: value.status, disputed: value.disputed, userDisputed: userDisputed })
+                                                        resolve({ status: value.status, count: value.disputed, userMarked: userMarked })
                                                     })
                                             }
                                         } else {
-                                            resolve({ status: status, disputed: disputed, userResolved: false });
+                                            resolve({ status: status, count: disputed, userMarked: false });
                                         }
                                     }
                                 })
