@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  margin-top: 1%;
 }
 
 .favorite {
@@ -32,6 +33,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
   margin: 10px auto 20px;
+  justify-content: space-around;
 }
 
 .subGroup > h4, .subGroup > h6 {

@@ -13,7 +13,7 @@ const PostPageSubGroup = ({ type, categoryName, created_at }) => {
         <h4>Category: </h4>
         <h6>{categoryName}</h6>
       </div>
-      <div className={style.subGroup}>
+      <div className={style.subGroup} style={{ gridColumnStart: 3 }}>
         <h4>Date Reported: </h4>
         <h6>{dateCreated}</h6>
       </div>
