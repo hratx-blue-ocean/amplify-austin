@@ -33,7 +33,8 @@ export class App extends React.Component {
       response: undefined,
       filteredCategories: [],
       sortSelection: "popularity",
-      stateChanger: 0
+      stateChanger: 0,
+      helloWorld: false
     };
     this.sortBy = this.sortBy.bind(this);
     this.changeSelectBy = this.changeSelectBy.bind(this);

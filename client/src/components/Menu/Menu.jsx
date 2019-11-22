@@ -108,6 +108,7 @@ const Menu = props => {
         <div>
           <Button
             onClick={() => {
+              localStorage.removeItem("user_id");
               localStorage.removeItem("username");
               history.push("/signin");
               onClose();
