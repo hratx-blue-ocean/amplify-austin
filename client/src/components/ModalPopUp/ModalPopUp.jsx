@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -46,12 +46,18 @@ const mobileIntroduction = `We connect Austinites on community issues and the lo
 const WelcomePopUp = () => {
   const classes = modalStyles();
   let userId = localStorage.getItem("user_id");
+  const [display, setDisplay] = useState(true);
+  useEffect(() => {
+    window.addEventListener('click', () => {
+      setDisplay(false);
+    })
+  }, [])
 
-  if (!userId) {
+  if (!userId && display) {
     if (isBrowser) {
       return (
         <Popup
-          open={setTimeout(function() {
+          open={setTimeout(function () {
             return true;
           }, 5000)}
           modal
@@ -92,7 +98,7 @@ const WelcomePopUp = () => {
     } else if (isMobile) {
       return (
         <Popup
-          open={setTimeout(function() {
+          open={setTimeout(function () {
             return true;
           }, 5000)}
           modal

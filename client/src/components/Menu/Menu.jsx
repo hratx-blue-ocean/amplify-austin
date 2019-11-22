@@ -15,7 +15,6 @@ const Menu = props => {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    console.log(auth);
     username ? setName(username) : setName("Login / Sign-Up");
     if (localStorage.getItem("user_id")) {
       setAuth(true);
@@ -30,8 +29,8 @@ const Menu = props => {
         {name === "Login / Sign-Up" ? (
           ""
         ) : (
-          <p className={style.username}>{name}</p>
-        )}
+            <p className={style.username}>{name}</p>
+          )}
       </div>
       <div>
         <Button
@@ -120,33 +119,33 @@ const Menu = props => {
           </Button>
         </div>
       ) : (
-        <>
-          <div>
-            <Button
-              onClick={() => {
-                history.push("/signin");
-                onClose();
-              }}
-              variant="contained"
-            >
-              {" "}
-              Login{" "}
-            </Button>
-          </div>
-          <div>
-            <Button
-              onClick={() => {
-                history.push("/signup");
-                onClose();
-              }}
-              variant="contained"
-            >
-              {" "}
-              Sign Up{" "}
-            </Button>
-          </div>
-        </>
-      )}
+          <>
+            <div>
+              <Button
+                onClick={() => {
+                  history.push("/signin");
+                  onClose();
+                }}
+                variant="contained"
+              >
+                {" "}
+                Login{" "}
+              </Button>
+            </div>
+            <div>
+              <Button
+                onClick={() => {
+                  history.push("/signup");
+                  onClose();
+                }}
+                variant="contained"
+              >
+                {" "}
+                Sign Up{" "}
+              </Button>
+            </div>
+          </>
+        )}
     </div>
   );
 };
