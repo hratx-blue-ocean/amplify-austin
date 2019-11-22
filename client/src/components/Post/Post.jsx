@@ -210,8 +210,8 @@ const Post = props => {
                   {fave === true ? (
                     <Icon category={"watched"} onClick={handleFavorite} />
                   ) : (
-                      <Icon category={"unwatched"} onClick={handleFavorite} />
-                    )}
+                    <Icon category={"unwatched"} onClick={handleFavorite} />
+                  )}
                 </div>
               </Grid>
               <Grid
