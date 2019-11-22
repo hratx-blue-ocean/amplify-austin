@@ -139,8 +139,8 @@ export class App extends React.Component {
                     filteredCategories={this.state.filteredCategories}
                   />
                 ) : (
-                  <Loading />
-                )}
+                    <Loading />
+                  )}
               </Route>
               <Route path="/signup">
                 <SignUp />
