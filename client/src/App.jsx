@@ -11,6 +11,7 @@ import Title from "./components/header/title";
 import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
 import UserStatus from "./components/userStatus/UserStatus";
+import WelcomePopUp from "./components/ModalPopUp/ModalPopUp.jsx";
 
 import {
   BrowserRouter as Router,
@@ -120,6 +121,7 @@ export class App extends React.Component {
         <div className={styles.container}>
           <Header changeSelectBy={this.changeSelectBy.bind(this)} />
           <div className={styles.component}>
+            <WelcomePopUp></WelcomePopUp>
             <Switch>
               <Route exact path="/">
                 <UserStatus />
