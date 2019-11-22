@@ -138,8 +138,8 @@ export class App extends React.Component {
                     filteredCategories={this.state.filteredCategories}
                   />
                 ) : (
-                  <Loading />
-                )}
+                    <Loading />
+                  )}
               </Route>
               <Route path="/signup">
                 <SignUp />
@@ -147,7 +147,7 @@ export class App extends React.Component {
               <Route path="/signin">
                 <SignIn />
               </Route>
-              <PrivateRoute path="/create" component={Create} />
+              <PrivateRoute path="/create" component={() => <Create categories={this.state.categories} />} />
               <Route path="/map">
                 <MapPage
                   posts={this.state.posts}
