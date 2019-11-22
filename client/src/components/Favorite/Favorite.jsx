@@ -13,11 +13,11 @@ export class Favorite extends React.Component {
 
   render() {
     return (
-      <div onClick={this.handleSave}>
+      <div onClick={this.handleSave} style={"cursor: pointer;"}>
         {this.props.favorite ? (
-          <Icon type={ICONLABEL.starFilled} />
+          <Icon type={ICONLABEL.starFilled} style={"cursor: pointer;"} />
         ) : (
-          <Icon type={ICONLABEL.starEmpty} />
+          <Icon type={ICONLABEL.starEmpty} style={"cursor: pointer;"} />
         )}
       </div>
     );

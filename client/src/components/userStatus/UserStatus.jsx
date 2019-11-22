@@ -32,7 +32,7 @@ const Userstatus = props => {
             localStorage.removeItem("username");
             history.push("/signin");
           }}
-          className={styles.logout}
+          className={styles.conditionalRenderP}
         >
           Log Out
         </p>
