@@ -15,7 +15,6 @@ connection.connect((res) => {
     console.log("connected to database successfully");
   } else {
     console.log("ERROR: ", res);
-    console.log("ENV VAR FOR DB: ", process.env.REACT_APP_DB_PASSWORD);
   }
 });
 
