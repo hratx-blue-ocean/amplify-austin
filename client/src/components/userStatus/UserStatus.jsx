@@ -40,17 +40,17 @@ const Userstatus = props => {
           <span onClick={navToSignUp}>Sign Up</span>
         </p>
       ) : (
-        <p
-          onClick={() => {
-            localStorage.removeItem("user_id");
-            localStorage.removeItem("username");
-            history.push("/signin");
-          }}
-          className={styles.conditionalRenderP}
-        >
-          {logout === "permanent" && "Log Out"}
-        </p>
-      )}
+          <p
+            onClick={() => {
+              localStorage.removeItem("user_id");
+              localStorage.removeItem("username");
+              history.push("/signin");
+            }}
+            className={styles.conditionalRenderP}
+          >
+            {logout === "temporary" && "Log Out"}
+          </p>
+        )}
     </div>
   );
 };
