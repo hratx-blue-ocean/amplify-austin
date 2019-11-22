@@ -126,12 +126,12 @@ const Create = props => {
             <div className={Style.RadioContainer}>
               <FormControlLabel
                 value="Issue"
-                control={<Radio />}
+                control={<Radio color="primary" />}
                 label="Issue"
               />
               <FormControlLabel
                 value="Event"
-                control={<Radio />}
+                control={<Radio color="primary" />}
                 label="Event"
               />
             </div>
