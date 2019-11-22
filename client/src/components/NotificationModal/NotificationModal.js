@@ -3,13 +3,13 @@ import ReactModal from "react-modal";
 import Style from "./NotificationModal.module.css";
 
 ReactModal.setAppElement("body");
-
-const NotificationModal = ({ display, toggleDisplayModal }) => {
+// Remember to pass in the message you'd like to display!
+const NotificationModal = ({ display, toggleDisplayModal, message }) => {
   if (display) {
     setTimeout(() => toggleDisplayModal(false), 2700);
     return (
       <div className={Style.modal}>
-        <p>You must be logged in to use this feature! AWESOME COLOR</p>
+        <p>{message}</p>
       </div>
     );
   } else {

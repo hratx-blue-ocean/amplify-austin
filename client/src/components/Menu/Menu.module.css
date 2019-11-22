@@ -1,9 +1,9 @@
 .NavBarContainer {
   position: relative;
-  top: 9vh;
+  top: 3vh;
   bottom: 0;
   display: grid;
-  grid-template-columns: 280px;
+  /* grid-template-columns: 290px; */
   grid-template-rows: repeat(8, 0.5fr);
 }
 
@@ -15,9 +15,15 @@
   border-radius: 32px;
 }
 
-.conditionalRenderP {
+/* .topSquareContainer {
+ 
+} */
+
+.username {
   text-align: center;
   margin: auto;
   font-size: 22px;
   cursor: pointer;
+  padding-bottom: 7%;
+  border-bottom: 2px solid #34435e;
 }

@@ -12,16 +12,17 @@ import Icon from "../Icon/Icon";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import NotificationModal from "../NotificationModal/NotificationModal";
-import ErrorModal from "../NotificationModal/ErrorModal";
 import "typeface-roboto";
 import axios from "axios";
 import { API } from "../../constants";
+import ErrorModal from "../NotificationModal/ErrorModal.jsx";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   paper: {
+    cursor: "pointer",
     margin: "",
     maxWidth: "100%",
     background: "#c5d1e8",
@@ -54,8 +55,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-start"
   },
   star: {
-    paddingLeft: "10%",
-    width: "100%"
+    paddingLeft: "7%",
+    width: "100%",
+    cursor: "pointer"
   },
   date: {
     fontFamily: "Roboto",
@@ -66,16 +68,26 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: "1%"
   },
   mapIcon: {
-    paddingBottom: "1%"
+    paddingBottom: "1%",
+    justifyContent: "flex-end",
+    textAlign: "right"
+  },
+  addressGrid: {
+    display: "inline",
+    textAlign: "left",
+    justifyContent: "flex-end"
   },
   address: {
     marginRight: "7px",
+    width: "auto",
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: "0.75rem",
-    justifyContent: "flex-end",
+    flexWrap: "nowrap",
     paddingBottom: "1%",
-    paddingLeft: "2%"
+    paddingLeft: "2%",
+    paddingRight: "1%",
+    display: "inline-block"
   }
 }));
 
@@ -90,9 +102,10 @@ const Post = props => {
 
   useEffect(() => {
     setFave(props.isFavorited);
-  }, []);
+  }, [props.isFavorited]);
 
   const userID = localStorage.getItem("user_id");
+
   const handleAmplify = async () => {
     if (!userID) {
       toggleDisplayModal(!displayModal);
@@ -135,6 +148,25 @@ const Post = props => {
     }
   };
 
+  const shortenAddreses = address => {
+    let abrevAddress = "";
+    let j;
+    if (address.length <= 20) {
+      j = address.length;
+    } else if (address.length > 20) {
+      j = 20;
+    }
+
+    for (var i = 0; i < j; i++) {
+      abrevAddress += address[i];
+    }
+
+    abrevAddress += "...";
+    return abrevAddress;
+  };
+
+  let abbreviatedAddress = shortenAddreses(props.address);
+
   return (
     // if other flag, display "other" icon and NOT category icon
     <React.Fragment>
@@ -142,6 +174,7 @@ const Post = props => {
         <NotificationModal
           display={displayModal}
           toggleDisplayModal={toggleDisplayModal}
+          message={"You must be logged in to use this feature!"}
         />
         <Grid container spacing={3}>
           <Grid item xs={2} container direction="column">
@@ -209,17 +242,17 @@ const Post = props => {
                 </Grid>
               </Grid>
               <Grid item xs={12} container direction="row">
-                <Grid item xs={6}>
+                <Grid item xs={7}>
                   <Typography className={styles.date} gutterBottom>
                     <Moment format="MMM Do, YYYY">{props.datecreated}</Moment>
                   </Typography>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={1} className={styles.mapIcon}>
                   <MapMarkerIcon />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={4} className={styles.addressGrid}>
                   <Typography gutterBottom className={styles.address}>
-                    {props.address}
+                    {abbreviatedAddress}
                   </Typography>
                 </Grid>
               </Grid>
