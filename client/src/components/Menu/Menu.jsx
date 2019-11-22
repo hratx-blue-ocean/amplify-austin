@@ -8,13 +8,14 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 
 const Menu = props => {
-  const [auth, setAuth] = useState();
+  const [auth, setAuth] = useState(false);
   const history = useHistory();
   const onClose = props.onClose;
   const username = localStorage.getItem("username");
   const [name, setName] = useState("");
 
   useEffect(() => {
+    console.log(auth);
     username ? setName(username) : setName("Login / Sign-Up");
     if (localStorage.getItem("user_id")) {
       setAuth(true);
@@ -29,8 +30,8 @@ const Menu = props => {
         {name === "Login / Sign-Up" ? (
           ""
         ) : (
-          <p className={style.username}>{name}</p>
-        )}
+            <p className={style.username}>{name}</p>
+          )}
       </div>
       <div>
         <Button
@@ -46,11 +47,12 @@ const Menu = props => {
           Home
         </Button>
       </div>
-      {auth && (
+      {username && (
         <>
           <div>
             <Button
               onClick={() => {
+                window.scrollTo(0, 0);
                 history.push("/create");
                 onClose();
               }}
@@ -102,7 +104,7 @@ const Menu = props => {
           Map
         </Button>
       </div>
-      {auth ? (
+      {username ? (
         <div>
           <Button
             onClick={() => {
@@ -117,33 +119,33 @@ const Menu = props => {
           </Button>
         </div>
       ) : (
-        <>
-          <div>
-            <Button
-              onClick={() => {
-                history.push("/signin");
-                onClose();
-              }}
-              variant="contained"
-            >
-              {" "}
-              Login{" "}
-            </Button>
-          </div>
-          <div>
-            <Button
-              onClick={() => {
-                history.push("/signup");
-                onClose();
-              }}
-              variant="contained"
-            >
-              {" "}
-              Sign Up{" "}
-            </Button>
-          </div>
-        </>
-      )}
+          <>
+            <div>
+              <Button
+                onClick={() => {
+                  history.push("/signin");
+                  onClose();
+                }}
+                variant="contained"
+              >
+                {" "}
+                Login{" "}
+              </Button>
+            </div>
+            <div>
+              <Button
+                onClick={() => {
+                  history.push("/signup");
+                  onClose();
+                }}
+                variant="contained"
+              >
+                {" "}
+                Sign Up{" "}
+              </Button>
+            </div>
+          </>
+        )}
     </div>
   );
 };
