@@ -17,7 +17,6 @@ import SuccessModal from "../NotificationModal/SuccessModal";
 const Create = props => {
   const categories = ["Category", ...props.categories];
   const [category, setCategory] = useState("Category");
-  const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
   const [issueOrEvent, setIssueOrEvent] = useState("Issue");
   const [description, setDescription] = useState("");
@@ -88,7 +87,7 @@ const Create = props => {
               setCategory(event.target.value);
             }}
           >
-            {hungry.map(option => {
+            {categories.map(option => {
               return <MenuItem value={option}>{option}</MenuItem>;
             })}
           </Select>
