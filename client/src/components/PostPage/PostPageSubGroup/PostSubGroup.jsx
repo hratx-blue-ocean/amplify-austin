@@ -10,10 +10,6 @@ const PostPageSubGroup = ({ type, categoryName, created_at }) => {
   return (
     <div className={style.subheading}>
       <div className={style.subGroup}>
-        <h4>Type: </h4>
-        <h6>{type}</h6>
-      </div>
-      <div className={style.subGroup}>
         <h4>Category: </h4>
         <h6>{categoryName}</h6>
       </div>

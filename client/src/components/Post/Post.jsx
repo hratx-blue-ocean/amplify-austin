@@ -38,14 +38,17 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   row2: {
-    paddingBottom: "1%"
+    paddingBottom: "1%",
+    justifyContent: "flex-start"
   },
   category: {
     fontFamily: "Roboto",
     fontStyle: "normal",
-    paddingLeft: "2%",
+    paddingLeft: "1%",
     paddingTop: "1%",
-    paddingBottom: "1%"
+    paddingBottom: "1%",
+    paddingRight: "2%",
+    justifyContent: "space-between"
   },
   title: {
     fontFamily: "Roboto",
@@ -53,11 +56,6 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: "10%",
     fontSize: "1rem",
     justifyContent: "flex-start"
-  },
-  star: {
-    paddingLeft: "7%",
-    width: "100%",
-    cursor: "pointer"
   },
   date: {
     fontFamily: "Roboto",
@@ -151,18 +149,18 @@ const Post = props => {
   const shortenAddreses = address => {
     let abrevAddress = "";
     let j;
-    if (address.length <= 20) {
-      j = address.length;
-    } else if (address.length > 20) {
-      j = 20;
+    if (window.innerWidth < 1250) {
+      if (address.length <= 20) {
+        j = address.length;
+      } else if (address.length > 20) {
+        j = 20;
+      }
+      abrevAddress = address.slice(0, j);
+      abrevAddress += "...";
+      return abrevAddress;
+    } else {
+      return address;
     }
-
-    for (var i = 0; i < j; i++) {
-      abrevAddress += address[i];
-    }
-
-    abrevAddress += "...";
-    return abrevAddress;
   };
 
   let abbreviatedAddress = shortenAddreses(props.address);
@@ -208,6 +206,13 @@ const Post = props => {
                 className={styles.category}
               >
                 <Icon category={props.category.toLowerCase()} />
+                <div onClick={handleFavorite}>
+                  {fave === true ? (
+                    <Icon category={"watched"} onClick={handleFavorite} />
+                  ) : (
+                    <Icon category={"unwatched"} onClick={handleFavorite} />
+                  )}
+                </div>
               </Grid>
               <Grid
                 item
@@ -229,16 +234,6 @@ const Post = props => {
                   >
                     {props.title}
                   </Typography>
-                </Grid>
-                <Grid item xs={2} className={styles.star}>
-                  {/* width: 100% */}
-                  <div onClick={handleFavorite}>
-                    {fave === true ? (
-                      <VisibilityIcon></VisibilityIcon>
-                    ) : (
-                      <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                    )}
-                  </div>
                 </Grid>
               </Grid>
               <Grid item xs={12} container direction="row">
