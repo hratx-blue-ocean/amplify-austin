@@ -42,7 +42,7 @@ const PostPage = props => {
       });
 
       const postData = response.data;
-      console.log(postData)
+      console.log(postData);
       if (postData === undefined) {
         throw new Error("no response from GET request");
       }
@@ -96,7 +96,7 @@ const PostPage = props => {
       postId: postID
     });
     const newStatus = response.data;
-    console.log(newStatus)
+    console.log(newStatus);
     // setStatus(newStatus);
   };
 
@@ -122,8 +122,8 @@ const PostPage = props => {
                 {fave === true ? (
                   <VisibilityIcon></VisibilityIcon>
                 ) : (
-                    <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                  )}
+                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                )}
               </div>
             </div>
           </div>
