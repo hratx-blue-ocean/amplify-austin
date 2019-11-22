@@ -83,7 +83,7 @@ export class App extends React.Component {
           sortBy: this.state.sortSelection,
           categories: strArry,
           selectBy: this.state.selectBy,
-          response: true,
+          response: true
         }
       });
       this.setState({
@@ -139,8 +139,8 @@ export class App extends React.Component {
                     filteredCategories={this.state.filteredCategories}
                   />
                 ) : (
-                    <Loading />
-                  )}
+                  <Loading />
+                )}
               </Route>
               <Route path="/signup">
                 <SignUp />
