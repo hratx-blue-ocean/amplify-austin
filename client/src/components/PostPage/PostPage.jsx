@@ -42,7 +42,6 @@ const PostPage = props => {
       });
 
       const postData = response.data;
-      console.log(postData);
       if (postData === undefined) {
         throw new Error("no response from GET request");
       }
@@ -96,8 +95,7 @@ const PostPage = props => {
       postId: postID
     });
     const newStatus = response.data;
-    console.log(newStatus);
-    // setStatus(newStatus);
+    setStatus(newStatus.status);
   };
 
   if (post) {
