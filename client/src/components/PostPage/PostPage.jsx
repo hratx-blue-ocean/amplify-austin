@@ -108,7 +108,9 @@ const PostPage = props => {
           />
           <div className={style.titleField}>
             <div className={style.heading}>
-              <h2>{post.headline}</h2>
+              <h1>{post.headline}</h1>
+            </div>
+            <div className={style.descriptors}>
               <PostPageSubGroup
                 categoryName={post.categoryName}
                 created_at={post.created_at}

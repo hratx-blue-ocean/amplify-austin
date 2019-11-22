@@ -33,7 +33,7 @@ const Create = props => {
     if (issueOrEvent === "Issue") {
       setCategory("Category");
     } else {
-      setCategory("Events")
+      setCategory("Events");
     }
   }, [issueOrEvent]);
 
