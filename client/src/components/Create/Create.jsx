@@ -10,7 +10,7 @@ import Radio from "@material-ui/core/Radio";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import Style from "./Create.module.css";
-import { API, CATEGORIES } from "../../constants";
+import { API } from "../../constants";
 import { useHistory } from "react-router-dom";
 import ErrorModal from "../NotificationModal/ErrorModal";
 import SuccessModal from "../NotificationModal/SuccessModal";

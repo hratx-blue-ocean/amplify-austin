@@ -9,8 +9,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Moment from "react-moment";
 import Icon from "../Icon/Icon";
-import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import VisibilityIcon from "@material-ui/icons/Visibility";
 import NotificationModal from "../NotificationModal/NotificationModal";
 import "typeface-roboto";
 import axios from "axios";
@@ -210,8 +208,8 @@ const Post = props => {
                   {fave === true ? (
                     <Icon category={"watched"} onClick={handleFavorite} />
                   ) : (
-                    <Icon category={"unwatched"} onClick={handleFavorite} />
-                  )}
+                      <Icon category={"unwatched"} onClick={handleFavorite} />
+                    )}
                 </div>
               </Grid>
               <Grid
