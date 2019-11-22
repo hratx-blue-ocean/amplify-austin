@@ -69,8 +69,7 @@ const PostPage = props => {
   const handleFavorite = async e => {
     e.stopPropagation();
     if (!userID) {
-      toggleDisplayModal(!displayModal);
-      return;
+      return toggleDisplayModal(!displayModal);
     }
     try {
       const response = await axios.post(API.FAVORITE, {
@@ -87,8 +86,7 @@ const PostPage = props => {
 
   const handleStatus = async () => {
     if (!userID) {
-      toggleDisplayModal(true);
-      return;
+      return toggleDisplayModal(true);
     }
     const ENDPOINT = status === "resolved" ? API.DISPUTE : API.RESOLVE;
     const response = await axios.post(ENDPOINT, {
@@ -96,7 +94,7 @@ const PostPage = props => {
       postId: postID
     });
     const newStatus = response.data;
-    setStatus(newStatus);
+    setStatus(newStatus.status);
   };
 
   if (post) {
@@ -112,7 +110,6 @@ const PostPage = props => {
             <div className={style.heading}>
               <h2>{post.headline}</h2>
               <PostPageSubGroup
-                type={post.type}
                 categoryName={post.categoryName}
                 created_at={post.created_at}
               />
