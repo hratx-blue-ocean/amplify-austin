@@ -36,11 +36,11 @@ const addPost = function (post) {
 
 const getPost = function (postId, userId) {
     return new Promise((resolve, reject) => {
-        let queryString = "SELECT categoryId, headline, description, status, resolved, disputed, resolves.id AS resolvesId, disputes.id AS disputesId, address, created_at, upvotes, otherFlag, eventDate, lat, lng, ";
+        let queryString = "SELECT categoryId, headline, description, status, resolved, disputed, address, created_at, upvotes, otherFlag, eventDate, lat, lng, ";
         queryString += "categories.name AS categoryName, contacts.phoneNumber AS phoneNumber, contacts.email AS email, contacts.name AS name, contacts.department AS department, contacts.position AS position";
 
         if (userId) {
-            queryString += ", favorites.id AS favoritesId, promotes.id AS promotesId"
+            queryString += ", favorites.id AS favoritesId, promotes.id AS promotesId, resolves.id AS resolvesId, disputes.id AS disputesId"
         }
 
         queryString += " FROM posts ";
