@@ -23,7 +23,9 @@ export const ICONLABEL = {
   starEmpty: "emptyStar",
   starFilled: "filledStar",
   townhall: "townhall",
-  water: "water"
+  water: "water",
+  watched: "watched",
+  unwatched: "unwatched"
 };
 
 export const CATEGORIES = [

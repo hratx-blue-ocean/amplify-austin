@@ -33,7 +33,8 @@ export class App extends React.Component {
       response: undefined,
       filteredCategories: [],
       sortSelection: "popularity",
-      stateChanger: 0
+      stateChanger: 0,
+      helloWorld: false
     };
     this.sortBy = this.sortBy.bind(this);
     this.changeSelectBy = this.changeSelectBy.bind(this);
@@ -147,7 +148,10 @@ export class App extends React.Component {
               <Route path="/signin">
                 <SignIn />
               </Route>
-              <PrivateRoute path="/create" component={() => <Create categories={this.state.categories} />} />
+              <PrivateRoute
+                path="/create"
+                component={() => <Create categories={this.state.categories} />}
+              />
               <Route path="/map">
                 <MapPage
                   posts={this.state.posts}

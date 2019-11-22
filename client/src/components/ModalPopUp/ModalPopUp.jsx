@@ -1,15 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile
-} from "react-device-detect";
+import { isBrowser, isMobile } from "react-device-detect";
 
 const modalStyles = makeStyles(theme => ({
   root: {
@@ -51,12 +46,18 @@ const mobileIntroduction = `We connect Austinites on community issues and the lo
 const WelcomePopUp = () => {
   const classes = modalStyles();
   let userId = localStorage.getItem("user_id");
+  const [display, setDisplay] = useState(true);
+  useEffect(() => {
+    window.addEventListener('click', () => {
+      setDisplay(false);
+    })
+  }, [])
 
-  if (!userId) {
+  if (!userId && display) {
     if (isBrowser) {
       return (
         <Popup
-          open={setTimeout(function() {
+          open={setTimeout(function () {
             return true;
           }, 5000)}
           modal
@@ -73,7 +74,10 @@ const WelcomePopUp = () => {
                 className={classes.title}
               >
                 <Typography variant="h5" gutterBottom>
-                  👋👋👋{browserTitle}
+                  <span role="img" aria-label="greeting">
+                    👋👋👋
+                  </span>
+                  {browserTitle}
                 </Typography>
               </Grid>
               <Grid
@@ -94,7 +98,7 @@ const WelcomePopUp = () => {
     } else if (isMobile) {
       return (
         <Popup
-          open={setTimeout(function() {
+          open={setTimeout(function () {
             return true;
           }, 5000)}
           modal
@@ -111,7 +115,10 @@ const WelcomePopUp = () => {
                 className={classes.title}
               >
                 <Typography variant="h5" gutterBottom>
-                  👋👋👋 {mobileTitle}
+                  <span role="img" aria-label="greeting">
+                    👋👋👋
+                  </span>{" "}
+                  {mobileTitle}
                 </Typography>
               </Grid>
               <Grid

@@ -10,14 +10,13 @@ import Radio from "@material-ui/core/Radio";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import Style from "./Create.module.css";
-import { API, CATEGORIES } from "../../constants";
+import { API } from "../../constants";
 import { useHistory } from "react-router-dom";
 import ErrorModal from "../NotificationModal/ErrorModal";
 import SuccessModal from "../NotificationModal/SuccessModal";
 const Create = props => {
   const categories = ["Category", ...props.categories];
   const [category, setCategory] = useState("Category");
-  const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
   const [issueOrEvent, setIssueOrEvent] = useState("Issue");
   const [description, setDescription] = useState("");
@@ -33,7 +32,7 @@ const Create = props => {
     if (issueOrEvent === "Issue") {
       setCategory("Category");
     } else {
-      setCategory("Events")
+      setCategory("Events");
     }
   }, [issueOrEvent]);
 
@@ -88,7 +87,7 @@ const Create = props => {
               setCategory(event.target.value);
             }}
           >
-            {hungry.map(option => {
+            {categories.map(option => {
               return <MenuItem value={option}>{option}</MenuItem>;
             })}
           </Select>
@@ -126,12 +125,12 @@ const Create = props => {
             <div className={Style.RadioContainer}>
               <FormControlLabel
                 value="Issue"
-                control={<Radio />}
+                control={<Radio color="primary" />}
                 label="Issue"
               />
               <FormControlLabel
                 value="Event"
-                control={<Radio />}
+                control={<Radio color="primary" />}
                 label="Event"
               />
             </div>
