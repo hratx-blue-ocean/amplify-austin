@@ -95,11 +95,14 @@ router.get("/api/issue", (req, res) => {
   db.singlePost
     .getPost(postId, userId)
     .then(row => {
+      console.log('SERVER SIDE, row = ', row)
       let post = {
         headline: row[0].headline,
         categoryName: row[0].categoryName,
         description: row[0].description,
         status: row[0].status,
+        count: row[0].count,
+        userMarked: row[0].userMarked,
         address: row[0].address,
         created_at: row[0].created_at,
         amplifyCount: row[0].amplifyCount,
