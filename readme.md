@@ -38,14 +38,17 @@ This project was a brief 1-week sprint where our team completed an MVP for an [O
 
 ### What does the app do? 
     
-    Amplify Austin facilitates civic engagement by providing a platform through which its residents and their city officials can easily interact to solve concerns important to Austin. 
+    Amplify Austin facilitates civic engagement by providing a platform through which its residents and 
+    their city officials can easily interact to solve concerns important to Austin. 
 
-    We enable users to raise awareness of community issues in need of address to the city officials responsible for addressing them. City officials can use our application to gauge issues of importance to residents. We also provide a venue for community members to organize and promote events in the Austin area.
+    We enable users to raise awareness of community issues in need of address to the city officials 
+    responsible for addressing them. City officials can use our application to gauge issues of 
+    importance to residents. We also provide a venue for community members to organize and promote 
+    events in the Austin area.
     
     User Inputs and Outputs
     
     
-    We have
 
 ## Technologies
 #### Front End
