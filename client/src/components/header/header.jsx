@@ -6,7 +6,7 @@ import Drawer from "@material-ui/core/Drawer";
 import { withStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import style from "./header.module.css";
-const drawerWidth = 280;
+const drawerWidth = 295;
 const styles = {
   drawer: {
     width: drawerWidth,
@@ -14,15 +14,17 @@ const styles = {
   },
   paper: {
     width: drawerWidth,
-    background: "#34435E",
-    color: "white"
+    background: "#34385e",
+    color: "white",
+    boxShadow: "2px 2px 5px 2px #34385e",
+    overflow: "hidden"
   }
 };
 
 const Header = props => {
   const [menuToggled, setMenuToggled] = useState(false);
   const [drawertype, setDrawerType] = useState(
-    window.innerWidth > 1250 ? "permanent" : "temporary"
+    window.innerWidth >= 1250 ? "permanent" : "temporary"
   );
   const { classes } = props;
   const history = useHistory();
