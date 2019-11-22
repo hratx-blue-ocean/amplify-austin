@@ -17,7 +17,11 @@ const PostPage = props => {
   const [post, setPost] = useState(undefined);
   const [coords, setCoords] = useState([]);
   const [fave, setFave] = useState(undefined);
-  const [status, setStatus] = useState(undefined);
+  const [resolutionInfo, setResolutionInfo] = useState({
+    status: undefined,
+    userMarked: undefined,
+    count: 0
+  });
   const [displayModal, toggleDisplayModal] = useState(false);
   // token
   const userID = localStorage.getItem("user_id");
@@ -41,6 +45,7 @@ const PostPage = props => {
       });
 
       const postData = response.data;
+      console.log(postData)
       if (postData === undefined) {
         throw new Error("no response from GET request");
       }
@@ -63,7 +68,11 @@ const PostPage = props => {
         postId: postID
       }
     ]);
-    setStatus(data.status);
+    setResolutionInfo({
+      status: data.status,
+      userMarked: data.userMarked,
+      count: data.count
+    });
   };
 
   const handleFavorite = async e => {
@@ -88,16 +97,21 @@ const PostPage = props => {
     if (!userID) {
       return toggleDisplayModal(true);
     }
-    const ENDPOINT = status === "resolved" ? API.DISPUTE : API.RESOLVE;
+    const ENDPOINT = resolutionInfo.status === "resolved" ? API.DISPUTE : API.RESOLVE;
     const response = await axios.post(ENDPOINT, {
       userId: userID,
       postId: postID
     });
-    const newStatus = response.data;
-    setStatus(newStatus.status);
+    const newResolutionInfo = response.data;
+    console.log(newResolutionInfo)
+    setResolutionInfo({
+      status: newResolutionInfo.status,
+      userMarked: newResolutionInfo.userMarked,
+      count: newResolutionInfo.count
+    });
   };
 
-  if (post) {
+  if (post && resolutionInfo && resolutionInfo.status) {
     return (
       <React.Fragment>
         <div>
@@ -112,6 +126,7 @@ const PostPage = props => {
             </div>
             <div className={style.descriptors}>
               <PostPageSubGroup
+                status={resolutionInfo.status}
                 categoryName={post.categoryName}
                 created_at={post.created_at}
               />
@@ -121,8 +136,8 @@ const PostPage = props => {
                 {fave === true ? (
                   <Icon category={"watched"} onClick={handleFavorite} />
                 ) : (
-                  <Icon category={"unwatched"} onClick={handleFavorite} />
-                )}
+                    <Icon category={"unwatched"} onClick={handleFavorite} />
+                  )}
               </div>
             </div>
           </div>
@@ -131,7 +146,7 @@ const PostPage = props => {
           </div>
           <PostPageButtons
             contact={post.contacts[0]}
-            status={status}
+            resolutionInfo={resolutionInfo}
             handleStatus={handleStatus}
           />
           <div className={style.map}>

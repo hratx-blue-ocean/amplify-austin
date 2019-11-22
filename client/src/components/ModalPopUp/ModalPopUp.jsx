@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -34,103 +34,68 @@ const modalStyles = makeStyles(theme => ({
   }
 }));
 
-const browserTitle = `Welcome to Amplify Austin!`;
+const title = `Welcome to Amplify Austin!`;
+
 const browserIntroduction = `We connect Austinites on community issues and the local government - check out
     some of the topmost and most recent issues. Sign-in or create an account to vote
     or add a new topic. Click anywhere to get started!`;
 
-const mobileTitle = `Welcome to Amplify Austin!`;
 const mobileIntroduction = `We connect Austinites on community issues and the local government - scroll to see top issues. 
     Touch anywhere on the screen to get started!`;
 
 const WelcomePopUp = () => {
   const classes = modalStyles();
-  let userId = localStorage.getItem("user_id");
+  const userId = localStorage.getItem("user_id");
 
-  if (!userId) {
-    if (isBrowser) {
-      return (
-        <Popup
-          open={setTimeout(function() {
-            return true;
-          }, 5000)}
-          modal
-          position="top center"
-          closeOnDocumentClick
-        >
-          <div className="modal">
-            <Paper>
-              <Grid
-                item
-                xs={12}
-                container
-                spacing={2}
-                className={classes.title}
-              >
-                <Typography variant="h5" gutterBottom>
-                  <span role="img" aria-label="greeting">
-                    👋👋👋
+  const [display, setDisplay] = useState(true);
+
+  useEffect(() => {
+    window.addEventListener('click', () => {
+      setDisplay(false);
+    })
+  }, [])
+
+  if (!userId && display) {
+    return (
+      <Popup
+        open={setTimeout(function () {
+          return true;
+        }, 5000)}
+        modal
+        position="top center"
+        closeOnDocumentClick
+      >
+        <div className="modal">
+          <Paper>
+            <Grid
+              item
+              xs={12}
+              container
+              spacing={2}
+              className={classes.title}
+            >
+              <Typography variant="h5" gutterBottom>
+                <span role="img" aria-label="greeting">
+                  👋👋👋
                   </span>
-                  {browserTitle}
-                </Typography>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                container
-                spacing={2}
-                className={classes.intro}
-              >
-                <Typography variant="span" gutterBottom>
-                  {browserIntroduction}
-                </Typography>
-              </Grid>
-            </Paper>
-          </div>
-        </Popup>
-      );
-    } else if (isMobile) {
-      return (
-        <Popup
-          open={setTimeout(function() {
-            return true;
-          }, 5000)}
-          modal
-          position="top center"
-          closeOnDocumentClick
-        >
-          <div className="modal">
-            <Paper>
-              <Grid
-                item
-                xs={12}
-                container
-                spacing={2}
-                className={classes.title}
-              >
-                <Typography variant="h5" gutterBottom>
-                  <span role="img" aria-label="greeting">
-                    👋👋👋
-                  </span>{" "}
-                  {mobileTitle}
-                </Typography>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                container
-                spacing={2}
-                className={classes.intro}
-              >
-                <Typography variant="span" gutterBottom>
-                  {mobileIntroduction}
-                </Typography>
-              </Grid>
-            </Paper>
-          </div>
-        </Popup>
-      );
-    }
+                {title}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              container
+              spacing={2}
+              className={classes.intro}
+            >
+              <Typography variant="span" gutterBottom>
+                {isBrowser ? browserIntroduction : mobileIntroduction}
+              </Typography>
+            </Grid>
+          </Paper>
+        </div>
+      </Popup>
+    );
   } else {
     return <div></div>;
   }
