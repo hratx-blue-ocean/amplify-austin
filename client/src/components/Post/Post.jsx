@@ -63,38 +63,30 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: "10%",
     fontSize: "0.75rem",
     justifyContent: "flex-start",
-    paddingBottom: "0%"
+    paddingBottom: "1%"
   },
   mapIcon: {
-    paddingBottom: "5%",
     paddingBottom: "1%",
+    justifyContent: "flex-end",
     textAlign: "right"
   },
   addressGrid: {
     display: "inline",
-    textAlign: "right",
+    textAlign: "left",
     justifyContent: "flex-end"
   },
   address: {
+    marginRight: "7px",
     width: "auto",
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: "0.75rem",
     flexWrap: "nowrap",
-    paddingBottom: "0.5%",
-    // paddingLeft: "2%",
-    // paddingRight: "1%",
-    // display: "inline-block",
-    textAlign: "left"
-
-  },
-  dateAddress: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    paddingLeft: "1%",
-    paddingRight: "2%",
-    justifyContent: "space-between",
-  },
+    paddingBottom: "1%",
+    paddingLeft: "2%",
+    paddingRight: "1%",
+    display: "inline-block"
+  }
 }));
 
 const Post = props => {
@@ -163,13 +155,12 @@ const Post = props => {
       } else if (address.length > 20) {
         j = 20;
       }
-      abrevAddress = address.slice(0, j)
+      abrevAddress = address.slice(0, j);
       abrevAddress += "...";
       return abrevAddress;
     } else {
-      return address
+      return address;
     }
-
   };
 
   let abbreviatedAddress = shortenAddreses(props.address);
@@ -244,23 +235,15 @@ const Post = props => {
                     {props.title}
                   </Typography>
                 </Grid>
-
               </Grid>
-              <Grid
-                item xs={12}
-                container
-                direction="row"
-                className={styles.dateAddress}
-              >
+              <Grid item xs={12} container direction="row">
                 <Grid item xs={7}>
                   <Typography className={styles.date} gutterBottom>
                     <Moment format="MMM Do, YYYY">{props.datecreated}</Moment>
                   </Typography>
                 </Grid>
                 <Grid item xs={1} className={styles.mapIcon}>
-                  <Typography className={styles.date} gutterBottom>
-                    <MapMarkerIcon />
-                  </Typography>
+                  <MapMarkerIcon />
                 </Grid>
                 <Grid item xs={4} className={styles.addressGrid}>
                   <Typography gutterBottom className={styles.address}>

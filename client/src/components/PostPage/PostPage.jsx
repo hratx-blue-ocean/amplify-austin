@@ -8,7 +8,7 @@ import { useParams, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import NotificationModal from "../NotificationModal/NotificationModal";
 import { API } from "../../constants";
-import Icon from '../Icon/Icon'
+import Icon from "../Icon/Icon";
 import Loading from "../Loading/Loading";
 import ErrorModal from "../NotificationModal/ErrorModal";
 
@@ -122,8 +122,8 @@ const PostPage = props => {
                 {fave === true ? (
                   <Icon category={"watched"} onClick={handleFavorite} />
                 ) : (
-                    <Icon category={"unwatched"} onClick={handleFavorite} />
-                  )}
+                  <Icon category={"unwatched"} onClick={handleFavorite} />
+                )}
               </div>
             </div>
           </div>

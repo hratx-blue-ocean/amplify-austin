@@ -23,8 +23,8 @@ import PetsIcon from "../Icons/PetIcon";
 import SchoolHouseIcon from "../Icons/SchoolHouseIcon";
 import SettingsIconCustom from "../Icons/SettingsIconCustom";
 import TownHallIconCustom from "../Icons/TownHallIcon";
-import VisibilityIcon from '../Icons/VisibilityIcon';
-import VisibilityOutlinedIcon from '../Icons/VisibilityOutlinedIcon';
+import VisibilityIcon from "../Icons/VisibilityIcon";
+import VisibilityOutlinedIcon from "../Icons/VisibilityOutlinedIcon";
 import WaterIcon from "../Icons/WaterIcon";
 import { ICONLABEL } from "../../constants";
 
@@ -82,9 +82,9 @@ class Icon extends React.Component {
       case ICONLABEL.water:
         return <WaterIcon />;
       case ICONLABEL.watched:
-        return <VisibilityIcon />
+        return <VisibilityIcon />;
       case ICONLABEL.unwatched:
-        return <VisibilityOutlinedIcon />
+        return <VisibilityOutlinedIcon />;
       default:
         return <MapMarkerIcon />;
     }
