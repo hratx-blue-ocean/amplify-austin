@@ -48,7 +48,7 @@ const Userstatus = props => {
             }}
             className={styles.conditionalRenderP}
           >
-            {logout === "temporary" && "Log Out"}
+            {logout === "temporary" && "Sign Out"}
           </p>
         )}
     </div>
