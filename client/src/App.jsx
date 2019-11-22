@@ -33,7 +33,8 @@ export class App extends React.Component {
       response: undefined,
       filteredCategories: [],
       sortSelection: "popularity",
-      stateChanger: 0
+      stateChanger: 0,
+      helloWorld: false
     };
     this.sortBy = this.sortBy.bind(this);
     this.changeSelectBy = this.changeSelectBy.bind(this);
@@ -82,7 +83,7 @@ export class App extends React.Component {
           sortBy: this.state.sortSelection,
           categories: strArry,
           selectBy: this.state.selectBy,
-          response: true
+          response: true,
         }
       });
       this.setState({
@@ -138,8 +139,8 @@ export class App extends React.Component {
                     filteredCategories={this.state.filteredCategories}
                   />
                 ) : (
-                  <Loading />
-                )}
+                    <Loading />
+                  )}
               </Route>
               <Route path="/signup">
                 <SignUp />
