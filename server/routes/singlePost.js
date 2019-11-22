@@ -95,7 +95,6 @@ router.get("/api/issue", (req, res) => {
   db.singlePost
     .getPost(postId, userId)
     .then(row => {
-      console.log('SERVER SIDE, row = ', row)
       let post = {
         headline: row[0].headline,
         categoryName: row[0].categoryName,
