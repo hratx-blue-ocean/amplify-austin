@@ -5,11 +5,25 @@ import styles from "./userstatus.module.css";
 const Userstatus = props => {
   const [name, setName] = useState("");
   const username = localStorage.getItem("username");
+  const [logout, setLogout] = useState(
+    window.innerWidth >= 1250 ? "permanent" : "temporary"
+  );
   const history = useHistory();
 
   useEffect(() => {
     username ? setName(username) : setName("Login / Sign-Up");
   }, [username, name]);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1250) {
+        setLogout("permanent");
+      } else {
+        setLogout("temporary");
+      }
+    });
+  });
+
   const navToSignIn = () => {
     history.push("/signin");
   };
@@ -32,9 +46,9 @@ const Userstatus = props => {
             localStorage.removeItem("username");
             history.push("/signin");
           }}
-          className={styles.logout}
+          className={styles.conditionalRenderP}
         >
-          Log Out
+          {logout === "permanent" && "Log Out"}
         </p>
       )}
     </div>

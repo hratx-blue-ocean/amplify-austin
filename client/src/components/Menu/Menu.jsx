@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import MapOutLinedIcon from "@material-ui/icons/MapOutlined";
 import style from "./Menu.module.css";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 
 const Menu = props => {
-  const [auth, setAuth] = useState();
+  const [auth, setAuth] = useState(false);
   const history = useHistory();
   const onClose = props.onClose;
   const username = localStorage.getItem("username");
   const [name, setName] = useState("");
 
   useEffect(() => {
+    console.log(auth);
     username ? setName(username) : setName("Login / Sign-Up");
     if (localStorage.getItem("user_id")) {
       setAuth(true);
@@ -30,7 +30,7 @@ const Menu = props => {
         {name === "Login / Sign-Up" ? (
           ""
         ) : (
-          <p className={style.conditionalRenderP}>{name}</p>
+          <p className={style.username}>{name}</p>
         )}
       </div>
       <div>
@@ -47,11 +47,12 @@ const Menu = props => {
           Home
         </Button>
       </div>
-      {auth && (
+      {username && (
         <>
           <div>
             <Button
               onClick={() => {
+                window.scrollTo(0, 0);
                 history.push("/create");
                 onClose();
               }}
@@ -103,7 +104,7 @@ const Menu = props => {
           Map
         </Button>
       </div>
-      {auth ? (
+      {username ? (
         <div>
           <Button
             onClick={() => {

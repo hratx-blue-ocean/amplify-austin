@@ -23,10 +23,32 @@ export const ICONLABEL = {
   starEmpty: "emptyStar",
   starFilled: "filledStar",
   townhall: "townhall",
-  water: "water"
+  water: "water",
+  watched: "watched",
+  unwatched: "unwatched"
 };
 
-const HOST = "http://ec2-3-15-215-157.us-east-2.compute.amazonaws.com";
+export const CATEGORIES = [
+  "Category",
+  "Accessibility",
+  "Danger",
+  "Event",
+  "Garbage",
+  "Graffiti",
+  "Music",
+  "Nature",
+  "Parking",
+  "Pets",
+  "School",
+  "Townhall",
+  "Water",
+  "Other"
+];
+
+const HOST =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000"
+    : "ec2-3-135-9-196.us-east-2.compute.amazonaws.com";
 const APIBASE = HOST + "/api";
 
 export const API = {

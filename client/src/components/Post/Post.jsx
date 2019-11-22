@@ -9,19 +9,18 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Moment from "react-moment";
 import Icon from "../Icon/Icon";
-import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import VisibilityIcon from "@material-ui/icons/Visibility";
 import NotificationModal from "../NotificationModal/NotificationModal";
-import ErrorModal from "../NotificationModal/ErrorModal";
 import "typeface-roboto";
 import axios from "axios";
 import { API } from "../../constants";
+import ErrorModal from "../NotificationModal/ErrorModal.jsx";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   paper: {
+    cursor: "pointer",
     margin: "",
     maxWidth: "100%",
     background: "#c5d1e8",
@@ -37,14 +36,17 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   row2: {
-    paddingBottom: "1%"
+    paddingBottom: "1%",
+    justifyContent: "flex-start"
   },
   category: {
     fontFamily: "Roboto",
     fontStyle: "normal",
-    paddingLeft: "2%",
+    paddingLeft: "1%",
     paddingTop: "1%",
-    paddingBottom: "1%"
+    paddingBottom: "1%",
+    paddingRight: "2%",
+    justifyContent: "space-between"
   },
   title: {
     fontFamily: "Roboto",
@@ -52,10 +54,6 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: "10%",
     fontSize: "1rem",
     justifyContent: "flex-start"
-  },
-  star: {
-    paddingLeft: "10%",
-    width: "100%"
   },
   date: {
     fontFamily: "Roboto",
@@ -66,16 +64,26 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: "1%"
   },
   mapIcon: {
-    paddingBottom: "1%"
+    paddingBottom: "1%",
+    justifyContent: "flex-end",
+    textAlign: "right"
+  },
+  addressGrid: {
+    display: "inline",
+    textAlign: "left",
+    justifyContent: "flex-end"
   },
   address: {
     marginRight: "7px",
+    width: "auto",
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: "0.75rem",
-    justifyContent: "flex-end",
+    flexWrap: "nowrap",
     paddingBottom: "1%",
-    paddingLeft: "2%"
+    paddingLeft: "2%",
+    paddingRight: "1%",
+    display: "inline-block"
   }
 }));
 
@@ -90,9 +98,10 @@ const Post = props => {
 
   useEffect(() => {
     setFave(props.isFavorited);
-  }, []);
+  }, [props.isFavorited]);
 
   const userID = localStorage.getItem("user_id");
+
   const handleAmplify = async () => {
     if (!userID) {
       toggleDisplayModal(!displayModal);
@@ -135,6 +144,25 @@ const Post = props => {
     }
   };
 
+  const shortenAddreses = address => {
+    let abrevAddress = "";
+    let j;
+    if (window.innerWidth < 1250) {
+      if (address.length <= 20) {
+        j = address.length;
+      } else if (address.length > 20) {
+        j = 20;
+      }
+      abrevAddress = address.slice(0, j);
+      abrevAddress += "...";
+      return abrevAddress;
+    } else {
+      return address;
+    }
+  };
+
+  let abbreviatedAddress = shortenAddreses(props.address);
+
   return (
     // if other flag, display "other" icon and NOT category icon
     <React.Fragment>
@@ -176,6 +204,13 @@ const Post = props => {
                 className={styles.category}
               >
                 <Icon category={props.category.toLowerCase()} />
+                <div onClick={handleFavorite}>
+                  {fave === true ? (
+                    <Icon category={"watched"} onClick={handleFavorite} />
+                  ) : (
+                    <Icon category={"unwatched"} onClick={handleFavorite} />
+                  )}
+                </div>
               </Grid>
               <Grid
                 item
@@ -198,29 +233,19 @@ const Post = props => {
                     {props.title}
                   </Typography>
                 </Grid>
-                <Grid item xs={2} className={styles.star}>
-                  {/* width: 100% */}
-                  <div onClick={handleFavorite}>
-                    {fave === true ? (
-                      <VisibilityIcon></VisibilityIcon>
-                    ) : (
-                      <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
-                    )}
-                  </div>
-                </Grid>
               </Grid>
               <Grid item xs={12} container direction="row">
-                <Grid item xs={6}>
+                <Grid item xs={7}>
                   <Typography className={styles.date} gutterBottom>
                     <Moment format="MMM Do, YYYY">{props.datecreated}</Moment>
                   </Typography>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={1} className={styles.mapIcon}>
                   <MapMarkerIcon />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={4} className={styles.addressGrid}>
                   <Typography gutterBottom className={styles.address}>
-                    {props.address}
+                    {abbreviatedAddress}
                   </Typography>
                 </Grid>
               </Grid>

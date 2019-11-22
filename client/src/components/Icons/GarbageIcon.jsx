@@ -6,7 +6,7 @@ export default function GarbageIcon() {
   function iconStyles() {
     return {
       successIcon: {
-        color: "#2ECC40"
+        color: "#199e29"
       }
     };
   }
