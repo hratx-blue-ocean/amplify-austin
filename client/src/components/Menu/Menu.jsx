@@ -29,7 +29,7 @@ const Menu = props => {
         {name === "Login / Sign-Up" ? (
           ""
         ) : (
-          <p className={style.conditionalRenderP}>{name}</p>
+          <p className={style.username}>{name}</p>
         )}
       </div>
       <div>
