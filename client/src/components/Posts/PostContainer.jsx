@@ -5,7 +5,8 @@ import Styles from "./PostContainer.module.css";
 
 const containerStyles = makeStyles(theme => ({
   root: {
-    marginTop: "5vh",
+    marginTop: "1vh",
+    marginBottom: "3vh",
     flexGrow: 1,
     overflow: "hidden",
     padding: theme.spacing(0, 0)

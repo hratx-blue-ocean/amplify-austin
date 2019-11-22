@@ -15,7 +15,7 @@ import { useHistory } from "react-router-dom";
 import ErrorModal from "../NotificationModal/ErrorModal";
 import SuccessModal from "../NotificationModal/SuccessModal";
 const Create = props => {
-  let categories = [];
+  const categories = ["Category", ...props.categories];
   const [category, setCategory] = useState("Category");
   const [hungry, setHungry] = useState(categories);
   const [title, setTitle] = useState("");
@@ -27,31 +27,15 @@ const Create = props => {
   const [errorToggle, setErrorToggle] = useState(false);
   const userID = localStorage.getItem("user_id");
   const history = useHistory();
+
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/categories")
-      .then(res => {
-        setHungry(res.data);
-      })
-      .catch(error => {
-        categories = [
-          "Category",
-          "Accessibility",
-          "Danger",
-          "Event",
-          "Garbage",
-          "Graffiti",
-          "Music",
-          "Nature",
-          "Parking",
-          "Pets",
-          "School",
-          "Townhall",
-          "Water",
-          "Other"
-        ];
-      });
-  }, []);
+    console.log("The times they are a-changin");
+    if (issueOrEvent === "Issue") {
+      setCategory("Category");
+    } else {
+      setCategory("Events");
+    }
+  }, [issueOrEvent]);
 
   // Handle Open and Closes for SnackBars
   const handleOpen = specificToggle => {
@@ -97,9 +81,10 @@ const Create = props => {
         <React.Fragment>
           <Select
             variant="outlined"
-            defaultValue="Accessibility"
-            value={categories[0]}
+            defaultValue="Category"
+            label="Categories"
             onChange={event => {
+              console.log("The categories they are a-changin");
               setCategory(event.target.value);
             }}
           >
@@ -141,12 +126,12 @@ const Create = props => {
             <div className={Style.RadioContainer}>
               <FormControlLabel
                 value="Issue"
-                control={<Radio />}
+                control={<Radio color="primary" />}
                 label="Issue"
               />
               <FormControlLabel
                 value="Event"
-                control={<Radio />}
+                control={<Radio color="primary" />}
                 label="Event"
               />
             </div>

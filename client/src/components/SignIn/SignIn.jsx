@@ -90,7 +90,7 @@ const SignIn = props => {
               placeholder={"username"}
               value={username}
               onChange={handleUsername}
-              className={style.textFeild}
+              className={style.textField}
             ></input>
           </div>
           <div>
@@ -99,7 +99,7 @@ const SignIn = props => {
               placeholder={"password"}
               value={password}
               onChange={handlePassword}
-              className={style.textFeild}
+              className={style.textField}
             ></input>
           </div>
           <div>

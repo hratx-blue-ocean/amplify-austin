@@ -11,6 +11,7 @@ import Title from "./components/header/title";
 import SortFilter from "./components/SortFilter/SortFilter";
 import axios from "axios";
 import UserStatus from "./components/userStatus/UserStatus";
+import WelcomePopUp from "./components/ModalPopUp/ModalPopUp.jsx";
 
 import {
   BrowserRouter as Router,
@@ -32,7 +33,8 @@ export class App extends React.Component {
       response: undefined,
       filteredCategories: [],
       sortSelection: "popularity",
-      stateChanger: 0
+      stateChanger: 0,
+      helloWorld: false
     };
     this.sortBy = this.sortBy.bind(this);
     this.changeSelectBy = this.changeSelectBy.bind(this);
@@ -48,6 +50,17 @@ export class App extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.sortSelection !== this.state.sortSelection ||
+      prevState.filteredCategories !== this.state.filteredCategories ||
+      prevState.selectBy !== this.state.selectBy ||
+      prevState.stateChanger !== this.state.stateChanger
+    ) {
+      this.getPosts();
+    }
+  }
+
   async getCategories() {
     try {
       const res = await axios.get(API.CATEGORIES);
@@ -59,9 +72,9 @@ export class App extends React.Component {
     }
   }
 
-  async getPosts(mounting) {
-    let strArry = this.state.filteredCategories.join("/");
-    let userId = localStorage.getItem("user_id");
+  async getPosts() {
+    const strArry = this.state.filteredCategories.join("/");
+    const userId = localStorage.getItem("user_id");
     try {
       this.setState({ response: false });
       const res = await axios.get(API.MAIN, {
@@ -73,22 +86,13 @@ export class App extends React.Component {
           response: true
         }
       });
-      this.setState(
-        {
-          posts: res.data,
-          response: true
-        },
-        () => {
-          // Momentarily keep the initial response on page load output
-          if (mounting) {
-            console.log(this.state.posts);
-          }
-        }
-      );
+      this.setState({
+        posts: res.data,
+        response: true
+      });
     } catch (error) {
       // true so no posts displays instead of spinner
       this.setState({ response: true });
-      console.error(error);
     }
   }
 
@@ -105,17 +109,6 @@ export class App extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.sortSelection !== this.state.sortSelection ||
-      prevState.filteredCategories !== this.state.filteredCategories ||
-      prevState.selectBy !== this.state.selectBy ||
-      prevState.stateChanger !== this.state.stateChanger
-    ) {
-      this.getPosts();
-    }
-  }
-
   changeSelectBy(selection) {
     this.setState({
       selectBy: selection,
@@ -128,9 +121,8 @@ export class App extends React.Component {
       <Router>
         <div className={styles.container}>
           <Header changeSelectBy={this.changeSelectBy.bind(this)} />
-          {/* <div className={styles.header}>
-          </div> */}
           <div className={styles.component}>
+            <WelcomePopUp></WelcomePopUp>
             <Switch>
               <Route exact path="/">
                 <UserStatus />
@@ -156,7 +148,10 @@ export class App extends React.Component {
               <Route path="/signin">
                 <SignIn />
               </Route>
-              <PrivateRoute path="/create" component={Create} />
+              <PrivateRoute
+                path="/create"
+                component={() => <Create categories={this.state.categories} />}
+              />
               <Route path="/map">
                 <MapPage
                   posts={this.state.posts}
