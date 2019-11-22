@@ -8,8 +8,7 @@ import { useParams, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import NotificationModal from "../NotificationModal/NotificationModal";
 import { API } from "../../constants";
-import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import Icon from "../Icon/Icon";
 import Loading from "../Loading/Loading";
 import ErrorModal from "../NotificationModal/ErrorModal";
 
@@ -118,9 +117,9 @@ const PostPage = props => {
             <div className={style.favorite}>
               <div onClick={handleFavorite}>
                 {fave === true ? (
-                  <VisibilityIcon></VisibilityIcon>
+                  <Icon category={"watched"} onClick={handleFavorite} />
                 ) : (
-                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                  <Icon category={"unwatched"} onClick={handleFavorite} />
                 )}
               </div>
             </div>
