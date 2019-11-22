@@ -17,7 +17,9 @@ const PostPageSubGroup = ({ categoryName, created_at }) => {
       </div>
       <div>
         <div className={style.subGroup}>
-          <h4>{categoryName === 'Events' ? 'Event Date: ' : 'Date Recorded: '}</h4>
+          <h4>
+            {categoryName === "Events" ? "Event Date: " : "Date Recorded: "}
+          </h4>
           <h6>{dateCreated}</h6>
         </div>
       </div>

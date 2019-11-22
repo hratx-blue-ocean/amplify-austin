@@ -108,7 +108,7 @@ const PostPage = props => {
           />
           <div className={style.titleField}>
             <div className={style.heading}>
-              <h1 >{post.headline}</h1>
+              <h1>{post.headline}</h1>
             </div>
             <div className={style.descriptors}>
               <PostPageSubGroup
@@ -121,8 +121,8 @@ const PostPage = props => {
                 {fave === true ? (
                   <Icon category={"watched"} onClick={handleFavorite} />
                 ) : (
-                    <Icon category={"unwatched"} onClick={handleFavorite} />
-                  )}
+                  <Icon category={"unwatched"} onClick={handleFavorite} />
+                )}
               </div>
             </div>
           </div>
