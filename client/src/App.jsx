@@ -147,7 +147,10 @@ export class App extends React.Component {
               <Route path="/signin">
                 <SignIn />
               </Route>
-              <PrivateRoute path="/create" component={() => <Create categories={this.state.categories} />} />
+              <PrivateRoute
+                path="/create"
+                component={() => <Create categories={this.state.categories} />}
+              />
               <Route path="/map">
                 <MapPage
                   posts={this.state.posts}

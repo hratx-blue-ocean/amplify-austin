@@ -101,7 +101,7 @@ const SignUp = () => {
               type={"text"}
               id={"username"}
               placeholder={"username"}
-              className={style.textFeild}
+              className={style.textField}
               value={username}
               onChange={handleUsernameInput}
             ></input>
@@ -110,7 +110,7 @@ const SignUp = () => {
             <input
               type={"password"}
               placeholder={"password"}
-              className={style.textFeild}
+              className={style.textField}
               value={password}
               onChange={handlePasswordInput}
             ></input>
@@ -119,7 +119,7 @@ const SignUp = () => {
             <input
               type={"password"}
               placeholder={"confirm password"}
-              className={style.textFeild}
+              className={style.textField}
               value={confirmation}
               onChange={handleConfirmationInput}
             ></input>
@@ -130,9 +130,9 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-        <h5 className={style.textInfo}>
+        <div className={style.textInfo}>
           Already have an Account? <Link to="/signin">Sign In</Link>
-        </h5>
+        </div>
       </div>
       <ErrorModal
         CurrentState={errorToggle}

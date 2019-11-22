@@ -8,8 +8,7 @@ import { useParams, useHistory } from "react-router-dom";
 import PostPageSubGroup from "./PostPageSubGroup/PostSubGroup";
 import NotificationModal from "../NotificationModal/NotificationModal";
 import { API } from "../../constants";
-import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import Icon from "../Icon/Icon";
 import Loading from "../Loading/Loading";
 import ErrorModal from "../NotificationModal/ErrorModal";
 
@@ -70,8 +69,7 @@ const PostPage = props => {
   const handleFavorite = async e => {
     e.stopPropagation();
     if (!userID) {
-      toggleDisplayModal(!displayModal);
-      return;
+      return toggleDisplayModal(!displayModal);
     }
     try {
       const response = await axios.post(API.FAVORITE, {
@@ -88,8 +86,7 @@ const PostPage = props => {
 
   const handleStatus = async () => {
     if (!userID) {
-      toggleDisplayModal(true);
-      return;
+      return toggleDisplayModal(true);
     }
     const ENDPOINT = status === "resolved" ? API.DISPUTE : API.RESOLVE;
     const response = await axios.post(ENDPOINT, {
@@ -97,7 +94,7 @@ const PostPage = props => {
       postId: postID
     });
     const newStatus = response.data;
-    setStatus(newStatus);
+    setStatus(newStatus.status);
   };
 
   if (post) {
@@ -111,9 +108,10 @@ const PostPage = props => {
           />
           <div className={style.titleField}>
             <div className={style.heading}>
-              <h2>{post.headline}</h2>
+              <h1>{post.headline}</h1>
+            </div>
+            <div className={style.descriptors}>
               <PostPageSubGroup
-                type={post.type}
                 categoryName={post.categoryName}
                 created_at={post.created_at}
               />
@@ -121,9 +119,9 @@ const PostPage = props => {
             <div className={style.favorite}>
               <div onClick={handleFavorite}>
                 {fave === true ? (
-                  <VisibilityIcon></VisibilityIcon>
+                  <Icon category={"watched"} onClick={handleFavorite} />
                 ) : (
-                  <VisibilityOutlinedIcon></VisibilityOutlinedIcon>
+                  <Icon category={"unwatched"} onClick={handleFavorite} />
                 )}
               </div>
             </div>
