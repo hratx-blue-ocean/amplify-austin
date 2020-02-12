@@ -19,15 +19,15 @@
 ![GIF OF DEMO](https://thumbs.gfycat.com/FamiliarAdvancedConey-size_restricted.gif)
 
 ## Contributors
-* [Cameron](http://github.com/Cameron-Sobhani)
-* [Ethan](http://github.com/ethanhogan)
-* [Evan](http://github.com/Xenolithes)
-* [James](http://github.com/jamesjamail)
-* [Jonathan](https://github.com/jkeane889)
-* [Seth](https://github.com/projectlewis)
-* [Taylor](http://github.com/atgeorge11)
-* [Tye](https://github.com/tyemacon)
-* [Chris](https://gargoylepastures.com)
+* [Cameron Sobhani](http://github.com/Cameron-Sobhani)
+* [Ethan Hogan](http://github.com/ethanhogan)
+* [Evan Schweitzer](http://github.com/Xenolithes)
+* [James Jamail](http://github.com/jamesjamail)
+* [Jonathan Keane](https://github.com/jkeane889)
+* [Seth Lewis](https://github.com/projectlewis)
+* [Taylor George](http://github.com/atgeorge11)
+* [Tye Macon](https://github.com/tyemacon)
+* [Chris Scarlett](https://gargoylepastures.com)
 
 ## About
 Amplify Austin is a web application that prioritizes mobile phone users.
